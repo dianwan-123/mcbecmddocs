@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>基本指南 - 我的大纲知识库</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script>
+window.__WIKI__ = { base: '../', theme: 'auto' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../">
+    <span class="logo">📔</span>
+    <span>我的大纲知识库</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <button class="theme-btn" id="search-trigger">🔍 搜索 (⌘K)</button>
+  <button class="theme-btn" id="theme-btn">◐</button>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="qgddrgao"><div class="tree-row" href="../"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../'">关于本知识库</span></div></div><div class="tree-item-wrap" data-id="4zjye74g"><div class="tree-row active is-header" ><span class="expander">▼</span><span class="lbl" >基本指南</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="muq7ujgx"><div class="tree-row" href="../guide-group/sub-pages/"><span class="expander empty"></span><span class="emoji">📂</span><span class="lbl" onclick="location.href='../guide-group/sub-pages/'">如何创建子目录</span></div></div><div class="tree-item-wrap" data-id="1ma4uh7w"><div class="tree-row" href="../guide-group/h2-pages/"><span class="expander empty"></span><span class="emoji">⚡</span><span class="lbl" onclick="location.href='../guide-group/h2-pages/'">大标题分页测试页</span></div></div><div class="tree-item-wrap" data-id="p1qbscf0"><div class="tree-row" href="../guide-group/new-page-o9wa/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../guide-group/new-page-o9wa/'">新建页面</span></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      
+      <div class="hint" style="padding:40px 0;color:var(--text-3)">这是分类大标题文件夹。请在左侧边栏导航点击其他子页面阅读。</div>
+    </article>
+
+    
+
+    
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

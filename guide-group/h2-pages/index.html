@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大标题分页测试页 - 我的大纲知识库</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<script>
+window.__WIKI__ = { base: '../../', theme: 'auto' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../">
+    <span class="logo">📔</span>
+    <span>我的大纲知识库</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <button class="theme-btn" id="search-trigger">🔍 搜索 (⌘K)</button>
+  <button class="theme-btn" id="theme-btn">◐</button>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="qgddrgao"><div class="tree-row" href="../../"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../'">关于本知识库</span></div></div><div class="tree-item-wrap" data-id="4zjye74g"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >基本指南</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="muq7ujgx"><div class="tree-row" href="../../guide-group/sub-pages/"><span class="expander empty"></span><span class="emoji">📂</span><span class="lbl" onclick="location.href='../../guide-group/sub-pages/'">如何创建子目录</span></div></div><div class="tree-item-wrap" data-id="1ma4uh7w"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">⚡</span><span class="lbl" onclick="location.href='#'">大标题分页测试页</span></div></div><div class="tree-item-wrap" data-id="p1qbscf0"><div class="tree-row" href="../../guide-group/new-page-o9wa/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../guide-group/new-page-o9wa/'">新建页面</span></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>大标题分页测试页</h1>
+      <h2 id="第一章节快速浏览">第一章节：快速浏览<a class="anchor" href="#第一章节快速浏览" aria-label="链接到此章节">#</a></h2>
+<p>这里是长页面的第一章内容。测试底部大标题分页导览是否成功生成。</p>
+<h2 id="第二章节深度配置">第二章节：深度配置<a class="anchor" href="#第二章节深度配置" aria-label="链接到此章节">#</a></h2>
+<p>这里是第二章内容。配置项已经更新，侧边栏联动完美记忆。</p>
+<h2 id="第三章节多图测试">第三章节：多图测试<a class="anchor" href="#第三章节多图测试" aria-label="链接到此章节">#</a></h2>
+<p>这里是第三章内容。你可以在此插入各种图表，Wiki Studio 将会自动整理打包输出。</p>
+
+    </article>
+
+    
+        <nav class="section-pages" aria-label="本章大标题导览">
+          <div class="section-pages-title">📍 本页大纲及快捷分页</div>
+          <div class="section-grid">
+            
+              <a href="#第一章节快速浏览" class="section-card">
+                <div class="h">1. 第一章节：快速浏览</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第二章节深度配置" class="section-card">
+                <div class="h">2. 第二章节：深度配置</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第三章节多图测试" class="section-card">
+                <div class="h">3. 第三章节：多图测试</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+          </div>
+        </nav>
+      
+
+    
+      <div class="pager">
+        <a href="../../guide-group/sub-pages/"><div class="sub">上一页</div><div class="title">如何创建子目录</div></a>
+        <a href="../../guide-group/new-page-o9wa/" class="next"><div class="sub">下一页</div><div class="title">新建页面</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#第一章节快速浏览">第一章节：快速浏览</a><a class="lv2" href="#第二章节深度配置">第二章节：深度配置</a><a class="lv2" href="#第三章节多图测试">第三章节：多图测试</a></aside>
+</div>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../assets/app.js"></script>
+</body>
+</html>
