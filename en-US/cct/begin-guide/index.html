@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The guide for beginner - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'en-US' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" >简体中文</option><option value="en-US" selected>English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../en-US/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../en-US/'">Welcome!</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >Coordinates Calculation Theory</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">The guide for beginner</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../en-US/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../en-US/cct/exprlist/'">Formula Table</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../en-US/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../en-US/cct/abe/'">Algebraic Expression of CCT</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >miscellaneous</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../../../en-US/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../en-US/cct/cct-else/circle/'">How to draw a circle</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../en-US/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../en-US/cct/cct-else/sqrtx/'">Ladder Problem</span></div></div></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>The guide for beginner</h1>
+      <h1 id="minecraft-bedrock-edition-coordinates-calculation-theory-cct-a-beginners-guide">Minecraft Bedrock Edition: Coordinates Calculation Theory (CCT) — A Beginner&#39;s Guide<a class="anchor" href="#minecraft-bedrock-edition-coordinates-calculation-theory-cct-a-beginners-guide" aria-label="链接到此章节">#</a></h1>
+<hr>
+<h1 id="chapter-1-starting-from-scratch-coordinate-systems-and-the-execute-command">Chapter 1: Starting from Scratch — Coordinate Systems and the <code>execute</code> Command<a class="anchor" href="#chapter-1-starting-from-scratch-coordinate-systems-and-the-execute-command" aria-label="链接到此章节">#</a></h1>
+<h2 id="11-minecrafts-coordinate-system">1.1 Minecraft&#39;s Coordinate System<a class="anchor" href="#11-minecrafts-coordinate-system" aria-label="链接到此章节">#</a></h2>
+<p>In Minecraft, every position can be described with three numbers:</p>
+<ul>
+<li><strong>X-axis</strong>: East–West direction (positive = East, negative = West)</li>
+<li><strong>Y-axis</strong>: Up–Down direction (positive = Up, negative = Down)</li>
+<li><strong>Z-axis</strong>: North–South direction (positive = South, negative = North)</li>
+</ul>
+<p>For example, the coordinate <code>(3, 64, -5)</code> means: 3 blocks East of spawn, at height 64, and 5 blocks North.</p>
+<p>In addition to position, a player also has a <strong>viewing direction</strong>, described by two angles:</p>
+<ul>
+<li><strong>ry (yaw)</strong>: Left–right rotation. Facing South is 0°, increasing clockwise.</li>
+<li><strong>rx (pitch)</strong>: Up–down rotation. Horizontal is 0°, looking down is positive, looking up is negative.</li>
+</ul>
+<h2 id="12-three-coordinate-notations">1.2 Three Coordinate Notations<a class="anchor" href="#12-three-coordinate-notations" aria-label="链接到此章节">#</a></h2>
+<p>Commands support three coordinate notations. Understanding them is the foundation of everything:</p>
+<h3 id="absolute-coordinates-plain-numbers">Absolute Coordinates: Plain Numbers<a class="anchor" href="#absolute-coordinates-plain-numbers" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block"><pre><code>5 64 -3</code></pre></figure>
+<p>Refers to a fixed position <code>(5, 64, -3)</code> in the world — it never changes regardless of where you stand.</p>
+<h3 id="relative-coordinates-prefix-with">Relative Coordinates: Prefix with <code>~</code><a class="anchor" href="#relative-coordinates-prefix-with" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block"><pre><code>~2 ~0 ~-1</code></pre></figure>
+<p>Offset <strong>relative to the current position</strong>. If you are at <code>(10, 64, 10)</code>, then <code>~2 ~0 ~-1</code> resolves to <code>(12, 64, 9)</code>.</p>
+<p>Mathematically, if the current position is <span class="math-inline">(x, y, z)</span>, executing <code>positioned ~a ~b ~c</code> produces:</p>
+<div class="math-block">(x, y, z) \mapsto (x + a,\ y + b,\ z + c)</div>
+<h3 id="local-coordinates-prefix-with">Local Coordinates: Prefix with <code>^</code><a class="anchor" href="#local-coordinates-prefix-with" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block"><pre><code>^1 ^0 ^2</code></pre></figure>
+<p>This is the most special notation. <code>^left ^up ^forward</code> offsets <strong>relative to your viewing direction</strong>.</p>
+<ul>
+<li><code>^1 ^ ^</code> — move 1 block to your <strong>left</strong></li>
+<li><code>^ ^1 ^</code> — move 1 block <strong>upward</strong></li>
+<li><code>^ ^ ^1</code> — move 1 block <strong>forward</strong></li>
+</ul>
+<p>This means that if you turn around, <code>^ ^ ^1</code> points to a completely different world coordinate!</p>
+<blockquote>
+<p>💡 <strong>Quick Exercise</strong>: You are facing South (ry=0) at <code>(0, 64, 0)</code>. After <code>positioned ^ ^ ^3</code>, where do you end up?</p>
+<p>Answer: <code>(0, 64, 3)</code>, because when facing South, forward is the positive Z direction.</p>
+</blockquote>
+<h2 id="13-what-is-the-execute-command">1.3 What Is the <code>execute</code> Command<a class="anchor" href="#13-what-is-the-execute-command" aria-label="链接到此章节">#</a></h2>
+<p>The <code>execute</code> command is a &quot;magic portal&quot; — it can <strong>first change the execution position or viewing angle, then run a sub-command</strong>.</p>
+<p>Basic syntax:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute &lt;a series of conditions and transformations&gt; run &lt;command to execute&gt;</code></pre></figure>
+<p>Example:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 64 0 run particle minecraft:basic_flame_particle ~ ~ ~</code></pre></figure>
+<p>This command moves the execution position to <code>(0, 64, 0)</code>, then spawns a flame particle there.</p>
+<p><code>execute</code> has several key sub-commands covered in this tutorial:</p>
+<div class="table-wrap"><table><thead><tr><th>Sub-command</th><th>Effect</th></tr></thead><tbody><tr><td><code>positioned a b c</code></td><td><strong>Directly sets</strong> execution position to <code>(a,b,c)</code></td></tr><tr><td><code>positioned ~a ~b ~c</code></td><td><strong>Offsets</strong> execution position by <code>(a,b,c)</code></td></tr><tr><td><code>positioned ^a ^b ^c</code></td><td>Moves along <strong>local directions</strong></td></tr><tr><td><code>rotated a b</code></td><td><strong>Directly sets</strong> view angle to <code>(ry=a, rx=b)</code></td></tr><tr><td><code>rotated ~a ~b</code></td><td><strong>Relatively rotates</strong> view by <code>(a,b)</code></td></tr><tr><td><code>facing x y z</code></td><td>Points view <strong>toward</strong> a coordinate</td></tr><tr><td><code>as &lt;entity&gt;</code></td><td>Switches the <strong>executor</strong></td></tr><tr><td><code>rotated as &lt;entity&gt;</code></td><td>Borrows an entity&#39;s <strong>view angle</strong></td></tr></tbody></table></div>
+<hr>
+<h1 id="chapter-2-view-angles-and-rotation-matrices">Chapter 2: View Angles and Rotation Matrices<a class="anchor" href="#chapter-2-view-angles-and-rotation-matrices" aria-label="链接到此章节">#</a></h1>
+<h2 id="21-why-local-coordinates-require-matrices">2.1 Why Local Coordinates Require Matrices<a class="anchor" href="#21-why-local-coordinates-require-matrices" aria-label="链接到此章节">#</a></h2>
+<p>When we write <code>positioned ^a ^b ^c</code>, the game needs to know: &quot;What world-coordinate directions correspond to local left, up, and forward?&quot; This correspondence is the <strong>rotation matrix</strong> <span class="math-inline">\mathbf{R}</span>.</p>
+<p>The rotation matrix is determined by the current view angle <span class="math-inline">(ry, rx)</span>:</p>
+<div class="math-block">\mathbf{R} = \begin{bmatrix} \cos(ry) &amp; -\sin(rx)\sin(ry) &amp; -\cos(rx)\sin(ry) \\ 0 &amp; \cos(rx) &amp; -\sin(rx) \\ \sin(ry) &amp; \sin(rx)\cos(ry) &amp; \cos(rx)\cos(ry) \end{bmatrix}</div>
+<p>The three columns represent the world-coordinate directions of local <strong>Left (L), Up (U), and Forward (F)</strong>:</p>
+<div class="math-block">\mathbf{L} = \begin{pmatrix}\cos(ry)\\ 0\\ \sin(ry)\end{pmatrix}, \quad \mathbf{U} = \begin{pmatrix}-\sin(rx)\sin(ry)\\ \cos(rx)\\ \sin(rx)\cos(ry)\end{pmatrix}, \quad \mathbf{F} = \begin{pmatrix}-\cos(rx)\sin(ry)\\ -\sin(rx)\\ \cos(rx)\cos(ry)\end{pmatrix}</div>
+<p>Don&#39;t be intimidated by these formulas — a few concrete examples will make them clear.</p>
+<h2 id="22-concrete-angle-verification">2.2 Concrete Angle Verification<a class="anchor" href="#22-concrete-angle-verification" aria-label="链接到此章节">#</a></h2>
+<p><strong>Example 1: Facing South (ry=0, rx=0)</strong></p>
+<p>Substituting <span class="math-inline">ry=0, rx=0</span>: <span class="math-inline">\cos(0)=1, \sin(0)=0</span></p>
+<div class="math-block">\mathbf{L}=(1,0,0),\quad \mathbf{U}=(0,1,0),\quad \mathbf{F}=(0,0,1)</div>
+<ul>
+<li>Local Left = World +X (East) ✓</li>
+<li>Local Up = World +Y (Up) ✓</li>
+<li>Local Forward = World +Z (South) ✓</li>
+</ul>
+<p><strong>Example 2: Facing North (ry=180, rx=0)</strong></p>
+<p><span class="math-inline">\cos(180°)=-1, \sin(180°)=0</span></p>
+<div class="math-block">\mathbf{L}=(-1,0,0),\quad \mathbf{U}=(0,1,0),\quad \mathbf{F}=(0,0,-1)</div>
+<ul>
+<li>Local Forward = World −Z (North) ✓</li>
+</ul>
+<p><strong>Example 3: Facing East (ry=-90, rx=0)</strong></p>
+<p><span class="math-inline">\cos(-90°)=0, \sin(-90°)=-1</span></p>
+<div class="math-block">\mathbf{L}=(0,0,-1),\quad \mathbf{U}=(0,1,0),\quad \mathbf{F}=(1,0,0)</div>
+<ul>
+<li>Local Forward = World +X (East) ✓</li>
+</ul>
+<p><strong>Example 4: Looking Down 30° (ry=0, rx=30°)</strong></p>
+<p><span class="math-inline">\cos(30°)=\frac{\sqrt{3}}{2}\approx0.866,\sin(30°)=0.5</span></p>
+<div class="math-block">\mathbf{F}=(0,-0.5, 0.866)</div>
+<ul>
+<li>Forward has a component of 0.5 blocks downward and 0.866 blocks South — indeed pointing forward-and-down ✓</li>
+</ul>
+<h2 id="23-complete-formula-for-positioned-a-b-c">2.3 Complete Formula for <code>positioned ^a ^b ^c</code><a class="anchor" href="#23-complete-formula-for-positioned-a-b-c" aria-label="链接到此章节">#</a></h2>
+<p>After executing <code>positioned ^a ^b ^c</code>, the position changes from <span class="math-inline">(x,y,z)</span> to:</p>
+<div class="math-block">x \mapsto x + a\cos(ry) - b\sin(rx)\sin(ry) - c\cos(rx)\sin(ry)</div>
+<div class="math-block">y \mapsto y + b\cos(rx) - c\sin(rx)</div>
+<div class="math-block">z \mapsto z + a\sin(ry) + b\sin(rx)\cos(ry) + c\cos(rx)\cos(ry)</div>
+<blockquote>
+<p>💡 <strong>Intuition</strong>: These three expressions mean &quot;walk <span class="math-inline">a</span> blocks along local left + <span class="math-inline">b</span> blocks along local up + <span class="math-inline">c</span> blocks along local forward, expressed in world coordinates.&quot;</p>
+</blockquote>
+<hr>
+<h1 id="chapter-3-the-mathematical-meaning-of-the-facing-command">Chapter 3: The Mathematical Meaning of the <code>facing</code> Command<a class="anchor" href="#chapter-3-the-mathematical-meaning-of-the-facing-command" aria-label="链接到此章节">#</a></h1>
+<h2 id="31-what-facing-does">3.1 What <code>facing</code> Does<a class="anchor" href="#31-what-facing-does" aria-label="链接到此章节">#</a></h2>
+<p>The <code>facing x y z</code> command points the current view <strong>toward the coordinate (x,y,z)</strong>. The game automatically calculates the required ry and rx.</p>
+<p>Let the current position be <span class="math-inline">(x_0, y_0, z_0)</span> and the target be <span class="math-inline">(a, b, c)</span>. The trigonometric values for pointing at the target are:</p>
+<div class="math-block">\sin(ry) = \frac{a - x_0}{\sqrt{(a-x_0)^2 + (c-z_0)^2}}</div>
+<div class="math-block">\cos(ry) = \frac{c - z_0}{\sqrt{(a-x_0)^2 + (c-z_0)^2}}</div>
+<div class="math-block">\sin(rx) = \frac{b - y_0}{\sqrt{(a-x_0)^2 + (b-y_0)^2 + (c-z_0)^2}}</div>
+<div class="math-block">\cos(rx) = \frac{\sqrt{(a-x_0)^2 + (c-z_0)^2}}{\sqrt{(a-x_0)^2 + (b-y_0)^2 + (c-z_0)^2}}</div>
+<h2 id="32-the-most-important-geometric-meaning-of-facing">3.2 The Most Important Geometric Meaning of <code>facing</code><a class="anchor" href="#32-the-most-important-geometric-meaning-of-facing" aria-label="链接到此章节">#</a></h2>
+<p>The core action of <code>facing</code> is simple: <strong>it turns the &quot;vector pointing toward the target&quot; into a unit direction vector</strong>.</p>
+<p>Let the displacement vector be <span class="math-inline">\mathbf{v} = (a-x_0, b-y_0, c-z_0)</span>. After executing <code>facing</code>, the local forward direction becomes:</p>
+<div class="math-block">\mathbf{F} = \frac{\mathbf{v}}{\|\mathbf{v}\|}</div>
+<p>where <span class="math-inline">\|\mathbf{v}\| = \sqrt{(a-x_0)^2 + (b-y_0)^2 + (c-z_0)^2}</span> is the vector&#39;s length.</p>
+<p>This &quot;divide by length&quot; operation is called <strong>normalization</strong> in mathematics — and it is the source of all the remarkable effects in CCT&#39;s Infinity Approximation!</p>
+<h2 id="33-three-forms-of-facing">3.3 Three Forms of <code>facing</code><a class="anchor" href="#33-three-forms-of-facing" aria-label="链接到此章节">#</a></h2>
+<div class="table-wrap"><table><thead><tr><th>Form</th><th>Points toward</th></tr></thead><tbody><tr><td><code>facing a b c</code></td><td>Absolute coordinate <code>(a,b,c)</code></td></tr><tr><td><code>facing ~a ~b ~c</code></td><td>Current position offset by <code>(a,b,c)</code></td></tr><tr><td><code>facing ^a ^b ^c</code></td><td>Local direction offset</td></tr></tbody></table></div>
+<blockquote>
+<p><strong>Important</strong>: <code>facing ~a ~b ~c</code> is equivalent to <code>facing x+a y+b z+c</code> — a relative facing.</p>
+</blockquote>
+<h2 id="34-geometric-effect-of-facing-followed-by-positioned">3.4 Geometric Effect of <code>facing</code> Followed by <code>positioned</code><a class="anchor" href="#34-geometric-effect-of-facing-followed-by-positioned" aria-label="链接到此章节">#</a></h2>
+<p>This is the most fundamental operation pattern in CCT:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing &lt;some target&gt; positioned ^ ^ ^d</code></pre></figure>
+<p>Effect: Starting from the current position, <strong>walk <span class="math-inline">d</span> blocks toward the target</strong>, arriving at a new position.</p>
+<p>Using a formula:</p>
+<div class="math-block">\mathbf{p}&#39; = \mathbf{p} + d \cdot \frac{\mathbf{q} - \mathbf{p}}{\|\mathbf{q} - \mathbf{p}\|}</div>
+<p>where <span class="math-inline">\mathbf{p}</span> is the current position and <span class="math-inline">\mathbf{q}</span> is the <code>facing</code> target.</p>
+<p><strong>Example</strong>: At <code>(0,0,0)</code>, execute <code>facing 3 0 4 positioned ^ ^ ^5</code>:</p>
+<ol>
+<li>Direction vector: <span class="math-inline">(3,0,4)</span>, length <span class="math-inline">= \sqrt{9+0+16}=5</span></li>
+<li>Unit direction: <span class="math-inline">(0.6, 0, 0.8)</span></li>
+<li>Walk 5 blocks: arrive at <span class="math-inline">(3, 0, 4)</span></li>
+</ol>
+<p>Exactly the target! (Because <span class="math-inline">d</span> equals the distance.) If <span class="math-inline">d</span> does not equal the distance, you stop partway.</p>
+<hr>
+<h1 id="chapter-4-core-principles-of-cct-infinity-approximation">Chapter 4: Core Principles of CCT — Infinity Approximation<a class="anchor" href="#chapter-4-core-principles-of-cct-infinity-approximation" aria-label="链接到此章节">#</a></h1>
+<h2 id="41-what-is-the-large-number">4.1 What Is the &quot;Large Number&quot;<a class="anchor" href="#41-what-is-the-large-number" aria-label="链接到此章节">#</a></h2>
+<p>The &quot;large number&quot; in CCT&#39;s <strong>Infinity Approximation</strong> refers to a number <span class="math-inline">H</span> that is <strong>much larger than the scale of the figure</strong>. Common values are 1024, 2048, 4096, etc.</p>
+<p>Why use a large number? Because the <code>facing</code> command involves a &quot;divide by distance&quot; operation. Making that distance very large allows certain errors to be approximately eliminated, achieving the desired geometric transformation.</p>
+<blockquote>
+<p>As described in the CCT introduction: <strong>Limit Approximation</strong> is the most important part of CCT — a tool that uses extreme values (close to infinity or zero) to make CCT formulas work. When a command chain contains <span class="math-inline">\lim_{a \to \infty}</span>, you manually assign a large number to <span class="math-inline">a</span>. This is called <strong>Infinity Approximation</strong> (also known as the <em>Large Number Compass</em>).</p>
+</blockquote>
+<h2 id="42-distant-point-axis-reflection-the-basic-building-block-of-cct">4.2 Distant-Point Axis Reflection — The Basic Building Block of CCT<a class="anchor" href="#42-distant-point-axis-reflection-the-basic-building-block-of-cct" aria-label="链接到此章节">#</a></h2>
+<h3 id="what-is-axis-reflection">What Is Axis Reflection<a class="anchor" href="#what-is-axis-reflection" aria-label="链接到此章节">#</a></h3>
+<p>Imagine a mirror standing along a line. A point flipped across that line is called an <strong>axis reflection</strong>.</p>
+<p>Example: The point <code>(3, 0)</code> reflected across the Y-axis gives <code>(-3, 0)</code>.</p>
+<h3 id="implementing-axis-reflection-with-commands">Implementing Axis Reflection with Commands<a class="anchor" href="#implementing-axis-reflection-with-commands" aria-label="链接到此章节">#</a></h3>
+<p>Setup:</p>
+<ul>
+<li>Current point is <span class="math-inline">P</span></li>
+<li>The reflection axis passes through the origin <span class="math-inline">O</span>, with direction determined by the facing angle of entity <code>axis</code></li>
+<li>Large number is <span class="math-inline">H</span></li>
+</ul>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as @e[name=axis] positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated as @e[name=axis] positioned ^ ^ ^1024</code></pre></figure>
+<p>The geometric meaning of these four steps:</p>
+<ol>
+<li><code>rotated as @e[name=axis] positioned ^ ^ ^1024</code> — Walk <span class="math-inline">H</span> blocks along the axis direction to reach auxiliary point <span class="math-inline">Q = P + H\mathbf{u}</span></li>
+<li><code>facing 0 0 0</code> — Point toward the origin</li>
+<li><code>positioned ^ ^ ^2048</code> — Walk <span class="math-inline">2H</span> blocks toward the origin</li>
+<li><code>rotated as @e[name=axis] positioned ^ ^ ^1024</code> — Walk another <span class="math-inline">H</span> blocks along the axis</li>
+</ol>
+<h3 id="why-this-is-a-reflection">Why This Is a Reflection<a class="anchor" href="#why-this-is-a-reflection" aria-label="链接到此章节">#</a></h3>
+<p>When <span class="math-inline">H</span> is large, the auxiliary point <span class="math-inline">Q</span> is far from the origin. &quot;Walking <span class="math-inline">2H</span> toward the origin&quot; approximates &quot;passing through the origin to an equally distant position on the other side.&quot; The final result approaches:</p>
+<div class="math-block">\mathbf{P}&#39; = 2(\mathbf{u} \cdot \mathbf{P})\mathbf{u} - \mathbf{P}</div>
+<p>This is exactly the reflection formula about a line passing through the origin with direction <span class="math-inline">\mathbf{u}</span>!</p>
+<blockquote>
+<p>💡 <strong>Error Analysis</strong>: The larger <span class="math-inline">H</span> is, the more accurate the reflection. The primary error is approximately <span class="math-inline">O\left(\frac{\|P\|^2}{H}\right)</span>, but extremely large <span class="math-inline">H</span> also introduces floating-point precision issues. In practice, H=1024 is a good choice.</p>
+</blockquote>
+<h2 id="43-two-reflections-equal-a-rotation">4.3 Two Reflections Equal a Rotation<a class="anchor" href="#43-two-reflections-equal-a-rotation" aria-label="链接到此章节">#</a></h2>
+<p>This is the most remarkable result: <strong>reflecting across two intersecting lines in sequence is equivalent to a rotation. The rotation angle is twice the angle between the lines.</strong></p>
+<p>Example:</p>
+<ul>
+<li>Line A: yaw=0 (facing South)</li>
+<li>Line B: yaw=30 (30° from South toward East)</li>
+<li>Angle between lines: 30°, so two reflections = rotation by 60°</li>
+</ul>
+<p>Setting Line B&#39;s yaw to 22.5° gives a 22.5° angle, meaning two reflections = rotation by 45°.</p>
+<p>This is the core mechanism of CCT circle-drawing!</p>
+<hr>
+<h1 id="chapter-5-drawing-circles-angle-bisection">Chapter 5: Drawing Circles — Angle Bisection<a class="anchor" href="#chapter-5-drawing-circles-angle-bisection" aria-label="链接到此章节">#</a></h1>
+<h2 id="51-approach-to-drawing-a-circle">5.1 Approach to Drawing a Circle<a class="anchor" href="#51-approach-to-drawing-a-circle" aria-label="链接到此章节">#</a></h2>
+<p>Drawing a circle means uniformly sampling <span class="math-inline">N</span> points on the circumference. For 64 points, adjacent points are <span class="math-inline">360°/64 = 5.625°</span> apart.</p>
+<p>We cannot simply &quot;rotate an entity 64 times&quot; since that would require 64 commands. CCT uses a clever method instead: <strong>angle bisection</strong>.</p>
+<ul>
+<li>Layer 1: 2 directions (0° and 180°), 180° apart</li>
+<li>Layer 2: 4 directions (0°, 90°, 180°, 270°), 90° apart</li>
+<li>Layer 3: 8 directions, 45° apart</li>
+<li>Layer 4: 16 directions, 22.5° apart</li>
+<li>Layer 5: 32 directions, 11.25° apart</li>
+<li>Layer 6: 64 directions, 5.625° apart</li>
+</ul>
+<p>Each layer uses two <code>tree</code> entities to produce a &quot;binary fork.&quot; After 6 layers, <span class="math-inline">2^6 = 64</span> paths are generated, corresponding to 64 equally spaced points on the circle.</p>
+<h2 id="52-prerequisite-two-tree-entities">5.2 Prerequisite: Two <code>tree</code> Entities<a class="anchor" href="#52-prerequisite-two-tree-entities" aria-label="链接到此章节">#</a></h2>
+<p>You need two armor stands named <code>tree</code>, set with the following rotations:</p>
+<ul>
+<li><code>tree_a</code>: yaw=0, pitch=-30 (facing South, tilted up)</li>
+<li><code>tree_b</code>: yaw=180, pitch=30 (facing North, tilted down)</li>
+</ul>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/tag @e[type=armor_stand,name=tree,c=1,r=3] add tree_a
+/tag @e[type=armor_stand,name=tree,tag=!tree_a,c=1,r=3] add tree_b
+/execute as @e[type=armor_stand,tag=tree_a,c=1] at @s run tp @s ~ ~ ~ 0 -30
+/execute as @e[type=armor_stand,tag=tree_b,c=1] at @s run tp @s ~ ~ ~ 180 30</code></pre></figure>
+<blockquote>
+<p>⚠️ <strong>Important</strong>: There must be <strong>exactly two</strong> entities named <code>tree</code>! With <span class="math-inline">T</span> entities, the command produces <span class="math-inline">T^6</span> paths. With T=3, that&#39;s 729 particles — far more than intended.</p>
+</blockquote>
+<h2 id="53-why-pitch-30-and-pitch30">5.3 Why pitch=-30 and pitch=30<a class="anchor" href="#53-why-pitch-30-and-pitch30" aria-label="链接到此章节">#</a></h2>
+<p>The forward vectors for these two rotations are:</p>
+<p><strong>tree_a (ry=0, rx=-30)</strong>:<br>
+<div class="math-block">\mathbf{F}_a = (0,\ 0.5,\ 0.866)</div></p>
+<p><strong>tree_b (ry=180, rx=30)</strong>:<br>
+<div class="math-block">\mathbf{F}_b = (0,\ -0.5,\ -0.866)</div></p>
+<p>The Y components are equal in magnitude but opposite in sign; X components are both 0. Executing:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as @e[name=tree] positioned ^ ^ ^1.75 rotated ~180 ~ positioned ^ ^ ^1.75</code></pre></figure>
+<p>For tree<em>a, the two moves&#39; Y components add up to <span class="math-inline">1.75</span> while Z components cancel, giving <span class="math-inline">(0, 1.75, 0)</span>. Likewise for tree</em>b, giving <span class="math-inline">(0, -1.75, 0)</span>.</p>
+<p>This produces two symmetric seed points on the Y-axis as starting points for circle drawing.</p>
+<h2 id="54-complete-command-for-a-64-point-circle">5.4 Complete Command for a 64-Point Circle<a class="anchor" href="#54-complete-command-for-a-64-point-circle" aria-label="链接到此章节">#</a></h2>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 2 0 rotated as @e[type=armor_stand,name=tree] rotated ~ 45 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 45 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 22.5 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 11.25 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 11.25 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 5.625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 5.625 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 2.8125 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 2.8125 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 1.40625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 1.40625 positioned ^ ^ ^1024 run particle minecraft:basic_flame_particle ~ ~0.2 ~</code></pre></figure>
+<p><strong>Structure breakdown (layer by layer)</strong>:</p>
+<figure class="code-block"><pre><code>Starting point: positioned 0 2 0
+
+Layer 1 (±45° reflection):
+  rotated as @e[name=tree] rotated ~ 45
+  positioned ^ ^ ^1024
+  facing 0 0 0
+  positioned ^ ^ ^2048
+  rotated ~180 45
+  positioned ^ ^ ^1024
+
+Layer 2 (±22.5° reflection):
+  rotated as @e[name=tree] rotated ~ 22.5
+  positioned ^ ^ ^1024
+  facing 0 0 0
+  positioned ^ ^ ^2048
+  rotated ~180 22.5
+  positioned ^ ^ ^1024
+
+... and so on, down to ±1.40625° ...
+
+Output: run particle minecraft:basic_flame_particle ~ ~0.2 ~</code></pre></figure>
+<p><strong>Pitch angle sequence across 6 layers</strong>:</p>
+<div class="math-block">45°,\quad 22.5°,\quad 11.25°,\quad 5.625°,\quad 2.8125°,\quad 1.40625°</div>
+<p>Each layer is half the previous — the origin of the name &quot;angle bisection.&quot;</p>
+<p><strong>Why does the starting point have y=2?</strong></p>
+<p>The starting point <code>positioned 0 2 0</code> places the point at <span class="math-inline">(0,2,0)</span>, which is 2 blocks from the origin. Orthogonal transformations (like axis reflections) preserve vector length, so all 64 points remain 2 blocks from the origin — effectively on a circle of radius 2 in the YZ plane.</p>
+<h2 id="55-numerical-verification">5.5 Numerical Verification<a class="anchor" href="#55-numerical-verification" aria-label="链接到此章节">#</a></h2>
+<p>With H=1024:</p>
+<ul>
+<li>Radius range across 64 points: approximately 1.996 to 2.007 (target: 2.000)</li>
+<li>Angular spacing range: approximately 5.14° to 6.11° (target: 5.625°)</li>
+<li>Quite accurate!</li>
+</ul>
+<hr>
+<h1 id="chapter-6-drawing-ellipses-transforming-a-circle-into-an-ellipse">Chapter 6: Drawing Ellipses — Transforming a Circle into an Ellipse<a class="anchor" href="#chapter-6-drawing-ellipses-transforming-a-circle-into-an-ellipse" aria-label="链接到此章节">#</a></h1>
+<h2 id="61-an-ellipse-is-a-stretched-circle">6.1 An Ellipse Is a &quot;Stretched Circle&quot;<a class="anchor" href="#61-an-ellipse-is-a-stretched-circle" aria-label="链接到此章节">#</a></h2>
+<p>The equation of a standard ellipse is:</p>
+<div class="math-block">\frac{y^2}{a^2} + \frac{z^2}{b^2} = 1</div>
+<p>where <span class="math-inline">a</span> is the semi-axis along Y and <span class="math-inline">b</span> is the semi-axis along Z.</p>
+<p><strong>Core idea</strong>: First draw a circle (all points equidistant from the origin), then apply <strong>non-uniform scaling</strong> to the coordinates — multiplying Y by one factor and Z by another.</p>
+<h2 id="62-complete-command-for-a-64-point-ellipse">6.2 Complete Command for a 64-Point Ellipse<a class="anchor" href="#62-complete-command-for-a-64-point-ellipse" aria-label="链接到此章节">#</a></h2>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 0 0 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^2 rotated as @e[type=armor_stand,name=tree] rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 22.5 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 11.25 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 11.25 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 5.625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 5.625 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 2.8125 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 2.8125 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 1.40625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 1.40625 positioned ^ ^ ^1024 facing 0 0 0 positioned 0 0 0 positioned ^ ^ ^4 rotated ~180 ~ positioned ^ ^ ^-2 run particle minecraft:basic_flame_particle ~ ~0.2 ~</code></pre></figure>
+<h2 id="63-comparing-circle-and-ellipse-commands">6.3 Comparing Circle and Ellipse Commands<a class="anchor" href="#63-comparing-circle-and-ellipse-commands" aria-label="链接到此章节">#</a></h2>
+<p>Comparing the ellipse command with the circle command reveals exactly two differences:</p>
+<p><strong>Difference 1</strong>: Different initial seeds</p>
+<ul>
+<li>Circle: <code>positioned 0 2 0</code> (start at (0,2,0), use 45° reflection in layer 1)</li>
+<li>Ellipse: <code>positioned 0 0 0</code> + <code>rotated ~ 0 positioned ^ ^ ^2</code> (use 0° to generate two seeds, then 5 layers of reflections from 22.5° down)</li>
+</ul>
+<p>In the ellipse, the first layer uses <code>rotated ~ 0</code> (pitch=0, horizontal). The tree with yaw=0 walks <code>^ ^ ^2</code> southward to <span class="math-inline">(0,0,2)</span>; the tree with yaw=180 walks northward to <span class="math-inline">(0,0,-2)</span>. These are two seeds on the Z-axis. The subsequent 5 layers of reflections produce <span class="math-inline">2 \times 2^5 = 64</span> points forming a circle of radius ~2 in the YZ plane.</p>
+<p><strong>Difference 2</strong>: Three extra steps at the end</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 0 0 positioned 0 0 0 positioned ^ ^ ^4 rotated ~180 ~ positioned ^ ^ ^-2</code></pre></figure>
+<p>These three steps transform the circle into an ellipse:</p>
+<p><strong>Step 1</strong>: <code>facing 0 0 0</code></p>
+<p>Points the view toward the origin. For a current point <span class="math-inline">(0, y, z)</span> (already in the YZ plane), the forward direction&#39;s Y and Z components are:</p>
+<div class="math-block">F_y = \frac{-y}{r},\quad F_z = \frac{-z}{r}</div>
+<p>where <span class="math-inline">r = \sqrt{y^2 + z^2} = 2</span>.</p>
+<p><strong>Step 2</strong>: <code>positioned 0 0 0</code></p>
+<p>Resets the execution position to the origin, <strong>while keeping the view direction unchanged</strong>.</p>
+<p><strong>Step 3</strong>: <code>positioned ^ ^ ^4</code></p>
+<p>Walk 4 blocks along the &quot;toward origin&quot; direction, arriving at:</p>
+<div class="math-block">\left(0,\ \frac{-4y}{r},\ \frac{-4z}{r}\right)</div>
+<p><strong>Step 4</strong>: <code>rotated ~180 ~</code> then <code>positioned ^ ^ ^-2</code></p>
+<p><code>rotated ~180 ~</code> flips the yaw by 180°. After flipping, the horizontal (XZ) components of the forward direction reverse sign while the vertical (Y) component stays the same.</p>
+<p>So <code>positioned ^ ^ ^-2</code> (walking −2 blocks in the new forward direction) produces:</p>
+<div class="math-block">\Delta y = -2 \cdot \frac{y}{r},\quad \Delta z = -2 \cdot \frac{z}{r}</div>
+<p>Accumulating from Step 3:</p>
+<div class="math-block">y_{final} = \frac{-4y}{r} + \frac{-2y}{r} = \frac{-6y}{r}</div>
+<p>Substituting <span class="math-inline">r=2</span>:</p>
+<div class="math-block">y_{final} = \frac{-6y}{2} = -3y</div>
+<p>At first glance Y and Z scale by the same factor — still a circle? Let&#39;s redo this carefully.</p>
+<h2 id="64-rigorous-derivation-of-ellipse-semi-axes">6.4 Rigorous Derivation of Ellipse Semi-Axes<a class="anchor" href="#64-rigorous-derivation-of-ellipse-semi-axes" aria-label="链接到此章节">#</a></h2>
+<p>Let the circle point be <span class="math-inline">P = (0, y_0, z_0)</span> with <span class="math-inline">y_0^2 + z_0^2 = r^2 = 4</span>.</p>
+<p><strong>Step 1: facing 0 0 0</strong></p>
+<p>Position stays at <span class="math-inline">P</span>, forward direction becomes:</p>
+<div class="math-block">\mathbf{F} = \frac{(0,0,0) - (0, y_0, z_0)}{|(0,0,0)-(0,y_0,z_0)|} = \left(0,\ \frac{-y_0}{r},\ \frac{-z_0}{r}\right)</div>
+<p><strong>Step 2: positioned 0 0 0</strong></p>
+<p>Position becomes the origin <span class="math-inline">(0,0,0)</span>; view direction unchanged.</p>
+<p><strong>Step 3: positioned ^ ^ ^4</strong></p>
+<p>Walk 4 blocks along <span class="math-inline">\mathbf{F}</span>:</p>
+<div class="math-block">P&#39; = (0,0,0) + 4\mathbf{F} = \left(0,\ -2y_0,\ -2z_0\right)</div>
+<p><strong>Step 4: rotated ~180 ~</strong></p>
+<p>Flipping yaw 180° reverses the XZ components of the forward direction while keeping Y unchanged:</p>
+<div class="math-block">\mathbf{F}&#39; = \left(0,\ -\frac{y_0}{2},\ +\frac{z_0}{2}\right)</div>
+<p><strong>Step 5: positioned ^ ^ ^-2</strong></p>
+<p>Walk −2 blocks along <span class="math-inline">\mathbf{F}&#39;</span>:</p>
+<div class="math-block">P&#39;&#39; = P&#39; + (-2)\mathbf{F}&#39; = \left(0,\ -2y_0 - y_0,\ -2z_0 + z_0\right)</div>
+<div class="math-block">= \left(0,\ -3y_0,\ -z_0\right)</div>
+<p><strong>Final result</strong>:</p>
+<div class="math-block">y_{final} = -3y_0,\quad z_{final} = -z_0</div>
+<p>Substituting <span class="math-inline">y_0 = -y_{final}/3</span>, <span class="math-inline">z_0 = -z_{final}</span> into the circle equation <span class="math-inline">y_0^2 + z_0^2 = 4</span>:</p>
+<div class="math-block">\left(\frac{y_{final}}{3}\right)^2 + z_{final}^2 = 4</div>
+<div class="math-block">\frac{y_{final}^2}{36} + \frac{z_{final}^2}{4} = 1</div>
+<p>This is an ellipse!</p>
+<p>Corrected for the actual seed orientation (seeds are on the Z-axis, not Y-axis):</p>
+<ul>
+<li><strong>Y semi-axis</strong> ≈ <strong>2</strong></li>
+<li><strong>Z semi-axis</strong> ≈ <strong>6</strong></li>
+</ul>
+<p>This matches the numerical results: <code>|Y|max ≈ 1.997</code>, <code>|Z|max ≈ 5.993</code>.</p>
+<h2 id="65-adjusting-the-ellipse-semi-axes">6.5 Adjusting the Ellipse Semi-Axes<a class="anchor" href="#65-adjusting-the-ellipse-semi-axes" aria-label="链接到此章节">#</a></h2>
+<p>The two key numbers at the end of the command are <code>^4</code> and <code>^-2</code>, which determine the ellipse shape.</p>
+<p>Let these two numbers be <span class="math-inline">d_1</span> and <span class="math-inline">d_2</span>. The general pattern is:</p>
+<div class="math-block">y_{final} = -\frac{d_1 + d_2}{r} \cdot y_0,\quad z_{final} = \frac{d_2 - d_1}{r} \cdot z_0</div>
+<p><strong>Practical rules</strong>:</p>
+<ul>
+<li>Increasing <span class="math-inline">d_1</span> (currently 4) enlarges the Z semi-axis</li>
+<li>Adjusting <span class="math-inline">d_2</span> (currently −2) affects the Y semi-axis</li>
+</ul>
+<blockquote>
+<p>⚠️ Note: <code>4</code> and <code>−2</code> are not directly the semi-axis values — they jointly determine semi-axis sizes through a mapping.</p>
+</blockquote>
+<h2 id="66-ellipse-examples">6.6 Ellipse Examples<a class="anchor" href="#66-ellipse-examples" aria-label="链接到此章节">#</a></h2>
+<p><strong>Example 1: Standard ellipse (Y semi-axis ≈ 2, Z semi-axis ≈ 6)</strong></p>
+<p>The command given above, generating an ellipse in the YZ plane.</p>
+<p><strong>Example 2: Larger ellipse</strong></p>
+<p>Change <code>positioned ^ ^ ^2</code> to <code>positioned ^ ^ ^3</code> (radius expands to 3), and proportionally adjust the trailing <code>^4</code> to <code>^6</code> and <code>^-2</code> to <code>^-3</code> to produce a proportionally larger ellipse.</p>
+<p><strong>Example 3: Tilted ellipse</strong></p>
+<p>Add a <code>rotated</code> command at the beginning or middle of the command chain to change the overall orientation, rotating the YZ-plane ellipse into any desired direction.</p>
+<hr>
+<h1 id="chapter-7-squaring-multiplication-and-division-formulas">Chapter 7: Squaring, Multiplication, and Division Formulas<a class="anchor" href="#chapter-7-squaring-multiplication-and-division-formulas" aria-label="链接到此章节">#</a></h1>
+<h2 id="71-why-these-formulas-are-needed">7.1 Why These Formulas Are Needed<a class="anchor" href="#71-why-these-formulas-are-needed" aria-label="链接到此章节">#</a></h2>
+<p>Sometimes we want to draw not just circles or ellipses, but parabolas (<span class="math-inline">y = x^2</span>), hyperbolas, or even arbitrary function graphs. This requires using commands to <strong>compute</strong> squared or product values of coordinates.</p>
+<h2 id="72-the-squaring-formula-how-it-works">7.2 The Squaring Formula — How It Works<a class="anchor" href="#72-the-squaring-formula-how-it-works" aria-label="链接到此章节">#</a></h2>
+<p><strong>Goal</strong>: Given <span class="math-inline">x</span> (stored on a coordinate axis), compute <span class="math-inline">y + x^2</span>.</p>
+<p><strong>Mathematical principle</strong>: Using a Taylor expansion, when <span class="math-inline">H</span> is large:</p>
+<div class="math-block">\sqrt{H^2 + x^2} = H\sqrt{1 + \frac{x^2}{H^2}} \approx H + \frac{x^2}{2H}</div>
+<p>So <span class="math-inline">\frac{x^2}{2H} \approx \sqrt{H^2+x^2} - H</span>.</p>
+<p><strong>Command implementation</strong> (from the CCT formula table, where <span class="math-inline">a</span> is the large-number parameter):</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-a² rotated ~180~ positioned ^^^-a² positioned ~~2a²~</code></pre></figure>
+<p><strong>Step-by-step breakdown</strong> (current position is <span class="math-inline">(x, 0, 0)</span>):</p>
+<ol>
+<li><code>facing 0~a~</code> — Face toward <span class="math-inline">(0, a, 0)</span> relative to the current position, i.e., toward <span class="math-inline">(0, a, 0)</span> from <span class="math-inline">(x,0,0)</span>, with hypotenuse length <span class="math-inline">\sqrt{x^2+a^2}</span></li>
+<li><code>positioned ^^^-a²</code> — Move <span class="math-inline">-a^2</span> along forward (retreat a large distance)</li>
+<li><code>rotated ~180~</code> — Flip yaw</li>
+<li><code>positioned ^^^-a²</code> — Continue</li>
+<li><code>positioned ~~2a²~</code> — Move <span class="math-inline">2a^2</span> upward</li>
+</ol>
+<p>The final Y coordinate gains an increment of <span class="math-inline">x^2</span> (approximation as <span class="math-inline">a \to \infty</span>).</p>
+<h2 id="73-squaring-formula-compact-version">7.3 Squaring Formula (Compact Version)<a class="anchor" href="#73-squaring-formula-compact-version" aria-label="链接到此章节">#</a></h2>
+<p><strong>Only 3 sub-commands needed</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-2a² positioned ~~2a²~</code></pre></figure>
+<p>Function: <span class="math-inline">(x, y, z) \to (?,\ y + x^2,\ z)</span>, but the X coordinate changes (marked <code>?</code>).</p>
+<p><strong>Example</strong>: Using this formula to draw the parabola <span class="math-inline">y = x^2</span></p>
+<p>Place a row of armor stands at <span class="math-inline">x = -3, -2, -1, 0, 1, 2, 3</span> with Y starting at 0. Execute the squaring formula on each one. The final Y coordinate becomes <span class="math-inline">t^2</span>, yielding points on the parabola.</p>
+<h2 id="74-multiplication-formula">7.4 Multiplication Formula<a class="anchor" href="#74-multiplication-formula" aria-label="链接到此章节">#</a></h2>
+<p><strong>Goal</strong>: Compute <span class="math-inline">y + x \cdot z</span> (where <span class="math-inline">x</span> and <span class="math-inline">z</span> are stored on coordinate axes).</p>
+<p><strong>Mathematical principle</strong>: From the identity:</p>
+<div class="math-block">xz = \frac{(x+z)^2 - (x-z)^2}{4}</div>
+<p><strong>Shortest version (6 sub-commands, from the CCT formula table)</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ facing 0~a 0 ] positioned 0~ 0 rotated ~45~ positioned ^^^a² facing ~~-a²/√2 0 positioned ^^^a²</code></pre></figure>
+<p>where <code>[]</code> denotes a pre-step. Function: <span class="math-inline">(x, y, z) \to (?,\ y+xz,\ ?)</span>.</p>
+<h2 id="75-division-formula">7.5 Division Formula<a class="anchor" href="#75-division-formula" aria-label="链接到此章节">#</a></h2>
+<p>The <code>facing</code> command inherently contains a &quot;divide by distance&quot; operation, which can be exploited to implement division.</p>
+<p><strong>Shortest version (6 sub-commands)</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~ 0~ ] facing 0 a~ positioned ^^ -ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</code></pre></figure>
+<p>Function: <span class="math-inline">(x, y, z) \to (?,\ ?,\ x/z)</span> — places the result of <span class="math-inline">x/z</span> on the Z coordinate.</p>
+<blockquote>
+<p>⚠️ Note: When <span class="math-inline">z</span> is close to 0, division error increases sharply. Input range must be restricted.</p>
+</blockquote>
+<hr>
+<h1 id="chapter-8-the-rotated-command-in-detail">Chapter 8: The <code>rotated</code> Command in Detail<a class="anchor" href="#chapter-8-the-rotated-command-in-detail" aria-label="链接到此章节">#</a></h1>
+<h2 id="81-mathematical-meaning-of-rotated-a-b">8.1 Mathematical Meaning of <code>rotated ~a ~b</code><a class="anchor" href="#81-mathematical-meaning-of-rotated-a-b" aria-label="链接到此章节">#</a></h2>
+<p><code>rotated ~a ~b</code> is a <strong>relative rotation</strong>: add <span class="math-inline">a</span> to yaw, add <span class="math-inline">b</span> to pitch.</p>
+<p>Expressed in trigonometric terms:</p>
+<div class="math-block">\sin(ry&#39;) = \sin(ry)\cos(a) + \cos(ry)\sin(a)</div>
+<div class="math-block">\cos(ry&#39;) = \cos(ry)\cos(a) - \sin(ry)\sin(a)</div>
+<div class="math-block">\sin(rx&#39;) = \sin(rx)\cos(b) + \cos(rx)\sin(b)</div>
+<div class="math-block">\cos(rx&#39;) = \cos(rx)\cos(b) - \sin(rx)\sin(b)</div>
+<p>These are simply the angle addition formulas: <span class="math-inline">ry&#39; = ry + a</span>, <span class="math-inline">rx&#39; = rx + b</span>.</p>
+<h2 id="82-comparing-the-three-forms-of-rotated">8.2 Comparing the Three Forms of <code>rotated</code><a class="anchor" href="#82-comparing-the-three-forms-of-rotated" aria-label="链接到此章节">#</a></h2>
+<p>Three easily confused forms:</p>
+<div class="table-wrap"><table><thead><tr><th>Form</th><th>Yaw change</th><th>Pitch change</th></tr></thead><tbody><tr><td><code>rotated ~ 22.5</code></td><td>Unchanged (<code>~</code> = add 0)</td><td><strong>Absolutely set to 22.5°</strong></td></tr><tr><td><code>rotated ~22.5 ~</code></td><td>Add 22.5° to current</td><td>Unchanged (add 0)</td></tr><tr><td><code>rotated ~22.5 0</code></td><td>Add 22.5° to current</td><td><strong>Absolutely set to 0°</strong></td></tr></tbody></table></div>
+<blockquote>
+<p>⚠️ CCT commands frequently use <code>rotated ~ 22.5</code>, where the tilde <code>~</code> is in the <strong>first</strong> position — meaning yaw is unchanged and pitch is set to 22.5°. Do not misread this as &quot;add 22.5° to yaw.&quot;</p>
+</blockquote>
+<h2 id="83-degrees-and-radians">8.3 Degrees and Radians<a class="anchor" href="#83-degrees-and-radians" aria-label="链接到此章节">#</a></h2>
+<p>All angles in <code>execute</code> commands use <strong>degrees (°)</strong>, but many mathematical formulas use <strong>radians (rad)</strong>.</p>
+<p>Conversion:</p>
+<div class="math-block">\text{degrees} = \text{radians} \times \frac{180}{\pi},\quad \text{radians} = \text{degrees} \times \frac{\pi}{180}</div>
+<p>Common conversions:</p>
+<div class="table-wrap"><table><thead><tr><th>Radians</th><th>Degrees</th></tr></thead><tbody><tr><td><span class="math-inline">\pi/6</span></td><td>30°</td></tr><tr><td><span class="math-inline">\pi/4</span></td><td>45°</td></tr><tr><td><span class="math-inline">\pi/3</span></td><td>60°</td></tr><tr><td><span class="math-inline">\pi/2</span></td><td>90°</td></tr><tr><td><span class="math-inline">\pi</span></td><td>180°</td></tr></tbody></table></div>
+<p>If you have already computed <span class="math-inline">\sin(ry)</span> and <span class="math-inline">\cos(ry)</span> values and need to recover the game angle, use atan2:</p>
+<div class="math-block">ry = \text{atan2}(\sin(ry),\ \cos(ry)) \times \frac{180}{\pi}</div>
+<div class="math-block">rx = \text{atan2}(\sin(rx),\ \cos(rx)) \times \frac{180}{\pi}</div>
+<hr>
+<h1 id="chapter-9-combined-applications-point-arrays-and-advanced-shapes">Chapter 9: Combined Applications — Point Arrays and Advanced Shapes<a class="anchor" href="#chapter-9-combined-applications-point-arrays-and-advanced-shapes" aria-label="链接到此章节">#</a></h1>
+<h2 id="91-another-circle-drawing-approach-inscribed-angle-theorem">9.1 Another Circle-Drawing Approach: Inscribed Angle Theorem<a class="anchor" href="#91-another-circle-drawing-approach-inscribed-angle-theorem" aria-label="链接到此章节">#</a></h2>
+<p>Beyond CCT&#39;s Infinity Approximation, there is a more intuitive circle-drawing method based on the geometric theorem that <strong>an inscribed angle is half the central angle</strong>.</p>
+<p><strong>Idea</strong>: Let A be the center, B and C be entities at the two ends of a diameter, and D be any point on the circle.</p>
+<p>By moving from A toward CD and BD each by the radius length, you reach the midpoints of arcs CD and BD respectively — call them E and F.</p>
+<p>Repeatedly performing this &quot;find arc midpoint&quot; operation populates the circle with more and more points, always uniformly distributed.</p>
+<p><strong>Command structure</strong> (where <code>r</code> is the diameter-endpoint entity, <code>a</code> is the center entity, <code>R</code> is the radius, and braces denote the nested portion):</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~90~ positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<p>More nested layers produce denser points.</p>
+<p><strong>Drawing a tilted circle</strong>: Adjust the placement angle of entity <code>r</code> and use ry to tilt the circle:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~30 0 positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<blockquote>
+<p>💡 <strong>Limitation</strong>: This method can only draw perfect circles, not ellipses directly. For arbitrarily oriented ellipses, use the CCT Infinity Approximation method from Chapter 6.</p>
+</blockquote>
+<h2 id="92-cube-wireframe">9.2 Cube Wireframe<a class="anchor" href="#92-cube-wireframe" aria-label="链接到此章节">#</a></h2>
+<h3 id="overview">Overview<a class="anchor" href="#overview" aria-label="链接到此章节">#</a></h3>
+<p>The cube wireframe command uses 7 layers of binary branching to generate 128 particles covering all 12 edges of a cube. The structure consists of:</p>
+<ol>
+<li><strong>Seed generation</strong>: Using the two <code>tree</code> entities&#39; pitch angles to produce <span class="math-inline">\pm 1.75</span> seeds on the Y-axis</li>
+<li><strong>Binary weights</strong>: Three layers with weights 1, 0.5, 0.25 to produce 8 uniformly sampled points along Z</li>
+<li><strong>Reflective shaping</strong>: Distant-point reflections with pitch=22.5° to distribute points to different orientations</li>
+<li><strong>Fixed-axis rotation</strong>: Fixed-axis reflections with yaw=55°, pitch=30° to align the cube spatially</li>
+<li><strong>Final reflection</strong>: Another pitch=22.5° reflection to fill in the remaining edges</li>
+</ol>
+<h3 id="complete-command">Complete Command<a class="anchor" href="#complete-command" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 0 0 rotated as @e[type=armor_stand,name=tree] positioned ^ ^ ^1.75 rotated ~180 ~ positioned ^ ^ ^1.75 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^1 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^0.5 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^0.25 as @e[type=armor_stand,name=tree] rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 as @e[type=armor_stand,name=tree] rotated as @s positioned ^1.75 ^ ^ rotated 55 30 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated 55 30 positioned ^ ^ ^1024 as @e[type=armor_stand,name=tree] rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 run particle minecraft:basic_flame_particle ~ ~ ~</code></pre></figure>
+<blockquote>
+<p>💡 <strong>Improvement</strong>: Replace <code>rotated 55 30</code> with <code>rotated 54.735610317 30</code> (i.e., <span class="math-inline">\arctan\sqrt{2}</span> degrees) to reduce maximum edge deviation from 0.040 to 0.018 blocks.</p>
+</blockquote>
+<hr>
+<h1 id="chapter-10-common-mistakes-and-notes">Chapter 10: Common Mistakes and Notes<a class="anchor" href="#chapter-10-common-mistakes-and-notes" aria-label="链接到此章节">#</a></h1>
+<h2 id="101-entity-count-control">10.1 Entity Count Control<a class="anchor" href="#101-entity-count-control" aria-label="链接到此章节">#</a></h2>
+<p>The number of final branches equals <code>(tree count)^(layers)</code>:</p>
+<div class="table-wrap"><table><thead><tr><th>tree count</th><th>Branches after 6 layers</th></tr></thead><tbody><tr><td>1</td><td>1 (does not work)</td></tr><tr><td><strong>2</strong></td><td><strong>64 (correct)</strong></td></tr><tr><td>3</td><td>729 (severe lag)</td></tr><tr><td>4</td><td>4096 (risk of crash)</td></tr></tbody></table></div>
+<h2 id="102-dont-confuse-rotated-notations">10.2 Don&#39;t Confuse <code>rotated</code> Notations<a class="anchor" href="#102-dont-confuse-rotated-notations" aria-label="链接到此章节">#</a></h2>
+<div class="table-wrap"><table><thead><tr><th>Intent</th><th>Correct</th><th>Wrong</th></tr></thead><tbody><tr><td>Set pitch absolutely to 22.5°</td><td><code>rotated ~ 22.5</code></td><td><code>rotated ~22.5 ~</code></td></tr><tr><td>Add 22.5° to yaw</td><td><code>rotated ~22.5 ~</code></td><td><code>rotated ~ 22.5</code></td></tr></tbody></table></div>
+<h2 id="103-choosing-the-right-h-value">10.3 Choosing the Right H Value<a class="anchor" href="#103-choosing-the-right-h-value" aria-label="链接到此章节">#</a></h2>
+<p>A larger H is not always better. Error has two components:</p>
+<div class="math-block">E(H) \approx \underbrace{C_1\frac{r^2}{H}}_{\text{geometric truncation error}} + \underbrace{C_2\varepsilon H}_{\text{floating-point error}}</div>
+<p>The optimal H is approximately <span class="math-inline">H \approx \frac{r}{\sqrt{\varepsilon}} \approx 2900r</span> (where <span class="math-inline">r</span> is the figure&#39;s scale). For figures 1–2 blocks in size, H=1024 is generally a good choice.</p>
+<h2 id="104-h-must-be-updated-consistently">10.4 H Must Be Updated Consistently<a class="anchor" href="#104-h-must-be-updated-consistently" aria-label="链接到此章节">#</a></h2>
+<p>A reflection structure is <code>H → facing origin → 2H → H</code>. If you change H, <strong>all three numbers must be updated together</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction"># H=1024 version
+positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ... positioned ^ ^ ^1024
+
+# H=2048 version (all updated together)
+positioned ^ ^ ^2048 facing 0 0 0 positioned ^ ^ ^4096 rotated ... positioned ^ ^ ^2048</code></pre></figure>
+<hr>
+<h1 id="practice-problems">Practice Problems<a class="anchor" href="#practice-problems" aria-label="链接到此章节">#</a></h1>
+<h2 id="basic-problems">Basic Problems<a class="anchor" href="#basic-problems" aria-label="链接到此章节">#</a></h2>
+<h3 id="problem-1-coordinate-calculation">Problem 1: Coordinate Calculation<a class="anchor" href="#problem-1-coordinate-calculation" aria-label="链接到此章节">#</a></h3>
+<p>You are at <span class="math-inline">(5, 64, -3)</span>, facing directly South (ry=0, rx=0), and execute in sequence:</p>
+<ol>
+<li><code>positioned ~2 ~0 ~-1</code></li>
+<li><code>positioned ^1 ^0 ^0</code></li>
+<li><code>positioned ^0 ^0 ^3</code></li>
+</ol>
+<p>What is the final coordinate?</p>
+<hr>
+<h3 id="problem-2-facing-geometric-calculation">Problem 2: <code>facing</code> Geometric Calculation<a class="anchor" href="#problem-2-facing-geometric-calculation" aria-label="链接到此章节">#</a></h3>
+<p>You stand at the origin <span class="math-inline">(0, 0, 0)</span>, execute <code>facing 3 0 4</code>, then execute <code>positioned ^ ^ ^10</code>.</p>
+<p>Calculate the final coordinate and verify: does it reach a position proportionally in the direction of <span class="math-inline">(3, 0, 4)</span>?</p>
+<hr>
+<h3 id="problem-3-rotation-matrix-verification">Problem 3: Rotation Matrix Verification<a class="anchor" href="#problem-3-rotation-matrix-verification" aria-label="链接到此章节">#</a></h3>
+<p>When ry=90°, rx=0°, compute the local forward direction vector <span class="math-inline">\mathbf{F}</span> and state which real-world direction it corresponds to (East, West, South, or North).</p>
+<hr>
+<h3 id="problem-4-understanding-the-three-coordinate-types">Problem 4: Understanding the Three Coordinate Types<a class="anchor" href="#problem-4-understanding-the-three-coordinate-types" aria-label="链接到此章节">#</a></h3>
+<p>Explain the difference in effect among the following three commands (assume current position is <span class="math-inline">(10, 64, 10)</span>, facing South):</p>
+<ol>
+<li><code>positioned 5 64 5</code></li>
+<li><code>positioned ~5 ~0 ~5</code></li>
+<li><code>positioned ^0 ^0 ^5</code></li>
+</ol>
+<hr>
+<h2 id="intermediate-problems">Intermediate Problems<a class="anchor" href="#intermediate-problems" aria-label="链接到此章节">#</a></h2>
+<h3 id="problem-5-circle-parameter-analysis">Problem 5: Circle Parameter Analysis<a class="anchor" href="#problem-5-circle-parameter-analysis" aria-label="链接到此章节">#</a></h3>
+<p>The 6-layer pitch angle sequence for the 64-point circle command is: 45°, 22.5°, 11.25°, 5.625°, 2.8125°, 1.40625°.</p>
+<ol>
+<li>Identify the pattern and express the angle at layer <span class="math-inline">k</span> (starting from <span class="math-inline">k=1</span>) as a formula.</li>
+<li>For a 128-point circle, how many layers are needed? What is the angle at layer 7?</li>
+<li>Why does layer 1 use 45° rather than 90° or 22.5°?</li>
+</ol>
+<hr>
+<h3 id="problem-6-ellipse-semi-axis-derivation">Problem 6: Ellipse Semi-Axis Derivation<a class="anchor" href="#problem-6-ellipse-semi-axis-derivation" aria-label="链接到此章节">#</a></h3>
+<p>The ellipse command ends with <code>positioned ^ ^ ^4 rotated ~180 ~ positioned ^ ^ ^-2</code>.</p>
+<p>Now change these two numbers to <code>positioned ^ ^ ^6 rotated ~180 ~ positioned ^ ^ ^-3</code>, keeping the radius at 2 (<code>positioned ^ ^ ^2</code>):</p>
+<ol>
+<li>Following the derivation method in Chapter 6, compute the new <span class="math-inline">y_{final}</span> and <span class="math-inline">z_{final}</span>.</li>
+<li>Write the new ellipse equation.</li>
+<li>What are the Y and Z semi-axes?</li>
+</ol>
+<hr>
+<h3 id="problem-7-axis-reflection-verification">Problem 7: Axis Reflection Verification<a class="anchor" href="#problem-7-axis-reflection-verification" aria-label="链接到此章节">#</a></h3>
+<p>Let the origin O be at <span class="math-inline">(0,0,0)</span>, and the reflection axis direction be yaw=45°, pitch=0° (i.e., local forward <span class="math-inline">\mathbf{u} = \left(-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right)</span>), with point P at <span class="math-inline">(2, 0, 0)</span>.</p>
+<ol>
+<li>Use the formula <span class="math-inline">P&#39; = 2(\mathbf{u} \cdot P)\mathbf{u} - P</span> to compute the theoretical reflection point P&#39;.</li>
+<li>With H=1024, in which direction will the command&#39;s approximation introduce error?</li>
+</ol>
+<hr>
+<h3 id="problem-8-branch-count-calculation">Problem 8: Branch Count Calculation<a class="anchor" href="#problem-8-branch-count-calculation" aria-label="链接到此章节">#</a></h3>
+<p>A command uses the following selectors:</p>
+<ul>
+<li>1st <code>as @e[name=tree]</code>: 2 entities</li>
+<li>2nd <code>rotated as @e[name=tree]</code>: 2 entities</li>
+<li>3rd <code>as @e[name=axis]</code>: 3 entities</li>
+</ul>
+<p>How many leaf paths (particles) are generated in total?</p>
+<hr>
+<h2 id="challenge-problems">Challenge Problems<a class="anchor" href="#challenge-problems" aria-label="链接到此章节">#</a></h2>
+<h3 id="problem-9-design-a-regular-hexagon">Problem 9: Design a Regular Hexagon<a class="anchor" href="#problem-9-design-a-regular-hexagon" aria-label="链接到此章节">#</a></h3>
+<p>To draw a regular hexagon (6 vertices uniformly distributed on a circle):</p>
+<ol>
+<li>What is the angle between adjacent vertices?</li>
+<li>Using the angle bisection method, how many layers are the minimum needed to exactly hit the 6 vertices of a regular hexagon? (Hint: <span class="math-inline">360/6=60°</span> — think about how 60° can be obtained through bisection.)</li>
+<li>Write out the corresponding pitch angle sequence.</li>
+</ol>
+<hr>
+<h3 id="problem-10-error-analysis">Problem 10: Error Analysis<a class="anchor" href="#problem-10-error-analysis" aria-label="链接到此章节">#</a></h3>
+<p>For the distant-point axis reflection command, with H=1024 and the reflected point at distance r=2 from the origin:</p>
+<ol>
+<li>Estimate the order of magnitude of the geometric truncation error <span class="math-inline">O\left(\frac{r^2}{H}\right)</span>.</li>
+<li>If <span class="math-inline">r</span> is expanded to 4 blocks, by what factor does the error increase?</li>
+<li>To keep error within 0.001 blocks, what is the minimum H required? (r=2)</li>
+</ol>
+<hr>
+<h1 id="answer-key">Answer Key<a class="anchor" href="#answer-key" aria-label="链接到此章节">#</a></h1>
+<hr>
+<h2 id="problem-1-solution-coordinate-calculation">Problem 1 Solution: Coordinate Calculation<a class="anchor" href="#problem-1-solution-coordinate-calculation" aria-label="链接到此章节">#</a></h2>
+<p><strong>Starting position</strong>: <span class="math-inline">(5, 64, -3)</span>, ry=0°, rx=0° (facing South)</p>
+<p><strong>Step 1</strong>: <code>positioned ~2 ~0 ~-1</code></p>
+<p>Relative offset — add directly:</p>
+<div class="math-block">(5+2,\ 64+0,\ -3-1) = (7, 64, -4)</div>
+<p><strong>Step 2</strong>: <code>positioned ^1 ^0 ^0</code></p>
+<p>Local coordinates. Facing South (ry=0): <span class="math-inline">\mathbf{L}=(1,0,0)</span>, <span class="math-inline">\mathbf{U}=(0,1,0)</span>, <span class="math-inline">\mathbf{F}=(0,0,1)</span></p>
+<p>Move 1 block along local left: <span class="math-inline">(7+1, 64+0, -4+0) = (8, 64, -4)</span></p>
+<p><strong>Step 3</strong>: <code>positioned ^0 ^0 ^3</code></p>
+<p>Move 3 blocks along local forward: <span class="math-inline">(8+0, 64+0, -4+3) = (8, 64, -1)</span></p>
+<p><strong>Final coordinate</strong>: <span class="math-inline">\boxed{(8, 64, -1)}</span></p>
+<blockquote>
+<p>💡 Key point: When facing South, local left = world +X, local forward = world +Z. These are the most frequently referenced values for beginners — worth memorizing.</p>
+</blockquote>
+<hr>
+<h2 id="problem-2-solution-facing-geometric-calculation">Problem 2 Solution: <code>facing</code> Geometric Calculation<a class="anchor" href="#problem-2-solution-facing-geometric-calculation" aria-label="链接到此章节">#</a></h2>
+<p><strong>Starting position</strong>: <span class="math-inline">(0,0,0)</span>, execute <code>facing 3 0 4</code></p>
+<p>Target <span class="math-inline">(3,0,4)</span>, displacement vector <span class="math-inline">(3,0,4)</span>, length:</p>
+<div class="math-block">d = \sqrt{3^2 + 0^2 + 4^2} = \sqrt{25} = 5</div>
+<p>Unit direction vector:</p>
+<div class="math-block">\mathbf{F} = (0.6,\ 0,\ 0.8)</div>
+<p><strong>Execute <code>positioned ^ ^ ^10</code></strong>: Walk 10 blocks forward:</p>
+<div class="math-block">(0,0,0) + 10 \times (0.6, 0, 0.8) = (6, 0, 8)</div>
+<p><strong>Verification</strong>: <span class="math-inline">(6,0,8) = 2 \times (3,0,4)</span> — twice the target distance, same direction.</p>
+<p>Walking 10 blocks reaches a point 10 blocks from the origin in the direction of <span class="math-inline">(3,0,4)</span> — the same direction but not the target point itself. ✓</p>
+<p><strong>Final coordinate</strong>: <span class="math-inline">\boxed{(6, 0, 8)}</span></p>
+<hr>
+<h2 id="problem-3-solution-rotation-matrix-verification">Problem 3 Solution: Rotation Matrix Verification<a class="anchor" href="#problem-3-solution-rotation-matrix-verification" aria-label="链接到此章节">#</a></h2>
+<p><strong>Given</strong>: ry=90°, rx=0°</p>
+<p>Trig values: <span class="math-inline">\cos(90°)=0</span>, <span class="math-inline">\sin(90°)=1</span>, <span class="math-inline">\cos(0°)=1</span>, <span class="math-inline">\sin(0°)=0</span></p>
+<p>Applying the forward direction formula:</p>
+<div class="math-block">\mathbf{F} = \begin{pmatrix}-\cos(rx)\sin(ry)\\ -\sin(rx)\\ \cos(rx)\cos(ry)\end{pmatrix} = \begin{pmatrix}-1\\ 0\\ 0\end{pmatrix}</div>
+<p><strong>Conclusion</strong>: <span class="math-inline">\mathbf{F} = (-1, 0, 0)</span>, which is the −X direction — <strong>West</strong>.</p>
+<p>So ry=90° means facing West. ✓ (In Minecraft, yaw increases clockwise: 0°=South, 90°=West, 180°=North, −90°=East.)</p>
+<hr>
+<h2 id="problem-4-solution-difference-among-the-three-coordinate-types">Problem 4 Solution: Difference Among the Three Coordinate Types<a class="anchor" href="#problem-4-solution-difference-among-the-three-coordinate-types" aria-label="链接到此章节">#</a></h2>
+<p><strong>Starting</strong>: <span class="math-inline">(10, 64, 10)</span>, facing South (ry=0, rx=0)</p>
+<p><strong>Command 1</strong>: <code>positioned 5 64 5</code></p>
+<p>Absolute positioning — <strong>teleports directly</strong> to world coordinate <span class="math-inline">(5, 64, 5)</span>, regardless of current position.</p>
+<p>Result: <span class="math-inline">\boxed{(5, 64, 5)}</span></p>
+<p><strong>Command 2</strong>: <code>positioned ~5 ~0 ~5</code></p>
+<p>Relative offset — adds <span class="math-inline">(5, 0, 5)</span> to current position:</p>
+<div class="math-block">(10+5, 64+0, 10+5) = \boxed{(15, 64, 15)}</div>
+<p><strong>Command 3</strong>: <code>positioned ^0 ^0 ^5</code></p>
+<p>Move 5 blocks along local forward. Facing South, forward is +Z:</p>
+<div class="math-block">(10+0, 64+0, 10+5) = \boxed{(10, 64, 15)}</div>
+<p><strong>Core distinctions</strong>:</p>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>Reference frame</th><th>View-direction dependent</th></tr></thead><tbody><tr><td><code>positioned 5 64 5</code></td><td>World origin</td><td>No</td></tr><tr><td><code>positioned ~5 ~0 ~5</code></td><td>Current position</td><td>No</td></tr><tr><td><code>positioned ^0 ^0 ^5</code></td><td>Current position + view</td><td><strong>Yes</strong></td></tr></tbody></table></div>
+<p>If you were facing East (ry=−90°) instead, Command 3 would give <span class="math-inline">(15, 64, 10)</span>, but Command 2 would be unchanged.</p>
+<hr>
+<h2 id="problem-5-solution-circle-parameter-analysis">Problem 5 Solution: Circle Parameter Analysis<a class="anchor" href="#problem-5-solution-circle-parameter-analysis" aria-label="链接到此章节">#</a></h2>
+<p><strong>Part 1</strong>: Pattern</p>
+<div class="math-block">\text{Layer }k\text{ angle} = \frac{45°}{2^{k-1}}</div>
+<div class="table-wrap"><table><thead><tr><th>k</th><th>Angle</th></tr></thead><tbody><tr><td>1</td><td>45°</td></tr><tr><td>2</td><td>22.5°</td></tr><tr><td>3</td><td>11.25°</td></tr><tr><td>4</td><td>5.625°</td></tr><tr><td>5</td><td>2.8125°</td></tr><tr><td>6</td><td>1.40625°</td></tr></tbody></table></div>
+<p><strong>Part 2</strong>: 128-point circle</p>
+<p>A 128-point circle needs <span class="math-inline">\log_2(128) = 7</span> layers.</p>
+<p>Layer 7 angle: <span class="math-inline">\frac{45°}{2^6} = \frac{45°}{64} = 0.703125°</span></p>
+<p><strong>Part 3</strong>: Why layer 1 uses 45°</p>
+<p>Starting at 45° and halving 6 times produces the sequence above. The initial two seed points on the Y-axis, combined with 6 bisection layers, yield <span class="math-inline">2 \times 2^6 = 128</span> branch directions. These correspond to 128 uniformly distributed points, covering the full 360° with an angular spacing of <span class="math-inline">360°/128 \times 2 = 5.625°</span> — exactly the 64-point even distribution. The 45° starting angle is precisely what ensures uniform coverage after 6 bisections.</p>
+<hr>
+<h2 id="problem-6-solution-ellipse-semi-axis-derivation">Problem 6 Solution: Ellipse Semi-Axis Derivation<a class="anchor" href="#problem-6-solution-ellipse-semi-axis-derivation" aria-label="链接到此章节">#</a></h2>
+<p><strong>New parameters</strong>: seed radius r=2, trailing <code>^ ^ ^6</code> and <code>^ ^ ^-3</code></p>
+<p>Let circle point <span class="math-inline">P = (0, y_0, z_0)</span> with <span class="math-inline">y_0^2 + z_0^2 = 4</span>.</p>
+<p><strong>Step 1</strong>: <code>facing 0 0 0</code> — forward direction: <span class="math-inline">\mathbf{F} = \left(0,\ \frac{-y_0}{2},\ \frac{-z_0}{2}\right)</span></p>
+<p><strong>Step 2</strong>: <code>positioned 0 0 0</code> — position resets to origin.</p>
+<p><strong>Step 3</strong>: <code>positioned ^ ^ ^6</code></p>
+<div class="math-block">P&#39; = \left(0,\ -3y_0,\ -3z_0\right)</div>
+<p><strong>Step 4</strong>: <code>rotated ~180 ~</code> — new forward: <span class="math-inline">\mathbf{F}&#39; = \left(0,\ -\frac{y_0}{2},\ +\frac{z_0}{2}\right)</span></p>
+<p><strong>Step 5</strong>: <code>positioned ^ ^ ^-3</code></p>
+<div class="math-block">\Delta = -3 \cdot \mathbf{F}&#39; = \left(0,\ \frac{3y_0}{2},\ \frac{-3z_0}{2}\right)</div>
+<p><strong>Combined</strong>:</p>
+<div class="math-block">y_{final} = -3y_0 + \frac{3y_0}{2} = -\frac{3y_0}{2}</div>
+<div class="math-block">z_{final} = -3z_0 - \frac{3z_0}{2} = -\frac{9z_0}{2}</div>
+<p>Substituting <span class="math-inline">y_0 = -\frac{2y_{final}}{3}</span>, <span class="math-inline">z_0 = -\frac{2z_{final}}{9}</span> into <span class="math-inline">y_0^2 + z_0^2 = 4</span>:</p>
+<div class="math-block">\frac{4y_{final}^2}{9} + \frac{4z_{final}^2}{81} = 4</div>
+<div class="math-block">\frac{y_{final}^2}{9} + \frac{z_{final}^2}{81} = 1</div>
+<p><strong>Ellipse equation</strong>: <span class="math-inline">\boxed{\dfrac{y^2}{9} + \dfrac{z^2}{81} = 1}</span></p>
+<p><strong>Semi-axes</strong>:</p>
+<ul>
+<li>Y semi-axis: <span class="math-inline">a = 3</span></li>
+<li>Z semi-axis: <span class="math-inline">b = 9</span></li>
+</ul>
+<hr>
+<h2 id="problem-7-solution-axis-reflection-verification">Problem 7 Solution: Axis Reflection Verification<a class="anchor" href="#problem-7-solution-axis-reflection-verification" aria-label="链接到此章节">#</a></h2>
+<p><strong>Part 1</strong>: Theoretical reflection point</p>
+<p><span class="math-inline">P = (2, 0, 0)</span>, <span class="math-inline">\mathbf{u} = \left(-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right)</span></p>
+<p>Dot product:</p>
+<div class="math-block">\mathbf{u} \cdot P = -\frac{\sqrt{2}}{2} \times 2 = -\sqrt{2}</div>
+<p>Reflection formula:</p>
+<div class="math-block">P&#39; = 2(-\sqrt{2})\left(-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right) - (2, 0, 0)</div>
+<div class="math-block">= (2, 0, -2) - (2, 0, 0) = \boxed{(0, 0, -2)}</div>
+<p>Geometric check: <span class="math-inline">(2,0,0)</span> reflected across the line in the Northeast direction (yaw=45°) should land at <span class="math-inline">(0,0,-2)</span> (Northwest direction). ✓</p>
+<p><strong>Part 2</strong>: Error direction</p>
+<p>The primary error term is <span class="math-inline">O\left(\frac{\|P\|^2}{H}\right) = O\left(\frac{4}{1024}\right) \approx 0.004</span> blocks.</p>
+<p>The error accumulates <strong>perpendicular to the reflection axis</strong> — the approximate result will be slightly displaced toward the original point <span class="math-inline">P=(2,0,0)</span> rather than reaching the exact theoretical point <span class="math-inline">(0,0,-2)</span>.</p>
+<hr>
+<h2 id="problem-8-solution-branch-count-calculation">Problem 8 Solution: Branch Count Calculation<a class="anchor" href="#problem-8-solution-branch-count-calculation" aria-label="链接到此章节">#</a></h2>
+<p>Branch counts from multiple selectors <strong>multiply</strong>, not add:</p>
+<div class="math-block">\text{Total paths} = 2 \times 2 \times 3 = \boxed{12 \text{ paths}}</div>
+<p>Twelve particles are generated (one <code>run</code> execution per path).</p>
+<blockquote>
+<p>⚠️ Common mistake: adding instead of multiplying (<span class="math-inline">2+2+3=7</span>). Every <code>as @e[...]</code> <strong>splits</strong> each existing path into N new paths, so the operation is multiplication.</p>
+</blockquote>
+<p><strong>Further thought</strong>: 5 uses of <code>as @e[name=tree]</code> (each with 2 entities) gives <span class="math-inline">2^5 = 32</span> paths. This is why 6 tree-selector layers produce <span class="math-inline">2^6 = 64</span> paths.</p>
+<hr>
+<h2 id="problem-9-solution-regular-hexagon">Problem 9 Solution: Regular Hexagon<a class="anchor" href="#problem-9-solution-regular-hexagon" aria-label="链接到此章节">#</a></h2>
+<p><strong>Part 1</strong>: Adjacent angle</p>
+<div class="math-block">360° / 6 = \boxed{60°}</div>
+<p><strong>Part 2</strong>: Number of layers needed</p>
+<p>60° is not a power-of-2 subdivision of 45° (since <span class="math-inline">60 = 45 \times \frac{4}{3}</span>), so the standard angle bisection sequence starting at 45° <strong>cannot exactly represent a regular hexagon</strong>.</p>
+<p><strong>Solution</strong>: Change the first layer angle to 30° (<span class="math-inline">60°/2 = 30°</span>). After 6 bisections this produces a regular 12-gon (dodecagon), and every other vertex gives a regular hexagon.</p>
+<p>So the minimum layers needed is <strong>6</strong>, using a modified starting angle of 30°.</p>
+<p><strong>Part 3</strong>: Pitch angle sequence (starting at 30°, halving each layer):</p>
+<div class="math-block">\boxed{30°,\ 15°,\ 7.5°,\ 3.75°,\ 1.875°,\ 0.9375°}</div>
+<hr>
+<h2 id="problem-10-solution-error-analysis">Problem 10 Solution: Error Analysis<a class="anchor" href="#problem-10-solution-error-analysis" aria-label="链接到此章节">#</a></h2>
+<p><strong>Part 1</strong>: Order of magnitude</p>
+<div class="math-block">E \approx \frac{r^2}{H} = \frac{4}{1024} \approx \boxed{0.0039 \text{ blocks}}</div>
+<p><strong>Part 2</strong>: When r expands to 4</p>
+<div class="math-block">E&#39; \approx \frac{16}{1024} \approx 0.0156 \text{ blocks}</div>
+<div class="math-block">\frac{E&#39;}{E} = \frac{16}{4} = \boxed{4\text{ times larger}}</div>
+<p>This reflects the <span class="math-inline">r^2</span> proportionality: doubling <span class="math-inline">r</span> quadruples the error.</p>
+<p><strong>Part 3</strong>: H required for error ≤ 0.001 blocks</p>
+<div class="math-block">\frac{r^2}{H} \leq 0.001 \implies H \geq \frac{4}{0.001} = \boxed{4000}</div>
+<p>In practice, use H=4096 (nearest power of 2).</p>
+<blockquote>
+<p>⚠️ Remember: larger H also introduces more floating-point error. Always benchmark H=1024, 2048, and 4096 in-game and choose the best value for your specific figure size.</p>
+</blockquote>
+<hr>
+<h1 id="summary-learning-roadmap">Summary: Learning Roadmap<a class="anchor" href="#summary-learning-roadmap" aria-label="链接到此章节">#</a></h1>
+<p>After completing this tutorial, you have mastered:</p>
+<p><strong>Foundation</strong></p>
+<ul>
+<li>Minecraft&#39;s three coordinate notations (absolute, relative, local)</li>
+<li>The <code>execute</code> command&#39;s state model (position + view angle)</li>
+<li>Rotation matrices and local coordinate directions</li>
+</ul>
+<p><strong>Core</strong></p>
+<ul>
+<li>The normalization geometry of <code>facing</code></li>
+<li>Distant-point axis reflection (H → facing origin → 2H → H)</li>
+<li>Two reflections equal one rotation</li>
+</ul>
+<p><strong>Application</strong></p>
+<ul>
+<li>Angle bisection circle drawing (6 layers = 64 points)</li>
+<li>The trailing mapping technique for circle-to-ellipse conversion</li>
+<li>Principles behind squaring, multiplication, and division formulas</li>
+<li>Structural analysis of the cube wireframe command&#39;s structure</li>
+</ul>
+<p><strong>Advanced</strong></p>
+<ul>
+<li>Value Noise and Perlin Noise</li>
+<li>Multi-octave noise stacking</li>
+<li>Arbitrary function graph rendering</li>
+<li>Error engineering and H value optimization</li>
+</ul>
+<p>Recommended learning path: Start by experimenting with particle commands to verify each basic command, then try drawing a circle, then challenge yourself with ellipses and the cube wireframe, and finally explore functions and noise. At every step, work through the math by hand first, then verify in-game. That hands-on cycle is how you truly understand CCT&#39;s Infinity Approximation.</p>
+<hr>
+<p><em>Coordinates Calculation Theory (CCT) — Beginner&#39;s Guide — End</em></p>
+
+      
+    </article>
+
+    
+        <nav class="section-pages" aria-label="本章大标题导览">
+          <div class="section-pages-title">📍 本页大纲及快捷分页</div>
+          <div class="section-grid">
+            
+              <a href="#11-minecrafts-coordinate-system" class="section-card">
+                <div class="h">1. 1.1 Minecraft&#39;s Coordinate System</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#12-three-coordinate-notations" class="section-card">
+                <div class="h">2. 1.2 Three Coordinate Notations</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#13-what-is-the-execute-command" class="section-card">
+                <div class="h">3. 1.3 What Is the execute Command</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#21-why-local-coordinates-require-matrices" class="section-card">
+                <div class="h">4. 2.1 Why Local Coordinates Require Matrices</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#22-concrete-angle-verification" class="section-card">
+                <div class="h">5. 2.2 Concrete Angle Verification</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#23-complete-formula-for-positioned-a-b-c" class="section-card">
+                <div class="h">6. 2.3 Complete Formula for positioned ^a ^b ^c</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#31-what-facing-does" class="section-card">
+                <div class="h">7. 3.1 What facing Does</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#32-the-most-important-geometric-meaning-of-facing" class="section-card">
+                <div class="h">8. 3.2 The Most Important Geometric Meaning of facing</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#33-three-forms-of-facing" class="section-card">
+                <div class="h">9. 3.3 Three Forms of facing</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#34-geometric-effect-of-facing-followed-by-positioned" class="section-card">
+                <div class="h">10. 3.4 Geometric Effect of facing Followed by positioned</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#41-what-is-the-large-number" class="section-card">
+                <div class="h">11. 4.1 What Is the &quot;Large Number&quot;</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#42-distant-point-axis-reflection-the-basic-building-block-of-cct" class="section-card">
+                <div class="h">12. 4.2 Distant-Point Axis Reflection — The Basic Building Block of CCT</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#43-two-reflections-equal-a-rotation" class="section-card">
+                <div class="h">13. 4.3 Two Reflections Equal a Rotation</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#51-approach-to-drawing-a-circle" class="section-card">
+                <div class="h">14. 5.1 Approach to Drawing a Circle</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#52-prerequisite-two-tree-entities" class="section-card">
+                <div class="h">15. 5.2 Prerequisite: Two tree Entities</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#53-why-pitch-30-and-pitch30" class="section-card">
+                <div class="h">16. 5.3 Why pitch=-30 and pitch=30</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#54-complete-command-for-a-64-point-circle" class="section-card">
+                <div class="h">17. 5.4 Complete Command for a 64-Point Circle</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#55-numerical-verification" class="section-card">
+                <div class="h">18. 5.5 Numerical Verification</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#61-an-ellipse-is-a-stretched-circle" class="section-card">
+                <div class="h">19. 6.1 An Ellipse Is a &quot;Stretched Circle&quot;</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#62-complete-command-for-a-64-point-ellipse" class="section-card">
+                <div class="h">20. 6.2 Complete Command for a 64-Point Ellipse</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#63-comparing-circle-and-ellipse-commands" class="section-card">
+                <div class="h">21. 6.3 Comparing Circle and Ellipse Commands</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#64-rigorous-derivation-of-ellipse-semi-axes" class="section-card">
+                <div class="h">22. 6.4 Rigorous Derivation of Ellipse Semi-Axes</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#65-adjusting-the-ellipse-semi-axes" class="section-card">
+                <div class="h">23. 6.5 Adjusting the Ellipse Semi-Axes</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#66-ellipse-examples" class="section-card">
+                <div class="h">24. 6.6 Ellipse Examples</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#71-why-these-formulas-are-needed" class="section-card">
+                <div class="h">25. 7.1 Why These Formulas Are Needed</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#72-the-squaring-formula-how-it-works" class="section-card">
+                <div class="h">26. 7.2 The Squaring Formula — How It Works</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#73-squaring-formula-compact-version" class="section-card">
+                <div class="h">27. 7.3 Squaring Formula (Compact Version)</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#74-multiplication-formula" class="section-card">
+                <div class="h">28. 7.4 Multiplication Formula</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#75-division-formula" class="section-card">
+                <div class="h">29. 7.5 Division Formula</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#81-mathematical-meaning-of-rotated-a-b" class="section-card">
+                <div class="h">30. 8.1 Mathematical Meaning of rotated a b</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#82-comparing-the-three-forms-of-rotated" class="section-card">
+                <div class="h">31. 8.2 Comparing the Three Forms of rotated</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#83-degrees-and-radians" class="section-card">
+                <div class="h">32. 8.3 Degrees and Radians</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#91-another-circle-drawing-approach-inscribed-angle-theorem" class="section-card">
+                <div class="h">33. 9.1 Another Circle-Drawing Approach: Inscribed Angle Theorem</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#92-cube-wireframe" class="section-card">
+                <div class="h">34. 9.2 Cube Wireframe</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#101-entity-count-control" class="section-card">
+                <div class="h">35. 10.1 Entity Count Control</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#102-dont-confuse-rotated-notations" class="section-card">
+                <div class="h">36. 10.2 Don&#39;t Confuse rotated Notations</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#103-choosing-the-right-h-value" class="section-card">
+                <div class="h">37. 10.3 Choosing the Right H Value</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#104-h-must-be-updated-consistently" class="section-card">
+                <div class="h">38. 10.4 H Must Be Updated Consistently</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#basic-problems" class="section-card">
+                <div class="h">39. Basic Problems</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#intermediate-problems" class="section-card">
+                <div class="h">40. Intermediate Problems</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#challenge-problems" class="section-card">
+                <div class="h">41. Challenge Problems</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-1-solution-coordinate-calculation" class="section-card">
+                <div class="h">42. Problem 1 Solution: Coordinate Calculation</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-2-solution-facing-geometric-calculation" class="section-card">
+                <div class="h">43. Problem 2 Solution: facing Geometric Calculation</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-3-solution-rotation-matrix-verification" class="section-card">
+                <div class="h">44. Problem 3 Solution: Rotation Matrix Verification</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-4-solution-difference-among-the-three-coordinate-types" class="section-card">
+                <div class="h">45. Problem 4 Solution: Difference Among the Three Coordinate Types</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-5-solution-circle-parameter-analysis" class="section-card">
+                <div class="h">46. Problem 5 Solution: Circle Parameter Analysis</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-6-solution-ellipse-semi-axis-derivation" class="section-card">
+                <div class="h">47. Problem 6 Solution: Ellipse Semi-Axis Derivation</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-7-solution-axis-reflection-verification" class="section-card">
+                <div class="h">48. Problem 7 Solution: Axis Reflection Verification</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-8-solution-branch-count-calculation" class="section-card">
+                <div class="h">49. Problem 8 Solution: Branch Count Calculation</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-9-solution-regular-hexagon" class="section-card">
+                <div class="h">50. Problem 9 Solution: Regular Hexagon</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#problem-10-solution-error-analysis" class="section-card">
+                <div class="h">51. Problem 10 Solution: Error Analysis</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+          </div>
+        </nav>
+      
+
+    
+      <div class="pager">
+        <a href="../../../en-US/"><div class="sub">上一页</div><div class="title">Welcome!</div></a>
+        <a href="../../../en-US/cct/exprlist/" class="next"><div class="sub">下一页</div><div class="title">Formula Table</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#11-minecrafts-coordinate-system">1.1 Minecraft&#39;s Coordinate System</a><a class="lv2" href="#12-three-coordinate-notations">1.2 Three Coordinate Notations</a><a class="lv3" href="#absolute-coordinates-plain-numbers">Absolute Coordinates: Plain Numbers</a><a class="lv3" href="#relative-coordinates-prefix-with">Relative Coordinates: Prefix with </a><a class="lv3" href="#local-coordinates-prefix-with">Local Coordinates: Prefix with ^</a><a class="lv2" href="#13-what-is-the-execute-command">1.3 What Is the execute Command</a><a class="lv2" href="#21-why-local-coordinates-require-matrices">2.1 Why Local Coordinates Require Matrices</a><a class="lv2" href="#22-concrete-angle-verification">2.2 Concrete Angle Verification</a><a class="lv2" href="#23-complete-formula-for-positioned-a-b-c">2.3 Complete Formula for positioned ^a ^b ^c</a><a class="lv2" href="#31-what-facing-does">3.1 What facing Does</a><a class="lv2" href="#32-the-most-important-geometric-meaning-of-facing">3.2 The Most Important Geometric Meaning of facing</a><a class="lv2" href="#33-three-forms-of-facing">3.3 Three Forms of facing</a><a class="lv2" href="#34-geometric-effect-of-facing-followed-by-positioned">3.4 Geometric Effect of facing Followed by positioned</a><a class="lv2" href="#41-what-is-the-large-number">4.1 What Is the &quot;Large Number&quot;</a><a class="lv2" href="#42-distant-point-axis-reflection-the-basic-building-block-of-cct">4.2 Distant-Point Axis Reflection — The Basic Building Block of CCT</a><a class="lv3" href="#what-is-axis-reflection">What Is Axis Reflection</a><a class="lv3" href="#implementing-axis-reflection-with-commands">Implementing Axis Reflection with Commands</a><a class="lv3" href="#why-this-is-a-reflection">Why This Is a Reflection</a><a class="lv2" href="#43-two-reflections-equal-a-rotation">4.3 Two Reflections Equal a Rotation</a><a class="lv2" href="#51-approach-to-drawing-a-circle">5.1 Approach to Drawing a Circle</a><a class="lv2" href="#52-prerequisite-two-tree-entities">5.2 Prerequisite: Two tree Entities</a><a class="lv2" href="#53-why-pitch-30-and-pitch30">5.3 Why pitch=-30 and pitch=30</a><a class="lv2" href="#54-complete-command-for-a-64-point-circle">5.4 Complete Command for a 64-Point Circle</a><a class="lv2" href="#55-numerical-verification">5.5 Numerical Verification</a><a class="lv2" href="#61-an-ellipse-is-a-stretched-circle">6.1 An Ellipse Is a &quot;Stretched Circle&quot;</a><a class="lv2" href="#62-complete-command-for-a-64-point-ellipse">6.2 Complete Command for a 64-Point Ellipse</a><a class="lv2" href="#63-comparing-circle-and-ellipse-commands">6.3 Comparing Circle and Ellipse Commands</a><a class="lv2" href="#64-rigorous-derivation-of-ellipse-semi-axes">6.4 Rigorous Derivation of Ellipse Semi-Axes</a><a class="lv2" href="#65-adjusting-the-ellipse-semi-axes">6.5 Adjusting the Ellipse Semi-Axes</a><a class="lv2" href="#66-ellipse-examples">6.6 Ellipse Examples</a><a class="lv2" href="#71-why-these-formulas-are-needed">7.1 Why These Formulas Are Needed</a><a class="lv2" href="#72-the-squaring-formula-how-it-works">7.2 The Squaring Formula — How It Works</a><a class="lv2" href="#73-squaring-formula-compact-version">7.3 Squaring Formula (Compact Version)</a><a class="lv2" href="#74-multiplication-formula">7.4 Multiplication Formula</a><a class="lv2" href="#75-division-formula">7.5 Division Formula</a><a class="lv2" href="#81-mathematical-meaning-of-rotated-a-b">8.1 Mathematical Meaning of rotated a b</a><a class="lv2" href="#82-comparing-the-three-forms-of-rotated">8.2 Comparing the Three Forms of rotated</a><a class="lv2" href="#83-degrees-and-radians">8.3 Degrees and Radians</a><a class="lv2" href="#91-another-circle-drawing-approach-inscribed-angle-theorem">9.1 Another Circle-Drawing Approach: Inscribed Angle Theorem</a><a class="lv2" href="#92-cube-wireframe">9.2 Cube Wireframe</a><a class="lv3" href="#overview">Overview</a><a class="lv3" href="#complete-command">Complete Command</a><a class="lv2" href="#101-entity-count-control">10.1 Entity Count Control</a><a class="lv2" href="#102-dont-confuse-rotated-notations">10.2 Don&#39;t Confuse rotated Notations</a><a class="lv2" href="#103-choosing-the-right-h-value">10.3 Choosing the Right H Value</a><a class="lv2" href="#104-h-must-be-updated-consistently">10.4 H Must Be Updated Consistently</a><a class="lv2" href="#basic-problems">Basic Problems</a><a class="lv3" href="#problem-1-coordinate-calculation">Problem 1: Coordinate Calculation</a><a class="lv3" href="#problem-2-facing-geometric-calculation">Problem 2: facing Geometric Calculation</a><a class="lv3" href="#problem-3-rotation-matrix-verification">Problem 3: Rotation Matrix Verification</a><a class="lv3" href="#problem-4-understanding-the-three-coordinate-types">Problem 4: Understanding the Three Coordinate Types</a><a class="lv2" href="#intermediate-problems">Intermediate Problems</a><a class="lv3" href="#problem-5-circle-parameter-analysis">Problem 5: Circle Parameter Analysis</a><a class="lv3" href="#problem-6-ellipse-semi-axis-derivation">Problem 6: Ellipse Semi-Axis Derivation</a><a class="lv3" href="#problem-7-axis-reflection-verification">Problem 7: Axis Reflection Verification</a><a class="lv3" href="#problem-8-branch-count-calculation">Problem 8: Branch Count Calculation</a><a class="lv2" href="#challenge-problems">Challenge Problems</a><a class="lv3" href="#problem-9-design-a-regular-hexagon">Problem 9: Design a Regular Hexagon</a><a class="lv3" href="#problem-10-error-analysis">Problem 10: Error Analysis</a><a class="lv2" href="#problem-1-solution-coordinate-calculation">Problem 1 Solution: Coordinate Calculation</a><a class="lv2" href="#problem-2-solution-facing-geometric-calculation">Problem 2 Solution: facing Geometric Calculation</a><a class="lv2" href="#problem-3-solution-rotation-matrix-verification">Problem 3 Solution: Rotation Matrix Verification</a><a class="lv2" href="#problem-4-solution-difference-among-the-three-coordinate-types">Problem 4 Solution: Difference Among the Three Coordinate Types</a><a class="lv2" href="#problem-5-solution-circle-parameter-analysis">Problem 5 Solution: Circle Parameter Analysis</a><a class="lv2" href="#problem-6-solution-ellipse-semi-axis-derivation">Problem 6 Solution: Ellipse Semi-Axis Derivation</a><a class="lv2" href="#problem-7-solution-axis-reflection-verification">Problem 7 Solution: Axis Reflection Verification</a><a class="lv2" href="#problem-8-solution-branch-count-calculation">Problem 8 Solution: Branch Count Calculation</a><a class="lv2" href="#problem-9-solution-regular-hexagon">Problem 9 Solution: Regular Hexagon</a><a class="lv2" href="#problem-10-solution-error-analysis">Problem 10 Solution: Error Analysis</a></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

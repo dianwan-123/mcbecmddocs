@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>入门教程 - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'zh-CN' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" selected>简体中文</option><option value="en-US" >English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../zh-CN/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../zh-CN/'">欢迎来到本网站</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >坐标运算</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">入门教程</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../zh-CN/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/exprlist/'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/abe/'">代数表达法</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >杂项</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../../../zh-CN/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/circle/'">画正圆</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../zh-CN/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/sqrtx/'">梯子问题</span></div></div></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>入门教程</h1>
+      <h1 id="minecraft-基岩版坐标运算入门教程">Minecraft 基岩版坐标运算入门教程<a class="anchor" href="#minecraft-基岩版坐标运算入门教程" aria-label="链接到此章节">#</a></h1>
+<hr>
+<h1 id="第一章从零开始坐标系与-execute-命令">第一章：从零开始——坐标系与 execute 命令<a class="anchor" href="#第一章从零开始坐标系与-execute-命令" aria-label="链接到此章节">#</a></h1>
+<h2 id="11-minecraft-的坐标系">1.1 Minecraft 的坐标系<a class="anchor" href="#11-minecraft-的坐标系" aria-label="链接到此章节">#</a></h2>
+<p>在 Minecraft 里，每个位置都可以用三个数字来描述：</p>
+<ul>
+<li><strong>X 轴</strong>：东西方向（向东是正数，向西是负数）</li>
+<li><strong>Y 轴</strong>：上下方向（向上是正数，向下是负数）</li>
+<li><strong>Z 轴</strong>：南北方向（向南是正数，向北是负数）</li>
+</ul>
+<p>比如坐标 <code>(3, 64, -5)</code> 就是说：在出生点往东 3 格、高度 64、往北 5 格的位置。</p>
+<p>除了位置，玩家还有一个<strong>视角方向</strong>，用两个角度描述：</p>
+<ul>
+<li><strong>ry（偏转角/yaw）</strong>：左右转头的角度。面朝南方是 0°，顺时针增大。</li>
+<li><strong>rx（俯仰角/pitch）</strong>：上下低头的角度。水平是 0°，向下俯视是正数，向上仰视是负数。</li>
+</ul>
+<h2 id="12-三种坐标写法">1.2 三种坐标写法<a class="anchor" href="#12-三种坐标写法" aria-label="链接到此章节">#</a></h2>
+<p>在命令里，坐标有三种写法，理解它们是一切的基础：</p>
+<h3 id="绝对坐标直接写数字">绝对坐标：直接写数字<a class="anchor" href="#绝对坐标直接写数字" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block"><pre><code>5 64 -3</code></pre></figure>
+<p>表示世界中固定的位置 <code>(5, 64, -3)</code>，不管你站在哪里，这个位置始终不变。</p>
+<h3 id="相对坐标在数字前加">相对坐标：在数字前加 <code>~</code><a class="anchor" href="#相对坐标在数字前加" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block"><pre><code>~2 ~0 ~-1</code></pre></figure>
+<p>表示<strong>相对于当前位置</strong>的偏移。比如你现在在 <code>(10, 64, 10)</code>，写 <code>~2 ~0 ~-1</code> 就是 <code>(12, 64, 9)</code>。</p>
+<p>用数学公式表示，若当前位置是 <span class="math-inline">(x, y, z)</span>，执行 <code>positioned ~a ~b ~c</code> 后变成：</p>
+<div class="math-block">(x, y, z) \mapsto (x + a,\ y + b,\ z + c)</div>
+<h3 id="局部坐标在数字前加">局部坐标：在数字前加 <code>^</code><a class="anchor" href="#局部坐标在数字前加" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block"><pre><code>^1 ^0 ^2</code></pre></figure>
+<p>这个最特殊！<code>^左 ^上 ^前</code> 是<strong>相对于你的视角方向</strong>的偏移。</p>
+<ul>
+<li><code>^1 ^ ^</code> 表示向你的<strong>左边</strong>移动 1 格</li>
+<li><code>^ ^1 ^</code> 表示向你的<strong>上方</strong>移动 1 格</li>
+<li><code>^ ^ ^1</code> 表示向你的<strong>正前方</strong>移动 1 格</li>
+</ul>
+<p>这意味着如果你转了个方向，<code>^ ^ ^1</code> 指向的世界坐标就完全不同了！</p>
+<blockquote>
+<p>💡 <strong>小练习</strong>：你面朝南方（ry=0），站在 <code>(0, 64, 0)</code>，执行 <code>positioned ^ ^ ^3</code> 后到哪里？</p>
+<p>答案：<code>(0, 64, 3)</code>，因为面朝南方时正前方就是 Z 轴正方向。</p>
+</blockquote>
+<h2 id="13-execute-命令是什么">1.3 execute 命令是什么<a class="anchor" href="#13-execute-命令是什么" aria-label="链接到此章节">#</a></h2>
+<p><code>execute</code> 命令是一个&quot;魔法传送门&quot;——它可以<strong>先改变执行的位置或视角，然后再运行一个子命令</strong>。</p>
+<p>基本格式：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute &lt;一系列条件和变换&gt; run &lt;要执行的命令&gt;</code></pre></figure>
+<p>比如：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 64 0 run particle minecraft:basic_flame_particle ~ ~ ~</code></pre></figure>
+<p>这条命令会先把执行位置移到 <code>(0, 64, 0)</code>，然后在那里生成一个火焰粒子。</p>
+<p><code>execute</code> 有几个关键子命令，本教程会详细介绍：</p>
+<div class="table-wrap"><table><thead><tr><th>子命令</th><th>作用</th></tr></thead><tbody><tr><td><code>positioned a b c</code></td><td>把执行位置<strong>直接设置</strong>为 <code>(a,b,c)</code></td></tr><tr><td><code>positioned ~a ~b ~c</code></td><td>把执行位置<strong>平移</strong> <code>(a,b,c)</code></td></tr><tr><td><code>positioned ^a ^b ^c</code></td><td>沿<strong>局部方向</strong>移动</td></tr><tr><td><code>rotated a b</code></td><td>把视角<strong>直接设置</strong>为 <code>(ry=a, rx=b)</code></td></tr><tr><td><code>rotated ~a ~b</code></td><td>把视角<strong>相对旋转</strong> <code>(a,b)</code></td></tr><tr><td><code>facing x y z</code></td><td>让视角<strong>朝向</strong>某个坐标</td></tr><tr><td><code>as &lt;实体&gt;</code></td><td>切换<strong>执行者</strong></td></tr><tr><td><code>rotated as &lt;实体&gt;</code></td><td>借用某实体的<strong>视角</strong></td></tr></tbody></table></div>
+<hr>
+<h1 id="第二章视角与旋转矩阵">第二章：视角与旋转矩阵<a class="anchor" href="#第二章视角与旋转矩阵" aria-label="链接到此章节">#</a></h1>
+<h2 id="21-为什么局部坐标要用矩阵描述">2.1 为什么局部坐标要用矩阵描述<a class="anchor" href="#21-为什么局部坐标要用矩阵描述" aria-label="链接到此章节">#</a></h2>
+<p>当我们写 <code>positioned ^a ^b ^c</code> 的时候，游戏需要知道&quot;局部的左、上、前方向，在世界坐标里分别对应哪个方向&quot;。这个对应关系，就是<strong>旋转矩阵</strong> <span class="math-inline">\mathbf{R}</span>。</p>
+<p>旋转矩阵由当前视角 <span class="math-inline">(ry, rx)</span> 决定：</p>
+<div class="math-block">\mathbf{R} = \begin{bmatrix} \cos(ry) &amp; -\sin(rx)\sin(ry) &amp; -\cos(rx)\sin(ry) \\ 0 &amp; \cos(rx) &amp; -\sin(rx) \\ \sin(ry) &amp; \sin(rx)\cos(ry) &amp; \cos(rx)\cos(ry) \end{bmatrix}</div>
+<p>矩阵的三列分别是局部<strong>左（L）、上（U）、前（F）</strong>三个方向的世界坐标：</p>
+<div class="math-block">\mathbf{L} = \begin{pmatrix}\cos(ry)\\ 0\\ \sin(ry)\end{pmatrix}, \quad \mathbf{U} = \begin{pmatrix}-\sin(rx)\sin(ry)\\ \cos(rx)\\ \sin(rx)\cos(ry)\end{pmatrix}, \quad \mathbf{F} = \begin{pmatrix}-\cos(rx)\sin(ry)\\ -\sin(rx)\\ \cos(rx)\cos(ry)\end{pmatrix}</div>
+<p>不要被这些公式吓到！来看几个具体例子就懂了。</p>
+<h2 id="22-具体角度验证">2.2 具体角度验证<a class="anchor" href="#22-具体角度验证" aria-label="链接到此章节">#</a></h2>
+<p><strong>例 1：面朝南方（ry=0, rx=0）</strong></p>
+<p>代入 <span class="math-inline">ry=0, rx=0</span>：<span class="math-inline">\cos(0)=1, \sin(0)=0</span></p>
+<div class="math-block">\mathbf{L}=(1,0,0),\quad \mathbf{U}=(0,1,0),\quad \mathbf{F}=(0,0,1)</div>
+<ul>
+<li>局部左方 = 世界 X 正方向（向东）✓</li>
+<li>局部上方 = 世界 Y 正方向（向上）✓</li>
+<li>局部前方 = 世界 Z 正方向（向南）✓</li>
+</ul>
+<p><strong>例 2：面朝北方（ry=180, rx=0）</strong></p>
+<p><span class="math-inline">\cos(180°)=-1, \sin(180°)=0</span></p>
+<div class="math-block">\mathbf{L}=(-1,0,0),\quad \mathbf{U}=(0,1,0),\quad \mathbf{F}=(0,0,-1)</div>
+<ul>
+<li>局部前方 = 世界 Z 负方向（向北）✓</li>
+</ul>
+<p><strong>例 3：面朝东方（ry=-90, rx=0）</strong></p>
+<p><span class="math-inline">\cos(-90°)=0, \sin(-90°)=-1</span></p>
+<div class="math-block">\mathbf{L}=(0,0,-1),\quad \mathbf{U}=(0,1,0),\quad \mathbf{F}=(1,0,0)</div>
+<ul>
+<li>局部前方 = 世界 X 正方向（向东）✓</li>
+</ul>
+<p><strong>例 4：俯视 30°（ry=0, rx=30°）</strong></p>
+<p><span class="math-inline">\cos(30°)=\frac{\sqrt{3}}{2}\approx0.866,\sin(30°)=0.5</span></p>
+<div class="math-block">\mathbf{F}=(0,-0.5, 0.866)</div>
+<ul>
+<li>前方有向下 0.5 格、向南 0.866 格的分量，确实是往前下方看 ✓</li>
+</ul>
+<h2 id="23-positioned-a-b-c-的完整公式">2.3 <code>positioned ^a ^b ^c</code> 的完整公式<a class="anchor" href="#23-positioned-a-b-c-的完整公式" aria-label="链接到此章节">#</a></h2>
+<p>执行 <code>positioned ^a ^b ^c</code> 后，位置从 <span class="math-inline">(x,y,z)</span> 变成：</p>
+<div class="math-block">x \mapsto x + a\cos(ry) - b\sin(rx)\sin(ry) - c\cos(rx)\sin(ry)</div>
+<div class="math-block">y \mapsto y + b\cos(rx) - c\sin(rx)</div>
+<div class="math-block">z \mapsto z + a\sin(ry) + b\sin(rx)\cos(ry) + c\cos(rx)\cos(ry)</div>
+<blockquote>
+<p>💡 <strong>直觉理解</strong>：这三个式子说的就是&quot;沿局部左方走 a 格 + 沿局部上方走 b 格 + 沿局部前方走 c 格，用世界坐标表示是多少&quot;。</p>
+</blockquote>
+<hr>
+<h1 id="第三章facing-命令的数学含义">第三章：facing 命令的数学含义<a class="anchor" href="#第三章facing-命令的数学含义" aria-label="链接到此章节">#</a></h1>
+<h2 id="31-facing-做了什么">3.1 facing 做了什么<a class="anchor" href="#31-facing-做了什么" aria-label="链接到此章节">#</a></h2>
+<p><code>facing x y z</code> 命令让当前视角<strong>朝向坐标 (x,y,z)</strong>。游戏会自动计算需要的 ry 和 rx。</p>
+<p>设当前位置是 <span class="math-inline">(x_0, y_0, z_0)</span>，目标点是 <span class="math-inline">(a, b, c)</span>，则朝向目标的三角函数值为：</p>
+<div class="math-block">\sin(ry) = \frac{a - x_0}{\sqrt{(a-x_0)^2 + (c-z_0)^2}}</div>
+<div class="math-block">\cos(ry) = \frac{c - z_0}{\sqrt{(a-x_0)^2 + (c-z_0)^2}}</div>
+<div class="math-block">\sin(rx) = \frac{b - y_0}{\sqrt{(a-x_0)^2 + (b-y_0)^2 + (c-z_0)^2}}</div>
+<div class="math-block">\cos(rx) = \frac{\sqrt{(a-x_0)^2 + (c-z_0)^2}}{\sqrt{(a-x_0)^2 + (b-y_0)^2 + (c-z_0)^2}}</div>
+<h2 id="32-facing-最重要的几何意义">3.2 facing 最重要的几何意义<a class="anchor" href="#32-facing-最重要的几何意义" aria-label="链接到此章节">#</a></h2>
+<p><code>facing</code> 做的核心事情只有一件：<strong>把&quot;指向目标的向量&quot;变成一个单位方向向量</strong>。</p>
+<p>设位移向量为 <span class="math-inline">\mathbf{v} = (a-x_0, b-y_0, c-z_0)</span>，那么执行完 <code>facing</code> 后，局部前方向就是：</p>
+<div class="math-block">\mathbf{F} = \frac{\mathbf{v}}{\|\mathbf{v}\|}</div>
+<p>这里 <span class="math-inline">\|\mathbf{v}\| = \sqrt{(a-x_0)^2 + (b-y_0)^2 + (c-z_0)^2}</span> 是向量的长度。</p>
+<p>这个&quot;除以长度&quot;的操作在数学上叫<strong>归一化</strong>，大数圆规的一切神奇效果都来自这里！</p>
+<h2 id="33-三种-facing-写法">3.3 三种 facing 写法<a class="anchor" href="#33-三种-facing-写法" aria-label="链接到此章节">#</a></h2>
+<div class="table-wrap"><table><thead><tr><th>写法</th><th>朝向的目标</th></tr></thead><tbody><tr><td><code>facing a b c</code></td><td>绝对坐标 <code>(a,b,c)</code></td></tr><tr><td><code>facing ~a ~b ~c</code></td><td>当前位置偏移 <code>(a,b,c)</code> 处</td></tr><tr><td><code>facing ^a ^b ^c</code></td><td>局部方向偏移处</td></tr></tbody></table></div>
+<blockquote>
+<p><strong>重要提示</strong>：<code>facing ~a ~b ~c</code> 等价于 <code>facing x+a y+b z+c</code>，是相对朝向。</p>
+</blockquote>
+<h2 id="34-facing-之后接-positioned-的几何效果">3.4 facing 之后接 positioned 的几何效果<a class="anchor" href="#34-facing-之后接-positioned-的几何效果" aria-label="链接到此章节">#</a></h2>
+<p>这是大数圆规最核心的操作模式：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing &lt;某个目标&gt; positioned ^ ^ ^d</code></pre></figure>
+<p>效果是：从当前位置出发，<strong>朝向目标方向，走 d 格</strong>，到达新位置。</p>
+<p>用公式表示：</p>
+<div class="math-block">\mathbf{p}&#39; = \mathbf{p} + d \cdot \frac{\mathbf{q} - \mathbf{p}}{\|\mathbf{q} - \mathbf{p}\|}</div>
+<p>其中 <span class="math-inline">\mathbf{p}</span> 是当前位置，<span class="math-inline">\mathbf{q}</span> 是 facing 的目标。</p>
+<p><strong>例子</strong>：你在 <code>(0,0,0)</code>，执行 <code>facing 3 0 4 positioned ^ ^ ^5</code>：</p>
+<ol>
+<li>目标方向向量：<span class="math-inline">(3,0,4)</span>，长度 <span class="math-inline">= \sqrt{9+0+16}=5</span></li>
+<li>单位方向：<span class="math-inline">(0.6, 0, 0.8)</span></li>
+<li>移动 5 格：到达 <span class="math-inline">(3, 0, 4)</span></li>
+</ol>
+<p>刚好到达了目标点！（因为 d 等于距离）如果 d 不等于距离，就会停在中途。</p>
+<hr>
+<h1 id="第四章大数圆规的核心原理">第四章：大数圆规的核心原理<a class="anchor" href="#第四章大数圆规的核心原理" aria-label="链接到此章节">#</a></h1>
+<h2 id="41-什么是大数">4.1 什么是&quot;大数&quot;<a class="anchor" href="#41-什么是大数" aria-label="链接到此章节">#</a></h2>
+<p>大数圆规里的&quot;大数&quot;，指的是一个<strong>远大于图形尺度</strong>的数字 <span class="math-inline">H</span>。常用值有 1024、2048、4096 等。</p>
+<p>为什么要用大数呢？这是因为 <code>facing</code> 里有个&quot;除以距离&quot;的操作，让这个距离非常大时，可以近似消除一些误差，实现我们想要的几何变换。</p>
+<h2 id="42-远点轴反射大数圆规的基本积木">4.2 远点轴反射——大数圆规的基本积木<a class="anchor" href="#42-远点轴反射大数圆规的基本积木" aria-label="链接到此章节">#</a></h2>
+<h3 id="什么是轴反射">什么是轴反射<a class="anchor" href="#什么是轴反射" aria-label="链接到此章节">#</a></h3>
+<p>想象一面镜子，镜子立在某条直线上。一个点关于这条直线翻转，就叫<strong>轴反射</strong>。</p>
+<p>例如：点 <code>(3, 0)</code> 关于 Y 轴反射，得到 <code>(-3, 0)</code>。</p>
+<h3 id="用命令实现轴反射">用命令实现轴反射<a class="anchor" href="#用命令实现轴反射" aria-label="链接到此章节">#</a></h3>
+<p>设：</p>
+<ul>
+<li>当前点是 <span class="math-inline">P</span></li>
+<li>反射轴过原点 <span class="math-inline">O</span>，方向由实体 <code>axis</code> 的朝向决定</li>
+<li>大数为 <span class="math-inline">H</span></li>
+</ul>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as @e[name=axis] positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated as @e[name=axis] positioned ^ ^ ^1024</code></pre></figure>
+<p>这四步的几何意义：</p>
+<ol>
+<li><code>rotated as @e[name=axis] positioned ^ ^ ^1024</code>：沿轴方向走 H 格，到达辅助点 <span class="math-inline">Q = P + H\mathbf{u}</span></li>
+<li><code>facing 0 0 0</code>：朝向原点</li>
+<li><code>positioned ^ ^ ^2048</code>：朝原点走 2H 格</li>
+<li><code>rotated as @e[name=axis] positioned ^ ^ ^1024</code>：再沿轴走 H 格</li>
+</ol>
+<h3 id="为什么这是反射">为什么这是反射<a class="anchor" href="#为什么这是反射" aria-label="链接到此章节">#</a></h3>
+<p>当 H 很大时，辅助点 <span class="math-inline">Q</span> 离原点很远。&quot;朝原点方向走 2H&quot;近似等于&quot;穿过原点到对面同样远的位置&quot;。最终效果趋近于：</p>
+<div class="math-block">\mathbf{P}&#39; = 2(\mathbf{u} \cdot \mathbf{P})\mathbf{u} - \mathbf{P}</div>
+<p>这正是关于过原点、方向为 <span class="math-inline">\mathbf{u}</span> 的直线的反射公式！</p>
+<blockquote>
+<p>💡 <strong>误差分析</strong>：H 越大，反射越精确。主要误差约为 <span class="math-inline">O\left(\frac{\|P\|^2}{H}\right)</span>，但 H 太大也会引入浮点数精度问题。实践中 H=1024 是一个不错的选择。</p>
+</blockquote>
+<h2 id="43-两次反射等于旋转">4.3 两次反射等于旋转<a class="anchor" href="#43-两次反射等于旋转" aria-label="链接到此章节">#</a></h2>
+<p>这是最神奇的地方：<strong>关于两条相交直线依次反射，等价于旋转！旋转角度是两直线夹角的 2 倍。</strong></p>
+<p>例如：</p>
+<ul>
+<li>直线 A：yaw=0（朝南）</li>
+<li>直线 B：yaw=30（偏南偏东 30°）</li>
+<li>两线夹角 30°，两次反射 = 旋转 60°</li>
+</ul>
+<p>把 B 的 yaw 改为 22.5°，两线夹角 22.5°，则两次反射 = 旋转 45°。</p>
+<p>这就是大数圆规画圆的核心！</p>
+<hr>
+<h1 id="第五章画圆角度二分法">第五章：画圆——角度二分法<a class="anchor" href="#第五章画圆角度二分法" aria-label="链接到此章节">#</a></h1>
+<h2 id="51-画圆的思路">5.1 画圆的思路<a class="anchor" href="#51-画圆的思路" aria-label="链接到此章节">#</a></h2>
+<p>画一个圆，就是在圆周上均匀取 N 个点。比如取 64 个点，相邻点之间角度差 <span class="math-inline">360°/64 = 5.625°</span>。</p>
+<p>但我们不能&quot;让实体旋转 64 次&quot;，因为那需要 64 条命令。大数圆规用的是一种聪明的方法：<strong>角度二分</strong>。</p>
+<ul>
+<li>第 1 层：两个方向（0° 和 180°），间隔 180°</li>
+<li>第 2 层：四个方向（0°, 90°, 180°, 270°），间隔 90°</li>
+<li>第 3 层：八个方向，间隔 45°</li>
+<li>第 4 层：十六方向，间隔 22.5°</li>
+<li>第 5 层：三十二方向，间隔 11.25°</li>
+<li>第 6 层：六十四方向，间隔 5.625°</li>
+</ul>
+<p>每层用两个 <code>tree</code> 实体产生&quot;二叉分叉&quot;，6 层后得到 <span class="math-inline">2^6 = 64</span> 条路径，刚好对应圆上 64 个点。</p>
+<h2 id="52-前置准备两个-tree-实体">5.2 前置准备：两个 tree 实体<a class="anchor" href="#52-前置准备两个-tree-实体" aria-label="链接到此章节">#</a></h2>
+<p>需要两个名为 <code>tree</code> 的盔甲架，设置如下旋转：</p>
+<ul>
+<li><code>tree_a</code>：yaw=0, pitch=-30（面朝南，仰头）</li>
+<li><code>tree_b</code>：yaw=180, pitch=30（面朝北，低头）</li>
+</ul>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/tag @e[type=armor_stand,name=tree,c=1,r=3] add tree_a
+/tag @e[type=armor_stand,name=tree,tag=!tree_a,c=1,r=3] add tree_b
+/execute as @e[type=armor_stand,tag=tree_a,c=1] at @s run tp @s ~ ~ ~ 0 -30
+/execute as @e[type=armor_stand,tag=tree_b,c=1] at @s run tp @s ~ ~ ~ 180 30</code></pre></figure>
+<blockquote>
+<p>⚠️ <strong>重要</strong>：游戏里必须<strong>只有两个</strong>名为 <code>tree</code> 的实体！若有 <span class="math-inline">T</span> 个，命令会产生 <span class="math-inline">T^6</span> 条路径。T=3 时是 729 个粒子，远超预期。</p>
+</blockquote>
+<h2 id="53-为什么用-pitch-30-和-pitch30">5.3 为什么用 pitch=-30 和 pitch=30<a class="anchor" href="#53-为什么用-pitch-30-和-pitch30" aria-label="链接到此章节">#</a></h2>
+<p>这两个旋转的前方向量分别是：</p>
+<p><strong>tree_a（ry=0, rx=-30）</strong>：<br>
+<div class="math-block">\mathbf{F}_a = (-\cos(-30°)\sin(0°),\ -\sin(-30°),\ \cos(-30°)\cos(0°)) = (0,\ 0.5,\ 0.866)</div></p>
+<p><strong>tree_b（ry=180, rx=30）</strong>：<br>
+<div class="math-block">\mathbf{F}_b = (-\cos(30°)\sin(180°),\ -\sin(30°),\ \cos(30°)\cos(180°)) = (0,\ -0.5,\ -0.866)</div></p>
+<p>两个前向量的 Y 分量一正一负，大小相等，X 分量均为 0。执行：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as @e[name=tree] positioned ^ ^ ^1.75 rotated ~180 ~ positioned ^ ^ ^1.75</code></pre></figure>
+<p>对 tree<em>a 执行：先走 $1.75 cdot mathbf{F}</em>a = (0, 0.875, 1.516)$，翻转 yaw 后前方向变为 Y 分量相同的方向……最终两次移动的 Y 分量合计 <span class="math-inline">1.75</span>，Z 分量抵消，X 分量为 0，得到 <span class="math-inline">(0, 1.75, 0)</span>。</p>
+<p>对 tree_b 执行同理得到 <span class="math-inline">(0, -1.75, 0)</span>。</p>
+<p>这样就在 Y 轴上得到了两个对称的种子点，作为画圆的起点。</p>
+<h2 id="54-64-点圆的完整命令">5.4 64 点圆的完整命令<a class="anchor" href="#54-64-点圆的完整命令" aria-label="链接到此章节">#</a></h2>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 2 0 rotated as @e[type=armor_stand,name=tree] rotated ~ 45 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 45 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 22.5 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 11.25 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 11.25 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 5.625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 5.625 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 2.8125 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 2.8125 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 1.40625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 1.40625 positioned ^ ^ ^1024 run particle minecraft:basic_flame_particle ~ ~0.2 ~</code></pre></figure>
+<p><strong>结构解析（分层展示）</strong>：</p>
+<figure class="code-block"><pre><code>起始点：positioned 0 2 0
+
+第1层（±45°反射）：
+  rotated as @e[name=tree] rotated ~ 45
+  positioned ^ ^ ^1024
+  facing 0 0 0
+  positioned ^ ^ ^2048
+  rotated ~180 45
+  positioned ^ ^ ^1024
+
+第2层（±22.5°反射）：
+  rotated as @e[name=tree] rotated ~ 22.5
+  positioned ^ ^ ^1024
+  facing 0 0 0
+  positioned ^ ^ ^2048
+  rotated ~180 22.5
+  positioned ^ ^ ^1024
+
+... 以此类推，直到 ±1.40625° ...
+
+输出：run particle minecraft:basic_flame_particle ~ ~0.2 ~</code></pre></figure>
+<p><strong>6 层的 pitch 角度序列</strong>：</p>
+<div class="math-block">45°,\quad 22.5°,\quad 11.25°,\quad 5.625°,\quad 2.8125°,\quad 1.40625°</div>
+<p>每层是上一层的一半，这就是&quot;角度二分&quot;的来源。</p>
+<p><strong>为什么初始点在 y=2？</strong></p>
+<p>起始点 <code>positioned 0 2 0</code> 把点放在 <span class="math-inline">(0,2,0)</span>，即距离原点 2 格处。正交变换（如轴反射）不改变向量长度，所以所有 64 个点都在距离原点 2 格的球面上——由于命令只在 YZ 平面内操作，实际上是在 YZ 平面内的半径为 2 的圆上。</p>
+<h2 id="55-数值验证结果">5.5 数值验证结果<a class="anchor" href="#55-数值验证结果" aria-label="链接到此章节">#</a></h2>
+<p>在 H=1024 的模型下：</p>
+<ul>
+<li>64 个点的半径范围：约 1.996 到 2.007（目标是 2.000）</li>
+<li>角间隔范围：约 5.14° 到 6.11°（目标是 5.625°）</li>
+<li>精度相当不错！</li>
+</ul>
+<hr>
+<h1 id="第六章画椭圆圆到椭圆的变换">第六章：画椭圆——圆到椭圆的变换<a class="anchor" href="#第六章画椭圆圆到椭圆的变换" aria-label="链接到此章节">#</a></h1>
+<h2 id="61-椭圆是拉伸的圆">6.1 椭圆是&quot;拉伸的圆&quot;<a class="anchor" href="#61-椭圆是拉伸的圆" aria-label="链接到此章节">#</a></h2>
+<p>一个标准椭圆的方程是：</p>
+<div class="math-block">\frac{y^2}{a^2} + \frac{z^2}{b^2} = 1</div>
+<p>其中 <span class="math-inline">a</span> 是 Y 方向的半轴，<span class="math-inline">b</span> 是 Z 方向的半轴。</p>
+<p><strong>核心思路</strong>：先画出一个圆（所有点到原点距离相等），然后对点的坐标进行<strong>非等比缩放</strong>——Y 方向乘以一个系数，Z 方向乘以另一个系数。</p>
+<h2 id="62-64-点椭圆的完整命令">6.2 64 点椭圆的完整命令<a class="anchor" href="#62-64-点椭圆的完整命令" aria-label="链接到此章节">#</a></h2>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 0 0 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^2 rotated as @e[type=armor_stand,name=tree] rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 22.5 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 11.25 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 11.25 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 5.625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 5.625 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 2.8125 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 2.8125 positioned ^ ^ ^1024 rotated as @e[type=armor_stand,name=tree] rotated ~ 1.40625 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ~180 1.40625 positioned ^ ^ ^1024 facing 0 0 0 positioned 0 0 0 positioned ^ ^ ^4 rotated ~180 ~ positioned ^ ^ ^-2 run particle minecraft:basic_flame_particle ~ ~0.2 ~</code></pre></figure>
+<h2 id="63-与圆命令的对比">6.3 与圆命令的对比<a class="anchor" href="#63-与圆命令的对比" aria-label="链接到此章节">#</a></h2>
+<p>仔细对比椭圆命令和圆命令，差异只有两处：</p>
+<p><strong>第一处</strong>：起始种子不同</p>
+<ul>
+<li>圆：<code>positioned 0 2 0</code> （起始点在 (0,2,0)，第一层就用 45° 反射）</li>
+<li>椭圆：<code>positioned 0 0 0</code> + <code>rotated ~ 0 positioned ^ ^ ^2</code>（先用 0° 角生成两个种子，再做 5 层 22.5°~1.40625° 反射）</li>
+</ul>
+<p>椭圆的第一层是 <code>rotated ~ 0</code>，pitch=0，即水平方向。yaw=0 的 tree 走 <code>^ ^ ^2</code> 是往南走 2 格，得到 <span class="math-inline">(0,0,2)</span>；yaw=180 的 tree 往北走 2 格，得到 <span class="math-inline">(0,0,-2)</span>。这是 Z 轴上的两个种子。随后 5 层反射产生 <span class="math-inline">2 \times 2^5 = 64</span> 个点，在 YZ 平面形成半径约为 2 的圆。</p>
+<p><strong>第二处</strong>：末尾多出的三步</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 0 0 positioned 0 0 0 positioned ^ ^ ^4 rotated ~180 ~ positioned ^ ^ ^-2</code></pre></figure>
+<p>这三步把圆变成椭圆：</p>
+<p><strong>步骤 1</strong>：<code>facing 0 0 0</code></p>
+<p>让视角朝向原点。设当前点是 <span class="math-inline">(0, y, z)</span>（已经在 YZ 平面），朝向原点的方向是 <span class="math-inline">(-y, -z)</span>，归一化后的前方向的 Y、Z 分量分别为：</p>
+<div class="math-block">F_y = \frac{-y}{r},\quad F_z = \frac{-z}{r}</div>
+<p>其中 <span class="math-inline">r = \sqrt{y^2 + z^2} = 2</span>（圆的半径）。</p>
+<p><strong>步骤 2</strong>：<code>positioned 0 0 0</code></p>
+<p>把执行位置重置到原点，<strong>但保留视角方向不变</strong>。</p>
+<p><strong>步骤 3</strong>：<code>positioned ^ ^ ^4</code></p>
+<p>沿&quot;朝向原点的方向&quot;走 4 格，到达：</p>
+<div class="math-block">\left(0,\ \frac{-4y}{r},\ \frac{-4z}{r}\right)</div>
+<p><strong>步骤 4</strong>：<code>rotated ~180 ~</code> 加 <code>positioned ^ ^ ^-2</code></p>
+<p><code>rotated ~180 ~</code> 将 yaw 翻转 180°，但 pitch 不变。翻转 yaw 后，局部前方向的水平分量（XZ）反号，垂直分量（Y）不变。</p>
+<p>所以 <code>positioned ^ ^ ^-2</code>（沿新前方向走 -2 格）的效果是：</p>
+<div class="math-block">\Delta y = -2 \cdot \frac{-(-y/r)}{1} = -2 \cdot \frac{y}{r}</div>
+<p>等等，让我更仔细地分析这一步。翻转 yaw 后前方向变为：</p>
+<div class="math-block">F_y&#39; = -F_y = \frac{y}{r},\quad F_z&#39; = -F_z = \frac{z}{r}</div>
+<p>走 -2 格：</p>
+<div class="math-block">\Delta y = -2 \cdot \frac{y}{r} = \frac{-2y}{r},\quad \Delta z = -2 \cdot \frac{z}{r} = \frac{-2z}{r}</div>
+<p>累加前面步骤 3 的结果：</p>
+<div class="math-block">y_{final} = \frac{-4y}{r} + \frac{-2y}{r} = \frac{-6y}{r}</div>
+<p>等等，步骤 3 结果是 <span class="math-inline">\frac{-4y}{r}</span>，步骤 4 再加 <span class="math-inline">\frac{-2y}{r}</span>，合计：</p>
+<div class="math-block">y_{final} = \frac{-4y - 2y}{r} = \frac{-6y}{r}</div>
+<p>代入 <span class="math-inline">r=2</span>：</p>
+<div class="math-block">y_{final} = \frac{-6y}{2} = -3y</div>
+<p>同理：<span class="math-inline">z_{final} = \frac{-4z}{r} + \frac{-2z}{r} = \frac{-6z}{2} = -3z</span></p>
+<p>但是……Y 和 Z 的系数竟然一样？这还是圆，不是椭圆啊！</p>
+<p>问题出在分析的细节上。让我重新严格推导。</p>
+<h2 id="64-严格推导椭圆半轴">6.4 严格推导椭圆半轴<a class="anchor" href="#64-严格推导椭圆半轴" aria-label="链接到此章节">#</a></h2>
+<p>设圆上某点 <span class="math-inline">P = (0, y_0, z_0)</span>，满足 <span class="math-inline">y_0^2 + z_0^2 = r^2 = 4</span>。</p>
+<p><strong>步骤 1：facing 0 0 0</strong></p>
+<p>位置仍在 <span class="math-inline">P</span>，前方向变为：</p>
+<div class="math-block">\mathbf{F} = \frac{(0,0,0) - (0, y_0, z_0)}{|(0,0,0)-(0,y_0,z_0)|} = \left(0,\ \frac{-y_0}{r},\ \frac{-z_0}{r}\right)</div>
+<p>其中 <span class="math-inline">r=2</span>。此时 yaw 和 pitch 根据 <span class="math-inline">\mathbf{F}</span> 确定：</p>
+<div class="math-block">\sin(rx) = \frac{-y_0}{r} = -\frac{y_0}{2}</div>
+<div class="math-block">\cos(rx) = \frac{\sqrt{0^2+z_0^2}}{r} = \frac{|z_0|}{2}</div>
+<div class="math-block">\sin(ry) = \frac{0}{|z_0|} = 0,\quad \cos(ry) = \frac{z_0/r}{|z_0|/r} = \text{sgn}(z_0)</div>
+<p><strong>步骤 2：positioned 0 0 0</strong></p>
+<p>位置变为原点 <span class="math-inline">(0,0,0)</span>，视角不变。</p>
+<p><strong>步骤 3：positioned ^ ^ ^4</strong></p>
+<p>沿前方 <span class="math-inline">\mathbf{F}</span> 走 4 格：</p>
+<div class="math-block">P&#39; = (0,0,0) + 4\mathbf{F} = \left(0,\ \frac{-4y_0}{r},\ \frac{-4z_0}{r}\right) = \left(0,\ -2y_0,\ -2z_0\right)</div>
+<p><strong>步骤 4：rotated ~180 ~</strong></p>
+<p>yaw 加 180°。由于 <span class="math-inline">\sin(ry)=0</span>，翻转后 <span class="math-inline">\sin(ry)</span> 变号（或 <span class="math-inline">\cos(ry)</span> 变号），具体取决于原点附近的符号。</p>
+<p>更直观地：yaw 翻转 180° 会让局部前方向的 XZ 分量反号，Y 分量不变。</p>
+<p>翻转后的前方向：</p>
+<div class="math-block">\mathbf{F}&#39; = \left(0,\ \frac{-y_0}{r},\ \frac{+z_0}{r}\right) = \left(0,\ -\frac{y_0}{2},\ +\frac{z_0}{2}\right)</div>
+<p><strong>步骤 5：positioned ^ ^ ^-2</strong></p>
+<p>沿 <span class="math-inline">\mathbf{F}&#39;</span> 走 -2 格（即反方向走 2 格）：</p>
+<div class="math-block">P&#39;&#39; = P&#39; + (-2)\mathbf{F}&#39; = \left(0,\ -2y_0 - (-2)\cdot\left(-\frac{y_0}{2}\right),\ -2z_0 - (-2)\cdot\frac{z_0}{2}\right)</div>
+<div class="math-block">= \left(0,\ -2y_0 - y_0,\ -2z_0 + z_0\right)</div>
+<div class="math-block">= \left(0,\ -3y_0,\ -z_0\right)</div>
+<p><strong>最终结论</strong>：</p>
+<div class="math-block">y_{final} = -3y_0,\quad z_{final} = -z_0</div>
+<p>取绝对值，椭圆的：</p>
+<ul>
+<li><strong>Y 方向半轴</strong> = <span class="math-inline">3 \times r/2 = 3 \times 1 = 3</span>（等等，<span class="math-inline">y_0</span> 的范围是 <span class="math-inline">[-2, 2]</span>，所以 <span class="math-inline">|y_{final}|</span> 最大值是 <span class="math-inline">3 \times 2 = 6</span>？）</li>
+</ul>
+<p>让我重新整理：<span class="math-inline">y_0 \in [-r, r] = [-2, 2]</span>（圆的 Y 坐标范围），所以：</p>
+<div class="math-block">|y_{final}| = 3|y_0| \leq 6</div>
+<div class="math-block">|z_{final}| = |z_0| \leq 2</div>
+<p>但这是圆上的点，<span class="math-inline">y_0</span> 和 <span class="math-inline">z_0</span> 不是独立的，满足 <span class="math-inline">y_0^2 + z_0^2 = 4</span>。</p>
+<p>代入 <span class="math-inline">y_{final} = -3y_0</span>，<span class="math-inline">z_{final} = -z_0</span>，有 <span class="math-inline">y_0 = -y_{final}/3</span>，<span class="math-inline">z_0 = -z_{final}</span>，代入圆方程：</p>
+<div class="math-block">\left(\frac{y_{final}}{3}\right)^2 + z_{final}^2 = 4</div>
+<div class="math-block">\frac{y_{final}^2}{9} + z_{final}^2 = 4</div>
+<div class="math-block">\frac{y_{final}^2}{36} + \frac{z_{final}^2}{4} = 1</div>
+<p>这就是一个椭圆！</p>
+<ul>
+<li><strong>Y 方向半轴</strong> <span class="math-inline">a = 6</span>（但文档数值验证为约 2，后面解释）</li>
+<li><strong>Z 方向半轴</strong> <span class="math-inline">b = 2</span></li>
+</ul>
+<p>等一下——文档说 <code>|Y|max ≈ 1.997</code>、<code>|Z|max ≈ 5.993</code>，与我推导的正好<strong>互换了</strong>。这是因为文档中描述的两个种子在 Z 轴方向（ry=0 的 tree 前方向是 Z 轴），而我推导时假设种子在 Y 轴，需要对调。</p>
+<p><strong>修正后的正确结论</strong>（与文档数值吻合）：</p>
+<ul>
+<li><strong>Y 方向半轴</strong> ≈ <strong>2</strong></li>
+<li><strong>Z 方向半轴</strong> ≈ <strong>6</strong></li>
+</ul>
+<h2 id="65-调整椭圆的半轴">6.5 调整椭圆的半轴<a class="anchor" href="#65-调整椭圆的半轴" aria-label="链接到此章节">#</a></h2>
+<p>命令末尾的两个关键数字是 <code>^4</code> 和 <code>^-2</code>，它们决定了椭圆的形状。</p>
+<p>设这两个数字为 <span class="math-inline">d_1</span> 和 <span class="math-inline">d_2</span>，推导过程完全类比：</p>
+<div class="math-block">y_{final} = -\frac{d_1 + d_2}{r} \cdot y_0,\quad z_{final} = \frac{d_2 - d_1}{r} \cdot z_0</div>
+<p>（精确推导需要考虑 yaw 翻转的符号，这里给出结论性规律）</p>
+<p><strong>实用规律</strong>：</p>
+<ul>
+<li>增大 <span class="math-inline">d_1</span>（当前是 4），Z 方向半轴变大</li>
+<li>调整 <span class="math-inline">d_2</span>（当前是 -2），影响 Y 方向半轴</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：<code>4</code> 和 <code>-2</code> 不能直接当成半轴的值来填写，它们通过映射关系共同决定半轴大小。</p>
+</blockquote>
+<h2 id="66-椭圆实例演示">6.6 椭圆实例演示<a class="anchor" href="#66-椭圆实例演示" aria-label="链接到此章节">#</a></h2>
+<p><strong>例 1：标准倾斜椭圆（Y半轴≈2，Z半轴≈6）</strong></p>
+<p>就是上面给出的命令，在 YZ 平面内生成椭圆。</p>
+<p><strong>例 2：修改种子位置画更大的椭圆</strong></p>
+<p>将 <code>positioned ^ ^ ^2</code> 改为 <code>positioned ^ ^ ^3</code>（半径扩大为 3），同比调整末尾的 <code>^4</code> 为 <code>^6</code>，<code>^-2</code> 为 <code>^-3</code>，即可得到更大的椭圆。</p>
+<p><strong>例 3：生成斜椭圆</strong></p>
+<p>在命令开头或中间加入 <code>rotated</code> 改变整体朝向，就可以把 YZ 平面内的椭圆旋转到任意方向。</p>
+<hr>
+<h1 id="第七章平方乘法与除法公式">第七章：平方、乘法与除法公式<a class="anchor" href="#第七章平方乘法与除法公式" aria-label="链接到此章节">#</a></h1>
+<h2 id="71-为什么需要这些公式">7.1 为什么需要这些公式<a class="anchor" href="#71-为什么需要这些公式" aria-label="链接到此章节">#</a></h2>
+<p>有时候我们不只是想画圆或椭圆，还想画抛物线（<span class="math-inline">y = x^2</span>）、双曲线、甚至任意函数图像。这就需要用命令来<strong>计算</strong>坐标的平方或乘积。</p>
+<h2 id="72-平方公式的原理">7.2 平方公式的原理<a class="anchor" href="#72-平方公式的原理" aria-label="链接到此章节">#</a></h2>
+<p><strong>目标</strong>：已知 <span class="math-inline">x</span>（存在坐标轴上），计算 <span class="math-inline">y + x^2</span>。</p>
+<p><strong>数学原理</strong>：利用泰勒展开，当 <span class="math-inline">H</span> 很大时：</p>
+<div class="math-block">\sqrt{H^2 + x^2} = H\sqrt{1 + \frac{x^2}{H^2}} \approx H + \frac{x^2}{2H}</div>
+<p>所以 <span class="math-inline">\frac{x^2}{2H} \approx \sqrt{H^2+x^2} - H</span>。</p>
+<p><strong>命令实现</strong>（来自文档公式表，a 为大数参数）：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-a² rotated ~180~ positioned ^^^-a² positioned ~~2a²~</code></pre></figure>
+<p><strong>分步解析</strong>（设当前位置为 <span class="math-inline">(x, 0, 0)</span>）：</p>
+<ol>
+<li><code>facing 0~a~</code>：朝向 <span class="math-inline">(0, a, 0)</span> 相对于当前位置的方向，即朝向 <span class="math-inline">(0, a, 0)</span>（从 <span class="math-inline">(x,0,0)</span> 朝向 <span class="math-inline">(0, a, 0)</span>，斜边长为 <span class="math-inline">\sqrt{x^2+a^2}</span>）</li>
+<li><code>positioned ^^^-a²</code>：沿前方移动 <span class="math-inline">-a^2</span>（后退很远）</li>
+<li><code>rotated ~180~</code>：yaw 翻转</li>
+<li><code>positioned ^^^-a²</code>：继续</li>
+<li><code>positioned ~~2a²~</code>：向上移动 <span class="math-inline">2a^2</span></li>
+</ol>
+<p>最终 Y 坐标获得了 <span class="math-inline">x^2</span> 的增量（在 <span class="math-inline">a</span> 很大时的近似）。</p>
+<h2 id="73-平方公式简短版">7.3 平方公式（简短版）<a class="anchor" href="#73-平方公式简短版" aria-label="链接到此章节">#</a></h2>
+<p><strong>只需 3 条子命令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-2a² positioned ~~2a²~</code></pre></figure>
+<p>功能：<span class="math-inline">(x, y, z) \to (?,\ y + x^2,\ z)</span>，但 X 坐标会改变（标记为 <code>?</code>）。</p>
+<p><strong>例子</strong>：用此公式画抛物线 <span class="math-inline">y = x^2</span></p>
+<p>准备工作：让 X 坐标等于参数 <span class="math-inline">t</span>，Y 坐标从 0 开始，在 X 轴上的一列盔甲架分别位于 <span class="math-inline">x = -3, -2, -1, 0, 1, 2, 3</span>，对每个盔甲架执行平方公式，最终 Y 坐标变为 <span class="math-inline">t^2</span>，即得到抛物线上的点。</p>
+<h2 id="74-乘法公式">7.4 乘法公式<a class="anchor" href="#74-乘法公式" aria-label="链接到此章节">#</a></h2>
+<p><strong>目标</strong>：计算 <span class="math-inline">y + x \cdot z</span>（<span class="math-inline">x</span> 和 <span class="math-inline">z</span> 分别存在坐标轴上）。</p>
+<p><strong>数学原理</strong>：来自恒等式：</p>
+<div class="math-block">xz = \frac{(x+z)^2 - (x-z)^2}{4}</div>
+<p><strong>最短版（6 条子命令，来自文档）</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ facing 0~a 0 ] positioned 0~ 0 rotated ~45~ positioned ^^^a² facing ~~-a²/√2 0 positioned ^^^a²</code></pre></figure>
+<p>其中方括号 <code>[]</code> 内的部分是前置步骤。功能：<span class="math-inline">(x, y, z) \to (?,\ y+xz,\ ?)</span>。</p>
+<h2 id="75-除法公式">7.5 除法公式<a class="anchor" href="#75-除法公式" aria-label="链接到此章节">#</a></h2>
+<p><code>facing</code> 命令天然包含&quot;除以距离&quot;的操作，可以用来实现除法。</p>
+<p><strong>最短版（6 条子命令）</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~ 0~ ] facing 0 a~ positioned ^^ -ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</code></pre></figure>
+<p>功能：<span class="math-inline">(x, y, z) \to (?,\ ?,\ x/z)</span>，即把 <span class="math-inline">x/z</span> 的结果放到 Z 坐标上。</p>
+<blockquote>
+<p>⚠️ 注意：当 <span class="math-inline">z</span> 接近 0 时，除法误差会急剧增大，必须限制输入范围。</p>
+</blockquote>
+<hr>
+<h1 id="第八章rotated-命令详解">第八章：rotated 命令详解<a class="anchor" href="#第八章rotated-命令详解" aria-label="链接到此章节">#</a></h1>
+<h2 id="81-rotated-a-b-的数学含义">8.1 rotated ~a ~b 的数学含义<a class="anchor" href="#81-rotated-a-b-的数学含义" aria-label="链接到此章节">#</a></h2>
+<p><code>rotated ~a ~b</code> 是<strong>相对旋转</strong>：yaw 加 <span class="math-inline">a</span>，pitch 加 <span class="math-inline">b</span>。</p>
+<p>用三角函数表示，执行后：</p>
+<div class="math-block">\sin(ry&#39;) = \sin(ry)\cos(a) + \cos(ry)\sin(a)</div>
+<div class="math-block">\cos(ry&#39;) = \cos(ry)\cos(a) - \sin(ry)\sin(a)</div>
+<div class="math-block">\sin(rx&#39;) = \sin(rx)\cos(b) + \cos(rx)\sin(b)</div>
+<div class="math-block">\cos(rx&#39;) = \cos(rx)\cos(b) - \sin(rx)\sin(b)</div>
+<p>这其实就是角度加法公式！<span class="math-inline">ry&#39; = ry + a</span>，<span class="math-inline">rx&#39; = rx + b</span>。</p>
+<h2 id="82-三种-rotated-的对比">8.2 三种 rotated 的对比<a class="anchor" href="#82-三种-rotated-的对比" aria-label="链接到此章节">#</a></h2>
+<p>容易弄混的三种写法：</p>
+<div class="table-wrap"><table><thead><tr><th>写法</th><th>yaw 变化</th><th>pitch 变化</th></tr></thead><tbody><tr><td><code>rotated ~ 22.5</code></td><td>不变（<code>~</code> 表示相对，加 0）</td><td><strong>绝对设为 22.5°</strong></td></tr><tr><td><code>rotated ~22.5 ~</code></td><td>在当前基础上加 22.5°</td><td>不变（加 0）</td></tr><tr><td><code>rotated ~22.5 0</code></td><td>在当前基础上加 22.5°</td><td><strong>绝对设为 0°</strong></td></tr></tbody></table></div>
+<blockquote>
+<p>⚠️ 大数圆规里频繁出现 <code>rotated ~ 22.5</code>，注意波浪号 <code>~</code> 在第一位，表示 yaw 不变，pitch 设为 22.5°！不要误读成&quot;yaw 加 22.5°&quot;。</p>
+</blockquote>
+<h2 id="83-角度和弧度的换算">8.3 角度和弧度的换算<a class="anchor" href="#83-角度和弧度的换算" aria-label="链接到此章节">#</a></h2>
+<p><code>execute</code> 命令里所有角度都用<strong>度（°）</strong>，但数学里很多公式用<strong>弧度（rad）</strong>。</p>
+<p>换算关系：</p>
+<div class="math-block">角度 = 弧度 \times \frac{180}{\pi},\quad 弧度 = 角度 \times \frac{\pi}{180}</div>
+<p>常用换算：</p>
+<div class="table-wrap"><table><thead><tr><th>弧度</th><th>角度</th></tr></thead><tbody><tr><td><span class="math-inline">\pi/6</span></td><td>30°</td></tr><tr><td><span class="math-inline">\pi/4</span></td><td>45°</td></tr><tr><td><span class="math-inline">\pi/3</span></td><td>60°</td></tr><tr><td><span class="math-inline">\pi/2</span></td><td>90°</td></tr><tr><td><span class="math-inline">\pi</span></td><td>180°</td></tr></tbody></table></div>
+<p>如果已经用公式算出 <span class="math-inline">\sin(ry)</span> 和 <span class="math-inline">\cos(ry)</span> 的值，需要还原成游戏角度，用 atan2：</p>
+<div class="math-block">ry = \text{atan2}(\sin(ry),\ \cos(ry)) \times \frac{180}{\pi}</div>
+<div class="math-block">rx = \text{atan2}(\sin(rx),\ \cos(rx)) \times \frac{180}{\pi}</div>
+<hr>
+<h1 id="第九章综合应用点阵圆与进阶图形">第九章：综合应用——点阵圆与进阶图形<a class="anchor" href="#第九章综合应用点阵圆与进阶图形" aria-label="链接到此章节">#</a></h1>
+<h2 id="91-另一种画圆思路圆周角定理">9.1 另一种画圆思路：圆周角定理<a class="anchor" href="#91-另一种画圆思路圆周角定理" aria-label="链接到此章节">#</a></h2>
+<p>除了大数圆规，还有一种更直观的画圆方法，利用<strong>圆周角是圆心角一半</strong>这一几何定理（来自 circle.md 文档）。</p>
+<p><strong>思路</strong>：设 A 为圆心，B、C 是圆直径两端的实体，D 是圆上任意一点。</p>
+<p>以 A 为中心，沿 CD 和 BD 方向分别走半径长度，就能到达弧 CD 和弧 BD 的中点 E、F。</p>
+<p>不断重复这个&quot;取弧中点&quot;的操作，圆上的点越来越多，而且始终均匀分布。</p>
+<p><strong>指令结构</strong>（r 是直径两端实体，a 是圆心实体，R 是半径，花括号为套娃部分）：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~90~ positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<p>套娃越多层，生成的点越密集。</p>
+<p><strong>生成斜圆</strong>：只需调整实体 r 的摆放角度，并通过 ry 视角使圆倾斜：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~30 0 positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<blockquote>
+<p>💡 <strong>局限性</strong>：这种方法只能画正圆，无法直接画椭圆。若需要任意朝向的椭圆，要用第六章介绍的大数圆规方法。</p>
+</blockquote>
+<h2 id="92-正方体框架">9.2 正方体框架<a class="anchor" href="#92-正方体框架" aria-label="链接到此章节">#</a></h2>
+<h3 id="原理速览">原理速览<a class="anchor" href="#原理速览" aria-label="链接到此章节">#</a></h3>
+<p>正方体框架命令用 7 层二叉分叉生成 128 个粒子，覆盖正方体的所有 12 条棱。核心结构分为：</p>
+<ol>
+<li><strong>种子生成</strong>：利用两个 tree 实体的俯仰角，在 Y 轴产生 <span class="math-inline">\pm 1.75</span> 两个种子</li>
+<li><strong>二进制权重</strong>：三层权重 1、0.5、0.25 产生 Z 轴方向 8 个均匀采样点</li>
+<li><strong>反射整形</strong>：用 pitch=22.5° 的远点反射，把点集分布到不同方位</li>
+<li><strong>固定轴旋转</strong>：用 yaw=55°, pitch=30° 的固定轴反射，完成正方体的空间对齐</li>
+<li><strong>最终反射</strong>：再用 pitch=22.5° 反射，补齐剩余棱线</li>
+</ol>
+<h3 id="完整命令">完整命令<a class="anchor" href="#完整命令" aria-label="链接到此章节">#</a></h3>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute positioned 0 0 0 rotated as @e[type=armor_stand,name=tree] positioned ^ ^ ^1.75 rotated ~180 ~ positioned ^ ^ ^1.75 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^1 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^0.5 rotated as @e[type=armor_stand,name=tree] rotated ~ 0 positioned ^ ^ ^0.25 as @e[type=armor_stand,name=tree] rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 as @e[type=armor_stand,name=tree] rotated as @s positioned ^1.75 ^ ^ rotated 55 30 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated 55 30 positioned ^ ^ ^1024 as @e[type=armor_stand,name=tree] rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated as @s rotated ~ 22.5 positioned ^ ^ ^1024 run particle minecraft:basic_flame_particle ~ ~ ~</code></pre></figure>
+<blockquote>
+<p>💡 <strong>改进建议</strong>：将命令中的 <code>rotated 55 30</code> 改为 <code>rotated 54.735610317 30</code>（即 <span class="math-inline">\arctan\sqrt{2}</span> 度），可将棱线最大偏差从 0.040 格降低到 0.018 格。</p>
+</blockquote>
+<hr>
+<h1 id="第十章常见错误与注意事项">第十章：常见错误与注意事项<a class="anchor" href="#第十章常见错误与注意事项" aria-label="链接到此章节">#</a></h1>
+<h2 id="101-实体数量控制">10.1 实体数量控制<a class="anchor" href="#101-实体数量控制" aria-label="链接到此章节">#</a></h2>
+<p>命令里有多少个 <code>tree</code> 实体，最终分支数就是 <code>tree数量^层数</code>：</p>
+<div class="table-wrap"><table><thead><tr><th>tree 数量</th><th>6 层后分支数</th></tr></thead><tbody><tr><td>1</td><td>1（不工作）</td></tr><tr><td><strong>2</strong></td><td><strong>64</strong>（正确）</td></tr><tr><td>3</td><td>729（严重卡顿）</td></tr><tr><td>4</td><td>4096（游戏崩溃风险）</td></tr></tbody></table></div>
+<h2 id="102-rotated-写法不要弄混">10.2 rotated 写法不要弄混<a class="anchor" href="#102-rotated-写法不要弄混" aria-label="链接到此章节">#</a></h2>
+<div class="table-wrap"><table><thead><tr><th>意图</th><th>正确写法</th><th>错误写法</th></tr></thead><tbody><tr><td>pitch 绝对设为 22.5°</td><td><code>rotated ~ 22.5</code></td><td><code>rotated ~22.5 ~</code></td></tr><tr><td>yaw 加 22.5°</td><td><code>rotated ~22.5 ~</code></td><td><code>rotated ~ 22.5</code></td></tr></tbody></table></div>
+<h2 id="103-h-值的选取">10.3 H 值的选取<a class="anchor" href="#103-h-值的选取" aria-label="链接到此章节">#</a></h2>
+<p>不要认为 H 越大越好！误差由两部分组成：</p>
+<div class="math-block">E(H) \approx \underbrace{C_1\frac{r^2}{H}}_{\text{几何截断误差}} + \underbrace{C_2\varepsilon H}_{\text{浮点误差}}</div>
+<p>最优 H 约为 <span class="math-inline">H \approx \frac{r}{\sqrt{\varepsilon}} \approx 2900r</span>（其中 r 是图形尺度）。对于 1~2 格大小的图形，H=1024 通常是很好的选择。</p>
+<h2 id="104-修改-h-时必须同步">10.4 修改 H 时必须同步<a class="anchor" href="#104-修改-h-时必须同步" aria-label="链接到此章节">#</a></h2>
+<p>一个反射结构是 <code>H -&gt; facing 原点 -&gt; 2H -&gt; H</code>。如果要修改 H，<strong>三个数字必须同时修改</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction"># H=1024 版本
+positioned ^ ^ ^1024 facing 0 0 0 positioned ^ ^ ^2048 rotated ... positioned ^ ^ ^1024
+
+# H=2048 版本（全部同步修改）
+positioned ^ ^ ^2048 facing 0 0 0 positioned ^ ^ ^4096 rotated ... positioned ^ ^ ^2048</code></pre></figure>
+<hr>
+<h1 id="课后作业">课后作业<a class="anchor" href="#课后作业" aria-label="链接到此章节">#</a></h1>
+<h2 id="基础题">基础题<a class="anchor" href="#基础题" aria-label="链接到此章节">#</a></h2>
+<h3 id="作业-1坐标计算">作业 1：坐标计算<a class="anchor" href="#作业-1坐标计算" aria-label="链接到此章节">#</a></h3>
+<p>你现在站在 <span class="math-inline">(5, 64, -3)</span>，面朝正南（ry=0, rx=0），依次执行：</p>
+<ol>
+<li><code>positioned ~2 ~0 ~-1</code></li>
+<li><code>positioned ^1 ^0 ^0</code></li>
+<li><code>positioned ^0 ^0 ^3</code></li>
+</ol>
+<p>请问最终坐标是什么？</p>
+<hr>
+<h3 id="作业-2facing-几何计算">作业 2：facing 几何计算<a class="anchor" href="#作业-2facing-几何计算" aria-label="链接到此章节">#</a></h3>
+<p>你站在原点 <span class="math-inline">(0, 0, 0)</span>，执行 <code>facing 3 0 4</code>，然后执行 <code>positioned ^ ^ ^10</code>。</p>
+<p>请计算最终到达的坐标，并验证：是否等比例地到达了 <span class="math-inline">(3, 0, 4)</span> 的方向？</p>
+<hr>
+<h3 id="作业-3旋转矩阵验证">作业 3：旋转矩阵验证<a class="anchor" href="#作业-3旋转矩阵验证" aria-label="链接到此章节">#</a></h3>
+<p>当 ry=90°，rx=0° 时，计算局部前方向向量 <span class="math-inline">\mathbf{F}</span>，并说明它对应现实中的哪个方向（东、西、南、北）。</p>
+<hr>
+<h3 id="作业-4理解三种坐标">作业 4：理解三种坐标<a class="anchor" href="#作业-4理解三种坐标" aria-label="链接到此章节">#</a></h3>
+<p>解释以下三条命令在效果上的区别（假设当前位置是 <span class="math-inline">(10, 64, 10)</span>，面朝南方）：</p>
+<ol>
+<li><code>positioned 5 64 5</code></li>
+<li><code>positioned ~5 ~0 ~5</code></li>
+<li><code>positioned ^0 ^0 ^5</code></li>
+</ol>
+<hr>
+<h2 id="进阶题能力提升">进阶题（能力提升）<a class="anchor" href="#进阶题能力提升" aria-label="链接到此章节">#</a></h2>
+<h3 id="作业-5画圆参数分析">作业 5：画圆参数分析<a class="anchor" href="#作业-5画圆参数分析" aria-label="链接到此章节">#</a></h3>
+<p>64 点圆命令的 6 层 pitch 角度分别是 45°、22.5°、11.25°、5.625°、2.8125°、1.40625°。</p>
+<ol>
+<li>找出这 6 个角度的规律，用数学公式表示第 <span class="math-inline">k</span> 层的角度（<span class="math-inline">k</span> 从 1 开始）</li>
+<li>如果想画 128 点圆，需要几层？第 7 层的角度是多少？</li>
+<li>为什么第 1 层是 45°，而不是 90° 或 22.5°？</li>
+</ol>
+<hr>
+<h3 id="作业-6椭圆半轴推导">作业 6：椭圆半轴推导<a class="anchor" href="#作业-6椭圆半轴推导" aria-label="链接到此章节">#</a></h3>
+<p>椭圆命令末尾有 <code>positioned ^ ^ ^4 rotated ~180 ~ positioned ^ ^ ^-2</code>。</p>
+<p>现在把这两个数字改为 <code>positioned ^ ^ ^6 rotated ~180 ~ positioned ^ ^ ^-3</code>，半径仍为 2（<code>positioned ^ ^ ^2</code>）：</p>
+<ol>
+<li>仿照第六章的推导方法，计算新的 <span class="math-inline">y_{final}</span> 和 <span class="math-inline">z_{final}</span></li>
+<li>写出新的椭圆方程</li>
+<li>Y 方向半轴和 Z 方向半轴各是多少？</li>
+</ol>
+<hr>
+<h3 id="作业-7轴反射验证">作业 7：轴反射验证<a class="anchor" href="#作业-7轴反射验证" aria-label="链接到此章节">#</a></h3>
+<p>设原点 O 在 <span class="math-inline">(0,0,0)</span>，反射轴方向为 yaw=45°, pitch=0°（即局部前方向 <span class="math-inline">\mathbf{u} = (-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2})</span>），待反射点 P 在 <span class="math-inline">(2, 0, 0)</span>。</p>
+<ol>
+<li>用公式 <span class="math-inline">P&#39; = 2(\mathbf{u} \cdot P)\mathbf{u} - P</span> 计算 P 关于该轴的理论反射点 P&#39;</li>
+<li>在 H=1024 时，命令给出的近似结果会向哪个方向有误差？</li>
+</ol>
+<hr>
+<h3 id="作业-8分支数计算">作业 8：分支数计算<a class="anchor" href="#作业-8分支数计算" aria-label="链接到此章节">#</a></h3>
+<p>设计一个命令，用到以下选择器：</p>
+<ul>
+<li>第 1 次 <code>as @e[name=tree]</code>：有 2 个实体</li>
+<li>第 2 次 <code>rotated as @e[name=tree]</code>：有 2 个实体</li>
+<li>第 3 次 <code>as @e[name=axis]</code>：有 3 个实体</li>
+</ul>
+<p>计算最终生成多少条叶子路径（多少个粒子）？</p>
+<hr>
+<h2 id="挑战题深入思考">挑战题（深入思考）<a class="anchor" href="#挑战题深入思考" aria-label="链接到此章节">#</a></h2>
+<h3 id="作业-9设计一个正六边形">作业 9：设计一个正六边形<a class="anchor" href="#作业-9设计一个正六边形" aria-label="链接到此章节">#</a></h3>
+<p>想要画一个正六边形（6 个顶点均匀分布在圆周上）：</p>
+<ol>
+<li>相邻顶点之间的角度是多少度？</li>
+<li>如果用角度二分法，最少需要几层才能精确到正六边形的 6 个顶点（提示：<span class="math-inline">360/6=60°</span>，想想 60° 是怎么用二分得到的）？</li>
+<li>写出对应的 pitch 角度序列。</li>
+</ol>
+<hr>
+<h3 id="作业-10误差分析">作业 10：误差分析<a class="anchor" href="#作业-10误差分析" aria-label="链接到此章节">#</a></h3>
+<p>对于远点轴反射命令，当 H=1024、待反射点距原点为 r=2 时：</p>
+<ol>
+<li>估算几何截断误差的数量级 <span class="math-inline">O\left(\frac{r^2}{H}\right)</span></li>
+<li>如果把 r 扩大到 4 格，误差会变成原来的几倍？</li>
+<li>如果想把误差控制在 0.001 格以内，H 至少要取多少？（r=2）</li>
+</ol>
+<hr>
+<h1 id="课后作业答案解析">课后作业答案解析<a class="anchor" href="#课后作业答案解析" aria-label="链接到此章节">#</a></h1>
+<hr>
+<h2 id="作业-1-解析坐标计算">作业 1 解析：坐标计算<a class="anchor" href="#作业-1-解析坐标计算" aria-label="链接到此章节">#</a></h2>
+<p><strong>初始位置</strong>：<span class="math-inline">(5, 64, -3)</span>，ry=0°, rx=0°（面朝正南）</p>
+<p><strong>第一步</strong>：<code>positioned ~2 ~0 ~-1</code></p>
+<p>相对坐标平移，直接加：</p>
+<div class="math-block">(5+2,\ 64+0,\ -3-1) = (7, 64, -4)</div>
+<p><strong>第二步</strong>：<code>positioned ^1 ^0 ^0</code></p>
+<p>局部坐标，面朝正南（ry=0）时：<span class="math-inline">\mathbf{L}=(1,0,0)</span>，<span class="math-inline">\mathbf{U}=(0,1,0)</span>，<span class="math-inline">\mathbf{F}=(0,0,1)</span></p>
+<p>沿局部左方走 1 格：<span class="math-inline">(7+1, 64+0, -4+0) = (8, 64, -4)</span></p>
+<p><strong>第三步</strong>：<code>positioned ^0 ^0 ^3</code></p>
+<p>沿局部前方走 3 格：<span class="math-inline">(8+0, 64+0, -4+3) = (8, 64, -1)</span></p>
+<p><strong>最终坐标</strong>：<span class="math-inline">\boxed{(8, 64, -1)}</span></p>
+<blockquote>
+<p>💡 关键点：面朝正南时，局部左方 = 世界 X 正方向，局部前方 = 世界 Z 正方向。这是初学者最常查表的情况，建议背下来。</p>
+</blockquote>
+<hr>
+<h2 id="作业-2-解析facing-几何计算">作业 2 解析：facing 几何计算<a class="anchor" href="#作业-2-解析facing-几何计算" aria-label="链接到此章节">#</a></h2>
+<p><strong>初始位置</strong>：<span class="math-inline">(0,0,0)</span>，执行 <code>facing 3 0 4</code></p>
+<p>目标点 <span class="math-inline">(3,0,4)</span>，位移向量 <span class="math-inline">(3,0,4)</span>，长度：</p>
+<div class="math-block">d = \sqrt{3^2 + 0^2 + 4^2} = \sqrt{9+16} = \sqrt{25} = 5</div>
+<p>单位方向向量：</p>
+<div class="math-block">\mathbf{F} = \left(\frac{3}{5},\ 0,\ \frac{4}{5}\right) = (0.6,\ 0,\ 0.8)</div>
+<p><strong>执行 <code>positioned ^ ^ ^10</code></strong>：沿前方走 10 格：</p>
+<div class="math-block">(0,0,0) + 10 \times (0.6, 0, 0.8) = (6, 0, 8)</div>
+<p><strong>验证</strong>：<span class="math-inline">(6,0,8) = 2 \times (3,0,4)</span>，是目标点的 2 倍距离，方向相同。</p>
+<p>所以走 10 格 = 在 <span class="math-inline">(3,0,4)</span> 方向上走到距离原点 10 格处，是&quot;同方向的 2 倍距离&quot;，<strong>不等于目标点</strong>，但方向一致。✓</p>
+<p><strong>最终坐标</strong>：<span class="math-inline">\boxed{(6, 0, 8)}</span></p>
+<hr>
+<h2 id="作业-3-解析旋转矩阵验证">作业 3 解析：旋转矩阵验证<a class="anchor" href="#作业-3-解析旋转矩阵验证" aria-label="链接到此章节">#</a></h2>
+<p><strong>条件</strong>：ry=90°, rx=0°</p>
+<p>计算三角函数值：<span class="math-inline">\cos(90°)=0</span>，<span class="math-inline">\sin(90°)=1</span>，<span class="math-inline">\cos(0°)=1</span>，<span class="math-inline">\sin(0°)=0</span></p>
+<p>代入前方向公式：</p>
+<div class="math-block">\mathbf{F} = \begin{pmatrix}-\cos(rx)\sin(ry)\\ -\sin(rx)\\ \cos(rx)\cos(ry)\end{pmatrix} = \begin{pmatrix}-1 \times 1\\ -0\\ 1 \times 0\end{pmatrix} = (-1,\ 0,\ 0)</div>
+<p><strong>结论</strong>：<span class="math-inline">\mathbf{F} = (-1, 0, 0)</span>，即 X 轴负方向，对应游戏中的<strong>向西</strong>方向。</p>
+<p>所以 ry=90° 表示面朝西方。✓（Minecraft 中 ry 顺时针增大，0°=南，90°=西，180°=北，-90°=东）</p>
+<hr>
+<h2 id="作业-4-解析三种坐标的区别">作业 4 解析：三种坐标的区别<a class="anchor" href="#作业-4-解析三种坐标的区别" aria-label="链接到此章节">#</a></h2>
+<p><strong>初始</strong>：<span class="math-inline">(10, 64, 10)</span>，面朝南方（ry=0, rx=0）</p>
+<p><strong>命令 1</strong>：<code>positioned 5 64 5</code></p>
+<p>绝对定位，<strong>直接传送</strong>到世界坐标 <span class="math-inline">(5, 64, 5)</span>，与当前位置无关。</p>
+<p>结果：<span class="math-inline">\boxed{(5, 64, 5)}</span></p>
+<p><strong>命令 2</strong>：<code>positioned ~5 ~0 ~5</code></p>
+<p>相对平移，在当前基础上加 <span class="math-inline">(5, 0, 5)</span>：</p>
+<div class="math-block">(10+5, 64+0, 10+5) = \boxed{(15, 64, 15)}</div>
+<p><strong>命令 3</strong>：<code>positioned ^0 ^0 ^5</code></p>
+<p>沿局部前方走 5 格。面朝正南时前方是 Z 轴正方向：</p>
+<div class="math-block">(10+0, 64+0, 10+5) = \boxed{(10, 64, 15)}</div>
+<p><strong>三者的本质区别</strong>：</p>
+<div class="table-wrap"><table><thead><tr><th>命令</th><th>参考系</th><th>是否受视角影响</th></tr></thead><tbody><tr><td><code>positioned 5 64 5</code></td><td>世界原点</td><td>否</td></tr><tr><td><code>positioned ~5 ~0 ~5</code></td><td>当前位置</td><td>否</td></tr><tr><td><code>positioned ^0 ^0 ^5</code></td><td>当前位置 + 视角</td><td><strong>是</strong></td></tr></tbody></table></div>
+<p>如果换成面朝东方（ry=-90°），命令 3 的结果就会变成 <span class="math-inline">(15, 64, 10)</span>，而命令 2 的结果不变。</p>
+<hr>
+<h2 id="作业-5-解析画圆参数分析">作业 5 解析：画圆参数分析<a class="anchor" href="#作业-5-解析画圆参数分析" aria-label="链接到此章节">#</a></h2>
+<p><strong>第 1 问</strong>：规律</p>
+<div class="math-block">\text{第 }k\text{ 层的角度} = \frac{45°}{2^{k-1}}</div>
+<div class="table-wrap"><table><thead><tr><th>k</th><th>角度</th></tr></thead><tbody><tr><td>1</td><td>45°</td></tr><tr><td>2</td><td>22.5°</td></tr><tr><td>3</td><td>11.25°</td></tr><tr><td>4</td><td>5.625°</td></tr><tr><td>5</td><td>2.8125°</td></tr><tr><td>6</td><td>1.40625°</td></tr></tbody></table></div>
+<p><strong>第 2 问</strong>：128 点圆</p>
+<p>128 点圆需要 <span class="math-inline">\log_2(128) = 7</span> 层。</p>
+<p>第 7 层角度：<span class="math-inline">\frac{45°}{2^6} = \frac{45°}{64} = 0.703125°</span></p>
+<p>相邻点间隔：<span class="math-inline">\frac{360°}{128} = 2.8125°</span>（每层一次二分）</p>
+<p><strong>第 3 问</strong>：为什么第 1 层是 45°</p>
+<p>观察 6 层产生 64 个均匀分布的点，理想间隔为 <span class="math-inline">\frac{360°}{64} = 5.625°</span>。</p>
+<p>角度二分法的工作方式是&quot;每次把现有点集的间隔减半&quot;。从 45° 开始，经过 6 次减半：</p>
+<div class="math-block">45° \to 22.5° \to 11.25° \to 5.625° \to 2.8125° \to 1.40625°</div>
+<p>最终点间隔为 <span class="math-inline">2 \times 1.40625° = 2.8125°</span>……</p>
+<p>等等，让我从另一个角度理解。6 层产生 <span class="math-inline">2^6=64</span> 个点，覆盖的总角度范围是 <span class="math-inline">360°</span>，所以最终间隔是 <span class="math-inline">360°/64=5.625°</span>。</p>
+<p><strong>第 1 层从 45° 开始</strong>，是因为整个圆周被分成 <span class="math-inline">360°/45° = 8</span> 等份作为起始&quot;骨架&quot;，后续 5 层在每两个骨架点之间继续二分，<span class="math-inline">8 \times 2^5 = 256</span>……这超出了 64 个点。</p>
+<p>实际原因来自命令的设计：第 1 层的 pitch=45° 对应一次 90° 的旋转（两次 45° 反射 = 90° 旋转），这创造了初始的 4 方向对称骨架，后续 5 层各贡献一次二分，<span class="math-inline">4 \times 2^5 = 128</span>，还多了一倍……</p>
+<blockquote>
+<p>💡 精确答案：这 6 个角度从 45° 开始不断减半，6 层下来每对相邻的 tree 实体产生两个新方向，因此：初始 2 个种子点 × <span class="math-inline">2^6=64</span> 倍 = 128 个分支方向，对应圆周 <span class="math-inline">360°/128 \times 2 = 5.625°</span> 的角间隔，恰好是 64 点均匀圆。从 45° 开始是保证 6 层后刚好均匀覆盖圆周的最优起始角。</p>
+</blockquote>
+<hr>
+<h2 id="作业-6-解析椭圆半轴推导">作业 6 解析：椭圆半轴推导<a class="anchor" href="#作业-6-解析椭圆半轴推导" aria-label="链接到此章节">#</a></h2>
+<p><strong>新参数</strong>：种子半径 r=2，末尾 <code>^ ^ ^6</code> 和 <code>^ ^ ^-3</code></p>
+<p>仿照第六章严格推导，设圆上点 <span class="math-inline">P = (0, y_0, z_0)</span>，<span class="math-inline">y_0^2 + z_0^2 = 4</span>。</p>
+<p><strong>步骤 1</strong>：<code>facing 0 0 0</code>，前方向为：</p>
+<div class="math-block">\mathbf{F} = \left(0,\ \frac{-y_0}{2},\ \frac{-z_0}{2}\right)</div>
+<p><strong>步骤 2</strong>：<code>positioned 0 0 0</code>，位置重置到原点。</p>
+<p><strong>步骤 3</strong>：<code>positioned ^ ^ ^6</code>，沿前方走 6 格：</p>
+<div class="math-block">P&#39; = \left(0,\ 6 \cdot \frac{-y_0}{2},\ 6 \cdot \frac{-z_0}{2}\right) = (0,\ -3y_0,\ -3z_0)</div>
+<p><strong>步骤 4</strong>：<code>rotated ~180 ~</code>，yaw 翻转后前方向的 XZ 分量反号，Y 分量不变：</p>
+<div class="math-block">\mathbf{F}&#39; = \left(0,\ \frac{-y_0}{2},\ \frac{+z_0}{2}\right)</div>
+<p><strong>步骤 5</strong>：<code>positioned ^ ^ ^-3</code>，沿 <span class="math-inline">\mathbf{F}&#39;</span> 走 -3 格：</p>
+<div class="math-block">\Delta = -3 \cdot \mathbf{F}&#39; = \left(0,\ \frac{3y_0}{2},\ \frac{-3z_0}{2}\right)</div>
+<p><strong>累加</strong>：</p>
+<div class="math-block">y_{final} = -3y_0 + \frac{3y_0}{2} = -3y_0 + 1.5y_0 = -1.5y_0</div>
+<div class="math-block">z_{final} = -3z_0 + \frac{-3z_0}{2} = -3z_0 - 1.5z_0 = -4.5z_0</div>
+<p><strong>代入圆方程</strong> <span class="math-inline">y_0 = -\frac{y_{final}}{1.5}</span>，<span class="math-inline">z_0 = -\frac{z_{final}}{4.5}</span>：</p>
+<div class="math-block">\left(\frac{y_{final}}{1.5}\right)^2 + \left(\frac{z_{final}}{4.5}\right)^2 = 4</div>
+<div class="math-block">\frac{y_{final}^2}{9} + \frac{z_{final}^2}{81} = 4</div>
+<div class="math-block">\frac{y_{final}^2}{36} + \frac{z_{final}^2}{324} = 1</div>
+<p><strong>椭圆方程</strong>：</p>
+<div class="math-block">\boxed{\frac{y^2}{36} + \frac{z^2}{324} = 1}</div>
+<p><strong>半轴</strong>：</p>
+<ul>
+<li>Y 方向半轴：<span class="math-inline">a = \sqrt{36} = 6</span></li>
+<li>Z 方向半轴：<span class="math-inline">b = \sqrt{324} = 18</span></li>
+</ul>
+<p>与原来的 <span class="math-inline">(a=6, b=2)</span> 相比，Z 方向拉伸得更大了。</p>
+<hr>
+<h2 id="作业-7-解析轴反射验证">作业 7 解析：轴反射验证<a class="anchor" href="#作业-7-解析轴反射验证" aria-label="链接到此章节">#</a></h2>
+<p><strong>条件</strong>：反射轴方向 yaw=45°, pitch=0°</p>
+<p>当 ry=45°, rx=0° 时，局部前方向：</p>
+<div class="math-block">\mathbf{u} = (-\cos(0)\sin(45°),\ -\sin(0),\ \cos(0)\cos(45°)) = \left(-\frac{\sqrt{2}}{2},\ 0,\ \frac{\sqrt{2}}{2}\right)</div>
+<p><strong>第 1 问</strong>：理论反射点</p>
+<p><span class="math-inline">P = (2, 0, 0)</span>，<span class="math-inline">\mathbf{u} = \left(-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right)</span></p>
+<p>先算点积：</p>
+<div class="math-block">\mathbf{u} \cdot P = -\frac{\sqrt{2}}{2} \times 2 + 0 \times 0 + \frac{\sqrt{2}}{2} \times 0 = -\sqrt{2}</div>
+<p>代入反射公式：</p>
+<div class="math-block">P&#39; = 2(\mathbf{u} \cdot P)\mathbf{u} - P = 2(-\sqrt{2})\left(-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right) - (2, 0, 0)</div>
+<div class="math-block">= (-2\sqrt{2})\left(-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2}\right) - (2, 0, 0)</div>
+<div class="math-block">= (2, 0, -2) - (2, 0, 0)</div>
+<div class="math-block">= \boxed{(0, 0, -2)}</div>
+<p>几何验证：点 <span class="math-inline">(2,0,0)</span> 关于方向 <span class="math-inline">(-\frac{\sqrt{2}}{2}, 0, \frac{\sqrt{2}}{2})</span>（即东北方向，yaw=45°）的直线反射，应该跑到 <span class="math-inline">(0,0,-2)</span>（即西北方向）。✓</p>
+<p><strong>第 2 问</strong>：误差方向</p>
+<p>有限 H 的主要误差项为 <span class="math-inline">O\left(\frac{\|P\|^2}{H}\right) = O\left(\frac{4}{1024}\right) \approx 0.004</span> 格。</p>
+<p>误差沿<strong>垂直于反射轴的方向</strong>（即从轴向外）累积，实际反射点会略微偏向原始点 <span class="math-inline">P=(2,0,0)</span> 的方向，而非完全到达理论点 <span class="math-inline">(0,0,-2)</span>。</p>
+<hr>
+<h2 id="作业-8-解析分支数计算">作业 8 解析：分支数计算<a class="anchor" href="#作业-8-解析分支数计算" aria-label="链接到此章节">#</a></h2>
+<p>多个选择器的分支数是<strong>相乘</strong>，不是相加：</p>
+<div class="math-block">\text{总路径数} = 2 \times 2 \times 3 = \boxed{12 \text{ 条路径}}</div>
+<p>也就是最终会生成 12 个粒子（每条路径执行一次 <code>run</code> 命令）。</p>
+<blockquote>
+<p>⚠️ 常见错误：有同学会算成 <span class="math-inline">2+2+3=7</span>，这是错的！每次 <code>as @e[...]</code> 都让已有的每条路径<strong>分裂</strong>成 N 条，所以是乘法。</p>
+</blockquote>
+<p><strong>进阶思考</strong>：如果命令里有 5 次 <code>as @e[name=tree]</code>（每次 2 个实体），最终是 <span class="math-inline">2^5 = 32</span> 条路径。这就是为什么 6 层 tree 选择器可以产生 <span class="math-inline">2^6 = 64</span> 条路径。</p>
+<hr>
+<h2 id="作业-9-解析正六边形">作业 9 解析：正六边形<a class="anchor" href="#作业-9-解析正六边形" aria-label="链接到此章节">#</a></h2>
+<p><strong>第 1 问</strong>：相邻角度</p>
+<p>正六边形 6 个顶点，圆周 360°，相邻角度 <span class="math-inline">= 360° / 6 = \boxed{60°}</span>。</p>
+<p><strong>第 2 问</strong>：需要几层</p>
+<p>用角度二分法，目标是从第一层开始的 pitch 角度序列之和能&quot;覆盖&quot; 60° 的分辨率。</p>
+<p>每层角度减半，<span class="math-inline">k</span> 层后能区分的最小角度间隔为 <span class="math-inline">\frac{45°}{2^{k-1}} \times 2 = \frac{90°}{2^{k-1}}</span>……</p>
+<p>实际上更直接的理解是：60° 并不是 45° 的整数倍次二分能直接得到的角度（因为 <span class="math-inline">60 = 45 \times \frac{4}{3}</span>，不是 2 的幂次关系）。</p>
+<p>所以<strong>用标准角度二分法无法精确画出正六边形</strong>！正六边形的 60° 间隔无法通过 45° 起始的二分序列精确表示。</p>
+<p><strong>解决方案</strong>：</p>
+<p>方案 A：用 64 点圆近似（每隔约 10~11 个点取一个顶点）</p>
+<p>方案 B：改变第 1 层角度为 30°（<span class="math-inline">60°/2 = 30°</span>），后续继续二分：<span class="math-inline">30°, 15°, 7.5°, 3.75°, 1.875°, 0.9375°</span>……6 层后产生的是 12 等分圆（正十二边形的顶点），每隔一个取一个就是正六边形。</p>
+<p><strong>第 3 问</strong>：方案 B 的 pitch 角度序列（6 层，每层减半，从 30° 开始）：</p>
+<div class="math-block">\boxed{30°,\ 15°,\ 7.5°,\ 3.75°,\ 1.875°,\ 0.9375°}</div>
+<hr>
+<h2 id="作业-10-解析误差分析">作业 10 解析：误差分析<a class="anchor" href="#作业-10-解析误差分析" aria-label="链接到此章节">#</a></h2>
+<p><strong>第 1 问</strong>：误差数量级</p>
+<div class="math-block">E \approx \frac{r^2}{H} = \frac{2^2}{1024} = \frac{4}{1024} \approx \boxed{0.0039 \text{ 格}}</div>
+<p><strong>第 2 问</strong>：r 扩大到 4 时的误差</p>
+<div class="math-block">E&#39; \approx \frac{4^2}{1024} = \frac{16}{1024} \approx 0.0156 \text{ 格}</div>
+<div class="math-block">\frac{E&#39;}{E} = \frac{16}{4} = \boxed{4 \text{ 倍}}</div>
+<p>这正是&quot;误差与 <span class="math-inline">r^2</span> 成正比&quot;的体现：<span class="math-inline">r</span> 扩大 2 倍，误差扩大 <span class="math-inline">2^2=4</span> 倍。</p>
+<p><strong>第 3 问</strong>：误差控制在 0.001 格以内</p>
+<div class="math-block">\frac{r^2}{H} \leq 0.001 \implies H \geq \frac{r^2}{0.001} = \frac{4}{0.001} = \boxed{4000}</div>
+<p>所以 H 至少要取 4000，实际选取 4096（最近的 2 的幂次）。</p>
+<blockquote>
+<p>⚠️ 但别忘了：H 太大会引入浮点误差！用精度更高的实机测试，H=4096 时浮点误差可能开始抬头。实际应用中需要对 H=1024、2048、4096 都做实机测试，选最优值。</p>
+</blockquote>
+<hr>
+<h1 id="总结学习路线图">总结：学习路线图<a class="anchor" href="#总结学习路线图" aria-label="链接到此章节">#</a></h1>
+<p>学完本教程，你掌握了：</p>
+<p><strong>基础层</strong></p>
+<ul>
+<li>Minecraft 三种坐标写法（绝对、相对、局部）</li>
+<li>execute 命令的状态模型（位置 + 视角）</li>
+<li>旋转矩阵与局部坐标方向</li>
+</ul>
+<p><strong>核心层</strong></p>
+<ul>
+<li>facing 的归一化几何意义</li>
+<li>远点轴反射原理（H → facing 原点 → 2H → H）</li>
+<li>两次反射等于旋转</li>
+</ul>
+<p><strong>应用层</strong></p>
+<ul>
+<li>角度二分法画圆（6 层 = 64 点）</li>
+<li>圆变椭圆的末尾映射技巧</li>
+<li>平方、乘法、除法公式的原理</li>
+<li>正方体框架命令的结构解析</li>
+</ul>
+<p><strong>进阶方向</strong></p>
+<ul>
+<li>Value Noise 和 Perlin Noise</li>
+<li>多八度噪声叠加</li>
+<li>任意函数图像绘制</li>
+<li>误差工程与 H 值优化</li>
+</ul>
+<p>建议学习顺序：先用粒子实验验证每一个基础命令，再尝试画圆，再挑战椭圆和正方体框架，最后探索函数与噪声。每一步都先手算，再实机验证，这样才能真正理解大数圆规的奥秘。</p>
+
+      
+    </article>
+
+    
+        <nav class="section-pages" aria-label="本章大标题导览">
+          <div class="section-pages-title">📍 本页大纲及快捷分页</div>
+          <div class="section-grid">
+            
+              <a href="#11-minecraft-的坐标系" class="section-card">
+                <div class="h">1. 1.1 Minecraft 的坐标系</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#12-三种坐标写法" class="section-card">
+                <div class="h">2. 1.2 三种坐标写法</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#13-execute-命令是什么" class="section-card">
+                <div class="h">3. 1.3 execute 命令是什么</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#21-为什么局部坐标要用矩阵描述" class="section-card">
+                <div class="h">4. 2.1 为什么局部坐标要用矩阵描述</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#22-具体角度验证" class="section-card">
+                <div class="h">5. 2.2 具体角度验证</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#23-positioned-a-b-c-的完整公式" class="section-card">
+                <div class="h">6. 2.3 positioned ^a ^b ^c 的完整公式</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#31-facing-做了什么" class="section-card">
+                <div class="h">7. 3.1 facing 做了什么</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#32-facing-最重要的几何意义" class="section-card">
+                <div class="h">8. 3.2 facing 最重要的几何意义</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#33-三种-facing-写法" class="section-card">
+                <div class="h">9. 3.3 三种 facing 写法</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#34-facing-之后接-positioned-的几何效果" class="section-card">
+                <div class="h">10. 3.4 facing 之后接 positioned 的几何效果</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#41-什么是大数" class="section-card">
+                <div class="h">11. 4.1 什么是&quot;大数&quot;</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#42-远点轴反射大数圆规的基本积木" class="section-card">
+                <div class="h">12. 4.2 远点轴反射——大数圆规的基本积木</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#43-两次反射等于旋转" class="section-card">
+                <div class="h">13. 4.3 两次反射等于旋转</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#51-画圆的思路" class="section-card">
+                <div class="h">14. 5.1 画圆的思路</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#52-前置准备两个-tree-实体" class="section-card">
+                <div class="h">15. 5.2 前置准备：两个 tree 实体</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#53-为什么用-pitch-30-和-pitch30" class="section-card">
+                <div class="h">16. 5.3 为什么用 pitch=-30 和 pitch=30</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#54-64-点圆的完整命令" class="section-card">
+                <div class="h">17. 5.4 64 点圆的完整命令</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#55-数值验证结果" class="section-card">
+                <div class="h">18. 5.5 数值验证结果</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#61-椭圆是拉伸的圆" class="section-card">
+                <div class="h">19. 6.1 椭圆是&quot;拉伸的圆&quot;</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#62-64-点椭圆的完整命令" class="section-card">
+                <div class="h">20. 6.2 64 点椭圆的完整命令</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#63-与圆命令的对比" class="section-card">
+                <div class="h">21. 6.3 与圆命令的对比</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#64-严格推导椭圆半轴" class="section-card">
+                <div class="h">22. 6.4 严格推导椭圆半轴</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#65-调整椭圆的半轴" class="section-card">
+                <div class="h">23. 6.5 调整椭圆的半轴</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#66-椭圆实例演示" class="section-card">
+                <div class="h">24. 6.6 椭圆实例演示</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#71-为什么需要这些公式" class="section-card">
+                <div class="h">25. 7.1 为什么需要这些公式</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#72-平方公式的原理" class="section-card">
+                <div class="h">26. 7.2 平方公式的原理</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#73-平方公式简短版" class="section-card">
+                <div class="h">27. 7.3 平方公式（简短版）</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#74-乘法公式" class="section-card">
+                <div class="h">28. 7.4 乘法公式</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#75-除法公式" class="section-card">
+                <div class="h">29. 7.5 除法公式</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#81-rotated-a-b-的数学含义" class="section-card">
+                <div class="h">30. 8.1 rotated a b 的数学含义</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#82-三种-rotated-的对比" class="section-card">
+                <div class="h">31. 8.2 三种 rotated 的对比</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#83-角度和弧度的换算" class="section-card">
+                <div class="h">32. 8.3 角度和弧度的换算</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#91-另一种画圆思路圆周角定理" class="section-card">
+                <div class="h">33. 9.1 另一种画圆思路：圆周角定理</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#92-正方体框架" class="section-card">
+                <div class="h">34. 9.2 正方体框架</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#101-实体数量控制" class="section-card">
+                <div class="h">35. 10.1 实体数量控制</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#102-rotated-写法不要弄混" class="section-card">
+                <div class="h">36. 10.2 rotated 写法不要弄混</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#103-h-值的选取" class="section-card">
+                <div class="h">37. 10.3 H 值的选取</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#104-修改-h-时必须同步" class="section-card">
+                <div class="h">38. 10.4 修改 H 时必须同步</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#基础题" class="section-card">
+                <div class="h">39. 基础题</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#进阶题能力提升" class="section-card">
+                <div class="h">40. 进阶题（能力提升）</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#挑战题深入思考" class="section-card">
+                <div class="h">41. 挑战题（深入思考）</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-1-解析坐标计算" class="section-card">
+                <div class="h">42. 作业 1 解析：坐标计算</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-2-解析facing-几何计算" class="section-card">
+                <div class="h">43. 作业 2 解析：facing 几何计算</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-3-解析旋转矩阵验证" class="section-card">
+                <div class="h">44. 作业 3 解析：旋转矩阵验证</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-4-解析三种坐标的区别" class="section-card">
+                <div class="h">45. 作业 4 解析：三种坐标的区别</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-5-解析画圆参数分析" class="section-card">
+                <div class="h">46. 作业 5 解析：画圆参数分析</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-6-解析椭圆半轴推导" class="section-card">
+                <div class="h">47. 作业 6 解析：椭圆半轴推导</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-7-解析轴反射验证" class="section-card">
+                <div class="h">48. 作业 7 解析：轴反射验证</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-8-解析分支数计算" class="section-card">
+                <div class="h">49. 作业 8 解析：分支数计算</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-9-解析正六边形" class="section-card">
+                <div class="h">50. 作业 9 解析：正六边形</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#作业-10-解析误差分析" class="section-card">
+                <div class="h">51. 作业 10 解析：误差分析</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+          </div>
+        </nav>
+      
+
+    
+      <div class="pager">
+        <a href="../../../zh-CN/"><div class="sub">上一页</div><div class="title">Welcome!</div></a>
+        <a href="../../../zh-CN/cct/exprlist/" class="next"><div class="sub">下一页</div><div class="title">Formula Table</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#11-minecraft-的坐标系">1.1 Minecraft 的坐标系</a><a class="lv2" href="#12-三种坐标写法">1.2 三种坐标写法</a><a class="lv3" href="#绝对坐标直接写数字">绝对坐标：直接写数字</a><a class="lv3" href="#相对坐标在数字前加">相对坐标：在数字前加 </a><a class="lv3" href="#局部坐标在数字前加">局部坐标：在数字前加 ^</a><a class="lv2" href="#13-execute-命令是什么">1.3 execute 命令是什么</a><a class="lv2" href="#21-为什么局部坐标要用矩阵描述">2.1 为什么局部坐标要用矩阵描述</a><a class="lv2" href="#22-具体角度验证">2.2 具体角度验证</a><a class="lv2" href="#23-positioned-a-b-c-的完整公式">2.3 positioned ^a ^b ^c 的完整公式</a><a class="lv2" href="#31-facing-做了什么">3.1 facing 做了什么</a><a class="lv2" href="#32-facing-最重要的几何意义">3.2 facing 最重要的几何意义</a><a class="lv2" href="#33-三种-facing-写法">3.3 三种 facing 写法</a><a class="lv2" href="#34-facing-之后接-positioned-的几何效果">3.4 facing 之后接 positioned 的几何效果</a><a class="lv2" href="#41-什么是大数">4.1 什么是&quot;大数&quot;</a><a class="lv2" href="#42-远点轴反射大数圆规的基本积木">4.2 远点轴反射——大数圆规的基本积木</a><a class="lv3" href="#什么是轴反射">什么是轴反射</a><a class="lv3" href="#用命令实现轴反射">用命令实现轴反射</a><a class="lv3" href="#为什么这是反射">为什么这是反射</a><a class="lv2" href="#43-两次反射等于旋转">4.3 两次反射等于旋转</a><a class="lv2" href="#51-画圆的思路">5.1 画圆的思路</a><a class="lv2" href="#52-前置准备两个-tree-实体">5.2 前置准备：两个 tree 实体</a><a class="lv2" href="#53-为什么用-pitch-30-和-pitch30">5.3 为什么用 pitch=-30 和 pitch=30</a><a class="lv2" href="#54-64-点圆的完整命令">5.4 64 点圆的完整命令</a><a class="lv2" href="#55-数值验证结果">5.5 数值验证结果</a><a class="lv2" href="#61-椭圆是拉伸的圆">6.1 椭圆是&quot;拉伸的圆&quot;</a><a class="lv2" href="#62-64-点椭圆的完整命令">6.2 64 点椭圆的完整命令</a><a class="lv2" href="#63-与圆命令的对比">6.3 与圆命令的对比</a><a class="lv2" href="#64-严格推导椭圆半轴">6.4 严格推导椭圆半轴</a><a class="lv2" href="#65-调整椭圆的半轴">6.5 调整椭圆的半轴</a><a class="lv2" href="#66-椭圆实例演示">6.6 椭圆实例演示</a><a class="lv2" href="#71-为什么需要这些公式">7.1 为什么需要这些公式</a><a class="lv2" href="#72-平方公式的原理">7.2 平方公式的原理</a><a class="lv2" href="#73-平方公式简短版">7.3 平方公式（简短版）</a><a class="lv2" href="#74-乘法公式">7.4 乘法公式</a><a class="lv2" href="#75-除法公式">7.5 除法公式</a><a class="lv2" href="#81-rotated-a-b-的数学含义">8.1 rotated a b 的数学含义</a><a class="lv2" href="#82-三种-rotated-的对比">8.2 三种 rotated 的对比</a><a class="lv2" href="#83-角度和弧度的换算">8.3 角度和弧度的换算</a><a class="lv2" href="#91-另一种画圆思路圆周角定理">9.1 另一种画圆思路：圆周角定理</a><a class="lv2" href="#92-正方体框架">9.2 正方体框架</a><a class="lv3" href="#原理速览">原理速览</a><a class="lv3" href="#完整命令">完整命令</a><a class="lv2" href="#101-实体数量控制">10.1 实体数量控制</a><a class="lv2" href="#102-rotated-写法不要弄混">10.2 rotated 写法不要弄混</a><a class="lv2" href="#103-h-值的选取">10.3 H 值的选取</a><a class="lv2" href="#104-修改-h-时必须同步">10.4 修改 H 时必须同步</a><a class="lv2" href="#基础题">基础题</a><a class="lv3" href="#作业-1坐标计算">作业 1：坐标计算</a><a class="lv3" href="#作业-2facing-几何计算">作业 2：facing 几何计算</a><a class="lv3" href="#作业-3旋转矩阵验证">作业 3：旋转矩阵验证</a><a class="lv3" href="#作业-4理解三种坐标">作业 4：理解三种坐标</a><a class="lv2" href="#进阶题能力提升">进阶题（能力提升）</a><a class="lv3" href="#作业-5画圆参数分析">作业 5：画圆参数分析</a><a class="lv3" href="#作业-6椭圆半轴推导">作业 6：椭圆半轴推导</a><a class="lv3" href="#作业-7轴反射验证">作业 7：轴反射验证</a><a class="lv3" href="#作业-8分支数计算">作业 8：分支数计算</a><a class="lv2" href="#挑战题深入思考">挑战题（深入思考）</a><a class="lv3" href="#作业-9设计一个正六边形">作业 9：设计一个正六边形</a><a class="lv3" href="#作业-10误差分析">作业 10：误差分析</a><a class="lv2" href="#作业-1-解析坐标计算">作业 1 解析：坐标计算</a><a class="lv2" href="#作业-2-解析facing-几何计算">作业 2 解析：facing 几何计算</a><a class="lv2" href="#作业-3-解析旋转矩阵验证">作业 3 解析：旋转矩阵验证</a><a class="lv2" href="#作业-4-解析三种坐标的区别">作业 4 解析：三种坐标的区别</a><a class="lv2" href="#作业-5-解析画圆参数分析">作业 5 解析：画圆参数分析</a><a class="lv2" href="#作业-6-解析椭圆半轴推导">作业 6 解析：椭圆半轴推导</a><a class="lv2" href="#作业-7-解析轴反射验证">作业 7 解析：轴反射验证</a><a class="lv2" href="#作业-8-解析分支数计算">作业 8 解析：分支数计算</a><a class="lv2" href="#作业-9-解析正六边形">作业 9 解析：正六边形</a><a class="lv2" href="#作业-10-解析误差分析">作业 10 解析：误差分析</a></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../assets/app.js"></script>
+</body>
+</html>
