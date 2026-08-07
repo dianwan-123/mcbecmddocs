@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>画正圆 - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../../assets/style.css">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../../', theme: 'auto', currentLang: 'zh-CN' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" selected>简体中文</option><option value="en-US" >English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../../zh-CN/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../../zh-CN/'">欢迎来到本网站</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >坐标运算</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../../zh-CN/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/exprlist/'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/abe/'">代数表达法</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >杂项</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">画正圆</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../../zh-CN/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/cct-else/sqrtx/'">梯子问题</span></div></div></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>画正圆</h1>
+      <p>注：文档来自 senxyzplayeE。</p>
+<p>如何在 基岩版Minecraft 中画出一个圆？让我们以新版 <code>/execute</code> 为例，讲解一种方法．这种方法在 基岩版Minecraft 的命令圈被称为 <strong>&quot;/execute套娃点阵圆&quot;</strong>．</p>
+<p>思路：想生成圆形，可以利用“同弧所对的圆周角等于圆心角的一半”，将角度不停的除以2，同时分散到圆弧上不同的位置．</p>
+<p>设A为圆心，BC为圆直径两端的实体．D为圆上任意一点．以A为中心，再以CD，BD的方向向前延伸半径距离即可到达点E，F．易知它们分别是弧CD,BD的中点．</p>
+<p><img src="https://s41.ax1x.com/2026/08/07/pm7baYq.png" alt="图片1" loading="lazy" decoding="async"></p>
+<p>再模仿上一步的点D对点E,F做相同的操作．完成后分别得到H，J，G，I．容易知道无论起始点D在什么位置，这4个点之间的夹角都等于45度．</p>
+<p><img src="https://s41.ax1x.com/2026/08/07/pm7bdf0.png" alt="图片2" loading="lazy" decoding="async"></p>
+<p>继续套娃做同样操作，就会发现圆上分裂出的点越来越多，而且它们都是均匀分布的．</p>
+<hr>
+<p>详细指令如下，<span class="math-inline">a</span>为圆心，<span class="math-inline">r</span>为位于直径两端的两个实体，注意摆放位置一定和圆心<span class="math-inline">a</span>的距离恰好等于<span class="math-inline">R</span>，否则生成的圆会分布不均匀．</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~90~ positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<p>使用花括号 <code>{}</code> 框出来的部分为套娃部分，将这段重复输入多次，重复次数越多，生成的点越密集．</p>
+<p>注意到套娃部分不包含视角运算，与 <span class="math-inline">x, y, z</span> 坐标不发生关系．这意味着我们只需要改变起始点的位置，就可以改变生成的点阵圆朝向</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~30 0 positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<p>将盔甲架的角度摆放倾斜一个角度，记得要保证距离仍然是<span class="math-inline">R</span>，然后通过调节ry视角来实现将圆立起来的过程，这样改就可以生成一种斜圆．</p>
+<p>可以预见，只要摆放得当，任意朝向的圆都可以生成．</p>
+<p>然而该命令具有局限性，它只能生成正圆，而不能生成斜着的椭圆．如果能画出真正意义上的任意朝向的圆和椭圆呢？</p>
+
+      
+    </article>
+
+    
+
+    
+      <div class="pager">
+        <a href="../../../../zh-CN/cct/abe/"><div class="sub">上一页</div><div class="title">Algebraic Expression of CCT</div></a>
+        <a href="../../../../zh-CN/cct/cct-else/sqrtx/" class="next"><div class="sub">下一页</div><div class="title">Ladder Problem</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../../assets/app.js"></script>
+</body>
+</html>

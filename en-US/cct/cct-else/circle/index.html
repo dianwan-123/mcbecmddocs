@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to draw a circle - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../../assets/style.css">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../../', theme: 'auto', currentLang: 'en-US' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" >简体中文</option><option value="en-US" selected>English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../../en-US/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../../en-US/'">Welcome!</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >Coordinates Calculation Theory</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../../en-US/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../en-US/cct/exprlist/'">Formula Table</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../../en-US/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../../en-US/cct/abe/'">Algebraic Expression of CCT</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >miscellaneous</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">How to draw a circle</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../../en-US/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../en-US/cct/cct-else/sqrtx/'">Ladder Problem</span></div></div></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>How to draw a circle</h1>
+      <p><strong>Note:</strong> Document from senxyzplayeE.</p>
+<p>How do you draw a circle in Bedrock Edition Minecraft? Let&#39;s use the new <code>/execute</code> command as an example to explain one approach. This method is known in the Bedrock Edition Minecraft command community as the <strong>&quot;/execute nested dot-matrix circle&quot;</strong>.</p>
+<p><strong>Concept:</strong> To generate a circular shape, we can exploit the theorem that &quot;the inscribed angle is half the central angle subtending the same arc.&quot; We repeatedly halve the angle while distributing points to different positions along the arc.</p>
+<p>Let A be the center of the circle, and BC be entities at the two ends of a diameter. Let D be any point on the circle. By extending outward from A in the directions of CD and BD by a distance equal to the radius, we arrive at points E and F respectively. It is easy to see that these are the midpoints of arcs CD and BD.</p>
+<p><img src="https://s41.ax1x.com/2026/08/07/pm7baYq.png" alt="Image 1" loading="lazy" decoding="async"></p>
+<p>Next, apply the same operation to points E and F as was done with point D. This yields four new points H, J, G, and I. It is easy to verify that regardless of where the starting point D is located, the angular spacing between these four points is always 45 degrees.</p>
+<p><img src="https://s41.ax1x.com/2026/08/07/pm7bdf0.png" alt="Image 2" loading="lazy" decoding="async"></p>
+<p>Continuing this nesting process, more and more points appear on the circle, and they are always evenly distributed.</p>
+<hr>
+<p>The detailed commands are as follows. <span class="math-inline">a</span> is the center of the circle, and <span class="math-inline">r</span> refers to two entities placed at the two ends of a diameter. Note that these entities must be placed at a distance exactly equal to <span class="math-inline">R</span> from the center <span class="math-inline">a</span>; otherwise the generated circle will be unevenly distributed.</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~90~ positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<p>The portion enclosed in curly braces <code>{}</code> is the nested part. Repeat this segment multiple times — the more repetitions, the denser the generated points.</p>
+<p>Note that the nested portion contains no rotation arithmetic and has no relationship to the <span class="math-inline">x, y, z</span> coordinates. This means we only need to change the starting position to change the orientation of the dot-matrix circle.</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~30 0 positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
+<p>Tilt the armor stand by an angle — remembering to ensure the distance from the center remains <span class="math-inline">R</span> — and then adjust the <code>ry</code> rotation to tilt the circle upright. This modification allows you to generate a tilted circle.</p>
+<p>It is foreseeable that, given proper placement, circles of any orientation can be generated.</p>
+<p>However, this command has a limitation: it can only generate perfect circles, not oblique ellipses. What if we could draw truly arbitrary-orientation circles and ellipses?</p>
+
+      
+    </article>
+
+    
+
+    
+      <div class="pager">
+        <a href="../../../../en-US/cct/abe/"><div class="sub">上一页</div><div class="title">Algebraic Expression of CCT</div></a>
+        <a href="../../../../en-US/cct/cct-else/sqrtx/" class="next"><div class="sub">下一页</div><div class="title">Ladder Problem</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../../assets/app.js"></script>
+</body>
+</html>
