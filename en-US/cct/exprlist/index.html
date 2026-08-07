@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formula Table - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'en-US' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" >简体中文</option><option value="en-US" selected>English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../en-US/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../en-US/'">Welcome!</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >Coordinates Calculation Theory</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">Formula Table</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../en-US/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../en-US/cct/abe/'">Algebraic Expression of CCT</span></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>Formula Table</h1>
+      <h4 id="i-basic-algebra-and-arithmetic">I. Basic Algebra and Arithmetic<a class="anchor" href="#i-basic-algebra-and-arithmetic" aria-label="链接到此章节">#</a></h4>
+<h4 id="1-square-formula">1. Square Formula<a class="anchor" href="#1-square-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (x, y+x², z)</span></li>
+<li><strong>Performance</strong>: <code>5</code> subcommands | <strong>Uncertainty</strong>: <span class="math-inline">2xa \cdot \varepsilon</span> | <strong>Remarks</strong>: Introductory formula to algebra</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-a² rotated ~180~ positioned ^^^-a² positioned ~~2a²~</code></pre></figure>
+</li>
+</ul>
+<h4 id="2-square-formula-short">2. Square Formula (Short)<a class="anchor" href="#2-square-formula-short" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (?, y+x², z)</span></li>
+<li><strong>Performance</strong>: <code>3</code> subcommands | <strong>Uncertainty</strong>: <span class="math-inline">2xa \cdot \varepsilon</span> | <strong>Remarks</strong>: Introductory formula to algebra</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-2a² positioned ~~2a²~</code></pre></figure>
+</li>
+</ul>
+<h4 id="3-multiplication-formula">3. Multiplication Formula<a class="anchor" href="#3-multiplication-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (x, y+xz, ?)</span></li>
+<li><strong>Performance</strong>: <code>10</code> subcommands | <strong>Uncertainty</strong>: <span class="math-inline">a\sqrt{3r^2+4xz} \cdot \varepsilon</span> | <strong>Remarks</strong>: Maybe only useful for plotting graphs?</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a 0 positioned ^^^a²/2 rotated ~180~ positioned ^^^a²/2 facing 0~a~ rotated ~-90~ positioned ^^^a positioned ~~-a~ facing ~~a 0 positioned ^^^-a²</code></pre></figure>
+</li>
+</ul>
+<h4 id="4-multiplication-formula-short">4. Multiplication Formula (Short)<a class="anchor" href="#4-multiplication-formula-short" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (?, y+xz, ?)</span></li>
+<li><strong>Performance</strong>: <code>7</code> subcommands | <strong>Uncertainty</strong>: <span class="math-inline">a\sqrt{1.5r^2+1.5xz+x^2z^2/r^2} \cdot \varepsilon</span> | <strong>Remarks</strong>: Completely outperformed by the &quot;Shorter&quot; version</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ facing 0~a 0 ] positioned 0~ 0 positioned ^^^a²/2 rotated ~90~ positioned ^^^a²/2 facing ~~~a²/2 0 positioned ^^^a²</code></pre></figure>
+</li>
+</ul>
+<h4 id="5-multiplication-formula-shorter">5. Multiplication Formula (Shorter)<a class="anchor" href="#5-multiplication-formula-shorter" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (?, y+xz, ?)</span></li>
+<li><strong>Performance</strong>: <code>6</code> subcommands | <strong>Remarks</strong>: The fastest multiplication formula so far</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ facing 0~a 0 ] positioned 0~ 0 rotated ~45~ positioned ^^^a² facing ~~-a²/√2 0 positioned ^^^a²</code></pre></figure>
+</li>
+</ul>
+<h4 id="6-division-formula">6. Division Formula<a class="anchor" href="#6-division-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (x, ?, x/z)</span></li>
+<li><strong>Performance</strong>: <code>8</code> subcommands | <strong>Uncertainty</strong>: <span class="math-inline">\sqrt{1/b^2 + a^2/z^2} \cdot \varepsilon</span> | <strong>Remarks</strong>: Basically useless</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~ 0~ ] facing 0 a~ positioned ^^ -ab/2^ rotated ~180~ positioned ^^ -ab/2^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</code></pre></figure>
+</li>
+</ul>
+<h4 id="7-division-formula-short">7. Division Formula (Short)<a class="anchor" href="#7-division-formula-short" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (?, ?, x/z)</span></li>
+<li><strong>Performance</strong>: <code>6</code> subcommands | <strong>Uncertainty</strong>: <span class="math-inline">\sqrt{1/b^2 + a^2/z^2} \cdot \varepsilon</span> | <strong>Remarks</strong>: Also basically useless</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~ 0~ ] facing 0 a~ positioned ^^ -ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</code></pre></figure>
+</li>
+</ul>
+<h4 id="8-division-formula-2d-vector">8. Division Formula (2D Vector)<a class="anchor" href="#8-division-formula-2d-vector" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (x/y, 0, z/y)</span></li>
+<li><strong>Performance</strong>: <code>8</code> subcommands | <strong>Uncertainty</strong>: Highly accurate in general | <strong>Remarks</strong>: <em>[Robust]</em></li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 0 0 positioned 0 0 0 positioned ^^(a+n)/2^ rotated ~180~ positioned ^^-(a-n)/2^ facing 0 0 0 positioned 0 -a/n 0 positioned ^^a/n^</code></pre></figure>
+</li>
+</ul>
+<h4 id="9-division-formula-tan">9. Division Formula (tan)<a class="anchor" href="#9-division-formula-tan" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (?, y/r, ?)</span></li>
+<li><strong>Performance</strong>: <code>8</code> subcommands | <strong>Uncertainty</strong>: Highly accurate in general | <strong>Remarks</strong>: <em>[Robust]</em></li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 0 0 positioned 0 0 0 positioned ^^-(a+n)/2 rotated ~180~ positioned ^^^(a-n)/2 facing 0 0 0 positioned 0 0 0 positioned ^^^-a/n</code></pre></figure>
+</li>
+</ul>
+<h4 id="10-multiplication-formula-2d-vector">10. Multiplication Formula (2D Vector)<a class="anchor" href="#10-multiplication-formula-2d-vector" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (xy, y, zy)</span></li>
+<li><strong>Performance</strong>: <code>8</code> subcommands | <strong>Uncertainty</strong>: <span class="math-inline">a\sqrt{1+y^2r^4/a^2b^2} \cdot \varepsilon</span> | <strong>Remarks</strong>: <em>[Robust]</em></li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 ~b 0 positioned 0 ~0 positioned ^^a/2b^ rotated ~180~ positioned ^^-a/2b^ facing 0 0 0 positioned 0 ~a 0 positioned ^^ -a^</code></pre></figure>
+</li>
+</ul>
+<h4 id="11-multiplication-formula-short-2d-vector">11. Multiplication Formula Short (2D Vector)<a class="anchor" href="#11-multiplication-formula-short-2d-vector" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (xy, y, zy)</span></li>
+<li><strong>Performance</strong>: <code>6</code> subcommands | <strong>Remarks</strong>: Rarely used, the more accurate one is preferred</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 ~b 0 positioned 0~-a/b 0 positioned ^^a/b^ facing 0 a/b 0 positioned 0~a 0 positioned ^^ -a^</code></pre></figure>
+</li>
+</ul>
+<h4 id="12-cubic-formula-short">12. Cubic Formula (Short)<a class="anchor" href="#12-cubic-formula-short" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (x³+bx, ?, z)</span></li>
+<li><strong>Performance</strong>: <code>4</code> subcommands | <strong>Remarks</strong>: Short, but doesn&#39;t seem to have much use</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^(a-b/(√(a²+1)+a)) facing 0~n~ positioned ^^^-(2na²-1)</code></pre></figure>
+</li>
+</ul>
+<h4 id="13-cubic-formula">13. Cubic Formula<a class="anchor" href="#13-cubic-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (x, ?, x³)</span></li>
+<li><strong>Performance</strong>: <code>6</code> subcommands | <strong>Remarks</strong>: Seems completely outperformed by the &quot;Short&quot; version</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a/2~ rotated ~90~ positioned ^^^-a³/3 facing 0~a~ rotated ~90~ positioned ^^^2a³/3</code></pre></figure>
+</li>
+</ul>
+<h4 id="14-multiplication-formula-radius">14. Multiplication Formula (Radius)<a class="anchor" href="#14-multiplication-formula-radius" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (xz²/r, y, -zx²/r)</span> , <span class="math-inline">&lt; ry+90, 0, xz &gt;</span></li>
+<li><strong>Performance</strong>: <code>11</code> subcommands | <strong>Remarks</strong>: A formula derived from geometric principles; it optimizes the accuracy and speed of Perlin noise.</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a 0 positioned 0~ 0 positioned ^^ -a²/2^ rotated ~180~ positioned ^^a²/2^ rotated ~ 0 positioned ^^^a² positioned ~~ 0 positioned ^A^^ facing 0~ 0 positioned ^^^A</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h4 id="ii-vectors-and-geometric-transformations">II. Vectors and Geometric Transformations<a class="anchor" href="#ii-vectors-and-geometric-transformations" aria-label="链接到此章节">#</a></h4>
+<h4 id="15-dot-product-formula">15. Dot Product Formula<a class="anchor" href="#15-dot-product-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (?, \mathbf{A}\cdot\mathbf{R}, ?)</span></li>
+<li><strong>Performance</strong>: <code>6</code> subcommands | <strong>Uncertainty</strong>: Highly accurate in general | <strong>Remarks</strong>: Can be even shorter for 2D vectors</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as {A+y} positioned ^^^a facing 0 0 0 positioned ^^^2a rotated as {A+y} positioned ^^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="16-cross-product-formula">16. Cross Product Formula<a class="anchor" href="#16-cross-product-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (x, y, z) \times \mathbf{A}</span></li>
+<li><strong>Performance</strong>: <code>16</code> subcommands | <strong>Remarks</strong>: Calculates both magnitude and direction; although very long, it is <em>[Robust]</em></li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as {A+y} positioned ^^^a facing 0 0 0 positioned ^^^2a rotated as {A+y} positioned ^^^a facing 0~a 0 rotated ~45~ positioned ^^^\sqrt{2}a positioned ~ 0~ rotated as {A+y} positioned ^^^a facing 0 0 0 positioned ^^^2a rotated as {A+y} positioned ^^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="17-symmetry-formula">17. Symmetry Formula<a class="anchor" href="#17-symmetry-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: Reflects the execution position across A</li>
+<li><strong>Performance</strong>: <code>6</code> subcommands | <strong>Remarks</strong>: <em>[Robust]</em></li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as A positioned ^^^a facing &lt;&gt; positioned ^^^2a rotated as A positioned ^^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="18-rotation-formula">18. Rotation Formula<a class="anchor" href="#18-rotation-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: Aligns the <code>~~1~</code> direction of the coordinate system with the <code>^^^1</code> direction of <code>@s</code></li>
+<li><strong>Performance</strong>: <code>12</code> subcommands | <strong>Remarks</strong>: <em>[Super Robust]</em></li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~-a~ ] rotated as @s positioned ^-a^^ facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^^^a positioned ~~-a~ facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^a^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="19-inverse-rotation-formula">19. Inverse Rotation Formula<a class="anchor" href="#19-inverse-rotation-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: Aligns the <code>^^^1</code> direction of <code>@s</code> with the <code>~~1~</code> direction of the coordinate system</li>
+<li><strong>Performance</strong>: <code>12</code> subcommands | <strong>Remarks</strong>: <em>[Super Robust]</em></li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as @s positioned ^a^^a facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^^^a positioned ~~-a~ facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^-a^^ [ positioned ~~-a~ ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="20-geometric-scaling-formula">20. Geometric Scaling Formula<a class="anchor" href="#20-geometric-scaling-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: Using the &quot;facing&quot; target as the reference frame: <span class="math-inline">(x, y, z) \to (x/n, y/n, z/n)</span></li>
+<li><strong>Performance</strong>: <code>11</code> subcommands | <strong>Remarks</strong>: Introductory formula to geometry</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~-2a~ ] facing &lt;&gt; positioned ^^^(n-1)a/n rotated ~180~ positioned ^^^(1-n)a/n positioned ~~-2a~-2a facing &lt;&gt; positioned ^^^(n-1)a/n rotated ~180~ positioned ^^^(n-1)a/n [ positioned ~~~2a ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="21-geometric-scaling-formula-short">21. Geometric Scaling Formula (Short)<a class="anchor" href="#21-geometric-scaling-formula-short" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: Same as above</li>
+<li><strong>Performance</strong>: <code>8</code> subcommands | <strong>Remarks</strong>: Introductory formula to geometry</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~~a~ ] facing &lt;&gt; positioned ^^^(n-1)a/n positioned ~~-a/n~-a facing &lt;&gt; rotated 0~ positioned ^^^(n-1)a/n [ positioned ~~~a/n ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="22-translation-scaling-formula">22. Translation &amp; Scaling Formula<a class="anchor" href="#22-translation-scaling-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: Translates the coordinate system from A to B and scales: <span class="math-inline">(x, y, z) \to (kx, ky, kz)</span></li>
+<li><strong>Performance</strong>: <code>19</code> subcommands | <strong>Remarks</strong>: This is way too long. Although powerful, the community isn&#39;t quite sure what it is useful for. In practice, scaling/translating just xz or y is probably more useful.</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~-2a~ ] facing {B} positioned ^^^a/(1+k) rotated ~180~ positioned ^^^-a/(1+k) facing {A} positioned ^^^-ka rotated ~180~ positioned ^^^ka positioned ~~-2a~-2a facing {B} positioned ^^^a/(1+k) rotated ~180~ positioned ^^^a/(1+k) facing {A} positioned ^^^-ka rotated ~180~ positioned ^^^-ka [ positioned ~~~2a ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="23-translation-scaling-formula-short">23. Translation &amp; Scaling Formula (Short)<a class="anchor" href="#23-translation-scaling-formula-short" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: Same as above</li>
+<li><strong>Performance</strong>: <code>13</code> subcommands | <strong>Remarks</strong>: Shorter, but less accurate than the one above</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~a~ ] facing {B} positioned ^^^a/(1+k) facing {A} positioned ^^^-k²a/(1+k) positioned ~~-ka~-a facing {B} rotated 0~ positioned ^^^a/(1+k) facing {A} rotated 0~ positioned ^^^-k²a/(1+k) [ positioned ~~~ka ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="24-volume-formula">24. Volume Formula<a class="anchor" href="#24-volume-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (?, xyz, ?)</span></li>
+<li><strong>Performance</strong>: <code>14</code> subcommands | <strong>Uncertainty</strong>: Very poor symmetry | <strong>Remarks</strong>: Lacks symmetrical aesthetic and has singularities during calculation, but currently it is the only one that can calculate xyz</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing ~~b 0 positioned ~~ 0 positioned ^^a/2b^ rotated ~180~ positioned ^^-a/2b^ facing ~ 0 0 positioned ~ 0 0 positioned ^^-a^ facing 0~a 0 positioned 0 0 0 rotated ~45~ positioned ^^^a² facing ~~~a^2/√2 0 positioned ^^^a^2</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h4 id="iii-radian-fitting-and-trigonometric-functions">III. Radian Fitting and Trigonometric Functions<a class="anchor" href="#iii-radian-fitting-and-trigonometric-functions" aria-label="链接到此章节">#</a></h4>
+<h4 id="25-radian-fitting-1">25. Radian Fitting (1)<a class="anchor" href="#25-radian-fitting-1" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">\langle rx, ry \rangle \to \langle 0, x \rangle \quad (x \in [-\pi, \pi])</span></li>
+<li><strong>Performance</strong>: <code>5</code> subcommands | <strong>Uncertainty</strong>: Accuracy 0.0001 | <strong>Remarks</strong>: Seems only useful for drawing circles</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 ~ 3.43204833 positioned ^^^4.65280132 facing 0.0 ~ 4.39744734 positioned ^^^3.01050871 facing 0.0 ~ 5.47992547</code></pre></figure>
+</li>
+</ul>
+<h4 id="26-radian-fitting-2">26. Radian Fitting (2)<a class="anchor" href="#26-radian-fitting-2" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">\langle rx, ry \rangle \to \langle 0, 2\pi x \rangle \quad (x \in [-0.5, 0.5])</span></li>
+<li><strong>Performance</strong>: <code>5</code> subcommands | <strong>Uncertainty</strong>: Accuracy 0.0001 | <strong>Remarks</strong>: Fits &quot;nxs&quot; a bit better</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 ~ 0.546225495 positioned ^^^0.74051535 facing 0.0 ~ 0.69987548 positioned ^^^0.47913733 facing 0.0 ~ 0.87215723</code></pre></figure>
+</li>
+</ul>
+<h4 id="27-trigonometric-function-formula">27. Trigonometric Function Formula<a class="anchor" href="#27-trigonometric-function-formula" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>Function</strong>: <span class="math-inline">(x, y, z) \to (-\sin x, y, \cos x)</span></li>
+<li><strong>Performance</strong>: <code>12</code> subcommands | <strong>Uncertainty</strong>: Accuracy 0.0001 | <strong>Remarks</strong>: Can&#39;t think of any practical use for it</li>
+<li><strong>Command</strong>:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 πa ~ positioned 0.5 ~ 0. positioned ^^^-a align x positioned ^^^a facing 0.0 ~ 0.546225495 positioned ^^^0.74051535 facing 0.0 ~ 0.69987548 positioned ^^^0.47913733 facing 0.0 ~ 0.87215723 positioned 0.0 ~ 0.0 positioned ^^^1</code></pre></figure>
+</li>
+</ul>
+
+      
+    </article>
+
+    
+
+    
+      <div class="pager">
+        <a href="../../../en-US/"><div class="sub">上一页</div><div class="title">Welcome!</div></a>
+        <a href="../../../en-US/cct/abe/" class="next"><div class="sub">下一页</div><div class="title">Algebraic Expression of CCT</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

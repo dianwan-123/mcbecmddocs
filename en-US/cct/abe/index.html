@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Algebraic Expression of CCT - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'en-US' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" >简体中文</option><option value="en-US" selected>English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../en-US/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../en-US/'">Welcome!</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >Coordinates Calculation Theory</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../en-US/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../en-US/cct/exprlist/'">Formula Table</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='#'">Algebraic Expression of CCT</span></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>Algebraic Expression of CCT</h1>
+      <p><strong>Authors:</strong> 1maginer0, senxyzplayeE</p>
+<p>If a point <span class="math-inline">P</span> in Minecraft has coordinates <span class="math-inline">(x, y, z)</span> with facing angles <span class="math-inline">(ry, rx)</span>, and needs to be represented in a mathematical 3D coordinate system, the transformation is <span class="math-inline">(x, y, z) \to (z, x, y)</span> and <span class="math-inline">(ry, rx) \to (-ry, -rx)</span>. All coordinates and angles below follow the Minecraft convention.</p>
+<p>Algebraic expressions are only applicable for theoretical analysis. Practical use must also consider floating-point precision, various game mechanics, etc. This article does not cover those.</p>
+<p>Let the current execution position of the <code>execute</code> command be <span class="math-inline">(x, y, z)</span> and the execution facing be <span class="math-inline">(ry, rx)</span>. The <code>positioned</code> transformations below only change the execution position, not the facing.</p>
+<hr>
+<h3 id="positioned-a-b-c"><code>positioned a b c</code><a class="anchor" href="#positioned-a-b-c" aria-label="链接到此章节">#</a></h3>
+<div class="math-block">(x, y, z) \mapsto (a, b, c)</div>
+<hr>
+<h3 id="positioned-a-b-c-1"><code>positioned ~a ~b ~c</code><a class="anchor" href="#positioned-a-b-c-1" aria-label="链接到此章节">#</a></h3>
+<div class="math-block">(x, y, z) \mapsto (x + a,\ y + b,\ z + c)</div>
+<hr>
+<h3 id="positioned-a-b-c-2"><code>positioned ^a ^b ^c</code><a class="anchor" href="#positioned-a-b-c-2" aria-label="链接到此章节">#</a></h3>
+<div class="math-block">(x, y, z) \mapsto (x, y, z) + (a, b, c) \times \mathbf{R}^T</div>
+<p>where <span class="math-inline">\mathbf{R}</span> is the rotation matrix:</p>
+<div class="math-block">\mathbf{R} = \begin{bmatrix} \cos(ry) &amp; -\sin(rx)\sin(ry) &amp; -\cos(rx)\sin(ry) \\ 0 &amp; \cos(rx) &amp; -\sin(rx) \\ \sin(ry) &amp; \sin(rx)\cos(ry) &amp; \cos(rx)\cos(ry) \end{bmatrix}</div>
+<p>In non-matrix form:</p>
+<div class="math-block">x \mapsto x + a\cos(ry) - b\sin(rx)\sin(ry) - c\cos(rx)\sin(ry)</div>
+<div class="math-block">y \mapsto y + b\cos(rx) - c\sin(rx)</div>
+<div class="math-block">z \mapsto z + a\sin(ry) + b\sin(rx)\cos(ry) + c\cos(rx)\cos(ry)</div>
+<hr>
+<p>The <code>facing</code> and <code>rotated</code> transformations below only change the facing, not the execution position.</p>
+<hr>
+<h3 id="facing-a-b-c"><code>facing a b c</code><a class="anchor" href="#facing-a-b-c" aria-label="链接到此章节">#</a></h3>
+<p>The resulting trigonometric values of <span class="math-inline">ry</span> and <span class="math-inline">rx</span>:</p>
+<div class="math-block">\sin ry = \frac{a - x}{\sqrt{(a-x)^2 + (c-z)^2}}</div>
+<div class="math-block">\cos ry = \frac{c - z}{\sqrt{(a-x)^2 + (c-z)^2}}</div>
+<div class="math-block">\sin rx = \frac{b - y}{\sqrt{(a-x)^2 + (b-y)^2 + (c-z)^2}}</div>
+<div class="math-block">\cos rx = \frac{\sqrt{(a-x)^2 + (c-z)^2}}{\sqrt{(a-x)^2 + (b-y)^2 + (c-z)^2}}</div>
+<hr>
+<h3 id="facing-a-b-c-1"><code>facing ~a ~b ~c</code><a class="anchor" href="#facing-a-b-c-1" aria-label="链接到此章节">#</a></h3>
+<p>The resulting trigonometric values of <span class="math-inline">ry</span> and <span class="math-inline">rx</span>:</p>
+<div class="math-block">\sin ry = \frac{a}{\sqrt{a^2 + c^2}}</div>
+<div class="math-block">\cos ry = \frac{c}{\sqrt{a^2 + c^2}}</div>
+<div class="math-block">\sin rx = \frac{b}{\sqrt{a^2 + b^2 + c^2}}</div>
+<div class="math-block">\cos rx = \frac{\sqrt{a^2 + c^2}}{\sqrt{a^2 + b^2 + c^2}}</div>
+<blockquote>
+<p><strong>Note:</strong> <code>facing x+a y+b z+c</code> = <code>facing ~a ~b ~c</code>, and this can also handle mixed cases.</p>
+</blockquote>
+<hr>
+<h3 id="facing-a-b-c-2"><code>facing ^a ^b ^c</code><a class="anchor" href="#facing-a-b-c-2" aria-label="链接到此章节">#</a></h3>
+<p>The resulting trigonometric values of <span class="math-inline">ry</span> and <span class="math-inline">rx</span>:</p>
+<div class="math-block">\sin(ry) = -\frac{a\cos(ry) - (b\sin(rx) + c\cos(rx))\sin(ry)}{\sqrt{a^2 + (b\sin(rx) + c\cos(rx))^2}}</div>
+<div class="math-block">\cos(ry) = \frac{a\sin(ry) + (b\sin(rx) + c\cos(rx))\cos(ry)}{\sqrt{a^2 + (b\sin(rx) + c\cos(rx))^2}}</div>
+<div class="math-block">\sin(rx) = \frac{c\sin(rx) - b\cos(rx)}{\sqrt{a^2 + b^2 + c^2}}</div>
+<div class="math-block">\cos(rx) = \frac{\sqrt{a^2 + (b\sin(rx) + c\cos(rx))^2}}{\sqrt{a^2 + b^2 + c^2}}</div>
+<h4 id="partial-conversion-formulas-for-facing-a-b-c">Partial conversion formulas for <code>facing ^a ^b ^c</code>:<a class="anchor" href="#partial-conversion-formulas-for-facing-a-b-c" aria-label="链接到此章节">#</a></h4>
+<p><strong>Formula 1:</strong></p>
+<p><code>facing ^a ^b ^c</code> = <code>rotated ~ ~ α</code> <code>facing ^a ^ r</code></p>
+<div class="math-block">\text{where } \alpha = -\arctan\!\left(\frac{b}{c}\right),\quad r = \sqrt{b^2 + c^2}</div>
+<p><strong>Formula 2:</strong></p>
+<p><code>rotated ~ ~ (-θ)</code> <code>facing ^a ^ ^b</code> = <code>facing ^a ^ p ^ q</code></p>
+<div class="math-block">\text{where } p = b\sin\theta,\quad q = b\cos\theta</div>
+<hr>
+<h3 id="rotated-a-b"><code>rotated ~a ~b</code><a class="anchor" href="#rotated-a-b" aria-label="链接到此章节">#</a></h3>
+<p>The resulting trigonometric values of <span class="math-inline">ry</span> and <span class="math-inline">rx</span>:</p>
+<div class="math-block">\sin(ry) = \sin(ry)\cos(a) + \cos(ry)\sin(a)</div>
+<div class="math-block">\cos(ry) = \cos(ry)\cos(a) - \sin(ry)\sin(a)</div>
+<div class="math-block">\sin(rx) = \sin(rx)\cos(b) + \cos(rx)\sin(b)</div>
+<div class="math-block">\cos(rx) = \cos(rx)\cos(b) - \sin(rx)\sin(b)</div>
+<blockquote>
+<p>For <code>rotated a b</code>: this is not commonly seen in <code>execute</code> commands. The authors consider the derivation straightforward and have omitted it.</p>
+</blockquote>
+<hr>
+<h3 id="special-note">Special Note<a class="anchor" href="#special-note" aria-label="链接到此章节">#</a></h3>
+<p>Pay attention to <strong>degree-to-radian conversion</strong>. This type of error is frequent in angle/radian calculations.</p>
+<p><strong>Appendix:</strong> Given computed values of <span class="math-inline">\sin(ry)</span>, <span class="math-inline">\cos(ry)</span>, <span class="math-inline">\sin(rx)</span>, <span class="math-inline">\cos(rx)</span>, to recover the in-game angles <span class="math-inline">ry</span> and <span class="math-inline">rx</span>, where <span class="math-inline">\text{atan2}</span> returns radians:</p>
+<div class="math-block">ry = \text{atan2}(\sin(ry),\ \cos(ry)) \times \frac{180}{\pi}</div>
+<div class="math-block">rx = \text{atan2}(\sin(rx),\ \cos(rx)) \times \frac{180}{\pi}</div>
+<hr>
+<h1 id="algebraic-expressions-vector-form">Algebraic Expressions (Vector Form)<a class="anchor" href="#algebraic-expressions-vector-form" aria-label="链接到此章节">#</a></h1>
+<p>Define the current execution position vector <span class="math-inline">\mathbf{P}</span> (the coordinates of the current <code>execute</code> command), the rotation matrix <span class="math-inline">\mathbf{R} = [\mathbf{L}\ \mathbf{U}\ \mathbf{F}]</span>, and <span class="math-inline">\mathbf{Y} = (0, 1, 0)</span>.</p>
+<div class="math-block">\mathbf{R} = \begin{bmatrix} \mathbf{L} &amp; \mathbf{U} &amp; \mathbf{F} \end{bmatrix} = \begin{bmatrix} \cos ry &amp; -\sin rx \sin ry &amp; -\cos rx \sin ry \\ 0 &amp; \cos rx &amp; -\sin rx \\ \sin ry &amp; \sin rx \cos ry &amp; \cos rx \cos ry \end{bmatrix}</div>
+<p><strong>Where:</strong></p>
+<ul>
+<li><span class="math-inline">\mathbf{L}</span> points in the left-hand direction. Corresponds to <strong>Left</strong>.</li>
+<li><span class="math-inline">\mathbf{U}</span> points toward the top of the head, i.e., upward. Corresponds to <strong>Up</strong>.</li>
+<li><span class="math-inline">\mathbf{F}</span> points in the line-of-sight direction, i.e., forward. Corresponds to <strong>Front</strong>.</li>
+</ul>
+<p>The vectors <span class="math-inline">\mathbf{L}</span>, <span class="math-inline">\mathbf{U}</span>, <span class="math-inline">\mathbf{F}</span> are all unit vectors, mutually perpendicular, and satisfy the cross-product relation <span class="math-inline">\mathbf{L} = \mathbf{U} \times \mathbf{F}</span>.</p>
+<p>All coordinates and facings below follow the Minecraft convention. The <code>positioned</code> transformations below only change the execution position, not the facing.</p>
+<hr>
+<h3 id="positioned-a-b-c-3"><code>positioned a b c</code><a class="anchor" href="#positioned-a-b-c-3" aria-label="链接到此章节">#</a></h3>
+<div class="math-block">\mathbf{P} \to (a, b, c)</div>
+<hr>
+<h3 id="positioned-a-b-c-4"><code>positioned ~a ~b ~c</code><a class="anchor" href="#positioned-a-b-c-4" aria-label="链接到此章节">#</a></h3>
+<div class="math-block">\mathbf{P} \to \mathbf{P} + (a, b, c)</div>
+<hr>
+<h3 id="positioned-a-b-c-5"><code>positioned ^a ^b ^c</code><a class="anchor" href="#positioned-a-b-c-5" aria-label="链接到此章节">#</a></h3>
+<div class="math-block">\mathbf{P} \to \mathbf{P} + a\mathbf{L} + b\mathbf{U} + c\mathbf{F}</div>
+<hr>
+<p>The <code>facing</code> and <code>rotated</code> transformations below only change the facing, not the execution position.</p>
+<h3 id="facing-reference-table-for-mathbfv"><code>facing</code> — reference table for <span class="math-inline">\mathbf{v}</span>:<a class="anchor" href="#facing-reference-table-for-mathbfv" aria-label="链接到此章节">#</a></h3>
+<div class="table-wrap"><table><thead><tr><th style="text-align:left">Facing command</th><th style="text-align:left">Value of <span class="math-inline">\mathbf{v}</span></th></tr></thead><tbody><tr><td style="text-align:left"><code>a b c</code></td><td style="text-align:left"><span class="math-inline">(a, b, c) - \mathbf{P}</span></td></tr><tr><td style="text-align:left"><code>~a ~b ~c</code></td><td style="text-align:left"><span class="math-inline">(a, b, c)</span></td></tr><tr><td style="text-align:left"><code>^a ^b ^c</code></td><td style="text-align:left"><span class="math-inline">a\mathbf{L} + b\mathbf{U} + c\mathbf{F}</span></td></tr></tbody></table></div>
+<p><strong>Then update <span class="math-inline">\mathbf{F}</span>, <span class="math-inline">\mathbf{U}</span>, <span class="math-inline">\mathbf{L}</span>:</strong></p>
+<div class="math-block">\mathbf{F} \to \frac{\mathbf{v}}{\|\mathbf{v}\|}</div>
+<div class="math-block">\mathbf{U} \to \frac{\mathbf{Y} - (\mathbf{Y} \cdot \mathbf{F})\mathbf{F}}{\|\mathbf{Y} - (\mathbf{Y} \cdot \mathbf{F})\mathbf{F}\|}</div>
+<div class="math-block">\mathbf{L} \to \mathbf{U} \times \mathbf{F}</div>
+<hr>
+<h3 id="rotated"><code>rotated</code><a class="anchor" href="#rotated" aria-label="链接到此章节">#</a></h3>
+<p>Define <span class="math-inline">M(a, b)</span>:</p>
+<div class="math-block">M(a, b) = \begin{bmatrix} \cos(a) &amp; -\sin(b)\sin(a) &amp; -\cos(b)\sin(a) \\ 0 &amp; \cos(b) &amp; -\sin(b) \\ \sin(a) &amp; \sin(b)\cos(a) &amp; \cos(b)\cos(a) \end{bmatrix}</div>
+<h4 id="rotated-a-b-1"><code>rotated ~a ~b</code><a class="anchor" href="#rotated-a-b-1" aria-label="链接到此章节">#</a></h4>
+<div class="math-block">\Delta\mathbf{R} = M(a, b)</div>
+<div class="math-block">\mathbf{R} \to \mathbf{R} \cdot \Delta\mathbf{R}</div>
+<h4 id="rotated-a-b-2"><code>rotated a b</code><a class="anchor" href="#rotated-a-b-2" aria-label="链接到此章节">#</a></h4>
+<div class="math-block">\mathbf{R}_{\text{goal}} = M(a, b)</div>
+<div class="math-block">\mathbf{R} \to \mathbf{R}_{\text{goal}}</div>
+<hr>
+<h3 id="appendix-rodrigues-rotation-formula">Appendix: Rodrigues&#39; Rotation Formula<a class="anchor" href="#appendix-rodrigues-rotation-formula" aria-label="链接到此章节">#</a></h3>
+<p>The rotation axis <span class="math-inline">\mathbf{k}</span> must be a unit vector.</p>
+<div class="math-block">\mathbf{v}&#39; = \mathbf{v}\cos\theta + (\mathbf{k} \times \mathbf{v})\sin\theta + \mathbf{k}(\mathbf{k} \cdot \mathbf{v})(1 - \cos\theta)</div>
+<p>An equivalent form:</p>
+<div class="math-block">\mathbf{v}&#39; = \mathbf{v} + (\mathbf{k} \times \mathbf{v})\sin\theta + \mathbf{k} \times (\mathbf{k} \times \mathbf{v})(1 - \cos\theta)</div>
+
+      
+    </article>
+
+    
+
+    
+      <div class="pager">
+        <a href="../../../en-US/cct/exprlist/"><div class="sub">上一页</div><div class="title">Formula Table</div></a>
+        <div></div>
+      </div>
+    
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><a class="lv3" href="#positioned-a-b-c">positioned a b c</a><a class="lv3" href="#positioned-a-b-c-1">positioned a b c</a><a class="lv3" href="#positioned-a-b-c-2">positioned ^a ^b ^c</a><a class="lv3" href="#facing-a-b-c">facing a b c</a><a class="lv3" href="#facing-a-b-c-1">facing a b c</a><a class="lv3" href="#facing-a-b-c-2">facing ^a ^b ^c</a><a class="lv3" href="#rotated-a-b">rotated a b</a><a class="lv3" href="#special-note">Special Note</a><a class="lv3" href="#positioned-a-b-c-3">positioned a b c</a><a class="lv3" href="#positioned-a-b-c-4">positioned a b c</a><a class="lv3" href="#positioned-a-b-c-5">positioned ^a ^b ^c</a><a class="lv3" href="#facing-reference-table-for-mathbfv">facing — reference table for $\mathbf{v}$:</a><a class="lv3" href="#rotated">rotated</a><a class="lv3" href="#appendix-rodrigues-rotation-formula">Appendix: Rodrigues&#39; Rotation Formula</a></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

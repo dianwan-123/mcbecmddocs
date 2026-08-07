@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>公式表 - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'zh-CN' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" selected>简体中文</option><option value="en-US" >English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../zh-CN/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../zh-CN/'">欢迎来到本网站</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >坐标运算</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/abe/'">代数表达法</span></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>公式表</h1>
+      <h4 id="一-基础代数与算术">一、 基础代数与算术<a class="anchor" href="#一-基础代数与算术" aria-label="链接到此章节">#</a></h4>
+<h4 id="1-平方公式">1. 平方公式<a class="anchor" href="#1-平方公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (x, y+x², z)</span></li>
+<li><strong>性能</strong>：<code>5</code> 子命令 | <strong>不确定度</strong>：<span class="math-inline">2xa \cdot \varepsilon</span> | <strong>备注</strong>：代数入门公式</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-a² rotated ~180~ positioned ^^^-a² positioned ~~2a²~</code></pre></figure>
+</li>
+</ul>
+<h4 id="2-平方公式短">2. 平方公式（短）<a class="anchor" href="#2-平方公式短" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (?, y+x², z)</span></li>
+<li><strong>性能</strong>：<code>3</code> 子命令 | <strong>不确定度</strong>：<span class="math-inline">2xa \cdot \varepsilon</span> | <strong>备注</strong>：代数入门公式</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^-2a² positioned ~~2a²~</code></pre></figure>
+</li>
+</ul>
+<h4 id="3-乘法公式">3. 乘法公式<a class="anchor" href="#3-乘法公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (x, y+xz, ?)</span></li>
+<li><strong>性能</strong>：<code>10</code> 子命令 | <strong>不确定度</strong>：<span class="math-inline">a\sqrt{3r^2+4xz} \cdot \varepsilon</span> | <strong>备注</strong>：或许只有画图像才会用到它？</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a 0 positioned ^^^a²/2 rotated ~180~ positioned ^^^a²/2 facing 0~a~ rotated ~-90~ positioned ^^^a positioned ~~-a~ facing ~~a 0 positioned ^^^-a²</code></pre></figure>
+</li>
+</ul>
+<h4 id="4-乘法公式短">4. 乘法公式（短）<a class="anchor" href="#4-乘法公式短" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (?, y+xz, ?)</span></li>
+<li><strong>性能</strong>：<code>7</code> 子命令 | <strong>不确定度</strong>：<span class="math-inline">a\sqrt{1.5r^2+1.5xz+x^2z^2/r^2} \cdot \varepsilon</span> | <strong>备注</strong>：被乘法公式（更短）完败了</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ facing 0~a 0 ] positioned 0~ 0 positioned ^^^a²/2 rotated ~90~ positioned ^^^a²/2 facing ~~~a²/2 0 positioned ^^^a²</code></pre></figure>
+</li>
+</ul>
+<h4 id="5-乘法公式更短">5. 乘法公式（更短）<a class="anchor" href="#5-乘法公式更短" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (?, y+xz, ?)</span></li>
+<li><strong>性能</strong>：<code>6</code> 子命令 | <strong>备注</strong>：目前最快的乘法</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ facing 0~a 0 ] positioned 0~ 0 rotated ~45~ positioned ^^^a² facing ~~-a²/√2 0 positioned ^^^a²</code></pre></figure>
+</li>
+</ul>
+<h4 id="6-除法公式">6. 除法公式<a class="anchor" href="#6-除法公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (x, ?, x/z)</span></li>
+<li><strong>性能</strong>：<code>8</code> 子命令 | <strong>不确定度</strong>：<span class="math-inline">\sqrt{1/b^2 + a^2/z^2} \cdot \varepsilon</span> | <strong>备注</strong>：这基本用不上</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~ 0~ ] facing 0 a~ positioned ^^ -ab/2^ rotated ~180~ positioned ^^ -ab/2^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</code></pre></figure>
+</li>
+</ul>
+<h4 id="7-除法公式短">7. 除法公式（短）<a class="anchor" href="#7-除法公式短" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (?, ?, x/z)</span></li>
+<li><strong>性能</strong>：<code>6</code> 子命令 | <strong>不确定度</strong>：<span class="math-inline">\sqrt{1/b^2 + a^2/z^2} \cdot \varepsilon</span> | <strong>备注</strong>：一样基本用不上</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~ 0~ ] facing 0 a~ positioned ^^ -ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</code></pre></figure>
+</li>
+</ul>
+<h4 id="8-除法公式二维向量">8. 除法公式（二维向量）<a class="anchor" href="#8-除法公式二维向量" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (x/y, 0, z/y)</span></li>
+<li><strong>性能</strong>：<code>8</code> 子命令 | <strong>不确定度</strong>：一般情况很准 | <strong>备注</strong>：《夯》</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 0 0 positioned 0 0 0 positioned ^^(a+n)/2^ rotated ~180~ positioned ^^-(a-n)/2^ facing 0 0 0 positioned 0 -a/n 0 positioned ^^a/n^</code></pre></figure>
+</li>
+</ul>
+<h4 id="9-除法公式tan">9. 除法公式（tan）<a class="anchor" href="#9-除法公式tan" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (?, y/r, ?)</span></li>
+<li><strong>性能</strong>：<code>8</code> 子命令 | <strong>不确定度</strong>：一般情况很准 | <strong>备注</strong>：《夯》</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 0 0 positioned 0 0 0 positioned ^^-(a+n)/2 rotated ~180~ positioned ^^^(a-n)/2 facing 0 0 0 positioned 0 0 0 positioned ^^^-a/n</code></pre></figure>
+</li>
+</ul>
+<h4 id="10-乘法公式二维向量">10. 乘法公式（二维向量）<a class="anchor" href="#10-乘法公式二维向量" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (xy, y, zy)</span></li>
+<li><strong>性能</strong>：<code>8</code> 子命令 | <strong>不确定度</strong>：<span class="math-inline">a\sqrt{1+y^2r^4/a^2b^2} \cdot \varepsilon</span> | <strong>备注</strong>：《夯》</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 ~b 0 positioned 0 ~0 positioned ^^a/2b^ rotated ~180~ positioned ^^-a/2b^ facing 0 0 0 positioned 0 ~a 0 positioned ^^ -a^</code></pre></figure>
+</li>
+</ul>
+<h4 id="11-乘法公式短二维向量">11. 乘法公式短（二维向量）<a class="anchor" href="#11-乘法公式短二维向量" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (xy, y, zy)</span></li>
+<li><strong>性能</strong>：<code>6</code> 子命令 | <strong>备注</strong>：基本不用，还是更准的好</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0 ~b 0 positioned 0~-a/b 0 positioned ^^a/b^ facing 0 a/b 0 positioned 0~a 0 positioned ^^ -a^</code></pre></figure>
+</li>
+</ul>
+<h4 id="12-立方公式短">12. 立方公式（短）<a class="anchor" href="#12-立方公式短" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (x³+bx, ?, z)</span></li>
+<li><strong>性能</strong>：<code>4</code> 子命令 | <strong>备注</strong>：短，但好像没啥用</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a~ positioned ^^^(a-b/(√(a²+1)+a)) facing 0~n~ positioned ^^^-(2na²-1)</code></pre></figure>
+</li>
+</ul>
+<h4 id="13-立方式公式">13. 立方式公式<a class="anchor" href="#13-立方式公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (x, ?, x³)</span></li>
+<li><strong>性能</strong>：<code>6</code> 子命令 | <strong>备注</strong>：感觉它被立方式公式（短）完败</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a/2~ rotated ~90~ positioned ^^^-a³/3 facing 0~a~ rotated ~90~ positioned ^^^2a³/3</code></pre></figure>
+</li>
+</ul>
+<h4 id="14-乘法公式半径">14. 乘法公式（半径）<a class="anchor" href="#14-乘法公式半径" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (xz²/r, y, -zx²/r)</span> ， <span class="math-inline">&lt; ry+90, 0, xz &gt;</span></li>
+<li><strong>性能</strong>：<code>11</code> 子命令 | <strong>备注</strong>：几何原理推出的公式，它优化了柏林噪声的精度与速度</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0~a 0 positioned 0~ 0 positioned ^^ -a²/2^ rotated ~180~ positioned ^^a²/2^ rotated ~ 0 positioned ^^^a² positioned ~~ 0 positioned ^A^^ facing 0~ 0 positioned ^^^A</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h4 id="二-向量与几何变换">二、 向量与几何变换<a class="anchor" href="#二-向量与几何变换" aria-label="链接到此章节">#</a></h4>
+<h4 id="15-点乘公式">15. 点乘公式<a class="anchor" href="#15-点乘公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (?, \mathbf{A}\cdot\mathbf{R}, ?)</span></li>
+<li><strong>性能</strong>：<code>6</code> 子命令 | <strong>不确定度</strong>：一般情况很准 | <strong>备注</strong>：对于平面向量还能短</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as {A+y} positioned ^^^a facing 0 0 0 positioned ^^^2a rotated as {A+y} positioned ^^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="16-叉乘公式">16. 叉乘公式<a class="anchor" href="#16-叉乘公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (x, y, z) \times \mathbf{A}</span></li>
+<li><strong>性能</strong>：<code>16</code> 子命令 | <strong>备注</strong>：即算大小也算方向，虽然很长，但《夯》</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as {A+y} positioned ^^^a facing 0 0 0 positioned ^^^2a rotated as {A+y} positioned ^^^a facing 0~a 0 rotated ~45~ positioned ^^^\sqrt{2}a positioned ~ 0~ rotated as {A+y} positioned ^^^a facing 0 0 0 positioned ^^^2a rotated as {A+y} positioned ^^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="17-对称公式">17. 对称公式<a class="anchor" href="#17-对称公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：将执行位置关于 A 对称</li>
+<li><strong>性能</strong>：<code>6</code> 子命令 | <strong>备注</strong>：《夯》</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as A positioned ^^^a facing &lt;&gt; positioned ^^^2a rotated as A positioned ^^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="18-旋转公式">18. 旋转公式<a class="anchor" href="#18-旋转公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：将坐标系的 <code>~~1~</code> 方向与 <code>@s</code> 的 <code>^^^1</code> 方向对齐</li>
+<li><strong>性能</strong>：<code>12</code> 子命令 | <strong>备注</strong>：《夯上夯》</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~-a~ ] rotated as @s positioned ^-a^^ facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^^^a positioned ~~-a~ facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^a^^a</code></pre></figure>
+</li>
+</ul>
+<h4 id="19-旋转公式逆">19. 旋转公式（逆）<a class="anchor" href="#19-旋转公式逆" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：将 <code>@s</code> 的 <code>^^^1</code> 方向与坐标系的 <code>~~1~</code> 方向对齐</li>
+<li><strong>性能</strong>：<code>12</code> 子命令 | <strong>备注</strong>：《夯上夯》</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">rotated as @s positioned ^a^^a facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^^^a positioned ~~-a~ facing &lt;&gt; positioned ^^^2√2a rotated as @s positioned ^-a^^ [ positioned ~~-a~ ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="20-几何缩放公式">20. 几何缩放公式<a class="anchor" href="#20-几何缩放公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：以 facing 对象为参考系：<span class="math-inline">(x, y, z) \to (x/n, y/n, z/n)</span></li>
+<li><strong>性能</strong>：<code>11</code> 子命令 | <strong>备注</strong>：几何入门公式</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~-2a~ ] facing &lt;&gt; positioned ^^^(n-1)a/n rotated ~180~ positioned ^^^(1-n)a/n positioned ~~-2a~-2a facing &lt;&gt; positioned ^^^(n-1)a/n rotated ~180~ positioned ^^^(n-1)a/n [ positioned ~~~2a ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="21-几何缩放公式短">21. 几何缩放公式（短）<a class="anchor" href="#21-几何缩放公式短" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：同上</li>
+<li><strong>性能</strong>：<code>8</code> 子命令 | <strong>备注</strong>：几何入门公式</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~~a~ ] facing &lt;&gt; positioned ^^^(n-1)a/n positioned ~~-a/n~-a facing &lt;&gt; rotated 0~ positioned ^^^(n-1)a/n [ positioned ~~~a/n ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="22-平移缩放公式">22. 平移缩放公式<a class="anchor" href="#22-平移缩放公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：将坐标系从 A 平移到 B 并：<span class="math-inline">(x, y, z) \to (kx, ky, kz)</span></li>
+<li><strong>性能</strong>：<code>19</code> 子命令 | <strong>备注</strong>：这真的太长了，虽然功能很强但大组还是不清楚有什么用。实际大概只平移 xz 或 y 更有用</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~-2a~ ] facing {B} positioned ^^^a/(1+k) rotated ~180~ positioned ^^^-a/(1+k) facing {A} positioned ^^^-ka rotated ~180~ positioned ^^^ka positioned ~~-2a~-2a facing {B} positioned ^^^a/(1+k) rotated ~180~ positioned ^^^a/(1+k) facing {A} positioned ^^^-ka rotated ~180~ positioned ^^^-ka [ positioned ~~~2a ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="23-平移缩放公式短">23. 平移缩放公式（短）<a class="anchor" href="#23-平移缩放公式短" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：同上</li>
+<li><strong>性能</strong>：<code>13</code> 子命令 | <strong>备注</strong>：短了一些，但不如上面的准</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">[ positioned ~~a~ ] facing {B} positioned ^^^a/(1+k) facing {A} positioned ^^^-k²a/(1+k) positioned ~~-ka~-a facing {B} rotated 0~ positioned ^^^a/(1+k) facing {A} rotated 0~ positioned ^^^-k²a/(1+k) [ positioned ~~~ka ]</code></pre></figure>
+</li>
+</ul>
+<h4 id="24-体积公式">24. 体积公式<a class="anchor" href="#24-体积公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (?, xyz, ?)</span></li>
+<li><strong>性能</strong>：<code>14</code> 子命令 | <strong>不确定度</strong>：对称性很差 | <strong>备注</strong>：缺少对称美感，算东西有奇点，但目前只有它能算 xyz</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing ~~b 0 positioned ~~ 0 positioned ^^a/2b^ rotated ~180~ positioned ^^-a/2b^ facing ~ 0 0 positioned ~ 0 0 positioned ^^-a^ facing 0~a 0 positioned 0 0 0 rotated ~45~ positioned ^^^a² facing ~~~a^2/√2 0 positioned ^^^a^2</code></pre></figure>
+</li>
+</ul>
+<hr>
+<h4 id="三-弧度拟合与三角函数">三、 弧度拟合与三角函数<a class="anchor" href="#三-弧度拟合与三角函数" aria-label="链接到此章节">#</a></h4>
+<h4 id="25-弧度拟合-1">25. 弧度拟合 (1)<a class="anchor" href="#25-弧度拟合-1" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">\langle rx, ry \rangle \to \langle 0, x \rangle \quad (x \in [-\pi, \pi])</span></li>
+<li><strong>性能</strong>：<code>5</code> 子命令 | <strong>不确定度</strong>：精确度 0.0001 | <strong>备注</strong>：好像只能用来画圆</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 ~ 3.43204833 positioned ^^^4.65280132 facing 0.0 ~ 4.39744734 positioned ^^^3.01050871 facing 0.0 ~ 5.47992547</code></pre></figure>
+</li>
+</ul>
+<h4 id="26-弧度拟合-2">26. 弧度拟合 (2)<a class="anchor" href="#26-弧度拟合-2" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">\langle rx, ry \rangle \to \langle 0, 2\pi x \rangle \quad (x \in [-0.5, 0.5])</span></li>
+<li><strong>性能</strong>：<code>5</code> 子命令 | <strong>不确定度</strong>：精确度 0.0001 | <strong>备注</strong>：这个更契合 nxs 一点</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 ~ 0.546225495 positioned ^^^0.74051535 facing 0.0 ~ 0.69987548 positioned ^^^0.47913733 facing 0.0 ~ 0.87215723</code></pre></figure>
+</li>
+</ul>
+<h4 id="27-三角函数公式">27. 三角函数公式<a class="anchor" href="#27-三角函数公式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>功能</strong>：<span class="math-inline">(x, y, z) \to (-\sin x, y, \cos x)</span></li>
+<li><strong>性能</strong>：<code>12</code> 子命令 | <strong>不确定度</strong>：精确度 0.0001 | <strong>备注</strong>：想不到有什么用</li>
+<li><strong>指令</strong>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 πa ~ positioned 0.5 ~ 0. positioned ^^^-a align x positioned ^^^a facing 0.0 ~ 0.546225495 positioned ^^^0.74051535 facing 0.0 ~ 0.69987548 positioned ^^^0.47913733 facing 0.0 ~ 0.87215723 positioned 0.0 ~ 0.0 positioned ^^^1</code></pre></figure>
+</li>
+</ul>
+
+      
+    </article>
+
+    
+
+    
+      <div class="pager">
+        <a href="../../../zh-CN/"><div class="sub">上一页</div><div class="title">Welcome!</div></a>
+        <a href="../../../zh-CN/cct/abe/" class="next"><div class="sub">下一页</div><div class="title">Algebraic Expression of CCT</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

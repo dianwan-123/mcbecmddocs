@@ -3,7 +3,6 @@
     var root = document.documentElement;
     var cfg = window.__WIKI__ || { base: '' };
 
-    /* 主题 */
     function applyTheme(t) {
       root.dataset.theme = t;
       var btn = document.getElementById('theme-btn');
@@ -19,17 +18,34 @@
       try { localStorage.setItem('wiki-theme', next); } catch(e){}
     });
 
-    /* 树状目录折叠响应 */
+    /* 多语言导航联动 */
+    var langSelect = document.getElementById('lang-select');
+    if (langSelect) {
+      langSelect.addEventListener('change', function() {
+        var selected = langSelect.value;
+        var currentLang = cfg.currentLang;
+        if (selected && selected !== currentLang) {
+          // 将当前 URL 中的语言目录替换为目标语言
+          var currentPath = window.location.pathname;
+          var regex = new RegExp('\\/' + currentLang + '(\\/|$)');
+          var newPath = currentPath.replace(regex, '/' + selected + '/');
+          // 处理相对路由深度偏移
+          if (newPath === currentPath) {
+            window.location.href = cfg.base + '../' + selected + '/';
+          } else {
+            window.location.href = window.location.origin + newPath + window.location.search + window.location.hash;
+          }
+        }
+      });
+    }
+
     var collapsedMap = {};
     try { collapsedMap = JSON.parse(localStorage.getItem('wiki-collapsed') || '{}'); } catch(e){}
-
     document.querySelectorAll('.tree-item-wrap').forEach(function(wrap) {
       var id = wrap.dataset.id;
       var children = wrap.querySelector('.tree-children');
       var expander = wrap.querySelector('.expander');
       if (!children || !id) return;
-
-      /* 如果本地有记录，则覆盖默认状态 */
       if (collapsedMap[id] !== undefined) {
         if (collapsedMap[id]) {
           children.classList.add('collapsed');
@@ -39,7 +55,6 @@
           if (expander) expander.textContent = '▼';
         }
       }
-
       if (expander) {
         expander.addEventListener('click', function(e) {
           e.preventDefault();
@@ -52,22 +67,48 @@
       }
     });
 
-    /* 侧栏联动父级高亮 */
     var activeRow = document.querySelector('.tree-row.active');
     if (activeRow) {
       var p = activeRow.parentElement;
       while (p) {
         if (p.classList.contains('tree-children')) {
           var parentRow = p.previousElementSibling;
-          if (parentRow && parentRow.classList.contains('tree-row')) {
-            parentRow.classList.add('active-parent');
-          }
+          if (parentRow && parentRow.classList.contains('tree-row')) parentRow.classList.add('active-parent');
         }
         p = p.parentElement;
       }
     }
 
-    /* 目录高亮 */
+    function renderMath(el) {
+      if (!window.katex) return;
+      el.querySelectorAll('.math-inline').forEach(function(sub) {
+        if (sub.dataset.rendered) return;
+        try {
+          katex.render(sub.textContent, sub, { throwOnError: false, displayMode: false });
+          sub.dataset.rendered = "1";
+        } catch(e){}
+      });
+      el.querySelectorAll('.math-block').forEach(function(sub) {
+        if (sub.dataset.rendered) return;
+        try {
+          katex.render(sub.textContent, sub, { throwOnError: false, displayMode: true });
+          sub.dataset.rendered = "1";
+        } catch(e){}
+      });
+    }
+
+    function initMath() {
+      if (window.katex) {
+        renderMath(document.body);
+      } else {
+        var t = setInterval(function() {
+          if (window.katex) { clearInterval(t); renderMath(document.body); }
+        }, 100);
+        setTimeout(function() { clearInterval(t); }, 5000);
+      }
+    }
+    initMath();
+
     var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
     if (tocLinks.length && 'IntersectionObserver' in window) {
       var map = {};
@@ -87,7 +128,6 @@
       heads.forEach(function(h) { io.observe(h); });
     }
 
-    /* 搜索 */
     var sheet = document.getElementById('search-sheet');
     var input = document.getElementById('search-input');
     var results = document.getElementById('search-results');
@@ -109,9 +149,7 @@
       if (!q) { results.innerHTML = ''; return; }
       var hits = [];
       (index || []).forEach(function(p) {
-        if (p.t.toLowerCase().indexOf(q) >= 0 || (p.c || '').toLowerCase().indexOf(q) >= 0) {
-          hits.push(p);
-        }
+        if (p.t.toLowerCase().indexOf(q) >= 0 || (p.c || '').toLowerCase().indexOf(q) >= 0) hits.push(p);
       });
       results.innerHTML = hits.map(function(h, i) {
         return '<a href="' + cfg.base + h.u + '" class="' + (i === 0 ? 'active' : '') + '">' +
