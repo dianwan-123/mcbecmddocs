@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>梯子问题 - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'zh-CN' };
+try {
+  var st = localStorage.getItem('wiki-theme') || 'auto';
+  document.documentElement.dataset.theme = st;
+} catch(e){}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../zh-CN/">
+    <span class="logo">📘</span>
+    <span>mcbe指令技术文档</span>
+  </a>
+  <nav></nav>
+  <div class="spacer"></div>
+  <div class="top-tools">
+    <select class="lang-selector" id="lang-select"><option value="zh-CN" selected>简体中文</option><option value="en-US" >English</option></select>
+    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
+    <button class="theme-btn" id="theme-btn">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../zh-CN/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../zh-CN/'">欢迎来到本网站</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >坐标运算</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../zh-CN/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/exprlist/'">公式表</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">梯子问题</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/abe/'">代数表达法</span></div></div></div></div></aside>
+  <main class="content">
+    <article class="markdown">
+      <h1>梯子问题</h1>
+      <h1 id="简介">简介<a class="anchor" href="#简介" aria-label="链接到此章节">#</a></h1>
+<p>“梯子问题” 是坐标运算（Coordinates Calculation Theory） 相关技术的一个重要问题，其等价表达形式为：无法通过 <code>execute</code> 指令的坐标运算直接实现算术平方根运算，即 <span class="math-inline">\sqrt{x}</span>。</p>
+<hr>
+<h1 id="part-1-所有可以由-execute-生成的元素-in-p">Part. 1 所有可以由 <code>execute</code> 生成的元素 <span class="math-inline">\in P</span><a class="anchor" href="#part-1-所有可以由-execute-生成的元素-in-p" aria-label="链接到此章节">#</a></h1>
+<p><strong>目标</strong>：证明 <span class="math-inline">P</span> 包含 <code>execute</code> 可生成的所有元素。</p>
+<hr>
+<h2 id="约定">约定<a class="anchor" href="#约定" aria-label="链接到此章节">#</a></h2>
+<p><span class="math-inline">P</span> 是两变量 <span class="math-inline">(x,t)</span> 部分函数的最小类，含以下元素并对以下运算封闭：</p>
+<ul>
+<li><strong>初始元素</strong>：<span class="math-inline">(x,t)\mapsto x</span>；<span class="math-inline">(x,t)\mapsto g(t)</span>（<span class="math-inline">g</span> 任意）</li>
+<li><strong>三种运算</strong>：<span class="math-inline">c-s</span>；<span class="math-inline">\dfrac{sc}{\sqrt{s^2+b^2}}</span>（分母非零）；<span class="math-inline">\displaystyle\lim_{t\to+\infty}s(x,t)</span></li>
+</ul>
+<p>下文中 <span class="math-inline">m,n,p,q,r,a,b,c\in P</span> 一律指 <span class="math-inline">P</span> 的元素。</p>
+<hr>
+<h2 id="ⅰ1-先证-p-包含-x2">Ⅰ.1　先证 <span class="math-inline">P</span> 包含 <span class="math-inline">x^2</span><a class="anchor" href="#ⅰ1-先证-p-包含-x2" aria-label="链接到此章节">#</a></h2>
+<p>考虑属于 <span class="math-inline">P</span> 的元素</p>
+<div class="math-block">2t^2-\frac{2t^2\cdot t}{\sqrt{t^2+x^2}}\ \in\ P</div>
+<p>当 <span class="math-inline">t\to+\infty</span> 时，逐点极限存在：</p>
+<div class="math-block">\lim_{t\to+\infty}\left(2t^2-\frac{2t^3}{\sqrt{t^2+x^2}}\right)=x^2</div>
+<p>因此 <span class="math-inline">x^2\in P</span>。</p>
+<hr>
+<h2 id="ⅰ2-对任意-mn-in-p都有-mn-in-p">Ⅰ.2　对任意 <span class="math-inline">m,n\in P</span>，都有 <span class="math-inline">mn\in P</span><a class="anchor" href="#ⅰ2-对任意-mn-in-p都有-mn-in-p" aria-label="链接到此章节">#</a></h2>
+<p>显然 <span class="math-inline">m+n=m-(0-n)\in P</span>，所以 <span class="math-inline">(m+n)^2\in P</span>。因为</p>
+<div class="math-block">(m+n)^2=m^2+n^2+2mn</div>
+<p>同时 <span class="math-inline">m^2,n^2\in P</span>。由减法操作，于是 <span class="math-inline">2mn\in P</span>，进而 <span class="math-inline">mn\in P</span>。</p>
+<p>即</p>
+<div class="math-block">mn=\frac{(m+n)^2-m^2-n^2}{2}</div>
+<p><strong><span class="math-inline">P</span> 对乘法封闭。</strong></p>
+<hr>
+<h2 id="ⅰ3-对任意-mn-in-p都有-m-n-in-p">Ⅰ.3　对任意 <span class="math-inline">m,n\in P</span>，都有 <span class="math-inline">m/n\in P</span><a class="anchor" href="#ⅰ3-对任意-mn-in-p都有-m-n-in-p" aria-label="链接到此章节">#</a></h2>
+<p>无妨先证 <span class="math-inline">1/n\in P</span>。容易构造</p>
+<div class="math-block">\frac{\dfrac{1}{t}\cdot t}{\sqrt{n^2+\left(\dfrac{1}{t}\right)^2}}\ \in\ P</div>
+<p>当 <span class="math-inline">t\to+\infty</span> 时，即可证明 <span class="math-inline">\dfrac{1}{|n|}\in P</span>：</p>
+<div class="math-block">\lim_{t\to+\infty}\frac{1}{\sqrt{n^2+1/t^2}}=\frac{1}{|n|}</div>
+<p>由于 <span class="math-inline">\dfrac{n}{|n|}=\dfrac{n\cdot 1}{\sqrt{0^2+n^2}}\in P</span>（原生运算），再由乘法（Ⅰ.2）：</p>
+<div class="math-block">\frac{1}{|n|}\cdot\frac{n}{|n|}=\frac{n}{n^2}=\frac{1}{n}\in P</div>
+<p>再由乘法，<span class="math-inline">m/n\in P</span>。<strong><span class="math-inline">P</span> 对除法封闭。</strong></p>
+<hr>
+<h2 id="ⅰ4-加减法">Ⅰ.4　加减法<a class="anchor" href="#ⅰ4-加减法" aria-label="链接到此章节">#</a></h2>
+<p>两个元素的加减，证明是显然的，此处不证。</p>
+<p>至此已得：<span class="math-inline">P</span> 对加、减、乘、除四则运算封闭，且含 <span class="math-inline">x^2</span>、原生的 <span class="math-inline">\dfrac{sc}{\sqrt{s^2+b^2}}</span> 与逐点极限。</p>
+<hr>
+<h2 id="ⅰ5-代数表达法与归纳框架">Ⅰ.5　代数表达法与归纳框架<a class="anchor" href="#ⅰ5-代数表达法与归纳框架" aria-label="链接到此章节">#</a></h2>
+<p>我们考虑使用<strong>代数表达法</strong>，并进行归纳论证。</p>
+<p>执行链的当前状态由一组量刻画：坐标 <span class="math-inline">x_{mc},y_{mc},z_{mc}</span>，以及视角的三角量 <span class="math-inline">\sin r_x,\cos r_x,\sin r_y,\cos r_y</span>。</p>
+<p><strong>归纳命题</strong>：这些量作为 <span class="math-inline">x</span> 的函数，全部属于 <span class="math-inline">P</span>。</p>
+<p><strong>初始</strong>：<span class="math-inline">x\in P</span>，归纳正确。</p>
+<p>下面逐一处理每种可能的下一条子命令。</p>
+<hr>
+<h2 id="ⅰ6-子命令positioned-a-b-c">Ⅰ.6　子命令：<code>positioned ~a ~b ~c</code><a class="anchor" href="#ⅰ6-子命令positioned-a-b-c" aria-label="链接到此章节">#</a></h2>
+<p>由于 <span class="math-inline">a,b,c\in P</span>，新的坐标</p>
+<div class="math-block">x_{mc}&#39;=x_{mc}+a,\qquad y_{mc}&#39;=y_{mc}+b,\qquad z_{mc}&#39;=z_{mc}+c</div>
+<p>由加法封闭（Ⅰ.4）即得，全部 <span class="math-inline">\in P</span>。</p>
+<p>对于 <code>positioned 0 ~? ~?</code> 等排列组合的情况，同理，此处省略。</p>
+<hr>
+<h2 id="ⅰ7-子命令positioned-a-b-c">Ⅰ.7　子命令：<code>positioned ^a ^b ^c</code><a class="anchor" href="#ⅰ7-子命令positioned-a-b-c" aria-label="链接到此章节">#</a></h2>
+<p>由于先前的 <span class="math-inline">\sin r_y,\sin r_x,\cos r_y,\cos r_x</span> 可以写成一个关于 <span class="math-inline">x</span> 的函数且属于 <span class="math-inline">P</span>，由代数表达法，<code>positioned ^a^b^c</code> 也显然属于 <span class="math-inline">P</span>。</p>
+<p><strong>理由</strong>：局部坐标到世界坐标的变换是这些三角量与 <span class="math-inline">a,b,c</span> 的多项式组合（只含加减乘），而 <span class="math-inline">P</span> 对加减乘封闭（Ⅰ.2、Ⅰ.4）：</p>
+<div class="math-block">\text{新坐标} = \text{旧坐标} + \text{（}\sin r_x,\cos r_x,\sin r_y,\cos r_y\text{ 与 }a,b,c\text{ 的多项式）} \in P</div>
+<hr>
+<h2 id="ⅰ8-子命令facing-a-b-c">Ⅰ.8　子命令：<code>facing a b c</code><a class="anchor" href="#ⅰ8-子命令facing-a-b-c" aria-label="链接到此章节">#</a></h2>
+<p>由于先前的坐标以及 <span class="math-inline">a,b,c</span> 属于 <span class="math-inline">P</span>，由代数表达法，点 <span class="math-inline">P</span> 的新视角值计算公式如下：</p>
+<div class="math-block">\cos r_x=\frac{\sqrt{(x_{mc}-x)^2+(z_{mc}-z)^2}}{\sqrt{(x_{mc}-x)^2+(y_{mc}-y)^2+(z_{mc}-z)^2}}</div>
+<div class="math-block">\sin r_x=\frac{y_{mc}-y}{\sqrt{(x_{mc}-x)^2+(y_{mc}-y)^2+(z_{mc}-z)^2}}</div>
+<div class="math-block">\cos r_y=\frac{z_{mc}-z}{\sqrt{(x_{mc}-x)^2+(z_{mc}-z)^2}}</div>
+<div class="math-block">\sin r_y=\frac{x_{mc}-x}{\sqrt{(x_{mc}-x)^2+(z_{mc}-z)^2}}</div>
+<p>其中 <span class="math-inline">\cos r_y,\sin r_y</span> 是二维归一化 <span class="math-inline">\dfrac{p}{\sqrt{p^2+q^2}}</span>，这正是 <span class="math-inline">P</span> 的原生运算，直接成立。但 <span class="math-inline">\cos r_x,\sin r_x</span> 是三维归一化 <span class="math-inline">\dfrac{p}{\sqrt{p^2+q^2+r^2}}</span>，需要下面的引理。</p>
+<hr>
+<h2 id="ⅰ9-关键引理三维归一化">Ⅰ.9　关键引理：三维归一化<a class="anchor" href="#ⅰ9-关键引理三维归一化" aria-label="链接到此章节">#</a></h2>
+<p><strong>引理</strong>：对任意 <span class="math-inline">p,q,r\in P</span>，都有</p>
+<div class="math-block">\frac{p}{\sqrt{p^2+q^2+r^2}}\in P</div>
+<p><strong>证明</strong>：</p>
+<ol>
+<li>分子 <span class="math-inline">p\in P</span>，显然成立。</li>
+<li>对分母，作嵌套改写：</li>
+</ol>
+<div class="math-block">\sqrt{p^2+q^2+r^2}=\sqrt{p^2+\left(\sqrt{q^2+r^2}\right)^2}</div>
+<ol>
+<li>容易验证 <span class="math-inline">\sqrt{q^2+r^2}\in P</span>——取两次倒数即可：由原生运算 <span class="math-inline">\dfrac{q\cdot c}{\sqrt{q^2+r^2}}\in P</span>，配合 Ⅰ.3 的取倒数与 Ⅰ.2 的乘法即得。</li>
+<li>于是显然 <span class="math-inline">\sqrt{p^2+q^2+r^2}\in P</span>。由除法（Ⅰ.3），证明了上述引理。<span class="math-inline">\blacksquare</span></li>
+</ol>
+<p>于是可证 <span class="math-inline">\cos r_x,\sin r_x,\cos r_y,\sin r_y\in P</span>。</p>
+<hr>
+<h2 id="ⅰ10-子命令facing-p-q-r-及排列组合情况">Ⅰ.10　子命令：<code>facing ~p ~q ~r</code> 及排列组合情况<a class="anchor" href="#ⅰ10-子命令facing-p-q-r-及排列组合情况" aria-label="链接到此章节">#</a></h2>
+<p>对于 <code>facing ~ p q</code>、<code>facing ~p ~q ~r</code> 等排列组合情况同理。</p>
+<p>若下一子命令是 <code>facing ^p^q^r</code>，新的视角三角量由以下公式给出：</p>
+<div class="math-block">n_{\sin r_y,\text{new}}=-\frac{a\cos r_y-\big(b\sin r_x+c\cos r_x\big)\sin r_y}{\sqrt{a^2+\big(b\sin r_x+c\cos r_x\big)^2}}</div>
+<div class="math-block">n_{\cos r_y,\text{new}}=\frac{a\sin r_y+\big(b\sin r_x+c\cos r_x\big)\cos r_y}{\sqrt{a^2+\big(b\sin r_x+c\cos r_x\big)^2}}</div>
+<div class="math-block">n_{\sin r_x,\text{new}}=\frac{c\sin r_x-b\cos r_x}{\sqrt{a^2+b^2+c^2}}</div>
+<div class="math-block">n_{\cos r_x,\text{new}}=\frac{\sqrt{a^2+\big(b\sin r_x+c\cos r_x\big)^2}}{\sqrt{a^2+b^2+c^2}}</div>
+<p>四式的分子均为已知 <span class="math-inline">P</span> 元素的多项式；分母是二维形 <span class="math-inline">\sqrt{a^2+(\cdot)^2}</span>（原生运算）与三维形 <span class="math-inline">\sqrt{a^2+b^2+c^2}</span>（Ⅰ.9 引理）。再由除法封闭（Ⅰ.3），同理可证新的 <span class="math-inline">\sin r_x,\cos r_x,\sin r_y,\cos r_y\in P</span>。</p>
+<p>对于 <code>facing ~ p q</code>，<code>facing ~p ~q ~r</code> 等排列组合情况同理。</p>
+<hr>
+<h2 id="ⅰ11-子命令rotated-a-b">Ⅰ.11　子命令：<code>rotated ~a ~b</code><a class="anchor" href="#ⅰ11-子命令rotated-a-b" aria-label="链接到此章节">#</a></h2>
+<p>其中 <span class="math-inline">a,b\in P</span>。由<strong>三角函数的加减和公式</strong>，显然成立：</p>
+<div class="math-block">\sin(r+a)=\sin r\cos a+\cos r\sin a</div>
+<div class="math-block">\cos(r+a)=\cos r\cos a-\sin r\sin a</div>
+<p>右端只含旧三角量与 <span class="math-inline">\sin a,\cos a</span>（它们是 <span class="math-inline">t</span> 无关的 <span class="math-inline">x</span> 的函数，属 <span class="math-inline">P</span>）的加减乘，由 Ⅰ.2、Ⅰ.4 封闭。</p>
+<hr>
+<h2 id="结论">结论<a class="anchor" href="#结论" aria-label="链接到此章节">#</a></h2>
+<p>每条子命令执行后，坐标与四个三角量仍全部属于 <span class="math-inline">P</span>，归纳完成。</p>
+<div class="math-block">\boxed{\text{集合 }P\text{ 包含 \texttt{execute} 可生成的所有元素。}}</div>
+<hr>
+<h1 id="part-2-sqrtx-notin-p">Part. 2 <span class="math-inline">\sqrt{x} \notin P</span><a class="anchor" href="#part-2-sqrtx-notin-p" aria-label="链接到此章节">#</a></h1>
+<h2 id="0-约定与目标">0. 约定与目标<a class="anchor" href="#0-约定与目标" aria-label="链接到此章节">#</a></h2>
+<p><span class="math-inline">P_n</span> 的元素是 <span class="math-inline">(x,t)\in[0,\infty)^2</span> 上的<strong>部分函数</strong>：<span class="math-inline">x</span> 指投影 <span class="math-inline">(x,t)\mapsto x</span>（全定义），<span class="math-inline">g(t)</span> 指任意 <span class="math-inline">g:[0,\infty)\to\mathbb R</span>（对 <span class="math-inline">x</span> 为常数，全定义）。对 <span class="math-inline">f\in P_n</span> 与固定 <span class="math-inline">t</span>，记截面<br>
+<div class="math-block">f_t(x)=f(x,t),\qquad \operatorname{dom}f_t\subseteq[0,\infty).</div><br>
+合成项的定义域按逐点约定：<span class="math-inline">\operatorname{dom}(c-s)_t=\operatorname{dom}c_t\cap\operatorname{dom}s_t</span>；<br>
+<div class="math-block">\operatorname{dom}\Big(\tfrac{sc}{\sqrt{s^2+b^2}}\Big)_t=\operatorname{dom}s_t\cap\operatorname{dom}b_t\cap\operatorname{dom}c_t</div><br>
+（题设要求分母在此逐点非零）。对极限项 <span class="math-inline">h(x)=\lim_{t\to+\infty}s(x,t)</span>，<br>
+<div class="math-block">\operatorname{dom}h=\{x:\exists T(x)&lt;\infty,\ s(x,t)\ \text{对}\ t\ge T(x)\ \text{有定义，且}\ t\to+\infty\ \text{时收敛}\},</div><br>
+<span class="math-inline">h</span> 对 <span class="math-inline">t</span> 为常数，故 <span class="math-inline">\operatorname{dom}h_t=\operatorname{dom}h</span>。</p>
+<p>目标：函数 <span class="math-inline">\sigma:[0,\infty)\to\mathbb R,\ \sigma(x)=\sqrt x</span> 不属于 <span class="math-inline">P</span>。</p>
+<h2 id="1-不变量全实见证多项式">1. 不变量：全实见证多项式<a class="anchor" href="#1-不变量全实见证多项式" aria-label="链接到此章节">#</a></h2>
+<p><strong>定义 1.</strong> 记 <span class="math-inline">\mathcal T\subseteq\mathbb R[x,y]\setminus\{0\}</span> 为满足下述条件的多项式集合：对<strong>每个</strong> <span class="math-inline">x_0\in\mathbb R</span>，若 <span class="math-inline">A(x_0,y)\not\equiv0</span>，则 <span class="math-inline">A(x_0,y)\in\mathbb C[y]</span> 的所有根都是实数。</p>
+<p><strong>定义 2.</strong> 设 <span class="math-inline">D\subseteq\mathbb R</span>，<span class="math-inline">f:D\to\mathbb R</span>。称 <span class="math-inline">A\in\mathcal T</span> 是 <span class="math-inline">f</span> 的<strong>见证</strong>，若 <span class="math-inline">A(x,f(x))=0</span> 对一切 <span class="math-inline">x\in D</span> 成立。称 <span class="math-inline">f</span> 是 <span class="math-inline">d</span>-<strong>TR</strong> 若存在次数 <span class="math-inline">\le d</span> 的见证。</p>
+<p>两个平凡但要用的事实：</p>
+<ul>
+<li><strong>(R1) 限制封闭</strong>：<span class="math-inline">A</span> 是 <span class="math-inline">f</span> 在 <span class="math-inline">D</span> 上的见证 <span class="math-inline">\Rightarrow</span> 对任意 <span class="math-inline">D&#39;\subseteq D</span>，<span class="math-inline">A</span> 是 <span class="math-inline">f|_{D&#39;}</span> 的见证。（这是第 2 点修补能成立的技术基础。）</li>
+<li><strong>(R2) 缩放封闭</strong>：<span class="math-inline">\lambda\ne0\Rightarrow\lambda A\in\mathcal T</span>，且仍是见证。</li>
+</ul>
+<p><strong>注.</strong> <span class="math-inline">y^2-x\notin\mathcal T</span>：在 <span class="math-inline">x_0=-1</span> 处得 <span class="math-inline">y^2+1</span>，根为 <span class="math-inline">\pm i</span>。</p>
+<h2 id="2-引理-1根的连续依赖及推论">2. 引理 1（根的连续依赖）及推论<a class="anchor" href="#2-引理-1根的连续依赖及推论" aria-label="链接到此章节">#</a></h2>
+<p><strong>引理 1.</strong> 设 <span class="math-inline">p_k,p\in\mathbb C[y]</span> 次数一致 <span class="math-inline">\le d</span>，系数向量 <span class="math-inline">p_k\to p</span>，且 <span class="math-inline">\deg p=m\ge1</span>。则 <span class="math-inline">p</span> 的每个根都是某列 <span class="math-inline">p_k</span> 的根之极限。</p>
+<p><em>证明.</em> 设 <span class="math-inline">p(\alpha)=0</span>。取 <span class="math-inline">\varepsilon&gt;0</span> 使 <span class="math-inline">p</span> 在 <span class="math-inline">\partial B(\alpha,\varepsilon)</span> 上无零点，令 <span class="math-inline">\delta=\min_{\partial B}|p|&gt;0</span>。系数收敛蕴含 <span class="math-inline">p_k\to p</span> 在紧集 <span class="math-inline">\overline B</span> 上一致，故 <span class="math-inline">k</span> 大时 <span class="math-inline">|p_k-p|&lt;\delta\le|p|</span> 于 <span class="math-inline">\partial B</span>。由 Rouché，<span class="math-inline">p_k</span> 在 <span class="math-inline">B(\alpha,\varepsilon)</span> 内的零点个数与 <span class="math-inline">p</span> 相同，<span class="math-inline">\ge1</span>。令 <span class="math-inline">\varepsilon\downarrow0</span> 并取对角子列即得。<span class="math-inline">\square</span></p>
+<p><strong>推论 1a（由稠密集判定 <span class="math-inline">\mathcal T</span>）.</strong> 设 <span class="math-inline">A\in\mathbb R[x,y]\setminus\{0\}</span>，<span class="math-inline">E\subseteq\mathbb R</span> 稠密（例如余有限），且对每个 <span class="math-inline">x_0\in E</span> 有 <span class="math-inline">A(x_0,\cdot)\not\equiv0</span> 且其根全实。则 <span class="math-inline">A\in\mathcal T</span>。</p>
+<p><em>证明.</em> 设 <span class="math-inline">x_0</span> 任意且 <span class="math-inline">A(x_0,\cdot)\not\equiv0</span>。若 <span class="math-inline">\deg A(x_0,\cdot)=0</span> 则无根，平凡。否则取 <span class="math-inline">E\ni x_j\to x_0</span>；系数是 <span class="math-inline">x</span> 的多项式故 <span class="math-inline">A(x_j,\cdot)\to A(x_0,\cdot)</span>，次数一致有界。由引理 1，<span class="math-inline">A(x_0,\cdot)</span> 的每个根是实数序列的极限，故为实数。<span class="math-inline">\square</span></p>
+<p><strong>推论 1b（<span class="math-inline">\mathcal T</span> 在系数极限下封闭）.</strong> 设 <span class="math-inline">A_k\in\mathcal T</span>，<span class="math-inline">\deg A_k\le d</span>，系数向量收敛到 <span class="math-inline">A^*\ne0</span>。则 <span class="math-inline">A^*\in\mathcal T</span>。</p>
+<p><em>证明.</em> 取 <span class="math-inline">x_0</span> 使 <span class="math-inline">A^*(x_0,\cdot)\not\equiv0</span>。若有无穷多 <span class="math-inline">k</span> 使 <span class="math-inline">A_k(x_0,\cdot)\equiv0</span>，沿该子列取极限得 <span class="math-inline">A^*(x_0,\cdot)\equiv0</span>，矛盾；故对几乎所有 <span class="math-inline">k</span>，<span class="math-inline">A_k(x_0,\cdot)\not\equiv0</span>，根全实。由引理 1（若 <span class="math-inline">\deg A^*(x_0,\cdot)\ge1</span>）得结论。<span class="math-inline">\square</span></p>
+<h2 id="3-引理-2三种代数运算保持-tr">3. 引理 2（三种代数运算保持 TR）<a class="anchor" href="#3-引理-2三种代数运算保持-tr" aria-label="链接到此章节">#</a></h2>
+<p><strong>引理 2.</strong> 设 <span class="math-inline">D\subseteq\mathbb R</span> <strong>无限</strong>，<span class="math-inline">f,g:D\to\mathbb R</span> 分别有次数 <span class="math-inline">\le d</span> 的见证 <span class="math-inline">P(x,z),Q(x,w)</span>。则</p>
+<div class="math-block">f-g,\qquad fg,\qquad \sqrt{f^2+g^2}</div>
+<p>在 <span class="math-inline">D</span> 上、以及（当 <span class="math-inline">g</span> 在 <span class="math-inline">D</span> 上逐点非零时）<span class="math-inline">f/g</span> 在 <span class="math-inline">D</span> 上，都是 <span class="math-inline">C(d)</span>-TR，其中 <span class="math-inline">C(d)</span> 只依赖 <span class="math-inline">d</span>。</p>
+<p><em>证明.</em> 记四种情形的关系多项式<br>
+<div class="math-block">N(x,y,z,w)=\;y-z+w,\quad y-zw,\quad y^2-z^2-w^2,\quad yw-z .</div></p>
+<p><strong>第 0 步（预处理与次数下界）.</strong> 先证 <span class="math-inline">\deg_zP\ge1</span>：否则 <span class="math-inline">P=p(x)</span>，而 <span class="math-inline">p(x)=0</span> 于无限集 <span class="math-inline">D</span>，故 <span class="math-inline">p\equiv0</span>，与 <span class="math-inline">P\ne0</span> 矛盾。同理 <span class="math-inline">\deg_wQ\ge1</span>。</p>
+<p>在<strong>商</strong>的情形另作一步预处理（这是修补原证明&quot;<span class="math-inline">g\equiv0</span>&quot;含糊之处的关键）：设 <span class="math-inline">k\ge0</span> 最大使 <span class="math-inline">w^k\mid Q</span>，令 <span class="math-inline">\tilde Q=Q/w^k</span>。则</p>
+<ul>
+<li><span class="math-inline">\tilde Q(x,g(x))=0</span> 于 <span class="math-inline">D</span>（因 <span class="math-inline">g(x)\ne0</span>）；</li>
+<li><span class="math-inline">\tilde Q\in\mathcal T</span>：对每个 <span class="math-inline">x_0</span>，<span class="math-inline">\tilde Q(x_0,\cdot)</span> 的根集含于 <span class="math-inline">Q(x_0,\cdot)</span> 的根集（当 <span class="math-inline">\tilde Q(x_0,\cdot)\not\equiv0</span> 时 <span class="math-inline">Q(x_0,\cdot)=w^k\tilde Q(x_0,\cdot)\not\equiv0</span>）；</li>
+<li><span class="math-inline">\tilde Q(x,0)\not\equiv0</span>（否则 <span class="math-inline">w\mid\tilde Q</span>）。</li>
+</ul>
+<p>其余三种情形取 <span class="math-inline">\tilde Q=Q</span>。以下一律用 <span class="math-inline">\tilde Q</span>，并记 <span class="math-inline">q=\deg_w\tilde Q\ge1</span>（同上论证）。</p>
+<p><strong>第 1 步（构造）.</strong> 令<br>
+<div class="math-block">B(x,y,z)=\operatorname{Res}_w\big(\tilde Q(x,w),\,N(x,y,z,w)\big),\qquad
+A(x,y)=\operatorname{Res}_z\big(P(x,z),\,B(x,y,z)\big),</div><br>
+其中结式按 <span class="math-inline">\deg_w\tilde Q=q</span>、<span class="math-inline">\deg_wN=e</span> 与 <span class="math-inline">\deg_zP</span>、<span class="math-inline">\deg_zB</span> 的 Sylvester 矩阵定义。由 Sylvester 行列式的次数估计，<span class="math-inline">\deg A\le C(d)</span>，<span class="math-inline">C</span> 只依赖 <span class="math-inline">d</span>。</p>
+<p><strong>第 2 步（<span class="math-inline">A</span> 消去正确的点）.</strong> 结式属于消去理想：存在 <span class="math-inline">\gamma,\delta</span> 使 <span class="math-inline">B=\gamma\tilde Q+\delta N</span>，存在 <span class="math-inline">\alpha,\beta</span> 使 <span class="math-inline">A=\alpha P+\beta B</span>。取 <span class="math-inline">x\in D</span>，<span class="math-inline">z=f(x)</span>，<span class="math-inline">w=g(x)</span>，<span class="math-inline">y=\varphi(f(x),g(x))</span>（对平方根情形取正根）。则 <span class="math-inline">\tilde Q(x,w)=0</span> 且 <span class="math-inline">N(x,y,z,w)=0</span>，故 <span class="math-inline">B(x,y,z)=0</span>；又 <span class="math-inline">P(x,z)=0</span>，故<br>
+<div class="math-block">A\big(x,\varphi(f(x),g(x))\big)=0\qquad(x\in D).</div></p>
+<p><strong>第 3 步（好点集 <span class="math-inline">E</span>）.</strong> 令<br>
+<div class="math-block">E=\{x_0\in\mathbb R:\ \operatorname{lc}_zP(x_0)\ne0,\ \operatorname{lc}_w\tilde Q(x_0)\ne0,\ \tilde Q(x_0,0)\ne0\ (\text{仅商情形})\}.</div><br>
+这是余有限集。对 <span class="math-inline">x_0\in E</span>，由于两个首项系数非零，Sylvester 行列式的<strong>特化是忠实的</strong>：若特化后实际次数下降，则<br>
+<div class="math-block">A(x_0,y_0)=\operatorname{lc}_zP(x_0)^{\,\ast}\cdot\operatorname{Res}_z\big(P(x_0,\cdot),B(x_0,y_0,\cdot)\big),</div><br>
+（内层同理带 <span class="math-inline">\operatorname{lc}_w\tilde Q(x_0)</span> 的非零幂），故<strong>是否为零</strong>与特化后的结式一致。以下只用&quot;是否为零&quot;。</p>
+<p><strong>第 4 步（根全实）.</strong> 固定 <span class="math-inline">x_0\in E</span>，设 <span class="math-inline">P(x_0,\cdot)</span> 的根为 <span class="math-inline">z_1,\dots,z_p</span>（<span class="math-inline">p\ge1</span>，全实），<span class="math-inline">\tilde Q(x_0,\cdot)</span> 的根为 <span class="math-inline">w_1,\dots,w_q</span>（<span class="math-inline">q\ge1</span>，全实，且商情形下<strong>全非零</strong>）。设 <span class="math-inline">y_0\in\mathbb C</span> 满足 <span class="math-inline">A(x_0,y_0)=0</span>。</p>
+<p><em>(4a) 取出 <span class="math-inline">z_i</span>.</em> 由第 3 步，<span class="math-inline">\operatorname{Res}_z\big(P(x_0,\cdot),B(x_0,y_0,\cdot)\big)=0</span>，且 <span class="math-inline">\operatorname{lc}_zP(x_0)\ne0</span>，<span class="math-inline">\deg_zP(x_0,\cdot)=p\ge1</span>。</p>
+<ul>
+<li>若 <span class="math-inline">\deg_zB(x_0,y_0,\cdot)\ge1</span>：结式为零 <span class="math-inline">\Rightarrow</span> 两者有公共根，即存在 <span class="math-inline">i</span> 使 <span class="math-inline">B(x_0,y_0,z_i)=0</span>。</li>
+<li>若 <span class="math-inline">B(x_0,y_0,\cdot)</span> 是非零常数 <span class="math-inline">c</span>：结式 <span class="math-inline">=c^{\,p}\ne0</span>，与假设矛盾，不发生。</li>
+<li>若 <span class="math-inline">B(x_0,y_0,\cdot)\equiv0</span>：则对每个 <span class="math-inline">i</span> 都有 <span class="math-inline">B(x_0,y_0,z_i)=0</span>，取 <span class="math-inline">i=1</span>。</li>
+</ul>
+<p>总之存在实数 <span class="math-inline">z:=z_i</span> 使 <span class="math-inline">B(x_0,y_0,z)=0</span>。</p>
+<p><em>(4b) 取出 <span class="math-inline">w_j</span>.</em> 即 <span class="math-inline">\operatorname{Res}_w\big(\tilde Q(x_0,\cdot),N(x_0,y_0,z,\cdot)\big)=0</span>，<span class="math-inline">\operatorname{lc}_w\tilde Q(x_0)\ne0</span>，<span class="math-inline">q\ge1</span>。考察 <span class="math-inline">\deg_wN(x_0,y_0,z,\cdot)</span>：</p>
+<ul>
+<li>差：<span class="math-inline">N=y_0-z+w</span>，次数 <span class="math-inline">1</span>；</li>
+<li>平方根：<span class="math-inline">N=y_0^2-z^2-w^2</span>，次数 <span class="math-inline">2</span>；</li>
+<li>乘积：<span class="math-inline">N=y_0-zw</span>，若 <span class="math-inline">z\ne0</span> 次数 <span class="math-inline">1</span>；若 <span class="math-inline">z=0</span> 则 <span class="math-inline">N\equiv y_0</span>（常数），结式 <span class="math-inline">=y_0^{\,q}=0\Rightarrow y_0=0\in\mathbb R</span>，已完成；</li>
+<li>商：<span class="math-inline">N=y_0w-z</span>，若 <span class="math-inline">y_0\ne0</span> 次数 <span class="math-inline">1</span>；若 <span class="math-inline">y_0=0</span> 则 <span class="math-inline">y_0</span> 已是实数，完成。</li>
+</ul>
+<p>故在未完成的情形下 <span class="math-inline">\deg_wN\ge1</span>，结式为零给出公共根：存在 <span class="math-inline">j</span> 使 <span class="math-inline">N(x_0,y_0,z,w_j)=0</span>，且 <span class="math-inline">z,w_j\in\mathbb R</span>。</p>
+<p><em>(4c) 结论.</em> 分情形：</p>
+<ul>
+<li>差：<span class="math-inline">y_0=z-w_j\in\mathbb R</span>；</li>
+<li>乘积：<span class="math-inline">y_0=zw_j\in\mathbb R</span>；</li>
+<li>商：<span class="math-inline">y_0w_j=z</span>，而由预处理 <span class="math-inline">w_j\ne0</span>，故 <span class="math-inline">y_0=z/w_j\in\mathbb R</span>；</li>
+<li>平方根：<span class="math-inline">y_0^2=z^2+w_j^2\ge0</span>，故 <span class="math-inline">y_0=\pm\sqrt{z^2+w_j^2}\in\mathbb R</span>。</li>
+</ul>
+<p><strong>这一步是&quot;分母只许是平方和的平方根&quot;这一限制起作用的唯一位置</strong>：被开方量在任一实点、任一共轭上都非负。</p>
+<p><strong>第 5 步（<span class="math-inline">A\not\equiv0</span>）.</strong> 仍固定 <span class="math-inline">x_0\in E</span>。第 4 步表明：<span class="math-inline">A(x_0,\cdot)</span> 的任一根 <span class="math-inline">y_0</span> 必满足某个方程 <span class="math-inline">N(x_0,y_0,z_i,w_j)=0</span>（或落入 (4b) 中那两个显式情形 <span class="math-inline">y_0=0</span>）。而对每对 <span class="math-inline">(i,j)</span>，<span class="math-inline">N(x_0,\cdot,z_i,w_j)</span> 作为 <span class="math-inline">y</span> 的多项式<strong>不恒为零</strong>：差、乘积情形为 <span class="math-inline">y-</span>常数；商情形为 <span class="math-inline">w_jy-z_i</span> 且 <span class="math-inline">w_j\ne0</span>；平方根情形为 <span class="math-inline">y^2-(z_i^2+w_j^2)</span>。故 <span class="math-inline">A(x_0,\cdot)</span> 的根落在一个至多 <span class="math-inline">2pq+1</span> 元的有限集中，于是 <span class="math-inline">A(x_0,\cdot)\not\equiv0</span>，从而 <span class="math-inline">A\not\equiv0</span>。</p>
+<p><strong>第 6 步.</strong> 由第 4、5 步与推论 1a（取稠密的余有限集 <span class="math-inline">E</span>）得 <span class="math-inline">A\in\mathcal T</span>；由第 2 步 <span class="math-inline">A</span> 是 <span class="math-inline">\varphi(f,g)</span> 在 <span class="math-inline">D</span> 上的见证。<span class="math-inline">\square</span></p>
+<h2 id="4-引理-3逐点极限保持-tr">4. 引理 3（逐点极限保持 TR）<a class="anchor" href="#4-引理-3逐点极限保持-tr" aria-label="链接到此章节">#</a></h2>
+<p><strong>引理 3.</strong> 设 <span class="math-inline">s</span> 是 <span class="math-inline">(x,t)</span> 的部分函数，<span class="math-inline">h(x)=\lim_{t\to+\infty}s(x,t)</span>，<span class="math-inline">\operatorname{dom}h</span> <strong>不可数</strong>。设存在 <span class="math-inline">d</span> 与 <span class="math-inline">n_0</span>，使对每个 <span class="math-inline">t\ge n_0</span>，截面 <span class="math-inline">s_t</span> 在其<strong>全体</strong>定义域 <span class="math-inline">\operatorname{dom}s_t</span> 上有次数 <span class="math-inline">\le d</span> 的见证 <span class="math-inline">A_t</span>。则 <span class="math-inline">h</span> 在 <span class="math-inline">\operatorname{dom}h</span> 全体上是 <span class="math-inline">d</span>-TR。</p>
+<p><em>证明.</em> 由 (R2) 可设 <span class="math-inline">\|A_t\|=1</span>（系数向量欧氏范数）。次数 <span class="math-inline">\le d</span> 的二元实多项式构成有限维空间，单位球面紧，故存在 <span class="math-inline">t_k\to+\infty</span>（<span class="math-inline">t_k\ge n_0</span>）使 <span class="math-inline">A_{t_k}\to A^*</span>，<span class="math-inline">\|A^*\|=1</span>，故 <span class="math-inline">A^*\ne0</span>；由推论 1b，<span class="math-inline">A^*\in\mathcal T</span>。</p>
+<p>取任意 <span class="math-inline">x\in\operatorname{dom}h</span>。由定义存在 <span class="math-inline">T(x)&lt;\infty</span>，使 <span class="math-inline">t\ge T(x)</span> 时 <span class="math-inline">s(x,t)</span> 有定义且 <span class="math-inline">s(x,t)\to h(x)</span>。取 <span class="math-inline">K</span> 使 <span class="math-inline">k\ge K\Rightarrow t_k\ge T(x)</span>；则 <span class="math-inline">x\in\operatorname{dom}s_{t_k}</span>，故 <span class="math-inline">A_{t_k}(x,s(x,t_k))=0</span>。多项式在（系数, <span class="math-inline">x</span>, <span class="math-inline">y</span>）上连续，令 <span class="math-inline">k\to\infty</span> 得<br>
+<div class="math-block">A^*(x,h(x))=0 .</div><br>
+注意这对 <span class="math-inline">\operatorname{dom}h</span> 的<strong>每一点</strong>成立，不只是某个子集。<span class="math-inline">\square</span></p>
+<h2 id="5-归纳命题">5. 归纳命题<a class="anchor" href="#5-归纳命题" aria-label="链接到此章节">#</a></h2>
+<p><strong>命题.</strong> 对每个 <span class="math-inline">n</span> 与每个 <span class="math-inline">f\in P_n</span> 存在 <span class="math-inline">d(f)&lt;\infty</span>，使得</p>
+<div class="math-block">(\star)\qquad \text{对每个 }t\ge0,\ \text{若 }\operatorname{dom}f_t\text{ 不可数，则 }f_t\text{ 在 }\operatorname{dom}f_t\text{ 上有次数}\le d(f)\text{ 的见证}.</div>
+<p><em>证明（对 <span class="math-inline">n</span> 归纳）.</em></p>
+<p><strong><span class="math-inline">n=0</span>.</strong> <span class="math-inline">f=x</span>：取 <span class="math-inline">y-x</span>，对每个 <span class="math-inline">x_0</span> 唯一根 <span class="math-inline">x_0</span> 实，属 <span class="math-inline">\mathcal T</span>，<span class="math-inline">d=1</span>。<span class="math-inline">f=g(t)</span>：对固定 <span class="math-inline">t</span> 取 <span class="math-inline">y-g(t)\in\mathcal T</span>，<span class="math-inline">d=1</span>。</p>
+<p><strong>差与商合成.</strong> 设 <span class="math-inline">f=c-s</span>，<span class="math-inline">c,s\in P_n</span>，<span class="math-inline">t</span> 使 <span class="math-inline">D:=\operatorname{dom}f_t=\operatorname{dom}c_t\cap\operatorname{dom}s_t</span> 不可数。则 <span class="math-inline">\operatorname{dom}c_t,\operatorname{dom}s_t\supseteq D</span> 也不可数，由归纳假设各有见证；由 (R1) 限制到 <span class="math-inline">D</span> 仍是见证。<span class="math-inline">D</span> 不可数故无限，由引理 2 得 <span class="math-inline">f_t</span> 在 <span class="math-inline">D</span> 上有次数 <span class="math-inline">\le C(\max(d(c),d(s)))</span> 的见证，界与 <span class="math-inline">t</span> 无关。</p>
+<p>设 <span class="math-inline">f=\dfrac{s\,c}{\sqrt{s^2+b^2}}</span>，<span class="math-inline">t</span> 使 <span class="math-inline">D:=\operatorname{dom}f_t</span> 不可数。则 <span class="math-inline">\operatorname{dom}s_t,\operatorname{dom}b_t,\operatorname{dom}c_t\supseteq D</span> 不可数，归纳假设 + (R1) 给出 <span class="math-inline">s_t,b_t,c_t</span> 在 <span class="math-inline">D</span> 上的见证。分三步用引理 2：<span class="math-inline">u=\sqrt{s_t^2+b_t^2}</span> 在 <span class="math-inline">D</span> 上 TR；<span class="math-inline">v=s_tc_t</span> 在 <span class="math-inline">D</span> 上 TR；由题设 <span class="math-inline">u</span> 在 <span class="math-inline">D</span> 上逐点非零，故 <span class="math-inline">f_t=v/u</span> 在 <span class="math-inline">D</span> 上 TR。次数界为 <span class="math-inline">C</span> 三次迭代，只依赖 <span class="math-inline">d(s),d(b),d(c)</span>，与 <span class="math-inline">t</span> 无关。</p>
+<p>（<strong>这里正是修补点 1</strong>：把 <span class="math-inline">(\star)</span> 写成&quot;若定义域不可数则……&quot;的条件形式后，子项定义域包含合成项定义域，故大定义域的假设自动向下传递，无需另作假设。）</p>
+<p><strong>极限.</strong> 设 <span class="math-inline">f=h</span>，<span class="math-inline">h(x)=\lim_{t\to+\infty}s(x,t)</span>，<span class="math-inline">s\in P_n</span>，且 <span class="math-inline">\operatorname{dom}h</span> 不可数（<span class="math-inline">h</span> 对 <span class="math-inline">t</span> 为常数，故所有截面同为 <span class="math-inline">h</span>）。令<br>
+<div class="math-block">E_n=\{x\in\operatorname{dom}h:\ T(x)\le n\}\quad(n\in\mathbb N),\qquad \operatorname{dom}h=\bigcup_{n\in\mathbb N}E_n .</div><br>
+可数并中必有一项不可数：取 <span class="math-inline">n_0</span> 使 <span class="math-inline">E_{n_0}</span> 不可数。对每个 <span class="math-inline">t\ge n_0</span> 有 <span class="math-inline">\operatorname{dom}s_t\supseteq E_{n_0}</span>，故 <span class="math-inline">\operatorname{dom}s_t</span> 不可数，由归纳假设 <span class="math-inline">s_t</span> 在其全体定义域上有次数 <span class="math-inline">\le d(s)</span> 的见证。于是引理 3 适用，<span class="math-inline">h</span> 在 <span class="math-inline">\operatorname{dom}h</span> 上是 <span class="math-inline">d(s)</span>-TR。<span class="math-inline">\square</span></p>
+<p>（<strong>这里是修补点 2</strong>：<span class="math-inline">E_{n_0}</span> 只用来保证&quot;对一切大 <span class="math-inline">t</span>，<span class="math-inline">\operatorname{dom}s_t</span> 足够大以便使用归纳假设&quot;；一旦得到 <span class="math-inline">A_{t_k}</span> 在 <span class="math-inline">\operatorname{dom}s_{t_k}</span> <strong>全体</strong>上成立，引理 3 的逐点论证就覆盖 <span class="math-inline">\operatorname{dom}h</span> 的所有点，故结论仍是 <span class="math-inline">(\star)</span> 的形式，归纳得以闭合。这也说明为何 <span class="math-inline">(\star)</span> 必须要求&quot;见证在整个截面定义域上成立&quot;，而不能允许可数例外集。）</p>
+<h2 id="6-结论">6. 结论<a class="anchor" href="#6-结论" aria-label="链接到此章节">#</a></h2>
+<p>反设 <span class="math-inline">\sigma\in P</span>，即函数 <span class="math-inline">\sigma:[0,\infty)\to\mathbb R,\ \sigma(x)=\sqrt x</span> 属于某个 <span class="math-inline">P_n</span>。它对 <span class="math-inline">t</span> 为常数，每个截面就是 <span class="math-inline">\sigma</span> 本身，定义域 <span class="math-inline">[0,\infty)</span> 不可数。由命题，存在 <span class="math-inline">A^*\in\mathcal T</span> 使<br>
+<div class="math-block">A^*(x,\sqrt x)=0\qquad(\forall x\ge0).</div></p>
+<p><strong>(a) <span class="math-inline">(y^2-x)\mid A^*</span>.</strong> 代入 <span class="math-inline">x=u^2</span>：<span class="math-inline">A^*(u^2,u)=0</span> 对一切 <span class="math-inline">u\ge0</span>，是一元多项式在无限集上为零，故 <span class="math-inline">A^*(u^2,u)\equiv0</span> 于 <span class="math-inline">\mathbb R[u]</span>。环同构 <span class="math-inline">\mathbb R[x,y]/(y^2-x)\xrightarrow{\ \sim\ }\mathbb R[y]</span>（<span class="math-inline">x\mapsto y^2,\ y\mapsto y</span>）把 <span class="math-inline">A^*</span> 的像送到 <span class="math-inline">A^*(y^2,y)=0</span>，故 <span class="math-inline">A^*\in(y^2-x)</span>。</p>
+<p><strong>(b) 剥去 <span class="math-inline">(x+1)</span> 的因子.</strong> 取 <span class="math-inline">m\ge0</span> 最大使 <span class="math-inline">(x+1)^m\mid A^*</span>，令 <span class="math-inline">R=A^*/(x+1)^m</span>，则 <span class="math-inline">R(-1,y)\not\equiv0</span>。对 <span class="math-inline">x_0\ne-1</span>，<span class="math-inline">A^*(x_0,\cdot)=(x_0+1)^mR(x_0,\cdot)</span> 与 <span class="math-inline">R(x_0,\cdot)</span> 相差非零常数，故 <span class="math-inline">R(x_0,\cdot)</span> 不恒零时根全实；由推论 1a（取余有限集 <span class="math-inline">E=\mathbb R\setminus\{-1\}</span>，其中还需排除有限多个使 <span class="math-inline">R(x_0,\cdot)\equiv0</span> 的 <span class="math-inline">x_0</span>——这样的 <span class="math-inline">x_0</span> 只有有限个，否则 <span class="math-inline">R\equiv0</span>）得 <span class="math-inline">R\in\mathcal T</span>。又 <span class="math-inline">y^2-x</span> 在 <span class="math-inline">\mathbb R[x,y]</span> 中不可约（关于 <span class="math-inline">y</span> 二次、无 <span class="math-inline">\mathbb R[x]</span> 中根，因 <span class="math-inline">x</span> 非平方）且与 <span class="math-inline">x+1</span> 不相伴，故 <span class="math-inline">(y^2-x)\mid R</span>。</p>
+<p><strong>(c) 矛盾.</strong> 写 <span class="math-inline">R=(y^2-x)S</span>。则 <span class="math-inline">R(-1,y)=(y^2+1)S(-1,y)</span>。由 <span class="math-inline">R(-1,y)\not\equiv0</span> 得 <span class="math-inline">S(-1,y)\not\equiv0</span>，故 <span class="math-inline">R(-1,\cdot)</span> 是非零多项式且被 <span class="math-inline">y^2+1</span> 整除，从而有非实根 <span class="math-inline">\pm i</span>。这与 <span class="math-inline">R\in\mathcal T</span> 矛盾。</p>
+<p>因此 <span class="math-inline">\sqrt x\notin P</span>。<span class="math-inline">\blacksquare</span></p>
+
+      
+    </article>
+
+    
+        <nav class="section-pages" aria-label="本章大标题导览">
+          <div class="section-pages-title">📍 本页大纲及快捷分页</div>
+          <div class="section-grid">
+            
+              <a href="#约定" class="section-card">
+                <div class="h">1. 约定</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ1-先证-p-包含-x2" class="section-card">
+                <div class="h">2. Ⅰ.1　先证 $P$ 包含 $x^2$</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ2-对任意-mn-in-p都有-mn-in-p" class="section-card">
+                <div class="h">3. Ⅰ.2　对任意 $m,n\in P$，都有 $mn\in P$</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ3-对任意-mn-in-p都有-m-n-in-p" class="section-card">
+                <div class="h">4. Ⅰ.3　对任意 $m,n\in P$，都有 $m/n\in P$</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ4-加减法" class="section-card">
+                <div class="h">5. Ⅰ.4　加减法</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ5-代数表达法与归纳框架" class="section-card">
+                <div class="h">6. Ⅰ.5　代数表达法与归纳框架</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ6-子命令positioned-a-b-c" class="section-card">
+                <div class="h">7. Ⅰ.6　子命令：positioned a b c</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ7-子命令positioned-a-b-c" class="section-card">
+                <div class="h">8. Ⅰ.7　子命令：positioned ^a ^b ^c</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ8-子命令facing-a-b-c" class="section-card">
+                <div class="h">9. Ⅰ.8　子命令：facing a b c</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ9-关键引理三维归一化" class="section-card">
+                <div class="h">10. Ⅰ.9　关键引理：三维归一化</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ10-子命令facing-p-q-r-及排列组合情况" class="section-card">
+                <div class="h">11. Ⅰ.10　子命令：facing p q r 及排列组合情况</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#ⅰ11-子命令rotated-a-b" class="section-card">
+                <div class="h">12. Ⅰ.11　子命令：rotated a b</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#结论" class="section-card">
+                <div class="h">13. 结论</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#0-约定与目标" class="section-card">
+                <div class="h">14. 0. 约定与目标</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#1-不变量全实见证多项式" class="section-card">
+                <div class="h">15. 1. 不变量：全实见证多项式</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#2-引理-1根的连续依赖及推论" class="section-card">
+                <div class="h">16. 2. 引理 1（根的连续依赖）及推论</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#3-引理-2三种代数运算保持-tr" class="section-card">
+                <div class="h">17. 3. 引理 2（三种代数运算保持 TR）</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#4-引理-3逐点极限保持-tr" class="section-card">
+                <div class="h">18. 4. 引理 3（逐点极限保持 TR）</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#5-归纳命题" class="section-card">
+                <div class="h">19. 5. 归纳命题</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#6-结论" class="section-card">
+                <div class="h">20. 6. 结论</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+          </div>
+        </nav>
+      
+
+    
+      <div class="pager">
+        <a href="../../../zh-CN/cct/exprlist/"><div class="sub">上一页</div><div class="title">Formula Table</div></a>
+        <a href="../../../zh-CN/cct/abe/" class="next"><div class="sub">下一页</div><div class="title">Algebraic Expression of CCT</div></a>
+      </div>
+    
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#约定">约定</a><a class="lv2" href="#ⅰ1-先证-p-包含-x2">Ⅰ.1　先证 $P$ 包含 $x^2$</a><a class="lv2" href="#ⅰ2-对任意-mn-in-p都有-mn-in-p">Ⅰ.2　对任意 $m,n\in P$，都有 $mn\in P$</a><a class="lv2" href="#ⅰ3-对任意-mn-in-p都有-m-n-in-p">Ⅰ.3　对任意 $m,n\in P$，都有 $m/n\in P$</a><a class="lv2" href="#ⅰ4-加减法">Ⅰ.4　加减法</a><a class="lv2" href="#ⅰ5-代数表达法与归纳框架">Ⅰ.5　代数表达法与归纳框架</a><a class="lv2" href="#ⅰ6-子命令positioned-a-b-c">Ⅰ.6　子命令：positioned a b c</a><a class="lv2" href="#ⅰ7-子命令positioned-a-b-c">Ⅰ.7　子命令：positioned ^a ^b ^c</a><a class="lv2" href="#ⅰ8-子命令facing-a-b-c">Ⅰ.8　子命令：facing a b c</a><a class="lv2" href="#ⅰ9-关键引理三维归一化">Ⅰ.9　关键引理：三维归一化</a><a class="lv2" href="#ⅰ10-子命令facing-p-q-r-及排列组合情况">Ⅰ.10　子命令：facing p q r 及排列组合情况</a><a class="lv2" href="#ⅰ11-子命令rotated-a-b">Ⅰ.11　子命令：rotated a b</a><a class="lv2" href="#结论">结论</a><a class="lv2" href="#0-约定与目标">0. 约定与目标</a><a class="lv2" href="#1-不变量全实见证多项式">1. 不变量：全实见证多项式</a><a class="lv2" href="#2-引理-1根的连续依赖及推论">2. 引理 1（根的连续依赖）及推论</a><a class="lv2" href="#3-引理-2三种代数运算保持-tr">3. 引理 2（三种代数运算保持 TR）</a><a class="lv2" href="#4-引理-3逐点极限保持-tr">4. 引理 3（逐点极限保持 TR）</a><a class="lv2" href="#5-归纳命题">5. 归纳命题</a><a class="lv2" href="#6-结论">6. 结论</a></aside>
+</div>
+
+<footer class="site-foot">
+  <div class="site-foot-left">
+    <span>© 2026 mcbe指令技术文档</span>
+    
+  </div>
+  <div class="site-foot-links">
+    
+  </div>
+</footer>
+
+
+<div class="sheet" id="search-sheet">
+  <div class="sheet-box">
+    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
+    <div class="sheet-results" id="search-results"></div>
+  </div>
+</div>
+
+<script src="../../../assets/app.js"></script>
+</body>
+</html>
