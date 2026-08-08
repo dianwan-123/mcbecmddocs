@@ -35,6 +35,10 @@
           "title": "欢迎！",
           "description": "欢迎来到本网站",
           "content": ""
+        },
+        "en-US": {
+          "title": "Welcome!",
+          "description": "Welcome to this site."
         }
       }
     },
