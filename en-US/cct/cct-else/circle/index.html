@@ -29,27 +29,84 @@ try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme'
           <span>📄</span><span>Coordinates Calculation Theory</span>
         </a>
         <div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row" href="../../../../en-US/cct/begin-guide/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../en-US/cct/begin-guide/'">The guide for beginner</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../../en-US/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../en-US/cct/exprlist/'">Formula Table</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../../en-US/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../../en-US/cct/abe/'">Algebraic Expression of CCT</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row" href="../../../../en-US/cct/cct-else/"><span class="expander">▼</span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../en-US/cct/cct-else/'">miscellaneous</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">How to draw a circle</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../../en-US/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../en-US/cct/cct-else/sqrtx/'">Ladder Problem</span></div></div></div></div>
-      </section></aside><main class="content"><article class="markdown"><h1>How to draw a circle</h1><p><strong>Note:</strong> Document from senxyzplayeE.</p>
-<p>How do you draw a circle in Bedrock Edition Minecraft? Let&#39;s use the new <code>/execute</code> command as an example to explain one approach. This method is known in the Bedrock Edition Minecraft command community as the <strong>&quot;/execute nested dot-matrix circle&quot;</strong>.</p>
-<p><strong>Concept:</strong> To generate a circular shape, we can exploit the theorem that &quot;the inscribed angle is half the central angle subtending the same arc.&quot; We repeatedly halve the angle while distributing points to different positions along the arc.</p>
-<p>Let A be the center of the circle, and BC be entities at the two ends of a diameter. Let D be any point on the circle. By extending outward from A in the directions of CD and BD by a distance equal to the radius, we arrive at points E and F respectively. It is easy to see that these are the midpoints of arcs CD and BD.</p>
-<p><img src="https://s41.ax1x.com/2026/08/07/pm7baYq.png" alt="Image 1" loading="lazy" decoding="async"></p>
-<p>Next, apply the same operation to points E and F as was done with point D. This yields four new points H, J, G, and I. It is easy to verify that regardless of where the starting point D is located, the angular spacing between these four points is always 45 degrees.</p>
-<p><img src="https://s41.ax1x.com/2026/08/07/pm7bdf0.png" alt="Image 2" loading="lazy" decoding="async"></p>
-<p>Continuing this nesting process, more and more points appear on the circle, and they are always evenly distributed.</p>
-<hr>
-<p>The detailed commands are as follows. <span class="math-inline">a</span> is the center of the circle, and <span class="math-inline">r</span> refers to two entities placed at the two ends of a diameter. Note that these entities must be placed at a distance exactly equal to <span class="math-inline">R</span> from the center <span class="math-inline">a</span>; otherwise the generated circle will be unevenly distributed.</p>
-<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~90~ positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
-<p>The portion enclosed in curly braces <code>{}</code> is the nested part. Repeat this segment multiple times — the more repetitions, the denser the generated points.</p>
-<p>Note that the nested portion contains no rotation arithmetic and has no relationship to the <span class="math-inline">x, y, z</span> coordinates. This means we only need to change the starting position to change the orientation of the dot-matrix circle.</p>
-<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~30 0 positioned ~~~R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ~~~R } run ...</code></pre></figure>
-<p>Tilt the armor stand by an angle — remembering to ensure the distance from the center remains <span class="math-inline">R</span> — and then adjust the <code>ry</code> rotation to tilt the circle upright. This modification allows you to generate a tilted circle.</p>
-<p>It is foreseeable that, given proper placement, circles of any orientation can be generated.</p>
-<p>However, this command has a limitation: it can only generate perfect circles, not oblique ellipses. What if we could draw truly arbitrary-orientation circles and ellipses?</p>
+      </section></aside><main class="content"><article class="markdown"><h1>How to draw a circle</h1><p><strong>Note: This document is written by senxyzplayeE.</strong></p>
+<h3 id="how-to-draw-a-circle-in-minecraft-bedrock-edition">How to Draw a Circle in Minecraft Bedrock Edition<a class="anchor" href="#how-to-draw-a-circle-in-minecraft-bedrock-edition" aria-label="链接到此章节">#</a></h3>
+<p>Let’s use the new <code>/execute</code> syntax as an example to explain a method. In the Minecraft Bedrock command community, this method is known as the <strong>&quot;nested <code>/execute</code> dot-matrix circle&quot;</strong>.</p>
+<p><strong>Concept</strong>: To generate a circle, we can utilize the theorem that <em>&quot;the inscribed angle is half of the central angle subtended by the same arc.&quot;</em> By repeatedly halving the angle and distributing the points along the arc, we can construct the circle.</p>
+<p>Let <span class="math-inline">A</span> be the center of the circle, and <span class="math-inline">B</span> and <span class="math-inline">C</span> be the entities at the two ends of the circle&#39;s diameter. Let <span class="math-inline">D</span> be any point on the circle. Centered at <span class="math-inline">A</span>, extending outward by the radius distance in the directions of <span class="math-inline">CD</span> and <span class="math-inline">BD</span> will lead to points <span class="math-inline">E</span> and <span class="math-inline">F</span>. It is easy to see that these are the midpoints of arcs <span class="math-inline">CD</span> and <span class="math-inline">BD</span>, respectively.</p>
+<p><img src="https://s41.ax1x.com/2026/08/07/pm7baYq.png" alt="" loading="lazy" decoding="async"></p>
+<p>Next, repeat the same operation on points <span class="math-inline">E</span> and <span class="math-inline">F</span> as we did for point <span class="math-inline">D</span>. This yields <span class="math-inline">H</span>, <span class="math-inline">J</span>, <span class="math-inline">G</span>, and <span class="math-inline">I</span>. It is easy to see that no matter where the starting point <span class="math-inline">D</span> is, the angle between these 4 points will always be 45 degrees.</p>
+<p><img src="https://s41.ax1x.com/2026/08/07/pm7bdf0.png" alt="" loading="lazy" decoding="async"></p>
+<p>Continuing this nested operation, you will find that more and more points split on the circle, and they are all uniformly distributed.</p>
+<p>The detailed command is as follows, where <code>a</code> is the center, and <code>r</code> represents the two entities located at the ends of the diameter. <strong>Note</strong> that their placement must be at a distance of exactly <span class="math-inline">R</span> from the center <code>a</code>, otherwise the generated circle will not be uniformly distributed.</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~90~ positioned ^^^R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ^^^R } run ...</code></pre></figure>
+<p>The part enclosed in curly brackets <code>{}</code> is the nested part. Enter this segment repeatedly; the more times it is repeated, the denser the generated points will be.</p>
+<p>Notice that the nested part does not involve rotation calculations and is independent of <span class="math-inline">x, y, z</span> coordinates. This means we can change the orientation of the generated dot-matrix circle simply by changing the starting point&#39;s orientation:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute at @e[name=r] facing entity @e[name=a] feet positioned as @e[name=a] rotated ~30 0 positioned ^^^R { facing entity @e[name=r] feet positioned as @e[name=a] positioned ^^^R } run ...</code></pre></figure>
+<p>Tilt the angle of the brackets by a certain degree (remember to ensure the distance is still <span class="math-inline">R</span>), and then adjust the <span class="math-inline">rx</span> (pitch) rotation to &quot;stand&quot; the circle up. This generates a tilted circle.</p>
+<p>As you can imagine, with proper placement, a circle of any orientation can be generated.</p>
+<p>However, this command has limitations: it can only generate perfect circles, not tilted ellipses. How can we draw truly arbitrary-oriented circles and ellipses?</p>
+<p>Let&#39;s look at the parametric equation of a planar ellipse:<br>
+<div class="math-block"> (x, y) = (a, b) \cos\theta + (c, d) \sin\theta </div></p>
+<p>Where <span class="math-inline">(a, b)</span> and <span class="math-inline">(c, d)</span> are two perpendicular vectors, and <span class="math-inline">\theta</span> is the parameter.</p>
+<p>Let&#39;s rewrite it:<br>
+<div class="math-block">
+\begin{aligned}
+x &amp;= a \cos\theta + c \sin\theta \\
+y &amp;= b \cos\theta + d \sin\theta
+\end{aligned}
+</div></p>
+<p>Using the auxiliary angle formula (harmonic addition theorem), we transform it again:<br>
+<div class="math-block">
+\begin{aligned}
+x &amp;= A \sin(\theta + \varphi) \\
+y &amp;= B \sin(\theta + \psi)
+\end{aligned}
+</div></p>
+<p>This shows that we can represent any ellipse by superimposing two sine waves in the <span class="math-inline">x</span> and <span class="math-inline">y</span> directions that have the same period but a certain phase difference.</p>
+<p>Take a look at this linkage mechanism. Let <span class="math-inline">AB</span> be the rotation angle (yaw) of the rotating entity, and <span class="math-inline">BC</span> be its symmetrical angle. Both have a length of <span class="math-inline">2.5</span>. <span class="math-inline">DD&#39;_1</span> and <span class="math-inline">DC</span> are also symmetrical, with a length of <span class="math-inline">1.5</span>.</p>
+<p><img src="https://s41.ax1x.com/2026/08/08/pmHR7yn.png" alt="" loading="lazy" decoding="async"></p>
+<p>It is easy to calculate: when <span class="math-inline">\angle xAB = \theta</span>, the length of <span class="math-inline">AC</span> (blue line) is <span class="math-inline">5 \cos\theta</span>, and the length of <span class="math-inline">CD_1</span> (red line) is <span class="math-inline">3 \sin\theta</span>. From this, we know that <span class="math-inline">D_1</span> is the result of vertically superimposing two sine waves with amplitudes of <span class="math-inline">5</span> and <span class="math-inline">3</span>, and a phase difference of <span class="math-inline">\pi/2</span>. Its trajectory is a standard ellipse with a semi-minor axis of <span class="math-inline">5</span> and a semi-major axis of <span class="math-inline">3</span>.</p>
+<p>Note that the vector <span class="math-inline">\vec{AD_1}</span> can be represented as:<br>
+<div class="math-block"> \vec{AD_1} = \vec{AB} + \vec{BD} + \vec{DD_1} = \vec{AB} + \vec{DD_1} + \vec{BD} </div></p>
+<p>Therefore, we can simplify this linkage model.</p>
+<p>As shown in the figure, <span class="math-inline">BA = 4, AA_1 = 1</span>. The two angles remain symmetrical. This yields the same ellipse as before. It is not hard to see that if both <span class="math-inline">BA</span> and <span class="math-inline">AA_1</span> rotate 45 degrees in the same direction, the entire ellipse will also rotate 45 degrees in that direction. If only <span class="math-inline">AA_1</span> rotates 50 degrees in one direction, the entire ellipse will rotate 25 degrees in that direction.</p>
+<p><img src="https://s41.ax1x.com/2026/08/08/pmHRqe0.png" alt="" loading="lazy" decoding="async"></p>
+<p>With this principle, we can draw ellipses of any orientation within the horizontal plane in Minecraft.</p>
+<p>So, how do we draw an ellipse of any orientation in 3D space? Following the same principle, in 3D space, we only need to superimpose three mutually perpendicular sine waves with equal periods and certain phase differences. The proof is omitted here.</p>
+<p>With our previous experience, we can deduce that we only need three linkages to draw all ellipses in 3D space. Modifying the lengths and rotation angles will adjust the shape and orientation of the ellipse.</p>
+<p>However, limited by the pitch (<span class="math-inline">rx</span>) characteristics of boats in Minecraft, the author had to split the ellipse-drawing command into two halves.</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute as @e[type=boat,rxm=-180,rx=0] at @s positioned ^^^A rotated ~180~φ positioned ^^^B rotated ~90~ψ positioned ^^^C run &lt;subsequent commands&gt;
+
+/execute as @e[type=boat,rxm=180,rxm=1] at @s positioned ^^^A rotated ~180~-φ positioned ^^^B rotated ~90~-ψ positioned ^^^C run &lt;subsequent commands&gt;</code></pre></figure>
+<p>These two commands can represent all ellipses. By modifying the values of <span class="math-inline">A, B, C, \varphi</span>, and <span class="math-inline">\psi</span>, you can adjust the size, shape, and orientation of the ellipse.</p>
+<p>If we want an ellipse with semi-major and semi-minor axes of <span class="math-inline">(x_1, y_1, z_1)</span> and <span class="math-inline">(x_2, y_2, z_2)</span> respectively, what values should we set for these 5 parameters?</p>
+<p>Although mathematical methods can yield the corresponding calculations, the results are highly complex and involve complicated inverse trigonometric functions. To avoid these calculations, we can modify the linkage mechanism to make it simpler.</p>
+<p>Let&#39;s look back at the parametric equation of a 2D ellipse:<br>
+<div class="math-block"> (x, y) = (x_1, y_1) \cos\theta + (x_2, y_2) \sin\theta </div></p>
+<p>Let&#39;s rewrite it and keep it at this step:<br>
+<div class="math-block">
+\begin{aligned}
+x &amp;= x_1 \cos\theta + x_2 \sin\theta \\
+y &amp;= y_1 \cos\theta + y_2 \sin\theta
+\end{aligned}
+</div></p>
+<p>Instead of combining them using trigonometric identities, we represent them directly.</p>
+<p>As shown in the figure, let <span class="math-inline">\angle xAB = \theta</span>, taking the clockwise direction as positive. Let <span class="math-inline">AB = BB_1 = x_1 / 2</span>, and <span class="math-inline">B_1C = CD = x_2 / 2</span>. <span class="math-inline">BB_1</span> is perpendicular to <span class="math-inline">B_1C</span>. It is very easy to prove that <span class="math-inline">AD = x_1 \cos\theta</span> and <span class="math-inline">DB_1 = x_2 \sin\theta</span>. At this point, the x-coordinate of point D is the value of <span class="math-inline">x</span> we want to represent.</p>
+<p><img src="https://s41.ax1x.com/2026/08/08/pmHRLwV.png" alt="" loading="lazy" decoding="async"></p>
+<p>By performing the same operation for <span class="math-inline">y</span>, we can draw any 2D ellipse. Notice that <span class="math-inline">AB \parallel E&#39;D&#39;&#39;</span>, <span class="math-inline">BB_1 \parallel D&#39;E&#39;</span>, and <span class="math-inline">B_1C \parallel ED&#39;</span>. By combining all parallel vectors, we can simplify this linkage even further. The angles in such a system do not contain parameters and are very easy to calculate.</p>
+<p><img src="https://s41.ax1x.com/2026/08/08/pmHWFw6.png" alt="" loading="lazy" decoding="async"></p>
+<p>As for how to do this in 3D, you probably already have an idea. The method is similar; you just need to repeat the same operation for the <span class="math-inline">z</span>-direction on top of the 2D foundation. Here are the commands:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute as @e[type=boat,rxm=-180,rx=0] at @s positioned ^^^(x1-y2)/2 rotated ~180~ positioned ^^^-(x1+y2)/2 rotated ~90 positioned ^^^(x2-y1)/2 rotated ~180~ positioned ^^^-(x2+y1)/2 rotated ~90~ positioned ^^^z2/2 rotated ~180~ positioned ^^^-z2/2 rotated ~~~90 positioned ^^^z1/2 rotated ~180~ positioned ^^^-z1/2 run &lt;subsequent commands&gt;</code></pre></figure>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">execute as @e[type=boat,rxm=180,rxm=1] at @s positioned ^^^(x1-y2)/2 rotated ~180~ positioned ^^^-(x1+y2)/2 rotated ~~~90 positioned ^^^(x2-y1)/2 rotated ~180~ positioned ^^^-(x2+y1)/2 rotated ~90~ positioned ^^^z2/2 rotated ~180~ positioned ^^^-z2/2 rotated ~~~90 positioned ^^^z1/2 rotated ~180~ positioned ^^^-z1/2 run &lt;subsequent commands&gt;</code></pre></figure>
+<ul>
+<li>Where vector <span class="math-inline">\vec{A} = (x_1, y_1, z_1)</span> and vector <span class="math-inline">\vec{B} = (x_2, y_2, z_2)</span> are the semi-major and semi-minor axes of the ellipse.</li>
+<li>Due to the limitations of the pitch (<span class="math-inline">rx</span>) behavior in the game, the generation must be split into two halves.</li>
+</ul>
 </article><div class="pager">
           <a href="../../../../en-US/cct/cct-else/"><div class="sub">上一页</div><div class="title">miscellaneous</div></a>
           <a href="../../../../en-US/cct/cct-else/sqrtx/" class="next"><div class="sub">下一页</div><div class="title">Ladder Problem</div></a>
-        </div></main><aside class="toc"></aside></div>
+        </div></main><aside class="toc"><div class="toc-title">本页目录</div><a class="lv3" href="#how-to-draw-a-circle-in-minecraft-bedrock-edition">How to Draw a Circle in Minecraft Bedrock Edition</a></aside></div>
 <footer class="site-foot"><div class="site-foot-left"><span>© 2026 mcbe指令技术文档</span></div><div class="site-foot-links"></div></footer>
 <div class="sheet" id="search-sheet"><div class="sheet-box"><input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off"><div class="sheet-results" id="search-results"></div></div></div>
 <script src="../../../../assets/app.js"></script>
