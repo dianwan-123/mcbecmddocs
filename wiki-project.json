@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "site": {
     "title": "mcbe指令技术文档",
     "iconEmoji": "📘",
@@ -22,15 +22,51 @@
       }
     ]
   },
+  "modules": [
+    {
+      "id": "p8ddav7n",
+      "title": "欢迎！",
+      "slug": "general",
+      "emoji": "📚",
+      "description": "欢迎来到本网站",
+      "order": 0,
+      "translations": {
+        "zh-CN": {
+          "title": "欢迎！",
+          "description": "欢迎来到本网站",
+          "content": ""
+        }
+      }
+    },
+    {
+      "id": "qxl4xrhq",
+      "title": "坐标运算",
+      "slug": "cct",
+      "emoji": "📄",
+      "description": "坐标运算技术相关介绍",
+      "order": 1,
+      "translations": {
+        "zh-CN": {
+          "title": "坐标运算",
+          "content": "## 二级标题\n这里是正文段落。",
+          "description": "坐标运算技术相关介绍"
+        },
+        "en-US": {
+          "title": "Coordinates Calculation Theory",
+          "content": ""
+        }
+      }
+    }
+  ],
   "pages": [
     {
       "id": "6n6yrd6w",
-      "title": "Welcome!",
+      "title": "欢迎来到本网站",
       "slug": "home",
       "parent": "",
+      "moduleId": "p8ddav7n",
       "order": 0,
       "emoji": "👋",
-      "isHeader": false,
       "hidden": false,
       "contributors": "",
       "translations": {
@@ -46,35 +82,13 @@
       "url": "en-US/"
     },
     {
-      "id": "qxl4xrhq",
-      "title": "Coordinates Calculation Theory",
-      "slug": "cct",
-      "parent": "",
-      "order": 1,
-      "emoji": "📄",
-      "isHeader": true,
-      "hidden": false,
-      "contributors": "",
-      "translations": {
-        "zh-CN": {
-          "title": "坐标运算",
-          "content": "## 二级标题\n这里是正文段落。"
-        },
-        "en-US": {
-          "title": "Coordinates Calculation Theory",
-          "content": ""
-        }
-      },
-      "url": "en-US/cct/"
-    },
-    {
       "id": "kbgda5zl",
-      "title": "Algebraic Expression of CCT",
+      "title": "代数表达法",
       "slug": "abe",
-      "parent": "qxl4xrhq",
+      "parent": "",
+      "moduleId": "qxl4xrhq",
       "order": 2,
       "emoji": "🔢",
-      "isHeader": false,
       "hidden": false,
       "contributors": "",
       "translations": {
@@ -91,12 +105,12 @@
     },
     {
       "id": "tm2zf5q4",
-      "title": "Formula Table",
+      "title": "公式表",
       "slug": "exprlist",
-      "parent": "qxl4xrhq",
+      "parent": "",
+      "moduleId": "qxl4xrhq",
       "order": 1,
       "emoji": "📄",
-      "isHeader": false,
       "hidden": false,
       "contributors": "",
       "translations": {
@@ -113,12 +127,12 @@
     },
     {
       "id": "9wkg09xl",
-      "title": "Ladder Problem",
+      "title": "梯子问题",
       "slug": "sqrtx",
       "parent": "1sm8lzs1",
+      "moduleId": "qxl4xrhq",
       "order": 1,
       "emoji": "📄",
-      "isHeader": false,
       "hidden": false,
       "contributors": "",
       "translations": {
@@ -135,12 +149,12 @@
     },
     {
       "id": "1sm8lzs1",
-      "title": "miscellaneous",
+      "title": "杂项",
       "slug": "cct-else",
-      "parent": "qxl4xrhq",
+      "parent": "",
+      "moduleId": "qxl4xrhq",
       "order": 3,
       "emoji": "📄",
-      "isHeader": true,
       "hidden": false,
       "contributors": "",
       "translations": {
@@ -157,12 +171,12 @@
     },
     {
       "id": "53uxrtuo",
-      "title": "How to draw a circle",
+      "title": "画正圆",
       "slug": "circle",
       "parent": "1sm8lzs1",
+      "moduleId": "qxl4xrhq",
       "order": 0,
       "emoji": "📄",
-      "isHeader": false,
       "hidden": false,
       "contributors": "",
       "translations": {
@@ -179,12 +193,12 @@
     },
     {
       "id": "pinsnla4",
-      "title": "The guide for beginner",
+      "title": "入门教程",
       "slug": "begin-guide",
-      "parent": "qxl4xrhq",
+      "parent": "",
+      "moduleId": "qxl4xrhq",
       "order": 0,
       "emoji": "📄",
-      "isHeader": false,
       "hidden": false,
       "contributors": "",
       "translations": {

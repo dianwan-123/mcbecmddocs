@@ -9,39 +9,48 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script>
-window.__WIKI__ = { base: '../', theme: 'auto', currentLang: 'en-US' };
-try {
-  var st = localStorage.getItem('wiki-theme') || 'auto';
-  document.documentElement.dataset.theme = st;
-} catch(e){}
+window.__WIKI__ = { base: '../', theme: 'auto', currentLang: 'en-US', activeId: '6n6yrd6w' };
+try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme') || 'auto'; } catch (e) {}
 </script>
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="../zh-CN/">
-    <span class="logo">📘</span>
-    <span>mcbe指令技术文档</span>
-  </a>
-  <nav></nav>
-  <div class="spacer"></div>
-  <div class="top-tools">
-    <select class="lang-selector" id="lang-select"><option value="zh-CN" >简体中文</option><option value="en-US" selected>English</option></select>
-    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
-    <button class="theme-btn" id="theme-btn">◐</button>
-  </div>
+  <a class="brand" href="../zh-CN/"><span class="logo">📘</span><span>mcbe指令技术文档</span></a>
+  <nav></nav><div class="spacer"></div>
+  <div class="top-tools"><select class="lang-selector" id="lang-select"><option value="zh-CN" >简体中文</option><option value="en-US" selected>English</option></select><button class="theme-btn" id="search-trigger" aria-label="Search">🔍</button><button class="theme-btn" id="theme-btn" aria-label="Theme">◐</button></div>
 </header>
-<div class="layout">
-  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='#'">Welcome!</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >Coordinates Calculation Theory</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row" href="../en-US/cct/begin-guide/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/begin-guide/'">The guide for beginner</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../en-US/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/exprlist/'">Formula Table</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../en-US/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../en-US/cct/abe/'">Algebraic Expression of CCT</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >miscellaneous</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../en-US/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/cct-else/circle/'">How to draw a circle</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../en-US/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/cct-else/sqrtx/'">Ladder Problem</span></div></div></div></div></div></div></aside>
-  <main class="content">
-    <article class="markdown">
-      <h1>Welcome!</h1>
-      <h2 id="welcome">Welcome<a class="anchor" href="#welcome" aria-label="链接到此章节">#</a></h2>
+<div class="layout"><aside class="sidebar"><section class="sidebar-module">
+        <a class="sidebar-module-title" href="../en-US/general/">
+          <span>📚</span><span>欢迎！</span>
+        </a>
+        <div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='#'">Welcome!</span></div></div>
+      </section><section class="sidebar-module">
+        <a class="sidebar-module-title" href="../en-US/cct/">
+          <span>📄</span><span>Coordinates Calculation Theory</span>
+        </a>
+        <div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row" href="../en-US/cct/begin-guide/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/begin-guide/'">The guide for beginner</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../en-US/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/exprlist/'">Formula Table</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../en-US/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../en-US/cct/abe/'">Algebraic Expression of CCT</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row" href="../en-US/cct/cct-else/"><span class="expander">▼</span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/cct-else/'">miscellaneous</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../en-US/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/cct-else/circle/'">How to draw a circle</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../en-US/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../en-US/cct/cct-else/sqrtx/'">Ladder Problem</span></div></div></div></div>
+      </section></aside><main class="content"><article class="markdown"><h1>Welcome!</h1><h2 id="welcome">Welcome<a class="anchor" href="#welcome" aria-label="链接到此章节">#</a></h2>
 <p>This is a website that collects technical documentation for various commands in Minecraft Bedrock Edition.</p>
-
-      
-    </article>
-
-    
+</article><section class="module-index" aria-label="Wiki 模块">
+      <div class="module-index-heading"><span>知识模块</span><p>按主题浏览全部内容</p></div>
+      <div class="module-grid">
+        <a class="module-card" href="../en-US/general/">
+            <div class="module-card-icon">📚</div>
+            <div class="module-card-body">
+              <div class="module-card-title">欢迎！</div>
+              <div class="module-card-description">欢迎来到本网站</div>
+            </div>
+            <div class="module-card-count">1 篇</div>
+          </a><a class="module-card" href="../en-US/cct/">
+            <div class="module-card-icon">📄</div>
+            <div class="module-card-body">
+              <div class="module-card-title">Coordinates Calculation Theory</div>
+              <div class="module-card-description">坐标运算技术相关介绍</div>
+            </div>
+            <div class="module-card-count">6 篇</div>
+          </a>
+      </div>
+    </section>
         <nav class="section-pages" aria-label="本章大标题导览">
           <div class="section-pages-title">📍 本页大纲及快捷分页</div>
           <div class="section-grid">
@@ -53,36 +62,8 @@ try {
             
           </div>
         </nav>
-      
-
-    
-      <div class="pager">
-        <div></div>
-        <a href="../en-US/cct/begin-guide/" class="next"><div class="sub">下一页</div><div class="title">The guide for beginner</div></a>
-      </div>
-    
-  </main>
-  <aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#welcome">Welcome</a></aside>
-</div>
-
-<footer class="site-foot">
-  <div class="site-foot-left">
-    <span>© 2026 mcbe指令技术文档</span>
-    
-  </div>
-  <div class="site-foot-links">
-    
-  </div>
-</footer>
-
-
-<div class="sheet" id="search-sheet">
-  <div class="sheet-box">
-    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
-    <div class="sheet-results" id="search-results"></div>
-  </div>
-</div>
-
+      </main><aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#welcome">Welcome</a></aside></div>
+<footer class="site-foot"><div class="site-foot-left"><span>© 2026 mcbe指令技术文档</span></div><div class="site-foot-links"></div></footer>
+<div class="sheet" id="search-sheet"><div class="sheet-box"><input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off"><div class="sheet-results" id="search-results"></div></div></div>
 <script src="../assets/app.js"></script>
-</body>
-</html>
+</body></html>

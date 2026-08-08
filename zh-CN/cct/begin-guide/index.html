@@ -9,33 +9,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script>
-window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'zh-CN' };
-try {
-  var st = localStorage.getItem('wiki-theme') || 'auto';
-  document.documentElement.dataset.theme = st;
-} catch(e){}
+window.__WIKI__ = { base: '../../../', theme: 'auto', currentLang: 'zh-CN', activeId: 'pinsnla4' };
+try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme') || 'auto'; } catch (e) {}
 </script>
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="../../../zh-CN/">
-    <span class="logo">📘</span>
-    <span>mcbe指令技术文档</span>
-  </a>
-  <nav></nav>
-  <div class="spacer"></div>
-  <div class="top-tools">
-    <select class="lang-selector" id="lang-select"><option value="zh-CN" selected>简体中文</option><option value="en-US" >English</option></select>
-    <button class="theme-btn" id="search-trigger">🔍 (⌘K)</button>
-    <button class="theme-btn" id="theme-btn">◐</button>
-  </div>
+  <a class="brand" href="../../../zh-CN/"><span class="logo">📘</span><span>mcbe指令技术文档</span></a>
+  <nav></nav><div class="spacer"></div>
+  <div class="top-tools"><select class="lang-selector" id="lang-select"><option value="zh-CN" selected>简体中文</option><option value="en-US" >English</option></select><button class="theme-btn" id="search-trigger" aria-label="Search">🔍</button><button class="theme-btn" id="theme-btn" aria-label="Theme">◐</button></div>
 </header>
-<div class="layout">
-  <aside class="sidebar"><div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../zh-CN/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../zh-CN/'">欢迎来到本网站</span></div></div><div class="tree-item-wrap" data-id="qxl4xrhq"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >坐标运算</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">入门教程</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../zh-CN/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/exprlist/'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/abe/'">代数表达法</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row is-header" ><span class="expander">▼</span><span class="lbl" >杂项</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../../../zh-CN/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/circle/'">画正圆</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../zh-CN/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/sqrtx/'">梯子问题</span></div></div></div></div></div></div></aside>
-  <main class="content">
-    <article class="markdown">
-      <h1>入门教程</h1>
-      <h1 id="大数圆规">大数圆规<a class="anchor" href="#大数圆规" aria-label="链接到此章节">#</a></h1>
+<div class="layout"><aside class="sidebar"><section class="sidebar-module">
+        <a class="sidebar-module-title" href="../../../zh-CN/general/">
+          <span>📚</span><span>欢迎！</span>
+        </a>
+        <div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../zh-CN/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../zh-CN/'">欢迎来到本网站</span></div></div>
+      </section><section class="sidebar-module">
+        <a class="sidebar-module-title" href="../../../zh-CN/cct/">
+          <span>📄</span><span>坐标运算</span>
+        </a>
+        <div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">入门教程</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../zh-CN/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/exprlist/'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/abe/'">代数表达法</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row" href="../../../zh-CN/cct/cct-else/"><span class="expander">▼</span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/'">杂项</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../../../zh-CN/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/circle/'">画正圆</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../zh-CN/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/sqrtx/'">梯子问题</span></div></div></div></div>
+      </section></aside><main class="content"><article class="markdown"><h1>入门教程</h1><h1 id="大数圆规">大数圆规<a class="anchor" href="#大数圆规" aria-label="链接到此章节">#</a></h1>
 <p>MCBE 坐标运算从入门到进阶</p>
 <hr>
 <h2 id="关于这本书">关于这本书<a class="anchor" href="#关于这本书" aria-label="链接到此章节">#</a></h2>
@@ -1068,11 +1062,7 @@ positioned ^ ^ ^-2</code></pre></figure>
 <p>大数圆规的绝大部分高级公式是有限精度下的渐近近似，不是无限精度的代数恒等式。</p>
 </blockquote>
 <p>理解这一点，你才能在误差和性能之间做出取舍，把大数圆规从&quot;能跑的长命令&quot;变成可推导、可维护、可扩展的坐标计算系统。</p>
-
-      
-    </article>
-
-    
+</article>
         <nav class="section-pages" aria-label="本章大标题导览">
           <div class="section-pages-title">📍 本页大纲及快捷分页</div>
           <div class="section-grid">
@@ -1309,36 +1299,11 @@ positioned ^ ^ ^-2</code></pre></figure>
             
           </div>
         </nav>
-      
-
-    
       <div class="pager">
-        <a href="../../../zh-CN/"><div class="sub">上一页</div><div class="title">Welcome!</div></a>
-        <a href="../../../zh-CN/cct/exprlist/" class="next"><div class="sub">下一页</div><div class="title">Formula Table</div></a>
-      </div>
-    
-  </main>
-  <aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#关于这本书">关于这本书</a><a class="lv2" href="#目录">目录</a><a class="lv2" href="#11-三套坐标">1.1 三套坐标</a><a class="lv2" href="#12-视角yaw-与-pitch">1.2 视角：yaw 与 pitch</a><a class="lv2" href="#13-三个核心子命令">1.3 三个核心子命令</a><a class="lv3" href="#positioned">positioned</a><a class="lv3" href="#facing">facing</a><a class="lv3" href="#rotated">rotated</a><a class="lv2" href="#14-align">1.4 align</a><a class="lv2" href="#15-把一条链子读成动作清单">1.5 把一条链子读成动作清单</a><a class="lv2" href="#16-小结与练习">1.6 小结与练习</a><a class="lv2" href="#21-facing-给出的是方向">2.1 facing 给出的是方向</a><a class="lv2" href="#22-用相似三角形求中点">2.2 用相似三角形求中点</a><a class="lv2" href="#23-名字里的大数和圆规">2.3 名字里的&quot;大数&quot;和&quot;圆规&quot;</a><a class="lv2" href="#24-误差从哪来">2.4 误差从哪来</a><a class="lv2" href="#25-h-该取多大">2.5 H 该取多大</a><a class="lv2" href="#26-小结">2.6 小结</a><a class="lv2" href="#31-求中点">3.1 求中点</a><a class="lv2" href="#32-任意比例点">3.2 任意比例点</a><a class="lv2" href="#33-拆开-yaw-与-pitch">3.3 拆开 yaw 与 pitch</a><a class="lv2" href="#34-小结与去向">3.4 小结与去向</a><a class="lv2" href="#41-远点反射">4.1 远点反射</a><a class="lv2" href="#42-两次反射等于一次旋转">4.2 两次反射等于一次旋转</a><a class="lv2" href="#43-平方">4.3 平方</a><a class="lv2" href="#44-乘法">4.4 乘法</a><a class="lv2" href="#45-除法与高次幂">4.5 除法与高次幂</a><a class="lv2" href="#46-误差工程">4.6 误差工程</a><a class="lv2" href="#47-小结">4.7 小结</a><a class="lv2" href="#51-二进制权重">5.1 二进制权重</a><a class="lv2" href="#52-正方体框架">5.2 正方体框架</a><a class="lv3" href="#种子段为什么得到-y-175">种子段：为什么得到 y = ±1.75</a><a class="lv3" href="#权重段z-方向的采样">权重段：Z 方向的采样</a><a class="lv3" href="#第一组反射">第一组反射</a><a class="lv3" href="#局部左移">局部左移</a><a class="lv3" href="#固定轴反射">固定轴反射</a><a class="lv3" href="#第二组反射">第二组反射</a><a class="lv3" href="#阶段总览">阶段总览</a><a class="lv3" href="#关于-55-度">关于 55 度</a><a class="lv3" href="#参数化改造">参数化改造</a><a class="lv2" href="#53-圆角度二分">5.3 圆：角度二分</a><a class="lv2" href="#54-圆套娃点阵">5.4 圆：套娃点阵</a><a class="lv2" href="#55-从圆到椭圆">5.5 从圆到椭圆</a><a class="lv2" href="#56-合成套路与其他图形">5.6 合成套路与其他图形</a><a class="lv2" href="#57-开销">5.7 开销</a><a class="lv2" href="#58-小结与去向">5.8 小结与去向</a><a class="lv2" href="#61-状态与旋转矩阵">6.1 状态与旋转矩阵</a><a class="lv2" href="#62-子命令的代数形式">6.2 子命令的代数形式</a><a class="lv3" href="#positioned只改-p">positioned：只改 P</a><a class="lv3" href="#facing只改-r">facing：只改 R</a><a class="lv3" href="#rotated只改-r">rotated：只改 R</a><a class="lv3" href="#facing-的局部形式">facing 的局部形式</a><a class="lv2" href="#63-严格推导远点反射">6.3 严格推导远点反射</a><a class="lv2" href="#64-反射到底是什么变换">6.4 反射到底是什么变换</a><a class="lv2" href="#65-回到游戏角度">6.5 回到游戏角度</a><a class="lv2" href="#66-代数法的边界">6.6 代数法的边界</a><a class="lv2" href="#67-小结">6.7 小结</a><a class="lv2" href="#a-平移与缩放">A　平移与缩放</a><a class="lv3" href="#a1-世界平移-e">A.1　世界平移 [E]</a><a class="lv3" href="#a2-局部平移-e">A.2　局部平移 [E]</a><a class="lv3" href="#a3-几何缩放-a">A.3　几何缩放 [A]</a><a class="lv3" href="#a4-几何缩放短-a">A.4　几何缩放（短） [A]</a><a class="lv3" href="#a5-平移缩放-a">A.5　平移缩放 [A]</a><a class="lv3" href="#a6-平移缩放短-a">A.6　平移缩放（短） [A]</a><a class="lv2" href="#b-算术运算">B　算术运算</a><a class="lv3" href="#b1-平方-a">B.1　平方 [A]</a><a class="lv3" href="#b2-平方短-a">B.2　平方（短） [A]</a><a class="lv3" href="#b3-乘法-a">B.3　乘法 [A]</a><a class="lv3" href="#b4-乘法短-a">B.4　乘法（短） [A]</a><a class="lv3" href="#b5-乘法更短-a">B.5　乘法（更短） [A]</a><a class="lv3" href="#b6-乘法二维向量-a">B.6　乘法（二维向量） [A]</a><a class="lv3" href="#b7-乘法短二维向量-a">B.7　乘法短（二维向量） [A]</a><a class="lv3" href="#b8-乘法半径-a">B.8　乘法（半径） [A]</a><a class="lv3" href="#b9-除法-a">B.9　除法 [A]</a><a class="lv3" href="#b10-除法短-a">B.10　除法（短） [A]</a><a class="lv3" href="#b11-除法二维向量-a">B.11　除法（二维向量） [A]</a><a class="lv3" href="#b12-除法tan-a">B.12　除法（tan） [A]</a><a class="lv3" href="#b13-立方-a">B.13　立方 [A]</a><a class="lv3" href="#b14-立方短-a">B.14　立方（短） [A]</a><a class="lv3" href="#b15-体积-a">B.15　体积 [A]</a><a class="lv3" href="#b16-高次幂级联">B.16　高次幂级联</a><a class="lv2" href="#c-向量与几何变换">C　向量与几何变换</a><a class="lv3" href="#c1-点乘-a">C.1　点乘 [A]</a><a class="lv3" href="#c2-叉乘-a">C.2　叉乘 [A]</a><a class="lv3" href="#c3-对称远点轴反射-a">C.3　对称（远点轴反射） [A]</a><a class="lv3" href="#c4-双反射旋转-a">C.4　双反射旋转 [A]</a><a class="lv3" href="#c5-旋转对齐-a">C.5　旋转（对齐） [A]</a><a class="lv3" href="#c6-旋转逆-a">C.6　旋转（逆） [A]</a><a class="lv2" href="#d-三角函数与弧度拟合">D　三角函数与弧度拟合</a><a class="lv3" href="#d1-弧度拟合1-f">D.1　弧度拟合（1） [F]</a><a class="lv3" href="#d2-弧度拟合2-f">D.2　弧度拟合（2） [F]</a><a class="lv3" href="#d3-三角函数-f">D.3　三角函数 [F]</a><a class="lv2" href="#e-常用角度与常数">E　常用角度与常数</a><a class="lv3" href="#e1-二分角序列">E.1　二分角序列</a><a class="lv3" href="#e2-二进制权重">E.2　二进制权重</a><a class="lv3" href="#e3-特殊角度">E.3　特殊角度</a><a class="lv3" href="#e4-h-与误差">E.4　H 与误差</a><a class="lv3" href="#e5-点数与开销">E.5　点数与开销</a><a class="lv2" href="#f-学习路线">F　学习路线</a></aside>
-</div>
-
-<footer class="site-foot">
-  <div class="site-foot-left">
-    <span>© 2026 mcbe指令技术文档</span>
-    
-  </div>
-  <div class="site-foot-links">
-    
-  </div>
-</footer>
-
-
-<div class="sheet" id="search-sheet">
-  <div class="sheet-box">
-    <input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off">
-    <div class="sheet-results" id="search-results"></div>
-  </div>
-</div>
-
+          <div></div>
+          <a href="../../../zh-CN/cct/exprlist/" class="next"><div class="sub">下一页</div><div class="title">公式表</div></a>
+        </div></main><aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#关于这本书">关于这本书</a><a class="lv2" href="#目录">目录</a><a class="lv2" href="#11-三套坐标">1.1 三套坐标</a><a class="lv2" href="#12-视角yaw-与-pitch">1.2 视角：yaw 与 pitch</a><a class="lv2" href="#13-三个核心子命令">1.3 三个核心子命令</a><a class="lv3" href="#positioned">positioned</a><a class="lv3" href="#facing">facing</a><a class="lv3" href="#rotated">rotated</a><a class="lv2" href="#14-align">1.4 align</a><a class="lv2" href="#15-把一条链子读成动作清单">1.5 把一条链子读成动作清单</a><a class="lv2" href="#16-小结与练习">1.6 小结与练习</a><a class="lv2" href="#21-facing-给出的是方向">2.1 facing 给出的是方向</a><a class="lv2" href="#22-用相似三角形求中点">2.2 用相似三角形求中点</a><a class="lv2" href="#23-名字里的大数和圆规">2.3 名字里的&quot;大数&quot;和&quot;圆规&quot;</a><a class="lv2" href="#24-误差从哪来">2.4 误差从哪来</a><a class="lv2" href="#25-h-该取多大">2.5 H 该取多大</a><a class="lv2" href="#26-小结">2.6 小结</a><a class="lv2" href="#31-求中点">3.1 求中点</a><a class="lv2" href="#32-任意比例点">3.2 任意比例点</a><a class="lv2" href="#33-拆开-yaw-与-pitch">3.3 拆开 yaw 与 pitch</a><a class="lv2" href="#34-小结与去向">3.4 小结与去向</a><a class="lv2" href="#41-远点反射">4.1 远点反射</a><a class="lv2" href="#42-两次反射等于一次旋转">4.2 两次反射等于一次旋转</a><a class="lv2" href="#43-平方">4.3 平方</a><a class="lv2" href="#44-乘法">4.4 乘法</a><a class="lv2" href="#45-除法与高次幂">4.5 除法与高次幂</a><a class="lv2" href="#46-误差工程">4.6 误差工程</a><a class="lv2" href="#47-小结">4.7 小结</a><a class="lv2" href="#51-二进制权重">5.1 二进制权重</a><a class="lv2" href="#52-正方体框架">5.2 正方体框架</a><a class="lv3" href="#种子段为什么得到-y-175">种子段：为什么得到 y = ±1.75</a><a class="lv3" href="#权重段z-方向的采样">权重段：Z 方向的采样</a><a class="lv3" href="#第一组反射">第一组反射</a><a class="lv3" href="#局部左移">局部左移</a><a class="lv3" href="#固定轴反射">固定轴反射</a><a class="lv3" href="#第二组反射">第二组反射</a><a class="lv3" href="#阶段总览">阶段总览</a><a class="lv3" href="#关于-55-度">关于 55 度</a><a class="lv3" href="#参数化改造">参数化改造</a><a class="lv2" href="#53-圆角度二分">5.3 圆：角度二分</a><a class="lv2" href="#54-圆套娃点阵">5.4 圆：套娃点阵</a><a class="lv2" href="#55-从圆到椭圆">5.5 从圆到椭圆</a><a class="lv2" href="#56-合成套路与其他图形">5.6 合成套路与其他图形</a><a class="lv2" href="#57-开销">5.7 开销</a><a class="lv2" href="#58-小结与去向">5.8 小结与去向</a><a class="lv2" href="#61-状态与旋转矩阵">6.1 状态与旋转矩阵</a><a class="lv2" href="#62-子命令的代数形式">6.2 子命令的代数形式</a><a class="lv3" href="#positioned只改-p">positioned：只改 P</a><a class="lv3" href="#facing只改-r">facing：只改 R</a><a class="lv3" href="#rotated只改-r">rotated：只改 R</a><a class="lv3" href="#facing-的局部形式">facing 的局部形式</a><a class="lv2" href="#63-严格推导远点反射">6.3 严格推导远点反射</a><a class="lv2" href="#64-反射到底是什么变换">6.4 反射到底是什么变换</a><a class="lv2" href="#65-回到游戏角度">6.5 回到游戏角度</a><a class="lv2" href="#66-代数法的边界">6.6 代数法的边界</a><a class="lv2" href="#67-小结">6.7 小结</a><a class="lv2" href="#a-平移与缩放">A　平移与缩放</a><a class="lv3" href="#a1-世界平移-e">A.1　世界平移 [E]</a><a class="lv3" href="#a2-局部平移-e">A.2　局部平移 [E]</a><a class="lv3" href="#a3-几何缩放-a">A.3　几何缩放 [A]</a><a class="lv3" href="#a4-几何缩放短-a">A.4　几何缩放（短） [A]</a><a class="lv3" href="#a5-平移缩放-a">A.5　平移缩放 [A]</a><a class="lv3" href="#a6-平移缩放短-a">A.6　平移缩放（短） [A]</a><a class="lv2" href="#b-算术运算">B　算术运算</a><a class="lv3" href="#b1-平方-a">B.1　平方 [A]</a><a class="lv3" href="#b2-平方短-a">B.2　平方（短） [A]</a><a class="lv3" href="#b3-乘法-a">B.3　乘法 [A]</a><a class="lv3" href="#b4-乘法短-a">B.4　乘法（短） [A]</a><a class="lv3" href="#b5-乘法更短-a">B.5　乘法（更短） [A]</a><a class="lv3" href="#b6-乘法二维向量-a">B.6　乘法（二维向量） [A]</a><a class="lv3" href="#b7-乘法短二维向量-a">B.7　乘法短（二维向量） [A]</a><a class="lv3" href="#b8-乘法半径-a">B.8　乘法（半径） [A]</a><a class="lv3" href="#b9-除法-a">B.9　除法 [A]</a><a class="lv3" href="#b10-除法短-a">B.10　除法（短） [A]</a><a class="lv3" href="#b11-除法二维向量-a">B.11　除法（二维向量） [A]</a><a class="lv3" href="#b12-除法tan-a">B.12　除法（tan） [A]</a><a class="lv3" href="#b13-立方-a">B.13　立方 [A]</a><a class="lv3" href="#b14-立方短-a">B.14　立方（短） [A]</a><a class="lv3" href="#b15-体积-a">B.15　体积 [A]</a><a class="lv3" href="#b16-高次幂级联">B.16　高次幂级联</a><a class="lv2" href="#c-向量与几何变换">C　向量与几何变换</a><a class="lv3" href="#c1-点乘-a">C.1　点乘 [A]</a><a class="lv3" href="#c2-叉乘-a">C.2　叉乘 [A]</a><a class="lv3" href="#c3-对称远点轴反射-a">C.3　对称（远点轴反射） [A]</a><a class="lv3" href="#c4-双反射旋转-a">C.4　双反射旋转 [A]</a><a class="lv3" href="#c5-旋转对齐-a">C.5　旋转（对齐） [A]</a><a class="lv3" href="#c6-旋转逆-a">C.6　旋转（逆） [A]</a><a class="lv2" href="#d-三角函数与弧度拟合">D　三角函数与弧度拟合</a><a class="lv3" href="#d1-弧度拟合1-f">D.1　弧度拟合（1） [F]</a><a class="lv3" href="#d2-弧度拟合2-f">D.2　弧度拟合（2） [F]</a><a class="lv3" href="#d3-三角函数-f">D.3　三角函数 [F]</a><a class="lv2" href="#e-常用角度与常数">E　常用角度与常数</a><a class="lv3" href="#e1-二分角序列">E.1　二分角序列</a><a class="lv3" href="#e2-二进制权重">E.2　二进制权重</a><a class="lv3" href="#e3-特殊角度">E.3　特殊角度</a><a class="lv3" href="#e4-h-与误差">E.4　H 与误差</a><a class="lv3" href="#e5-点数与开销">E.5　点数与开销</a><a class="lv2" href="#f-学习路线">F　学习路线</a></aside></div>
+<footer class="site-foot"><div class="site-foot-left"><span>© 2026 mcbe指令技术文档</span></div><div class="site-foot-links"></div></footer>
+<div class="sheet" id="search-sheet"><div class="sheet-box"><input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off"><div class="sheet-results" id="search-results"></div></div></div>
 <script src="../../../assets/app.js"></script>
-</body>
-</html>
+</body></html>
