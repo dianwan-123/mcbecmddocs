@@ -251,10 +251,45 @@ try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme'
 <figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 πa ~ positioned 0.5 ~ 0. positioned ^^^-a align x positioned ^^^a facing 0.0 ~ 0.546225495 positioned ^^^0.74051535 facing 0.0 ~ 0.69987548 positioned ^^^0.47913733 facing 0.0 ~ 0.87215723 positioned 0.0 ~ 0.0 positioned ^^^1</code></pre></figure>
 </li>
 </ul>
-</article><div class="pager">
+<h2 id="notes-by-senxyzplayee">Notes by senxyzplayeE<a class="anchor" href="#notes-by-senxyzplayee" aria-label="链接到此章节">#</a></h2>
+<p><strong>a</strong>: A very large positive number, which mathematically should ideally be positive infinity. However, due to game precision limits, in the command community, command players typically choose values like <span class="math-inline">a = 512</span>, <span class="math-inline">1024</span>, or <span class="math-inline">2048</span>.</p>
+<p><strong>b</strong>: A positive number very close to 0, which mathematically should ideally be infinitesimal. However, due to game precision limits, in the command community, command players typically choose values like <span class="math-inline">b = 0.01</span> or <span class="math-inline">0.001</span>.</p>
+<p><strong>n</strong>: Compared to the HTML-like large numbers <span class="math-inline">a</span> and <span class="math-inline">b</span> mentioned above, this is a normal-scale number (command players typically choose <span class="math-inline">1</span>, <span class="math-inline">2</span>, or <span class="math-inline">3</span>). It is a variable of engineering significance. In practice, adjusting <span class="math-inline">n</span> allows you to tune the adaptation interval.</p>
+<p>For example, the &quot;Division Formula (2D Vector)&quot; cannot be used in the Java Edition directly, but after adjusting <span class="math-inline">n</span>, it becomes usable in the Java Edition.</p>
+<p><span class="math-inline">n</span> only becomes meaningful when considering floating-point errors. The value of <span class="math-inline">n</span> must be determined based on the specific scenario.</p>
+<p><strong>[★] Note</strong>: If the transformation formula already contains <span class="math-inline">n</span>, please ignore the explanations regarding <span class="math-inline">n</span> (except for this [★] note). For example, for the transformation <span class="math-inline">(x, y, z) \to (x/n, y/n, z/n)</span>, directly ignore the explanations about <span class="math-inline">n</span> (except for this [★] note). Also, note that <span class="math-inline">n</span> is a real number.</p>
+<p><strong>{A+y}</strong>: A player&#39;s rotation can essentially be viewed as a unit vector. Let vector <span class="math-inline">y = (0, 1, 0)</span>. Then, <span class="math-inline">A + y</span> yields a new vector <span class="math-inline">m</span>. <code>{A+y}</code> represents the direction of this vector <span class="math-inline">m</span>. For example, <code>rotated as {A+y}</code> means: rotating towards the direction of the new vector obtained by adding the look vector of entity A to vector <span class="math-inline">y</span>.</p>
+<p><strong>〈rx, ry〉</strong>: This refers to the rx (pitch) and ry (yaw) rotations in the game. For ease of understanding, take the following subcommand as an example: <code>rotated 55 30</code>. This would be written as <code>〈30, 55〉</code>.</p>
+<p>The transformation <code>〈rx, ry〉 → 〈0, x〉</code> means: the pitch rx becomes 0, and the yaw ry becomes <span class="math-inline">x</span> in radians (i.e., <span class="math-inline">x</span> radians). This is a somewhat ambiguous notation, so please read it carefully.</p>
+<p><strong>Bold Capital A</strong>: Represents an entity, e.g., <code>rotated as A</code>.</p>
+<p><strong>&lt;&gt;</strong>: Placeholders for a coordinate or an entity. For example, in <code>facing &lt;&gt;</code>, you can replace <code>&lt;&gt;</code> with <code>(0, 0, 0)</code> or other coordinates. Using <code>(0, 0, 0)</code> as an example yields <code>facing 0 0 0</code>. If you want to target an entity, you must complete the syntax yourself. For example, if <code>&lt;&gt;</code> is replaced with <code>@e[name=a]</code>, it becomes <code>facing entity @e[name=a] feet</code>.</p>
+<p><strong>{A}, {B}</strong>: Placeholders for an entity. The author omitted the full syntax for brevity, so readers must complete it themselves. For example, the author writes <code>facing {A}</code>; if you want to target the entity <code>@e[name=a]</code>, you should rewrite it as <code>facing entity @e[name=a] feet</code>.</p>
+<p><strong>Non-bold Capital A</strong>: Same as the explanation for &quot;<span class="math-inline">a</span>&quot; above, representing a large number.</p>
+<p><strong>r in the mathematical transformation table</strong>: Here, <span class="math-inline">r = \sqrt{x^2 + z^2}</span>, similar to the radial coordinate <span class="math-inline">r</span> in cylindrical coordinates.</p>
+<p><strong>[  ]</strong>: You will often see square brackets <code>[  ]</code> at the beginning or end of commands. Subcommands enclosed in square brackets indicate that, in many scenarios, they can be simplified along with the command context. Let&#39;s use the &quot;Division Formula (Short)&quot; as an example. Suppose the full command is:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute positioned ~5 6 ~7 positioned ~ 0 ~ facing 0 a ~ positioned ^^-ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^ </code></pre></figure>
+<p>Prompted by the square brackets, we know this can likely be simplified with the surrounding context. Thus, we can rewrite the entire command chain as:</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">/execute positioned ~5 0 ~7 facing 0 a ~ positioned ^^-ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</code></pre></figure>
+<p>This reduces the number of subcommands required.</p>
+<p><strong>?</strong>: In the transformations implemented by the formulas, you might see that some of the resulting formulas contain a &quot;?&quot;. The author did not calculate these because resolving these &quot;?&quot; expressions would make the transformation table overly complex without offering much practical utility.</p>
+<p><strong>&lt;ry+90, 0, xz&gt;</strong>: Suppose the execution position of the entity before applying the formula is <span class="math-inline">(x, y, z)</span> (denoted as point <span class="math-inline">M</span>), and its rotation is <span class="math-inline">(ry, rx)</span>. After applying the formula, the entity&#39;s rotation changes to <span class="math-inline">(ry+90, 0)</span>, and its distance from point <span class="math-inline">M</span> becomes <span class="math-inline">x \cdot z</span>.</p>
+<p><strong>Uncertainty (不确定度)</strong>: The author initially intended to roughly estimate the floating-point error, where <span class="math-inline">\varepsilon</span> represents the minimum precision when the angle approaches 0°. It was later discovered in practice that &quot;uncertainty&quot; is not the dominant cause of &quot;floating-point error.&quot; Consequently, later formulas omit this &quot;uncertainty&quot; field. Currently, no one other than the author knows the algorithm used to calculate this uncertainty.</p>
+</article>
+        <nav class="section-pages" aria-label="本章大标题导览">
+          <div class="section-pages-title">📍 本页大纲及快捷分页</div>
+          <div class="section-grid">
+            
+              <a href="#notes-by-senxyzplayee" class="section-card">
+                <div class="h">1. Notes by senxyzplayeE</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+          </div>
+        </nav>
+      <div class="pager">
           <a href="../../../en-US/cct/begin-guide/"><div class="sub">上一页</div><div class="title">The guide for beginner</div></a>
           <a href="../../../en-US/cct/abe/" class="next"><div class="sub">下一页</div><div class="title">Algebraic Expression of CCT</div></a>
-        </div></main><aside class="toc"></aside></div>
+        </div></main><aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#notes-by-senxyzplayee">Notes by senxyzplayeE</a></aside></div>
 <footer class="site-foot"><div class="site-foot-left"><span>© 2026 mcbe指令技术文档</span></div><div class="site-foot-links"></div></footer>
 <div class="sheet" id="search-sheet"><div class="sheet-box"><input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off"><div class="sheet-results" id="search-results"></div></div></div>
 <script src="../../../assets/app.js"></script>

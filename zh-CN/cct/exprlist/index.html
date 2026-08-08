@@ -29,7 +29,7 @@ try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme'
           <span>📄</span><span>坐标运算</span>
         </a>
         <div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row" href="../../../zh-CN/cct/begin-guide/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/begin-guide/'">入门教程</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/abe/'">代数表达法</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row" href="../../../zh-CN/cct/cct-else/"><span class="expander">▼</span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/'">杂项</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../../../zh-CN/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/circle/'">画圆</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../zh-CN/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../zh-CN/cct/cct-else/sqrtx/'">梯子问题</span></div></div></div></div>
-      </section></aside><main class="content"><article class="markdown"><h1>公式表</h1><p>注：此表来自 世界的来宾。</p>
+      </section></aside><main class="content"><article class="markdown"><h1>公式表</h1><p>注：原表来自 世界的来宾。</p>
 <h4 id="一-基础代数与算术">一、 基础代数与算术<a class="anchor" href="#一-基础代数与算术" aria-label="链接到此章节">#</a></h4>
 <h4 id="1-平方公式">1. 平方公式<a class="anchor" href="#1-平方公式" aria-label="链接到此章节">#</a></h4>
 <ul>
@@ -251,10 +251,48 @@ try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme'
 <figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 πa ~ positioned 0.5 ~ 0. positioned ^^^-a align x positioned ^^^a facing 0.0 ~ 0.546225495 positioned ^^^0.74051535 facing 0.0 ~ 0.69987548 positioned ^^^0.47913733 facing 0.0 ~ 0.87215723 positioned 0.0 ~ 0.0 positioned ^^^1</code></pre></figure>
 </li>
 </ul>
-</article><div class="pager">
+<h2 id="注释-by-senxyzplayee">注释 by senxyzplayeE<a class="anchor" href="#注释-by-senxyzplayee" aria-label="链接到此章节">#</a></h2>
+<p>a : 一个十分巨大的正数 , 数学理想情况下应为正无穷 . 但由于游戏精度所限 , 在命令社区 , 命令玩家习惯取a=512 , 1024 , 2048 等 .<br>
+b : 一个十分接近于0的正数 , 数学理想情况下应为无穷小 . 但由于游戏精度所限 , 在命令社区 , 命令玩家习惯取b=0.01 , 0.001 .<br>
+n : 相对于前文所说的a , b . 它是一个正常量级的数 , 命令玩家习惯取1 , 2 , 3 . 它是一个具有工程意义的变量 . 在具体实践中 , 调整n能调整适应区间 . </p>
+<p>我们以后文的&quot;除法公式二维向量&quot;为例 , &quot;除法公式二维向量&quot;在Java版无法使用 , 但调整n之后就可以在Java般使用了 . </p>
+<p>只有考虑浮点数误差的时候 , n才有意义 . 对于n的取值 , 需要由具体情况决定 . </p>
+<p>[★] 注意 : 如果公式的变换已经有n , 请忽视有关n的解释(除[★]外) . 例如变换(x,y,z)→(x/n,y/n,z/n) , 直接忽视有关n的解释(除[★]外) . 同时需注意 , n是一个实数 .</p>
+<p>{A+y} : 玩家的视角本质上可以看作一个单位向量 , 记向量y=(0,1,0) . 那么A+y得到一个新的向量m . {A+y}就是这个向量m的方向 . 例如 , rotated as {A+y} 的意思是 : 以实体A视角所对应的向量与y向量之和得到的一个新向量的方向 .</p>
+<p>〈rx,ry〉: 这里指游戏中的rx(俯仰角) , ry(偏航角)视角 . 为方便理解 , 以如下子命令为例 : rotated 55 30 .<br>
+那么可写作〈30,55〉 .</p>
+<p>变换〈rx,ry〉→〈0,x〉指 : 视角rx变成0 . 视角ry则变成弧度制下的x , 也就是x弧度 . 这是一种较为歧义的写法 , 理解时需注意 .</p>
+<p>粗体大写A : 代指一个实体 , 例如rotated as A.</p>
+<p>&lt;&gt; : 填入一个坐标或实体 . 例如facing &lt;&gt; , 可以将&lt;&gt;换为(0,0,0)或其他坐标 . 以(0,0,0)为例 , 也就是facing 0 0 0 . <br>
+若要填入实体 , 需要自行补全语法 . 例如&lt;&gt;被替换为@e[name=a] , 也就是facing entity @e[name=a] feet .</p>
+<p>{A} , {B} : 填入一个实体 . 原作者为偷懒 , 没有补全语法 , 读者需自行补全 . 例如原作者写facing {A} , 若你要填入实体@e[name=a] . 那么请改写为facing entity @e[name=a] feet .</p>
+<p>非粗体大写A : 同上文对a的解释 , 也是大数 .</p>
+<p>公式表数学变换的r : 这里r=√(x^2+z^2) , 类似于柱坐标系的r .</p>
+<p>[  ] : 在命令中 , 你时常会看到开头 , 末尾有一些&quot;[  ]&quot; .<br>
+被用中括号括起来的子命令 , 代表在很多情况下 , 可以和命令上下文化简 . 我们以&quot;除法公式(短)&quot;为例 . 假如命令全文如下 :</p>
+<p>/execute positioned ~5 6 ~7 positioned ~ 0 ~ facing 0 a ~ positioned ^^-ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^ </p>
+<p>由中括号的提示知道 , 大概率可以和命令上下文化简 , 于是我们可以把整串命令改写为 :</p>
+<p>/execute positioned ~5 0 ~7 facing 0 a ~ positioned ^^-ab^ facing ~ 0 0 positioned ~ 0 0 positioned ^^1/b^</p>
+<p>这就可以减少原本的子命令数 .</p>
+<p>? : 在公式实现的相应变换中 , 你可能会看到一些公式变换后的结果包含&quot;?&quot; . 原作者没有去计算 , 原因是计算这些含&quot;?&quot;的表达式会使公式表的形式很复杂 , 同时对实践没有较大的帮助 .</p>
+<ry+90 , 0 , xz> : 假设填写公式前的实体执行位置为(x,y,z) , 执行位置记为点M , 执行视角为(ry,rx) . 那么填写公式后 , 实体的执行视角变更为(ry+90,0) . 离点M的距离为x*z .
+<p>不确定度 : 原作者打算大致估量浮点数误差 , ε表示角度接近0°时最小精度 . 后来在实践中发现&quot;不确定度&quot; , 并不是主导&quot;浮点数误差&quot;的原因 . 于是后面的公式就不再填写&quot;不确定度&quot; . 目前除原作者外 , 无人知道不确定度的算法 .</p>
+</article>
+        <nav class="section-pages" aria-label="本章大标题导览">
+          <div class="section-pages-title">📍 本页大纲及快捷分页</div>
+          <div class="section-grid">
+            
+              <a href="#注释-by-senxyzplayee" class="section-card">
+                <div class="h">1. 注释 by senxyzplayeE</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+          </div>
+        </nav>
+      <div class="pager">
           <a href="../../../zh-CN/cct/begin-guide/"><div class="sub">上一页</div><div class="title">入门教程</div></a>
           <a href="../../../zh-CN/cct/abe/" class="next"><div class="sub">下一页</div><div class="title">代数表达法</div></a>
-        </div></main><aside class="toc"></aside></div>
+        </div></main><aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#注释-by-senxyzplayee">注释 by senxyzplayeE</a></aside></div>
 <footer class="site-foot"><div class="site-foot-left"><span>© 2026 mcbe指令技术文档</span></div><div class="site-foot-links"></div></footer>
 <div class="sheet" id="search-sheet"><div class="sheet-box"><input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off"><div class="sheet-results" id="search-results"></div></div></div>
 <script src="../../../assets/app.js"></script>
