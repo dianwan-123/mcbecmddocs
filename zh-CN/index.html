@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>欢迎来到本网站 - mcbe指令技术文档</title>
+<title>指令入门教程 - mcbe指令技术文档</title>
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script>
-window.__WIKI__ = { base: '../', theme: 'auto', currentLang: 'zh-CN', activeId: '6n6yrd6w' };
+window.__WIKI__ = { base: '../', theme: 'auto', currentLang: 'zh-CN', activeId: 'oudugyq1' };
 try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme') || 'auto'; } catch (e) {}
 </script>
 </head>
@@ -23,14 +23,629 @@ try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme'
         <a class="sidebar-module-title" href="../zh-CN/general/">
           <span>📚</span><span>欢迎！</span>
         </a>
-        <div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='#'">欢迎来到本网站</span></div></div>
+        <div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../zh-CN/general/home/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../zh-CN/general/home/'">欢迎来到本网站</span></div></div>
+      </section><section class="sidebar-module">
+        <a class="sidebar-module-title" href="../zh-CN/beginner-guide/">
+          <span>📚</span><span>基础教程</span>
+        </a>
+        <div class="tree-item-wrap" data-id="oudugyq1"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">指令入门教程</span></div></div>
       </section><section class="sidebar-module">
         <a class="sidebar-module-title" href="../zh-CN/cct/">
           <span>📄</span><span>坐标运算</span>
         </a>
         <div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row" href="../zh-CN/cct/begin-guide/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../zh-CN/cct/begin-guide/'">入门教程</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../zh-CN/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../zh-CN/cct/exprlist/'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../zh-CN/cct/abe/'">代数表达法</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row" href="../zh-CN/cct/cct-else/"><span class="expander">▼</span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../zh-CN/cct/cct-else/'">杂项</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../zh-CN/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../zh-CN/cct/cct-else/circle/'">画圆</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../zh-CN/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../zh-CN/cct/cct-else/sqrtx/'">梯子问题</span></div></div><div class="tree-item-wrap" data-id="ni0852d5"><div class="tree-row" href="../zh-CN/cct/cct-else/about-polynomial/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../zh-CN/cct/cct-else/about-polynomial/'">关于多项式</span></div></div></div></div>
-      </section></aside><main class="content"><article class="markdown"><h1>欢迎来到本网站</h1><h2 id="欢迎">欢迎<a class="anchor" href="#欢迎" aria-label="链接到此章节">#</a></h2>
-<p>这是一个收录 Minecraft Bedrock Edition 各种指令技术文档的网站。</p>
+      </section></aside><main class="content"><article class="markdown"><h1>指令入门教程</h1><p>注：本文章由Claude Fable 5结合wiki.bedrock.dev及minecraft wiki写成</p>
+<h2 id="前言用指令搭建你的专属游戏世界">前言：用指令搭建你的专属游戏世界<a class="anchor" href="#前言用指令搭建你的专属游戏世界" aria-label="链接到此章节">#</a></h2>
+<p>在《我的世界》（Minecraft 基岩版）中，指令就像是一门专门用来和游戏引擎对话的魔法语言。无论你是想给自己的生存存档做个自动商店、做一张好玩的解密/冒险地图，还是想搞清楚服务器里各种神奇功能的底层逻辑，指令都是绕不开的强大工具。</p>
+<p>很多人觉得指令难学，是因为网上的教程要么只给一串看不懂的代码，要么充斥着复杂的术语。本书将用最通俗易懂的语言、结合实际案例，带你一步一个脚印地从零开始，搞懂命令方块、玩转全新 <code>/execute</code>、搭建记分板系统，直到学会<strong>二分法</strong>和神奇的 <strong>nx树（MEF / execute fork）</strong> 黑科技。</p>
+<hr>
+<h2 id="第-1-章-认识指令方块把手动指令变成全自动机器">第 1 章 认识指令方块——把手动指令变成全自动机器<a class="anchor" href="#第-1-章-认识指令方块把手动指令变成全自动机器" aria-label="链接到此章节">#</a></h2>
+<h3 id="告别手动敲指令的时代">告别手动敲指令的时代<a class="anchor" href="#告别手动敲指令的时代" aria-label="链接到此章节">#</a></h3>
+<p>平时我们在聊天框里打 <code>/gamemode c</code> 或者 <code>/time set day</code>，只能一次性执行一条命令。如果在做地图时，需要每时每刻检测玩家的位置、或者玩家踩到某个地方就自动触发剧情，手动输入就无能为力了。这时，我们需要一个能帮我们“自动打字执行”的工具——<strong>命令方块（Command Block）</strong>。</p>
+<h3 id="命令方块的三种颜色与核心设置">命令方块的三种颜色与核心设置<a class="anchor" href="#命令方块的三种颜色与核心设置" aria-label="链接到此章节">#</a></h3>
+<p>命令方块在创造模式物品栏里是找不到的，需要输入指令获取：</p>
+<figure class="code-block"><pre><code>/give @s command_block</code></pre></figure>
+<p>放置并右键打开它，你会看到几个关键选项：</p>
+<h4 id="1-三种方块形态看颜色认功能">1. 三种方块形态（看颜色认功能）<a class="anchor" href="#1-三种方块形态看颜色认功能" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>脉冲（Impulse，橙色）</strong>：给它一次红石信号（比如按一下按钮），它就执行<strong>一次</strong>。</li>
+<li><strong>连锁（Chain，绿色）</strong>：它自己不会主动触发，必须紧挨在别的命令方块后面；前面的方块执行完了，它顺着箭头立即跟着执行。</li>
+<li><strong>循环（Repeat，紫色）</strong>：只要处于激活状态，它就会以每秒 20 次（每个游戏刻 1 次）的速度<strong>不断重复执行</strong>。</li>
+</ul>
+<h4 id="2-条件与激活方式">2. 条件与激活方式<a class="anchor" href="#2-条件与激活方式" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>条件制约 vs 无条件</strong>：<ul>
+<li><strong>无条件</strong>：不管前一个方块有没有执行成功，当前方块轮到了就照样跑。</li>
+<li><strong>条件制约</strong>（方块箭头后方有个小缺口）：只有前一个方块“执行成功”了，当前方块才会触发。</li>
+</ul>
+</li>
+<li><strong>保持开启 vs 红石控制</strong>：<ul>
+<li><strong>保持开启</strong>：不需要红石线或拉杆，自己一直保持通电工作（常用于循环方块和连锁方块）。</li>
+<li><strong>红石控制</strong>：必须旁边有红石信号（拉杆、按钮、红石火把）才会工作。</li>
+</ul>
+</li>
+<li><strong>执行延迟（Tick Delay）</strong>：<ul>
+<li>可以在里面填数字。比如填 <code>20</code>，循环方块就会从“每刻执行”变成“每秒执行一次”（1秒 ≈ 20游戏刻）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见方块链的摆放范式">常见方块链的摆放范式<a class="anchor" href="#常见方块链的摆放范式" aria-label="链接到此章节">#</a></h3>
+<p>最经典、最常用的命令方块组合就是“<strong>1个紫色循环方块带一串绿色连锁方块</strong>”：</p>
+<figure class="code-block"><pre><code>[ 紫色循环方块 (头) ] ---&gt; [ 绿色连锁方块 (身) ] ---&gt; [ 绿色连锁方块 (尾) ]
+ (箭头指向右边)              (箭头指向右边)              (箭头指向右边)</code></pre></figure>
+<p>例如，我们要检测身上带着 <code>poison_tag</code> 标签的玩家并给予虚弱：</p>
+<ol>
+<li><strong>第一个方块（紫色循环，保持开启，无条件）</strong>：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">testfor @a[tag=poison_tag]</code></pre></figure>
+</li>
+<li><strong>第二个方块（绿色连锁，保持开启，条件制约）</strong>：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">effect @a[tag=poison_tag] weakness 2 1 true</code></pre></figure>
+</li>
+<li><strong>第三个方块（绿色连锁，保持开启，条件制约）</strong>：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">title @a[tag=poison_tag] actionbar §c你中毒虚弱了！</code></pre></figure>
+</li>
+</ol>
+<h3 id="搭建时的注意事项与排错技巧">搭建时的注意事项与排错技巧<a class="anchor" href="#搭建时的注意事项与排错技巧" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>看清箭头朝向</strong>：连锁方块必须被前一个方块的箭头“指着屁股”。如果箭头歪了，整条指令链就会在断开的地方停住。</li>
+<li><strong>别让聊天框刷屏</strong>：在做系统前，先在聊天框敲两行指令，关掉满屏的命令方块提示：<ul>
+<li><code>/gamerule commandblockoutput false</code></li>
+<li><code>/gamerule sendcommandfeedback false</code></li>
+</ul>
+</li>
+<li><strong>常加载区域（Ticking Area）</strong>：玩家走远后，区块会被卸载，命令方块就会罢工。在方块所在位置输入 <code>/tickingarea add circle ~~~ 4 logic_core</code>，就能让它在整个世界里永远正常运转。</li>
+</ol>
+<h3 id="动手实战全自动回血安全区">动手实战：全自动回血安全区<a class="anchor" href="#动手实战全自动回血安全区" aria-label="链接到此章节">#</a></h3>
+<p><strong>目标</strong>：在坐标 <code>(100, 64, 100)</code> 附近做一个半径 10 格的安全区，进来的玩家自动获得回血效果，怪物一靠近立刻被消灭。</p>
+<h4 id="方块摆放与指令编写">方块摆放与指令编写<a class="anchor" href="#方块摆放与指令编写" aria-label="链接到此章节">#</a></h4>
+<p>按箭头顺序连接 3 个方块：</p>
+<ol>
+<li><strong>循环方块（紫色，保持开启，无条件，延迟 0）</strong>：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 自动清理安全区内的僵尸
+kill @e[type=zombie,x=100,y=64,z=100,r=10]</code></pre></figure>
+</li>
+<li><strong>连锁方块（绿色，保持开启，无条件，延迟 0）</strong>：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 给安全区内的所有玩家持续提供生命恢复效果
+effect @a[x=100,y=64,z=100,r=10] regeneration 2 1 true</code></pre></figure>
+</li>
+<li><strong>连锁方块（绿色，保持开启，无条件，延迟 0）</strong>：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 在动作栏给玩家一个绿色提示
+title @a[x=100,y=64,z=100,r=10] actionbar §a您已进入安全区</code></pre></figure>
+</li>
+</ol>
+<hr>
+<h2 id="第-2-章-找人与找位置目标选择器与坐标用法">第 2 章 找人与找位置——目标选择器与坐标用法<a class="anchor" href="#第-2-章-找人与找位置目标选择器与坐标用法" aria-label="链接到此章节">#</a></h2>
+<h3 id="怎样精准选中你想控制的目标">怎样精准选中你想控制的目标？<a class="anchor" href="#怎样精准选中你想控制的目标" aria-label="链接到此章节">#</a></h3>
+<p>如果我们要给玩家发一把剑，输入 <code>/give Steve iron_sword</code> 很简单。但如果服务器里有很多人、名字各不相同，或者你想只挑血量最低的人、离你最近的怪物发奖惩，该怎么办？这就需要用到<strong>目标选择器</strong>和<strong>三维坐标</strong>。</p>
+<h3 id="选择器代号过滤方括号与三大坐标系">选择器代号、过滤方括号与三大坐标系<a class="anchor" href="#选择器代号过滤方括号与三大坐标系" aria-label="链接到此章节">#</a></h3>
+<h4 id="1-常见目标选择器代号">1. 常见目标选择器代号<a class="anchor" href="#1-常见目标选择器代号" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><code>@a</code>：所有玩家（包括死掉还没重生的）。</li>
+<li><code>@p</code>：离执行点最近的一名玩家。</li>
+<li><code>@r</code>：随机选一名玩家（加上参数也能随机选生物）。</li>
+<li><code>@e</code>：所有实体（玩家、小猪、僵尸、掉落物、盔甲架全算）。</li>
+<li><code>@s</code>：执行者自己（谁在运行指令就选谁）。</li>
+</ul>
+<h4 id="2-方括号里的过滤条件参数">2. 方括号里的过滤条件（参数）<a class="anchor" href="#2-方括号里的过滤条件参数" aria-label="链接到此章节">#</a></h4>
+<p>在代号后面加上 <code>[]</code>，可以在里面用逗号添加筛选条件：</p>
+<div class="table-wrap"><table><thead><tr><th style="text-align:left">条件类别</th><th style="text-align:left">例子</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left"><strong>类型过滤</strong></td><td style="text-align:left"><code>type=cow</code>, <code>type=!player</code></td><td style="text-align:left">只选牛；加 <code>!</code> 表示排除玩家</td></tr><tr><td style="text-align:left"><strong>数量限制</strong></td><td style="text-align:left"><code>c=1</code>, <code>c=3</code></td><td style="text-align:left">只选最近的 1 个或前 3 个</td></tr><tr><td style="text-align:left"><strong>圆形半径</strong></td><td style="text-align:left"><code>r=5</code>, <code>rm=2</code></td><td style="text-align:left"><code>r=5</code> 代表 5 格以内，<code>rm=2</code> 代表排除 2 格以内的</td></tr><tr><td style="text-align:left"><strong>方块选区</strong></td><td style="text-align:left"><code>x=0,y=64,z=0,dx=5,dy=2,dz=5</code></td><td style="text-align:left">从 (0,64,0) 开始，圈出一个长宽高 5x2x5 的方盒子</td></tr><tr><td style="text-align:left"><strong>标签筛选</strong></td><td style="text-align:left"><code>tag=vip</code>, <code>tag=!bad</code></td><td style="text-align:left">只选带有特定标签或没有该标签的实体</td></tr><tr><td style="text-align:left"><strong>物品检测</strong></td><td style="text-align:left"><code>hasitem={item=apple,quantity=1..}</code></td><td style="text-align:left">检测背包里至少有 1 个苹果的人</td></tr></tbody></table></div>
+<h4 id="3-三大坐标体系">3. 三大坐标体系<a class="anchor" href="#3-三大坐标体系" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>绝对坐标（固定位置）</strong>：例如 <code>100 64 -20</code>，地图上的固定点。</li>
+<li><strong>相对坐标（<code>~</code>）</strong>：以自己为起点的偏移。<code>~ ~2 ~</code> 代表自己头顶上方 2 格的位置。</li>
+<li><strong>视线局部坐标（<code>^</code>）</strong>：以眼睛朝向为准，格式是 <code>^左/右 ^上/下 ^前/后</code>。<code>^ ^ ^3</code> 代表自己视线正前方 3 格处。</li>
+</ul>
+<h3 id="常见搭配与范例拆解">常见搭配与范例拆解<a class="anchor" href="#常见搭配与范例拆解" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1清理周围的掉落物">范例 1：清理周围的掉落物<a class="anchor" href="#范例-1清理周围的掉落物" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 清除距离自己 10 格以内所有的掉落物实体
+kill @e[type=item,r=10]</code></pre></figure>
+<h4 id="范例-2区域检测并打标签">范例 2：区域检测并打标签<a class="anchor" href="#范例-2区域检测并打标签" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 给特定区域内的所有玩家添加一个名为 in_room 的标签
+tag @a[x=10,y=60,z=10,dx=8,dy=4,dz=8] add in_room</code></pre></figure>
+<h3 id="容易踩坑的小细节">容易踩坑的小细节<a class="anchor" href="#容易踩坑的小细节" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>千万别乱用裸写 <code>@e</code></strong>：如果直接写 <code>/kill @e</code>，会把全地图所有的画、矿车、盔甲架和展示框全杀光。一定要加上 <code>type=</code> 或范围限制 <code>r=</code>。</li>
+<li><strong>玩家眼睛高度</strong>：基岩版中，玩家眼睛的高度大约在脚底上方 1.62 格（即相对坐标 <code>~ ~1.62 ~</code>）。</li>
+</ol>
+<h3 id="动手实战刷卡进门的门禁系统">动手实战：刷卡进门的门禁系统<a class="anchor" href="#动手实战刷卡进门的门禁系统" aria-label="链接到此章节">#</a></h3>
+<p><strong>目标</strong>：当玩家靠近大门（坐标 <code>10, 65, 10</code>）且背包里有一张名为“门禁卡”的纸时，自动开门并播报欢迎，没有卡则提示拒绝。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 1. 循环方块（保持开启）：检测带门禁卡的玩家，开门
+execute as @a[x=10,y=65,z=10,r=3,hasitem={item=paper,quantity=1..}] run setblock 10 65 12 air
+
+# 2. 连锁方块（无条件）：发出欢迎提示
+execute as @a[x=10,y=65,z=10,r=3,hasitem={item=paper,quantity=1..}] run title @s actionbar §a门禁认证通过，欢迎回家！
+
+# 3. 连锁方块（无条件）：如果没带卡，在动作栏弹警告
+execute as @a[x=10,y=65,z=10,r=3,hasitem={item=paper,quantity=0}] run title @s actionbar §c无通行权限，请出示门禁卡！
+
+# 4. 连锁方块（无条件）：人离开后自动把门关上（变回铁块）
+execute unless entity @a[x=10,y=65,z=10,r=4] run setblock 10 65 12 iron_block</code></pre></figure>
+<hr>
+<h2 id="第-3-章-指令的大脑新版-execute-上下文系统">第 3 章 指令的大脑——新版 /execute 上下文系统<a class="anchor" href="#第-3-章-指令的大脑新版-execute-上下文系统" aria-label="链接到此章节">#</a></h2>
+<h3 id="为什么旧版-execute-不够用了">为什么旧版 execute 不够用了？<a class="anchor" href="#为什么旧版-execute-不够用了" aria-label="链接到此章节">#</a></h3>
+<p>以前的旧版 execute 语法是 <code>/execute 玩家 坐标 指令</code>，执行者和执行位置死死捆绑在一起，想做“让骷髅朝玩家看”、“把命令执行点转到眼睛处”或者“只有下雨天才执行”非常别扭。基岩版更新了全新的 <code>/execute</code> 语法，像搭积木流水线一样，让逻辑变得清晰且强大。</p>
+<h3 id="上下文流水线与常用积木块">上下文流水线与常用积木块<a class="anchor" href="#上下文流水线与常用积木块" aria-label="链接到此章节">#</a></h3>
+<p>新版 execute 的基本格式是：</p>
+<figure class="code-block"><pre><code>/execute [修饰积木1] [修饰积木2] ... run &lt;你真正要运行的指令&gt;</code></pre></figure>
+<h4 id="1-改变身份与位置">1. 改变身份与位置<a class="anchor" href="#1-改变身份与位置" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><code>as &lt;目标&gt;</code>：改变<strong>执行者是谁</strong>（把 <code>@s</code> 变成指定目标）。</li>
+<li><code>at &lt;目标&gt;</code>：把执行的<strong>位置、朝向和维度</strong>变成目标当时的状态。</li>
+<li><code>positioned &lt;x y z&gt;</code> 或 <code>positioned as &lt;目标&gt;</code>：只改坐标，不改朝向。</li>
+<li><code>anchored (eyes|feet)</code>：把基准点设置在<strong>眼睛</strong>或<strong>脚底</strong>。</li>
+<li><code>facing &lt;坐标&gt;</code> 或 <code>facing entity &lt;目标&gt; (eyes|feet)</code>：把执行朝向转为<strong>面朝指定地点或生物</strong>。</li>
+<li><code>align xyz</code>：把坐标的小数点全部向下取整，对齐方块正中心。</li>
+</ul>
+<h4 id="2-条件判断积木">2. 条件判断积木<a class="anchor" href="#2-条件判断积木" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><code>if|unless entity &lt;目标&gt;</code>：如果有 / 除非有某个实体才继续。</li>
+<li><code>if|unless block &lt;坐标&gt; &lt;方块名&gt;</code>：如果 / 除非某个位置是指定方块才继续。</li>
+<li><code>if|unless score &lt;目标&gt; &lt;计分项&gt; matches &lt;范围&gt;</code>：检测记分板分数是否满足条件。</li>
+</ul>
+<h3 id="常见组合写法与精巧范例">常见组合写法与精巧范例<a class="anchor" href="#常见组合写法与精巧范例" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1脚踩特定方块触发效果">范例 1：脚踩特定方块触发效果<a class="anchor" href="#范例-1脚踩特定方块触发效果" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 如果玩家脚下踩着金块，就给他一个弹跳效果
+execute as @a at @s if block ~ ~-1 ~ gold_block run effect @s jump_boost 2 2 true</code></pre></figure>
+<h4 id="范例-2让箭落地时召唤雷电">范例 2：让箭落地时召唤雷电<a class="anchor" href="#范例-2让箭落地时召唤雷电" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 在落在地面的箭的位置召唤一道闪电，并清除该箭
+execute as @e[type=arrow] at @s if block ~ ~-0.1 ~ !air run summon lightning_bolt ~~~
+execute as @e[type=arrow] at @s if block ~ ~-0.1 ~ !air run kill @s</code></pre></figure>
+<h3 id="常见小误区">常见小误区<a class="anchor" href="#常见小误区" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>as 与 at 没分清</strong>：<ul>
+<li>写了 <code>as @a</code>，指令里的 <code>@s</code> 确实变成玩家了，但执行位置还在命令方块那里！</li>
+<li>如果想在玩家的位置执行，一定要写成 <code>as @a at @s</code>。</li>
+</ul>
+</li>
+<li><strong>条件中断</strong>：如果前面的积木判定失败（比如 <code>if block</code> 没找到方块），整条指令后面所有的东西都会直接停掉，不会报错也不会执行 <code>run</code>。</li>
+</ol>
+<h3 id="动手实战制作一把冰冻魔法杖">动手实战：制作一把冰冻魔法杖<a class="anchor" href="#动手实战制作一把冰冻魔法杖" aria-label="链接到此章节">#</a></h3>
+<p><strong>设计目标</strong>：玩家主手拿着烈焰棒时，视线正前方 3 格会自动生成一团蓝色冰霜粒子，被照到的生物会瞬间定身减速。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 循环方块（保持开启）
+execute as @a[hasitem={item=blaze_rod,location=slot.weapon.mainhand}] at @s anchored eyes positioned ^^^3 run particle minecraft:blue_flame_particle ~~~
+
+# 紧接着给该位置 1.5 格内的怪物施加深度减速（定身）
+execute as @a[hasitem={item=blaze_rod,location=slot.weapon.mainhand}] at @s anchored eyes positioned ^^^3 run effect @e[family=monster,r=1.5] slowness 2 10 true</code></pre></figure>
+<hr>
+<h2 id="第-4-章-逻辑判断技巧用指令实现或者与复杂分支">第 4 章 逻辑判断技巧——用指令实现“或者”与复杂分支<a class="anchor" href="#第-4-章-逻辑判断技巧用指令实现或者与复杂分支" aria-label="链接到此章节">#</a></h2>
+<h3 id="原生指令只能做并且遇到或者怎么办">原生指令只能做“并且”，遇到“或者”怎么办？<a class="anchor" href="#原生指令只能做并且遇到或者怎么办" aria-label="链接到此章节">#</a></h3>
+<p>在游戏制作中，我们常遇到这种需求：“只要玩家有铁剑<strong>或者</strong>钻石剑，就可以进副本”；“只要队伍里<strong>有人没准备好</strong>，就不能开门”。原生的选择器中，多个条件都是默认同时满足的（“与”逻辑）。要实现“或者（OR）”、“除非同时满足（NAND）”这种分支，该怎么写？</p>
+<h3 id="逻辑门在指令中的简易转换法">逻辑门在指令中的简易转换法<a class="anchor" href="#逻辑门在指令中的简易转换法" aria-label="链接到此章节">#</a></h3>
+<p>我们可以利用 <code>/execute unless</code>（除非）配合排除法，轻巧地搭建出所有的常见逻辑：</p>
+<figure class="code-block"><pre><code>条件 A ──┐
+        ├── [ 逻辑判断门 ] ──&gt; 决定最终执不执行
+条件 B ──┘</code></pre></figure>
+<h4 id="常用逻辑对照速查">常用逻辑对照速查<a class="anchor" href="#常用逻辑对照速查" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li><strong>与逻辑（AND）</strong>：两个条件都要满足。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">execute as @p[tag=has_key,tag=is_vip] run say 欢迎贵宾入内！</code></pre></figure>
+</li>
+<li><strong>非逻辑（NOT）</strong>：没有某个条件才执行。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">execute as @p[tag=!banned] run say 你没有被封禁。</code></pre></figure>
+</li>
+<li><strong>或逻辑（OR）</strong>：只要满足 A 或满足 B 其中一个就执行（反过来想：除非既没有 A 也没有 B，否则就执行）。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">execute as @p unless entity @s[tag=!has_ticket_a,tag=!has_ticket_b] run say 拥有任意门票均可通行！</code></pre></figure>
+</li>
+<li><strong>异或逻辑（XOR）</strong>：A 和 B 只能满足其中恰好一个，全有或全无都不行。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">execute as @p unless entity @s[tag=!team_red,tag=!team_blue] unless entity @s[tag=team_red,tag=team_blue] run say 队伍选择正常！</code></pre></figure>
+</li>
+</ul>
+<h3 id="实战选择器组合范例">实战选择器组合范例<a class="anchor" href="#实战选择器组合范例" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1检测多种武器或逻辑">范例 1：检测多种武器（或逻辑）<a class="anchor" href="#范例-1检测多种武器或逻辑" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 只要持有木剑、石剑、铁剑其中任意一把，就判定为武装人员
+execute as @a unless entity @s[hasitem=[{item=wooden_sword,quantity=0},{item=stone_sword,quantity=0},{item=iron_sword,quantity=0}]] run tag @s add is_armed</code></pre></figure>
+<h4 id="范例-2复合双重排除">范例 2：复合双重排除<a class="anchor" href="#范例-2复合双重排除" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 找出所有不是鸡、也不是牛的生物
+execute as @e unless entity @s[type=chicken] unless entity @s[type=cow] run effect @s glowing 2 0 true</code></pre></figure>
+<h3 id="逻辑编写省心准则">逻辑编写省心准则<a class="anchor" href="#逻辑编写省心准则" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>别把逻辑写太长</strong>：如果一个判定需要写四五个 <code>unless</code>，不妨在前面用两条简单指令分别给符合条件的目标打上临时标签 <code>tag @s add temp_pass</code>，后面直接检测这个临时标签，清晰又不容易出错。</li>
+</ol>
+<h3 id="动手实战双人密室逃脱门锁">动手实战：双人密室逃脱门锁<a class="anchor" href="#动手实战双人密室逃脱门锁" aria-label="链接到此章节">#</a></h3>
+<p><strong>设计目标</strong>：房间里有两个拉杆（拉杆 A 和 拉杆 B）。只有当<strong>其中恰好一个拉杆拉下</strong>时大门打开；如果两个都拉下或都没拉下，则关门并响起蜂鸣警告。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 1. 异或判断：两个开关中只有一个被拉下（开门）
+execute as @p unless entity @s[tag=!switch_a,tag=!switch_b] unless entity @s[tag=switch_a,tag=switch_b] run setblock 20 64 20 air
+
+# 2. 同或判断：两个开关状态一样（全开或全关），关门
+execute as @p unless entity @s[tag=switch_a,tag=!switch_b] unless entity @s[tag=!switch_a,tag=switch_b] run setblock 20 64 20 iron_door
+
+# 3. 伴随提示音：若两个开关都被拉下了，播放低音警告
+execute as @p[tag=switch_a,tag=switch_b] run playsound note.bass @a ~~~ 1 0.5</code></pre></figure>
+<hr>
+<h2 id="第-5-章-记分板系统数据统计金币与全局计时器">第 5 章 记分板系统——数据统计、金币与全局计时器<a class="anchor" href="#第-5-章-记分板系统数据统计金币与全局计时器" aria-label="链接到此章节">#</a></h2>
+<h3 id="给游戏加上数字变量与小账本">给游戏加上数字变量与小账本<a class="anchor" href="#给游戏加上数字变量与小账本" aria-label="链接到此章节">#</a></h3>
+<p>游戏里很多好玩的玩法都离不开“数字”：杀怪数量、金币存款、副本倒计时、玩家剩余血量百分比等。<strong>记分板（Scoreboard）</strong>就是 Minecraft 官方提供的数据中心，不仅能存数字，还能做加减乘除、求余数、比大小。</p>
+<h3 id="记分板操作符与时钟调度原理">记分板操作符与时钟调度原理<a class="anchor" href="#记分板操作符与时钟调度原理" aria-label="链接到此章节">#</a></h3>
+<h4 id="1-创建记分项与安全初始化">1. 创建记分项与安全初始化<a class="anchor" href="#1-创建记分项与安全初始化" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li>创建一个名为 <code>money</code> 的虚拟账本：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">scoreboard objectives add money dummy 游戏金币</code></pre></figure>
+</li>
+<li>假名安全初始化（如果玩家没有分数就设为 0，已有分数则不覆盖）：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">scoreboard players add @a money 0</code></pre></figure>
+</li>
+</ul>
+<h4 id="2-九种运算符号一览operation">2. 九种运算符号一览（<code>operation</code>）<a class="anchor" href="#2-九种运算符号一览operation" aria-label="链接到此章节">#</a></h4>
+<p>语法：<code>/scoreboard players operation 接收者 计分项 符号 贡献者 计分项</code></p>
+<div class="table-wrap"><table><thead><tr><th style="text-align:left">运算符号</th><th style="text-align:left">作用</th><th style="text-align:left">简单示例与说明</th></tr></thead><tbody><tr><td style="text-align:left"><code>+=</code></td><td style="text-align:left">加法</td><td style="text-align:left"><code>A money += B money</code>（把 B 的钱加到 A 身上）</td></tr><tr><td style="text-align:left"><code>-=</code></td><td style="text-align:left">减法</td><td style="text-align:left"><code>A money -= B money</code>（A 的钱减去 B 的钱）</td></tr><tr><td style="text-align:left"><code>*=</code></td><td style="text-align:left">乘法</td><td style="text-align:left"><code>A money *= B money</code>（A 的钱乘以 B 的钱）</td></tr><tr><td style="text-align:left"><code>/=</code></td><td style="text-align:left">整除</td><td style="text-align:left"><code>A money /= B money</code>（A 的钱除以 B，小数部分直接扔掉）</td></tr><tr><td style="text-align:left"><code>%=</code></td><td style="text-align:left">取模（求余数）</td><td style="text-align:left"><code>A money %= B money</code>（求 A 除以 B 后的余数，常做循环时钟）</td></tr><tr><td style="text-align:left"><code>=</code></td><td style="text-align:left">赋值</td><td style="text-align:left"><code>A money = B money</code>（把 B 的分数直接抄给 A）</td></tr><tr><td style="text-align:left"><code>&lt;</code></td><td style="text-align:left">留较小者</td><td style="text-align:left"><code>A money &lt; B money</code>（A 和 B 比，谁小就把谁存到 A）</td></tr><tr><td style="text-align:left"><code>&gt;</code></td><td style="text-align:left">留较大者</td><td style="text-align:left"><code>A money &gt; B money</code>（A 和 B 比，谁大就把谁存到 A）</td></tr><tr><td style="text-align:left"><code>&gt;&lt;</code></td><td style="text-align:left">互相交换</td><td style="text-align:left"><code>A money &gt;&lt; B money</code>（A 和 B 的分数互换）</td></tr></tbody></table></div>
+<h4 id="3-用取模运算做多功能时钟">3. 用“取模运算（<code>%=</code>）”做多功能时钟<a class="anchor" href="#3-用取模运算做多功能时钟" aria-label="链接到此章节">#</a></h4>
+<p>让一个计时器变量 <code>main_timer</code> 每刻自增 1，然后用余数运算，就可以在一条指令链里同时控制多种不同周期的事件：</p>
+<ul>
+<li>30 秒（600 刻）：<code>main_timer % 600 == 0</code></li>
+<li>10 分钟（12000 刻）：<code>main_timer % 12000 == 0</code></li>
+</ul>
+<h3 id="常用统计与计算范例">常用统计与计算范例<a class="anchor" href="#常用统计与计算范例" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1抓出杀敌数最多的全场最佳">范例 1：抓出杀敌数最多的“全场最佳”<a class="anchor" href="#范例-1抓出杀敌数最多的全场最佳" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 1. 把所有人的 kills 分数与 max_score 比对，max_score 就会变成全服最高分
+scoreboard players operation max_score kills &gt; * kills
+
+# 2. 找出分数等于最高分的人，挂上 mvp 称号
+tag @a remove mvp
+execute as @a if score @s kills = max_score kills run tag @s add mvp</code></pre></figure>
+<h4 id="范例-2统计场上存活的玩家人数">范例 2：统计场上存活的玩家人数<a class="anchor" href="#范例-2统计场上存活的玩家人数" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 1. 清空临时统计变量
+scoreboard players set player_count temp_data 0
+
+# 2. 每个活着的人都给计数器加 1 分
+execute as @a run scoreboard players add player_count temp_data 1
+
+# 3. 如果场上只剩 1 个人，宣布吃鸡胜利
+execute if score player_count temp_data matches 1 run say §6只剩最后一人，大吉大利！</code></pre></figure>
+<h3 id="数据计算小贴士">数据计算小贴士<a class="anchor" href="#数据计算小贴士" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>整数除法会丢掉小数</strong>：在记分板里 <code>5 / 2</code> 的结果是 <code>2</code>，不是 <code>2.5</code>。如果你想算百分比，比如当前血量占总血量的百分比，<strong>一定要先乘 100 再除以最大血量</strong>！</li>
+<li><strong>通配符 <code>*</code> 的用法</strong>：<code>*</code> 会操作所有在这个记分项里留下过名字的人（包括退服玩家和假名字）。平时统计在线玩家时，建议优先使用 <code>@a</code>。</li>
+</ol>
+<h3 id="动手实战世界任务调度中心">动手实战：世界任务调度中心<a class="anchor" href="#动手实战世界任务调度中心" aria-label="链接到此章节">#</a></h3>
+<p><strong>设计目标</strong>：做一个自动时钟系统，每 30 秒给全服发一次加速增益，每 10 分钟自动清理一次地面的掉落物垃圾。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">## 1. 预先在聊天框创建好变量 (执行一次)
+# scoreboard objectives add game_ticks dummy
+# scoreboard objectives add event_timers dummy
+# scoreboard players set timer_30s game_ticks 600
+# scoreboard players set timer_10m game_ticks 12000
+
+## 2. 循环指令链：
+# 全局时钟每刻 +1
+scoreboard players add main_timer game_ticks 1
+
+# 将当前时间同步给所有事件槽
+scoreboard players operation * event_timers = main_timer game_ticks
+
+# 任务 A：每 30 秒触发一次
+scoreboard players operation speed_event event_timers %= timer_30s game_ticks
+execute if score speed_event event_timers matches 0 run effect @a speed 5 1 true
+
+# 任务 B：每 10 分钟清理一次掉落物
+scoreboard players operation clear_event event_timers %= timer_10m game_ticks
+execute if score clear_event event_timers matches 0 run kill @e[type=item]
+execute if score clear_event event_timers matches 0 run say §e[系统] 地面掉落物已自动清理完毕！</code></pre></figure>
+<hr>
+<h2 id="第-6-章-状态侦测技巧检测潜行睡觉视线与天气">第 6 章 状态侦测技巧——检测潜行、睡觉、视线与天气<a class="anchor" href="#第-6-章-状态侦测技巧检测潜行睡觉视线与天气" aria-label="链接到此章节">#</a></h2>
+<h3 id="怎么知道玩家在做什么动作">怎么知道玩家在做什么动作？<a class="anchor" href="#怎么知道玩家在做什么动作" aria-label="链接到此章节">#</a></h3>
+<p>除了检测坐标和金币，游戏制作中常常需要探测玩家的行为：玩家现在是不是在偷偷潜行？是不是躺在床上睡觉？他现在眼睛正看着哪只怪物？天上是不是正在下雨？利用碰撞箱（Hitbox）高度差、视线回转三角算法和方块特性，我们不用任何外部插件也能精准识别。</p>
+<h3 id="姿态高度差与视线反射几何原理">姿态高度差与视线反射几何原理<a class="anchor" href="#姿态高度差与视线反射几何原理" aria-label="链接到此章节">#</a></h3>
+<h4 id="1-姿态碰撞箱hitbox高度分阶">1. 姿态碰撞箱（Hitbox）高度分阶<a class="anchor" href="#1-姿态碰撞箱hitbox高度分阶" aria-label="链接到此章节">#</a></h4>
+<p>基岩版在 1.20.10 加入短潜行后，玩家在不同姿态下的碰撞箱高度是截然不同的：</p>
+<ul>
+<li><strong>站立高度</strong>：约 1.8 格</li>
+<li><strong>潜行高度</strong>：约 1.5 格</li>
+<li><strong>爬行/游泳/滑翔高度</strong>：约 0.6 格</li>
+<li><strong>睡觉高度</strong>：仅约 0.2 格</li>
+</ul>
+<p>只要用 <code>[y=~偏移, dy=0]</code> 在头顶特定高度开一个小检测盒，就能一眼看出玩家处于什么姿态！</p>
+<figure class="code-block"><pre><code>高度
+1.8格 ─── 站立顶部   [y=~1.5, dy=0]   &lt;-- 只有站着能碰到
+1.5格 ─── 潜行顶部   [y=~0.7, dy=0]   &lt;-- 站着和潜行能碰到
+0.6格 ─── 爬行顶部   [y=~0.3, dy=0]   &lt;-- 站、蹲、爬都能碰到
+0.0格 ─── 脚底地面</code></pre></figure>
+<h4 id="2-视线检测look-detection原理">2. 视线检测（Look Detection）原理<a class="anchor" href="#2-视线检测look-detection原理" aria-label="链接到此章节">#</a></h4>
+<p>怎么知道玩家是不是正好看着某个目标？</p>
+<ul>
+<li>先从玩家眼睛出发，朝<strong>目标的方向</strong>往前走 1 格（<code>facing 目标 ... positioned ^^^1</code>）。</li>
+<li>然后转回<strong>玩家自己的朝向</strong>，往后倒退 1 格（<code>rotated as @s ... positioned ^^^-1</code>）。</li>
+<li>如果玩家正好看着目标，这一前一后就会回到原点；只要检测此时距离玩家自身是不是在 0.2 格以内（<code>if entity @s[r=0.2]</code>），就能精准判定玩家在看着它！</li>
+</ul>
+<h3 id="实用动作与天气检测范例">实用动作与天气检测范例<a class="anchor" href="#实用动作与天气检测范例" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1潜行检测sneak-detection">范例 1：潜行检测（Sneak Detection）<a class="anchor" href="#范例-1潜行检测sneak-detection" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 1. 如果头顶 1.5 格有碰撞箱，说明是站立状态，重置为 0
+execute as @a at @s if entity @s[y=~1.5,dy=0] run scoreboard players set @s is_sneaking 0
+
+# 2. 如果没顶到 1.5 格但顶到了 0.7 格，说明正在潜行，分数累加
+execute as @a at @s unless entity @s[y=~1.5,dy=0] if entity @s[y=~0.7,dy=0] run scoreboard players add @s is_sneaking 1
+
+# 3. 分数刚好为 1 代表刚按下的那一刻，执行音效
+execute as @a[scores={is_sneaking=1}] run playsound random.click @s ~~~</code></pre></figure>
+<h4 id="范例-2睡觉检测sleep-detection">范例 2：睡觉检测（Sleep Detection）<a class="anchor" href="#范例-2睡觉检测sleep-detection" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 当玩家睡觉时，碰撞箱低于 0.3 格
+execute as @a at @s unless entity @s[y=~0.3,dy=0] run title @s actionbar §z正在香甜入睡中...</code></pre></figure>
+<h4 id="范例-3全自动雨天检测rain-detection">范例 3：全自动雨天检测（Rain Detection）<a class="anchor" href="#范例-3全自动雨天检测rain-detection" aria-label="链接到此章节">#</a></h4>
+<p>利用在天上的火被雨淋会瞬间熄灭的物理规律：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 在常加载区露天位置 (0, 100, 0) 放置火焰检测点
+# 1. 火熄灭了且天气状态不为 2，说明下雨刚开始
+execute unless block 0 100 0 fire unless score weather_data is_raining matches 2 run scoreboard players set weather_data is_raining 1
+
+# 2. 火还在烧，说明是晴天
+execute if block 0 100 0 fire run scoreboard players set weather_data is_raining 0
+
+# 3. 补上一把火，供下一刻继续检测
+setblock 0 100 0 fire
+
+# 4. 触发下雨公告并锁定状态为 2
+execute if score weather_data is_raining matches 1 run say §b天空下起大雨了！
+execute if score weather_data is_raining matches 1 run scoreboard players set weather_data is_raining 2</code></pre></figure>
+<h3 id="调试注意事项">调试注意事项<a class="anchor" href="#调试注意事项" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>视线阻挡问题</strong>：上面的视线算法是几何角度计算，不能判断中间有没有墙挡着。如果需要防穿墙，需要结合单步推进。</li>
+<li><strong>雨天火焰规则</strong>：世界设置里的 <code>fire_spread</code>（火焰蔓延）必须打开，火上面的天空不能有任何方块遮挡。</li>
+</ol>
+<h3 id="动手实战注视石化之眼美杜莎凝视">动手实战：注视石化之眼（美杜莎凝视）<a class="anchor" href="#动手实战注视石化之眼美杜莎凝视" aria-label="链接到此章节">#</a></h3>
+<p><strong>设计目标</strong>：召唤一只名为“美杜莎”的守卫者，只要任何玩家眼睛正面看向美杜莎的头部，玩家就会被定身石化并受到凋零伤害。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 循环指令：检测玩家是否正对着美杜莎的眼睛
+execute as @a at @s anchored eyes facing entity @e[type=guardian,name=&quot;美杜莎&quot;,c=1] eyes positioned ~~-1.62~ positioned ^^^1 rotated as @s positioned ^^^-1 if entity @s[r=0.2] run effect @s slowness 2 255 true
+
+# 伴随受到凋零和警告提示
+execute as @a at @s anchored eyes facing entity @e[type=guardian,name=&quot;美杜莎&quot;,c=1] eyes positioned ~~-1.62~ positioned ^^^1 rotated as @s positioned ^^^-1 if entity @s[r=0.2] run effect @s wither 2 1 true
+execute as @a at @s anchored eyes facing entity @e[type=guardian,name=&quot;美杜莎&quot;,c=1] eyes positioned ~~-1.62~ positioned ^^^1 rotated as @s positioned ^^^-1 if entity @s[r=0.2] run title @s actionbar §4不要直视美杜莎的双眼！</code></pre></figure>
+<hr>
+<h2 id="第-7-章-函数与行为包进服退服死亡与重生事件">第 7 章 函数与行为包——进服、退服、死亡与重生事件<a class="anchor" href="#第-7-章-函数与行为包进服退服死亡与重生事件" aria-label="链接到此章节">#</a></h2>
+<h3 id="命令方块太多太卡用代码文件来管理">命令方块太多太卡？用代码文件来管理！<a class="anchor" href="#命令方块太多太卡用代码文件来管理" aria-label="链接到此章节">#</a></h3>
+<p>当游戏系统越来越复杂，几百个命令方块排在地图里不仅容易乱、找 bug 困难，还会占用地图资源。这时候，我们可以使用行为包里的<strong>函数文件（.mcfunction）</strong>。把所有指令写进文本文件里，打包成材质包/行为包，随时随地一键调用。</p>
+<h3 id="行为包目录tickjson-与四大核心事件">行为包目录、tick.json 与四大核心事件<a class="anchor" href="#行为包目录tickjson-与四大核心事件" aria-label="链接到此章节">#</a></h3>
+<h4 id="1-标准函数包文件结构">1. 标准函数包文件结构<a class="anchor" href="#1-标准函数包文件结构" aria-label="链接到此章节">#</a></h4>
+<p>在行为包（BP）里新建文件夹：</p>
+<figure class="code-block"><pre><code>📁 BP
+├── 📄 manifest.json
+└── 📁 functions
+    ├── 📄 tick.json
+    └── 📁 example
+        ├── 📄 main.mcfunction
+        ├── 📁 players
+        │   ├── 📄 on_join.mcfunction
+        │   ├── 📄 on_leave.mcfunction
+        │   ├── 📄 on_death.mcfunction
+        │   └── 📄 on_respawn.mcfunction
+        └── 📁 worlds
+            └── 📄 on_init.mcfunction</code></pre></figure>
+<ul>
+<li><strong>书写规则</strong>：函数文件里每行写一条指令，<strong>绝对不要加前导斜杠 <code>/</code></strong>。用 <code>#</code> 写注释。</li>
+<li><strong>tick.json</strong>：在这里登记的函数，游戏引擎会在每一刻自动重复运行它。</p>
+<figure class="code-block" data-lang="json"><pre><code class="language-json">{
+&quot;values&quot;: [
+  &quot;example/main&quot;
+]
+}</code></pre></figure>
+</li>
+</ul>
+<h3 id="四大全局事件的标准范式">四大全局事件的标准范式<a class="anchor" href="#四大全局事件的标准范式" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1世界第一次加载on-first-world-load">范例 1：世界第一次加载（On First World Load）<a class="anchor" href="#范例-1世界第一次加载on-first-world-load" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 文件: BP/functions/example/main.mcfunction
+execute unless score world_data is_inited matches 1 run function example/worlds/on_init
+
+# 文件: BP/functions/example/worlds/on_init.mcfunction
+scoreboard objectives add world_data dummy
+scoreboard objectives add is_inited dummy
+scoreboard objectives add join_data dummy
+scoreboard objectives add is_alive dummy
+scoreboard players set world_data is_inited 1
+say §a[系统] 基础数据系统已初始化完毕！</code></pre></figure>
+<h4 id="范例-2玩家进服与第一次进服监听on-join">范例 2：玩家进服与第一次进服监听（On Join）<a class="anchor" href="#范例-2玩家进服与第一次进服监听on-join" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 文件: BP/functions/example/players/on_join.mcfunction
+# 1. 新来的玩家安全加 0
+scoreboard players add @a join_data 0
+
+# 2. 第一次进服的玩家没有 joined 标签
+give @a[tag=!joined] starter_kit 1
+say @a[tag=!joined] §e欢迎新玩家加入世界！
+tag @a[tag=!joined] add joined
+
+# 3. 常规进服提示 (本刻分数为 0 的玩家)
+tellraw @a[scores={join_data=0}] {&quot;rawtext&quot;:[{&quot;text&quot;:&quot;§a欢迎回来！&quot;}]}
+
+# 4. 把所有在线玩家设为 1，防止下一刻继续触发
+scoreboard players reset * join_data
+scoreboard players set @a join_data 1</code></pre></figure>
+<h4 id="范例-3玩家退服监听on-player-leave">范例 3：玩家退服监听（On Player Leave）<a class="anchor" href="#范例-3玩家退服监听on-player-leave" aria-label="链接到此章节">#</a></h4>
+<p>通过“这一刻人数 - 上一刻人数”算差值：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 文件: BP/functions/example/players/on_leave.mcfunction
+# 1. 统计这一刻的人数
+scoreboard players reset curr_count temp_data
+execute as @a run scoreboard players add curr_count temp_data 1
+
+# 2. 作差：curr_count = curr_count - prev_count
+scoreboard players operation curr_count temp_data -= prev_count temp_data
+
+# 3. 如果结果 &lt;= -1，说明有人退出了游戏
+execute if score curr_count temp_data matches ..-1 run say §c有玩家离开了游戏。
+
+# 4. 保存当前人数给下一刻用
+scoreboard players reset prev_count temp_data
+execute as @a run scoreboard players add prev_count temp_data 1</code></pre></figure>
+<h4 id="范例-4玩家死亡与重生监听on-death-respawn">范例 4：玩家死亡与重生监听（On Death &amp; Respawn）<a class="anchor" href="#范例-4玩家死亡与重生监听on-death-respawn" aria-label="链接到此章节">#</a></h4>
+<p>利用 <code>@a</code>（包含死亡玩家）和 <code>@e[type=player]</code>（仅存活玩家）的选择器区别：</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 文件: BP/functions/example/players/on_death.mcfunction
+# 先把所有玩家设为 0 (死)，再把存活玩家刷成 1 (活)
+scoreboard players set @a[scores={is_alive=!-1}] is_alive 0
+scoreboard players set @e[type=player] is_alive 1
+
+# 分数为 0 代表刚刚死亡
+execute as @a[scores={is_alive=0}] at @s run summon armor_stand &quot;墓碑标记&quot; ~~~
+execute as @a[scores={is_alive=0}] run tellraw @s {&quot;rawtext&quot;:[{&quot;text&quot;:&quot;§c你已阵亡，掉落物已标记！&quot;}]}
+
+# 设为 -1 自锁，防止死亡画面反复弹消息
+scoreboard players set @a[scores={is_alive=0}] is_alive -1</code></pre></figure>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 文件: BP/functions/example/players/on_respawn.mcfunction
+# 捕获重生动作
+execute as @e[scores={respawn_status=1}] run say §a我重获新生了！
+scoreboard players set @a respawn_status 1
+scoreboard players set @e[type=player] respawn_status 0</code></pre></figure>
+<h3 id="函数运行的规则限制">函数运行的规则限制<a class="anchor" href="#函数运行的规则限制" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>单刻 10,000 条上限</strong>：在同一个游戏刻里，所有函数执行的总指令不能超过 10,000 条，否则会被系统强制切断。写循环递归时一定要留好退出条件。</li>
+<li><strong>函数是同一刻瞬间完成的</strong>：一个函数文件里的 50 行指令是在 0 秒内按顺序瞬间执行完的。如果需要做“等待 3 秒再执行”，必须配合记分板计时器分流。</li>
+</ol>
+<h3 id="动手实战主入口主函数分流设计">动手实战：主入口主函数分流设计<a class="anchor" href="#动手实战主入口主函数分流设计" aria-label="链接到此章节">#</a></h3>
+<p><strong>设计目标</strong>：编写一个清晰规范的 <code>main.mcfunction</code> 作为总调度台，挂载在 <code>tick.json</code> 下，井井有条地调度各个事件子系统。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 文件: BP/functions/example/main.mcfunction
+
+## 1. 系统开机自检
+execute unless score world_data is_inited matches 1 run function example/worlds/on_init
+
+## 2. 玩家状态事件轮询
+function example/players/on_join
+function example/players/on_leave
+function example/players/on_death
+function example/players/on_respawn
+
+## 3. 日常游戏玩法系统
+execute as @a[tag=in_game] run effect @s saturation 1 0 true</code></pre></figure>
+<hr>
+<h2 id="第-8-章-界面与视觉魔法屏幕富文本与自制展示方块">第 8 章 界面与视觉魔法——屏幕富文本与自制展示方块<a class="anchor" href="#第-8-章-界面与视觉魔法屏幕富文本与自制展示方块" aria-label="链接到此章节">#</a></h2>
+<h3 id="让指令有大作般的画面表现">让指令有“大作”般的画面表现<a class="anchor" href="#让指令有大作般的画面表现" aria-label="链接到此章节">#</a></h3>
+<p>文字排版只用白色很单调？游戏里的各种标题、金币展示栏怎样才能像专业大作一样美观？能不能在不装额外材质模型包的情况下，用指令直接在地上摆出“微缩方块”或者“漂浮的特殊家具”？</p>
+<h3 id="rawtext-结构与-max-盔甲架展示方块mbe">Rawtext 结构与 Max 盔甲架展示方块（MBE）<a class="anchor" href="#rawtext-结构与-max-盔甲架展示方块mbe" aria-label="链接到此章节">#</a></h3>
+<h4 id="1-json-富文本rawtext三大核心件">1. JSON 富文本（Rawtext）三大核心件<a class="anchor" href="#1-json-富文本rawtext三大核心件" aria-label="链接到此章节">#</a></h4>
+<p>用于 <code>/tellraw</code>、<code>/titleraw</code>：</p>
+<ul>
+<li><code>text</code>：直接写的文字，支持颜色代码（如 <code>§a</code>、<code>§e</code>）。</li>
+<li><code>selector</code>：动态显示某个目标的名字（如 <code>{&quot;selector&quot;: &quot;@p&quot;}</code>）。</li>
+<li><code>score</code>：把记分板的分数动态镶嵌进文字里。</li>
+</ul>
+<h4 id="2-max-盔甲架展示方块mbe-技术">2. Max 盔甲架展示方块（MBE 技术）<a class="anchor" href="#2-max-盔甲架展示方块mbe-技术" aria-label="链接到此章节">#</a></h4>
+<p>社区大神 Maxed_Out 发现了一个神奇的技巧：</p>
+<ul>
+<li>把盔甲架命名为 <strong>Grumm</strong>（让它倒立）。</li>
+<li>摆成特定的待机姿势，手上拿任意方块物品。</li>
+<li>用 <code>/playanimation</code> 播放僵尸手臂与恶魂缩放动画，就能把方块放大并精确对齐成一个真实的“自定义方块展示品”！</li>
+</ul>
+<h3 id="经典富文本与方块展示范例">经典富文本与方块展示范例<a class="anchor" href="#经典富文本与方块展示范例" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1个人信息仪表盘actionbar-hud">范例 1：个人信息仪表盘（ActionBar HUD）<a class="anchor" href="#范例-1个人信息仪表盘actionbar-hud" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="json"><pre><code class="language-json">titleraw @a actionbar {
+  &quot;rawtext&quot;: [
+    {&quot;text&quot;: &quot;§e玩家: §f&quot;},
+    {&quot;selector&quot;: &quot;@s&quot;},
+    {&quot;text&quot;: &quot;  §6金币: §a&quot;},
+    {&quot;score&quot;: {&quot;name&quot;: &quot;*&quot;, &quot;objective&quot;: &quot;money&quot;}},
+    {&quot;text&quot;: &quot;  §c延迟: §f20ms&quot;}
+  ]
+}</code></pre></figure>
+<h4 id="范例-2mbe-伪方块简易召唤法">范例 2：MBE 伪方块简易召唤法<a class="anchor" href="#范例-2mbe-伪方块简易召唤法" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 1. 召唤一个倒立的盔甲架并命名为 Grumm
+summon armor_stand ~~~ 81 ~ default &quot;Grumm&quot;
+
+# 2. 把想展示的方块塞到副手 (防止被玩家拿走)
+replaceitem entity @e[type=armor_stand,name=&quot;Grumm&quot;,c=1] slot.weapon.offhand 0 diamond_block
+
+# 3. 依次播放手臂摆位和尺寸放大动画
+playanimation @e[name=&quot;Grumm&quot;] animation.armor_stand.entertain_pose null 0 &quot;0&quot; example:arms
+playanimation @e[name=&quot;Grumm&quot;] animation.player.move.arms.zombie null 0 &quot;0&quot; example:mini
+playanimation @e[name=&quot;Grumm&quot;] animation.ghast.scale null 0 &quot;0&quot; example:full
+playanimation @e[name=&quot;Grumm&quot;] animation.fireworks_rocket.move null 0 &quot;0&quot; example:align
+
+# 4. 隐形并固定在原地
+effect @e[name=&quot;Grumm&quot;] invisibility infinite 1 true
+execute as @e[name=&quot;Grumm&quot;] at @s run tp ~~~</code></pre></figure>
+<h3 id="使用细节与防坑建议">使用细节与防坑建议<a class="anchor" href="#使用细节与防坑建议" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>展示方块没有真实碰撞</strong>：用 MBE 做出的方块，玩家是可以直接穿过去的。如果你希望它像真方块一样能踩、能挡路，记得在它所在的位置放一个 <code>barrier</code>（隐形屏障方块）。</li>
+<li><strong>动画需要保持或重载</strong>：由于 <code>/playanimation</code> 是在玩家客户端渲染的，玩家离远再回来可能会恢复原状。可以在区域加载或玩家进服时重新触发一次。</li>
+</ol>
+<h3 id="动手实战投掷物简易自制合成台">动手实战：投掷物简易自制合成台<a class="anchor" href="#动手实战投掷物简易自制合成台" aria-label="链接到此章节">#</a></h3>
+<p><strong>设计目标</strong>：用一个普通的投掷物（Dropper）当做特殊合成台，玩家只要把指定的材料摆进投掷物，就会自动变成合成出的宝物。</p>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 说明:
+# 坐标 (10, 5, 10) 是放在游戏里的玩家合成台 (投掷物)
+# 坐标 (0, 0, 0) 是藏在地底的配方模板 (里面摆着正确的材料)
+# 坐标 (0, 0, 1) 是藏在地底的产物箱子 (里面放着合成奖励)
+
+# 循环指令：
+# 1. 比对：如果玩家投掷物里的材料和配方一模一样，播放锻造音效
+execute if blocks 0 0 0 0 0 0 10 5 10 masked positioned 10 5 10 run playsound smithing_table.use @a[r=7]
+
+# 2. 替换：把产物克隆到玩家的投掷物里
+execute if blocks 0 0 0 0 0 0 10 5 10 masked run clone 0 0 1 0 0 1 10 5 10</code></pre></figure>
+<hr>
+<h2 id="第-9-章-算法优化与黑科技二分法与-nx树-多重分流">第 9 章 算法优化与黑科技——二分法与 nx树 多重分流<a class="anchor" href="#第-9-章-算法优化与黑科技二分法与-nx树-多重分流" aria-label="链接到此章节">#</a></h2>
+<h3 id="怎样用几条指令搞定成百上千次运算">怎样用几条指令搞定成百上千次运算？<a class="anchor" href="#怎样用几条指令搞定成百上千次运算" aria-label="链接到此章节">#</a></h3>
+<p>如果你想做个批量出售箱：玩家可能有 1 个面包，也可能有 64 个面包。难道我们要写 64 条指令一条条测？如果想在玩家头顶用粒子瞬间画出一个完整的 3D 浑天球体，难道要写几百个命令方块？利用<strong>二分法</strong>和 <strong>nx树（MEF / execute fork）</strong>，我们可以用最少的指令实现成百上千倍的效率爆发！</p>
+<h3 id="二分法思想与-nx树-分流裂变模型">二分法思想与 nx树 分流裂变模型<a class="anchor" href="#二分法思想与-nx树-分流裂变模型" aria-label="链接到此章节">#</a></h3>
+<h4 id="1-二分法二进制拆分原理">1. 二分法（二进制拆分）原理<a class="anchor" href="#1-二分法二进制拆分原理" aria-label="链接到此章节">#</a></h4>
+<p>任何 1 到 64 之间的数字，都可以拆成 7 个 2 的次方数相加：<br>
+<div class="math-block">64, 32, 16, 8, 4, 2, 1</div><br>
+比如玩家有 50 个面包：<span class="math-inline">50 = 32 + 16 + 2</span>。<br>
+我们只要按从大到小的顺序检测这 7 档，<strong>仅需 7 步</strong>就能把任意数量的面包瞬间扣除并折算成金币，效率比传统的一格格扣高了几十倍！</p>
+<h4 id="2-nx树mef-execute-fork核心裂变原理">2. nx树（MEF / execute fork）核心裂变原理<a class="anchor" href="#2-nx树mef-execute-fork核心裂变原理" aria-label="链接到此章节">#</a></h4>
+<p>在 <code>/execute</code> 指令中，如果你的选择器选到了 <span class="math-inline">n</span> 个目标，指令就会顺着这 <span class="math-inline">n</span> 个目标分裂成 <span class="math-inline">n</span> 条支线。<br>
+如果你把这种选择器串联 <span class="math-inline">x</span> 次，分支数量就会像一棵不断开叉的大树一样爆发式增长：</p>
+<div class="math-block">\text{生成实例数} = n^x</div>
+<figure class="code-block"><pre><code>               [ 根指令 ]
+                /      \
+           [ 实体1 ]   [ 实体2 ]           (第 1 层分流: 2^1 = 2)
+            /    \      /    \
+          1-1   1-2   2-1   2-2         (第 2 层分流: 2^2 = 4)
+          / \   / \   / \   / \
+         *   * *   * *   * *   *        (第 3 层分流: 2^3 = 8)
+                                        ... 持续裂变为 nx树</code></pre></figure>
+<p>通过放置两只带有特定朝向的辅助船，利用 nx树（MEF）在单条指令中连续倍增旋转角度，单刻内就能生成数千个空间计算点！</p>
+<h3 id="经典算法范例">经典算法范例<a class="anchor" href="#经典算法范例" aria-label="链接到此章节">#</a></h3>
+<h4 id="范例-1二分法极速物资收购商店">范例 1：二分法极速物资收购商店<a class="anchor" href="#范例-1二分法极速物资收购商店" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">## 仅用 7 组指令，瞬间清空并兑换 1~64 任意堆叠的面包
+execute as @a[hasitem={item=bread,quantity=64..}] run scoreboard players add @s money 64
+execute as @a[hasitem={item=bread,quantity=64..}] run clear @s bread 0 64
+
+execute as @a[hasitem={item=bread,quantity=32..}] run scoreboard players add @s money 32
+execute as @a[hasitem={item=bread,quantity=32..}] run clear @s bread 0 32
+
+execute as @a[hasitem={item=bread,quantity=16..}] run scoreboard players add @s money 16
+execute as @a[hasitem={item=bread,quantity=16..}] run clear @s bread 0 16
+
+execute as @a[hasitem={item=bread,quantity=8..}] run scoreboard players add @s money 8
+execute as @a[hasitem={item=bread,quantity=8..}] run clear @s bread 0 8
+
+execute as @a[hasitem={item=bread,quantity=4..}] run scoreboard players add @s money 4
+execute as @a[hasitem={item=bread,quantity=4..}] run clear @s bread 0 4
+
+execute as @a[hasitem={item=bread,quantity=2..}] run scoreboard players add @s money 2
+execute as @a[hasitem={item=bread,quantity=2..}] run clear @s bread 0 2
+
+execute as @a[hasitem={item=bread,quantity=1..}] run scoreboard players add @s money 1
+execute as @a[hasitem={item=bread,quantity=1..}] run clear @s bread 0 1</code></pre></figure>
+<h4 id="范例-2利用堆肥桶掉落特性的原位方块执行">范例 2：利用堆肥桶掉落特性的原位方块执行<a class="anchor" href="#范例-2利用堆肥桶掉落特性的原位方块执行" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml"># 1. 把附近的钻石块临时换成满载堆肥桶 (Level 8)
+execute at @a run fill ~8~8~8 ~-8~-1~-8 composter [&quot;composter_fill_level&quot;=8] replace diamond_block
+
+# 2. 给本来就掉在地上的物品打标签，防止误删
+tag @e[type=item] add ignored_item
+
+# 3. 把堆肥桶换回钻石块 (此时堆肥桶被破坏，会在钻石块原位爆出一粒骨粉)
+execute at @a run fill ~8~8~8 ~-8~-1~-8 diamond_block replace composter [&quot;composter_fill_level&quot;=8]
+
+# 4. 以骨粉的位置为基准，在所有钻石块上空喷射潜影贝光效
+execute at @e[type=item,tag=!ignored_item] align xyz positioned ~0.5~0.5~0.5 run particle minecraft:shulker_bullet ~~1~
+
+# 5. 瞬间清除掉落的骨粉
+kill @e[type=item,tag=!ignored_item]</code></pre></figure>
+<h3 id="避免卡服与死锁指南">避免卡服与死锁指南<a class="anchor" href="#避免卡服与死锁指南" aria-label="链接到此章节">#</a></h3>
+<ol>
+<li><strong>nx树 必须限制数量（<code>c=</code>）</strong>：在写 nx树（MEF）时，每个嵌套选择器一定要加上 <code>c=2</code> 或类似的精确数量限制。如果直接写裸的 <code>@e</code>，周围一旦有几十只动物，嵌套几次就会产生几十万条分支，直接把服务器卡死。</li>
+<li><strong>辅助实体放进安全区</strong>：nx树（MEF）依赖的两只定位船要放在基岩保护房和常加载区里，防止被怪物打掉或者被水流冲走。</li>
+</ol>
+<h3 id="动手实战单条指令-3d-环形粒子球nx树-经典实战">动手实战：单条指令 3D 环形粒子球（nx树 经典实战）<a class="anchor" href="#动手实战单条指令-3d-环形粒子球nx树-经典实战" aria-label="链接到此章节">#</a></h3>
+<p><strong>设计目标</strong>：无需复杂的外部多方块链条，仅靠<strong>单条指令</strong>与 2 只辅助定位船，在单刻内利用 nx树（MEF）裂变出一个立体粒子球。</p>
+<h4 id="1-准备辅助定位船在安全区执行一次">1. 准备辅助定位船（在安全区执行一次）<a class="anchor" href="#1-准备辅助定位船在安全区执行一次" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">summon boat 0 100 0 0 -90
+summon boat 0 100 0 180 90 none
+tag @e[type=boat,c=2] add boat_rot</code></pre></figure>
+<h4 id="2-单条指令-nx树mef球体生成">2. 单条指令 nx树（MEF）球体生成<a class="anchor" href="#2-单条指令-nx树mef球体生成" aria-label="链接到此章节">#</a></h4>
+<figure class="code-block" data-lang="yaml"><pre><code class="language-yaml">execute positioned 0 0 0 rotated as @e[tag=boat_rot] positioned ^1^^ rotated as @e[tag=boat_rot] rotated ~ 0 positioned ^^^1 rotated as @e[tag=boat_rot] positioned ^1.414^^ facing 0 0 0 positioned 0 0 0 positioned ^^^1 rotated as @e[tag=boat_rot] positioned ^1^^ facing 0 0 0 positioned 0 0 0 positioned ^^^1 rotated as @e[tag=boat_rot] positioned ^1^^ facing 0 0 0 positioned 0 0 0 positioned ^^^1 rotated as @e[tag=boat_rot] positioned ^^^1 rotated as @e[tag=boat_rot] positioned ^^^1.414 facing 0 0 0 positioned 0 0 0 positioned ^^^1 rotated as @e[tag=boat_rot] positioned ^^^1 facing 0 0 0 positioned 0 0 0 positioned ^^^1 rotated as @e[tag=boat_rot] positioned ^^^1 facing 0 0 0 positioned as @p run particle minecraft:balloon_gas_particle ^^^3</code></pre></figure>
+<h4 id="3-为什么能这么神奇">3. 为什么能这么神奇？<a class="anchor" href="#3-为什么能这么神奇" aria-label="链接到此章节">#</a></h4>
+<ul>
+<li>指令前半部分通过 <code>rotated as @e[tag=boat_rot]</code>（2只船）进行二叉分流，配合 <code>positioned ^1^^</code> 在水平面上分裂出 32 个正多边形顶点。</li>
+<li>接着利用船的仰角，用 <code>positioned ^^^1.414</code>（<span class="math-inline">\sqrt{2}</span> 长度）向天顶和地底分流，把二维圆环拉伸成立体经纬骨架。</li>
+<li>最后 <code>facing 0 0 0</code> 归正方向，以玩家为中心发射粒子，瞬间完成了一次极其优美的三维数学几何变换！</li>
+</ul>
+<hr>
+<h2 id="结语踏上你的创世之旅">结语：踏上你的创世之旅<a class="anchor" href="#结语踏上你的创世之旅" aria-label="链接到此章节">#</a></h2>
+<p>看到这里，你已经掌握了从基础命令方块摆放到高级选择器，从新版 <code>/execute</code> 上下文到逻辑门分支，从记分板数据到动作环境检测，从函数包工程到<strong>二分法</strong>与 <strong>nx树（MEF）</strong> 的全部核心技术。</p>
+<p>指令是一把为你打开无限创造大门的钥匙。不要害怕尝试和报错，去你的 Minecraft 世界里，动手把脑海里的奇思妙想变成现实吧！</p>
 </article><section class="module-index" aria-label="Wiki 模块">
       <div class="module-index-heading"><span>知识模块</span><p>按主题浏览全部内容</p></div>
       <div class="module-grid">
@@ -39,6 +654,13 @@ try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme'
             <div class="module-card-body">
               <div class="module-card-title">欢迎！</div>
               <div class="module-card-description">欢迎来到本网站</div>
+            </div>
+            <div class="module-card-count">1 篇</div>
+          </a><a class="module-card" href="../zh-CN/beginner-guide/">
+            <div class="module-card-icon">📚</div>
+            <div class="module-card-body">
+              <div class="module-card-title">基础教程</div>
+              <div class="module-card-description">指令的基础教程</div>
             </div>
             <div class="module-card-count">1 篇</div>
           </a><a class="module-card" href="../zh-CN/cct/">
@@ -55,14 +677,64 @@ try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme'
           <div class="section-pages-title">📍 本页大纲及快捷分页</div>
           <div class="section-grid">
             
-              <a href="#欢迎" class="section-card">
-                <div class="h">1. 欢迎</div>
+              <a href="#前言用指令搭建你的专属游戏世界" class="section-card">
+                <div class="h">1. 前言：用指令搭建你的专属游戏世界</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-1-章-认识指令方块把手动指令变成全自动机器" class="section-card">
+                <div class="h">2. 第 1 章 认识指令方块——把手动指令变成全自动机器</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-2-章-找人与找位置目标选择器与坐标用法" class="section-card">
+                <div class="h">3. 第 2 章 找人与找位置——目标选择器与坐标用法</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-3-章-指令的大脑新版-execute-上下文系统" class="section-card">
+                <div class="h">4. 第 3 章 指令的大脑——新版 /execute 上下文系统</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-4-章-逻辑判断技巧用指令实现或者与复杂分支" class="section-card">
+                <div class="h">5. 第 4 章 逻辑判断技巧——用指令实现“或者”与复杂分支</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-5-章-记分板系统数据统计金币与全局计时器" class="section-card">
+                <div class="h">6. 第 5 章 记分板系统——数据统计、金币与全局计时器</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-6-章-状态侦测技巧检测潜行睡觉视线与天气" class="section-card">
+                <div class="h">7. 第 6 章 状态侦测技巧——检测潜行、睡觉、视线与天气</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-7-章-函数与行为包进服退服死亡与重生事件" class="section-card">
+                <div class="h">8. 第 7 章 函数与行为包——进服、退服、死亡与重生事件</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-8-章-界面与视觉魔法屏幕富文本与自制展示方块" class="section-card">
+                <div class="h">9. 第 8 章 界面与视觉魔法——屏幕富文本与自制展示方块</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#第-9-章-算法优化与黑科技二分法与-nx树-多重分流" class="section-card">
+                <div class="h">10. 第 9 章 算法优化与黑科技——二分法与 nx树 多重分流</div>
+                <div class="p">跳转到此大标题对应章节</div>
+              </a>
+            
+              <a href="#结语踏上你的创世之旅" class="section-card">
+                <div class="h">11. 结语：踏上你的创世之旅</div>
                 <div class="p">跳转到此大标题对应章节</div>
               </a>
             
           </div>
         </nav>
-      </main><aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#欢迎">欢迎</a></aside></div>
+      </main><aside class="toc"><div class="toc-title">本页目录</div><a class="lv2" href="#前言用指令搭建你的专属游戏世界">前言：用指令搭建你的专属游戏世界</a><a class="lv2" href="#第-1-章-认识指令方块把手动指令变成全自动机器">第 1 章 认识指令方块——把手动指令变成全自动机器</a><a class="lv3" href="#告别手动敲指令的时代">告别手动敲指令的时代</a><a class="lv3" href="#命令方块的三种颜色与核心设置">命令方块的三种颜色与核心设置</a><a class="lv3" href="#常见方块链的摆放范式">常见方块链的摆放范式</a><a class="lv3" href="#搭建时的注意事项与排错技巧">搭建时的注意事项与排错技巧</a><a class="lv3" href="#动手实战全自动回血安全区">动手实战：全自动回血安全区</a><a class="lv2" href="#第-2-章-找人与找位置目标选择器与坐标用法">第 2 章 找人与找位置——目标选择器与坐标用法</a><a class="lv3" href="#怎样精准选中你想控制的目标">怎样精准选中你想控制的目标？</a><a class="lv3" href="#选择器代号过滤方括号与三大坐标系">选择器代号、过滤方括号与三大坐标系</a><a class="lv3" href="#常见搭配与范例拆解">常见搭配与范例拆解</a><a class="lv3" href="#容易踩坑的小细节">容易踩坑的小细节</a><a class="lv3" href="#动手实战刷卡进门的门禁系统">动手实战：刷卡进门的门禁系统</a><a class="lv2" href="#第-3-章-指令的大脑新版-execute-上下文系统">第 3 章 指令的大脑——新版 /execute 上下文系统</a><a class="lv3" href="#为什么旧版-execute-不够用了">为什么旧版 execute 不够用了？</a><a class="lv3" href="#上下文流水线与常用积木块">上下文流水线与常用积木块</a><a class="lv3" href="#常见组合写法与精巧范例">常见组合写法与精巧范例</a><a class="lv3" href="#常见小误区">常见小误区</a><a class="lv3" href="#动手实战制作一把冰冻魔法杖">动手实战：制作一把冰冻魔法杖</a><a class="lv2" href="#第-4-章-逻辑判断技巧用指令实现或者与复杂分支">第 4 章 逻辑判断技巧——用指令实现“或者”与复杂分支</a><a class="lv3" href="#原生指令只能做并且遇到或者怎么办">原生指令只能做“并且”，遇到“或者”怎么办？</a><a class="lv3" href="#逻辑门在指令中的简易转换法">逻辑门在指令中的简易转换法</a><a class="lv3" href="#实战选择器组合范例">实战选择器组合范例</a><a class="lv3" href="#逻辑编写省心准则">逻辑编写省心准则</a><a class="lv3" href="#动手实战双人密室逃脱门锁">动手实战：双人密室逃脱门锁</a><a class="lv2" href="#第-5-章-记分板系统数据统计金币与全局计时器">第 5 章 记分板系统——数据统计、金币与全局计时器</a><a class="lv3" href="#给游戏加上数字变量与小账本">给游戏加上数字变量与小账本</a><a class="lv3" href="#记分板操作符与时钟调度原理">记分板操作符与时钟调度原理</a><a class="lv3" href="#常用统计与计算范例">常用统计与计算范例</a><a class="lv3" href="#数据计算小贴士">数据计算小贴士</a><a class="lv3" href="#动手实战世界任务调度中心">动手实战：世界任务调度中心</a><a class="lv2" href="#第-6-章-状态侦测技巧检测潜行睡觉视线与天气">第 6 章 状态侦测技巧——检测潜行、睡觉、视线与天气</a><a class="lv3" href="#怎么知道玩家在做什么动作">怎么知道玩家在做什么动作？</a><a class="lv3" href="#姿态高度差与视线反射几何原理">姿态高度差与视线反射几何原理</a><a class="lv3" href="#实用动作与天气检测范例">实用动作与天气检测范例</a><a class="lv3" href="#调试注意事项">调试注意事项</a><a class="lv3" href="#动手实战注视石化之眼美杜莎凝视">动手实战：注视石化之眼（美杜莎凝视）</a><a class="lv2" href="#第-7-章-函数与行为包进服退服死亡与重生事件">第 7 章 函数与行为包——进服、退服、死亡与重生事件</a><a class="lv3" href="#命令方块太多太卡用代码文件来管理">命令方块太多太卡？用代码文件来管理！</a><a class="lv3" href="#行为包目录tickjson-与四大核心事件">行为包目录、tick.json 与四大核心事件</a><a class="lv3" href="#四大全局事件的标准范式">四大全局事件的标准范式</a><a class="lv3" href="#函数运行的规则限制">函数运行的规则限制</a><a class="lv3" href="#动手实战主入口主函数分流设计">动手实战：主入口主函数分流设计</a><a class="lv2" href="#第-8-章-界面与视觉魔法屏幕富文本与自制展示方块">第 8 章 界面与视觉魔法——屏幕富文本与自制展示方块</a><a class="lv3" href="#让指令有大作般的画面表现">让指令有“大作”般的画面表现</a><a class="lv3" href="#rawtext-结构与-max-盔甲架展示方块mbe">Rawtext 结构与 Max 盔甲架展示方块（MBE）</a><a class="lv3" href="#经典富文本与方块展示范例">经典富文本与方块展示范例</a><a class="lv3" href="#使用细节与防坑建议">使用细节与防坑建议</a><a class="lv3" href="#动手实战投掷物简易自制合成台">动手实战：投掷物简易自制合成台</a><a class="lv2" href="#第-9-章-算法优化与黑科技二分法与-nx树-多重分流">第 9 章 算法优化与黑科技——二分法与 nx树 多重分流</a><a class="lv3" href="#怎样用几条指令搞定成百上千次运算">怎样用几条指令搞定成百上千次运算？</a><a class="lv3" href="#二分法思想与-nx树-分流裂变模型">二分法思想与 nx树 分流裂变模型</a><a class="lv3" href="#经典算法范例">经典算法范例</a><a class="lv3" href="#避免卡服与死锁指南">避免卡服与死锁指南</a><a class="lv3" href="#动手实战单条指令-3d-环形粒子球nx树-经典实战">动手实战：单条指令 3D 环形粒子球（nx树 经典实战）</a><a class="lv2" href="#结语踏上你的创世之旅">结语：踏上你的创世之旅</a></aside></div>
 <footer class="site-foot"><div class="site-foot-left"><span>© 2026 mcbe指令技术文档</span></div><div class="site-foot-links"></div></footer>
 <div class="sheet" id="search-sheet"><div class="sheet-box"><input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off"><div class="sheet-results" id="search-results"></div></div></div>
 <script src="../assets/app.js"></script>
