@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>关于多项式 - mcbe指令技术文档</title>
+<link rel="stylesheet" href="../../../../assets/style.css">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+window.__WIKI__ = { base: '../../../../', theme: 'auto', currentLang: 'zh-CN', activeId: 'ni0852d5' };
+try { document.documentElement.dataset.theme = localStorage.getItem('wiki-theme') || 'auto'; } catch (e) {}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../../../zh-CN/"><span class="logo">📘</span><span>mcbe指令技术文档</span></a>
+  <nav></nav><div class="spacer"></div>
+  <div class="top-tools"><select class="lang-selector" id="lang-select"><option value="zh-CN" selected>简体中文</option><option value="en-US" >English</option></select><button class="theme-btn" id="search-trigger" aria-label="Search">🔍</button><button class="theme-btn" id="theme-btn" aria-label="Theme">◐</button></div>
+</header>
+<div class="layout"><aside class="sidebar"><section class="sidebar-module">
+        <a class="sidebar-module-title" href="../../../../zh-CN/general/">
+          <span>📚</span><span>欢迎！</span>
+        </a>
+        <div class="tree-item-wrap" data-id="6n6yrd6w"><div class="tree-row" href="../../../../zh-CN/"><span class="expander empty"></span><span class="emoji">👋</span><span class="lbl" onclick="location.href='../../../../zh-CN/'">欢迎来到本网站</span></div></div>
+      </section><section class="sidebar-module">
+        <a class="sidebar-module-title" href="../../../../zh-CN/cct/">
+          <span>📄</span><span>坐标运算</span>
+        </a>
+        <div class="tree-item-wrap" data-id="pinsnla4"><div class="tree-row" href="../../../../zh-CN/cct/begin-guide/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/begin-guide/'">入门教程</span></div></div><div class="tree-item-wrap" data-id="tm2zf5q4"><div class="tree-row" href="../../../../zh-CN/cct/exprlist/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/exprlist/'">公式表</span></div></div><div class="tree-item-wrap" data-id="kbgda5zl"><div class="tree-row" href="../../../../zh-CN/cct/abe/"><span class="expander empty"></span><span class="emoji">🔢</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/abe/'">代数表达法</span></div></div><div class="tree-item-wrap" data-id="1sm8lzs1"><div class="tree-row" href="../../../../zh-CN/cct/cct-else/"><span class="expander">▼</span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/cct-else/'">杂项</span></div><div class="tree-children"><div class="tree-item-wrap" data-id="53uxrtuo"><div class="tree-row" href="../../../../zh-CN/cct/cct-else/circle/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/cct-else/circle/'">画圆</span></div></div><div class="tree-item-wrap" data-id="9wkg09xl"><div class="tree-row" href="../../../../zh-CN/cct/cct-else/sqrtx/"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='../../../../zh-CN/cct/cct-else/sqrtx/'">梯子问题</span></div></div><div class="tree-item-wrap" data-id="ni0852d5"><div class="tree-row active" href="#"><span class="expander empty"></span><span class="emoji">📄</span><span class="lbl" onclick="location.href='#'">关于多项式</span></div></div></div></div>
+      </section></aside><main class="content"><article class="markdown"><h1>关于多项式</h1><p>注：文章 by senxyzplayeE。</p>
+<p>坐标运算的所有技巧都基于 Facing 这一个命令，原因是 Facing 的代数形式包含根号。基于此，命令玩家们利用各种近似，实现了诸多类型的变换。</p>
+<p>今天我们要实现变换 <span class="math-inline">(x,y,z) \to (x, y + \sum p_n x^n, z)</span>。提到 <span class="math-inline">\sum p_n x^n</span>，我们不难想到泰勒展开，它将大部分函数改写成多项式的形式。由于 Facing 的代数形式包含根号，理论上我们可以利用多种 Facing 的组合实现出多项式计算。</p>
+<p>我们先假设 <span class="math-inline">\sum p_n x^n</span>（后称多项式 <span class="math-inline">P(x)</span>）的命令表达形式如下，其中初始执行位置是 <span class="math-inline">(x,y,z)</span>：</p>
+<figure class="code-block" data-lang="mcfunction"><pre><code class="language-mcfunction">facing 0.0 ~a_{1}~ positioned ^^^b_{1} rotated ~180~ positioned ^^^b_{1}
+facing 0.0 ~a_{2}~ positioned ^^b_{2}^ rotated ~180~ positioned ^^b_{2}^
+facing 0.0 ~a_{3}~ positioned ^^^b_{3} rotated ~180~ positioned ^^^b_{3}
+facing 0.0 ~a_{4}~ positioned ^^b_{4}^ rotated ~180~ positioned ^^b_{4}^
+...
+facing 0.0 ~a_{k}~ positioned ^^^b_{k} rotated ~180~ positioned ^^^b_{k}
+(若k为奇数)
+facing 0.0 ~a_{k}~ positioned ^^b_{k}^ rotated ~180~ positioned ^^b_{k}^
+(若k为偶数)</code></pre></figure>
+<p>由于 <code>rotated ~180~</code>，这个命令执行完之后不会修改 <span class="math-inline">x, z</span>。仅会修改 <span class="math-inline">y</span>。（由代数表达法亦可证明）</p>
+<p>容易计算 <span class="math-inline">y</span> 坐标的增加量为：<br>
+<div class="math-block">\sum_{\substack{i \text{ 是奇数} \\ i \in [1, k]}} \frac{2a_i b_i}{\sqrt{a_i^2 + x^2}} + \sum_{\substack{i \text{ 是偶数} \\ i \in [1, k]}} \frac{2x b_i}{\sqrt{a_i^2 + x^2}}</div></p>
+<p>为了与多项式产生关系，我们先分析其中一项：<br>
+<div class="math-block">\frac{1}{\sqrt{a_i^2 + x^2}} = \frac{1}{a_i}\left(1 + \frac{x^2}{a_i^2}\right)^{-1/2} = \sum_{m=0}^\infty \frac{(-1)^m (2m)!}{4^m (m!)^2} \frac{x^{2m}}{a_i^{2m+1}}</div></p>
+<p>将奇偶项分别代入之后，有如下等式：<br>
+<div class="math-block">f(x) = \sum_{m=0}^\infty \frac{(-1)^m (2m)!}{4^m (m!)^2} \left[ \left(\sum_{i \text{是奇数}} \frac{2b_i}{a_i^{2m}} \right) x^{2m} + \left(\sum_{i \text{是偶数}} \frac{2b_i}{a_i^{2m+1}} \right) x^{2m+1} \right]</div></p>
+<p>注意到精确求解几乎是不可能的，原函数在 <span class="math-inline">x = \pm i a_i</span> 处有奇点，而多项式是整函数。因此，除了所有 <span class="math-inline">b_i=0</span> 的平凡情况，在任何包含原点的区间上，二者都不可能精确相等。但我们可以尝试在 <span class="math-inline">x=0</span> 附近做任意高精度的逼近。</p>
+<p>我们可以尝试列方程组，令前面的项是想要的多项式，后面的项则令其趋于 <span class="math-inline">0</span>。然而由于方程组是欠定的，因为我们有 <span class="math-inline">2n</span> 个未知数，但只有 <span class="math-inline">n+1</span> 个目标系数，解不唯一。但我们可以用 <span class="math-inline">a_1, a_2 \dots</span> 来补足这剩下的自由度。</p>
+<p>为了方便，直接令 <span class="math-inline">a_i</span> 为自由变量，即 <span class="math-inline">a_i = \alpha_i</span>。其中 <span class="math-inline">\alpha_1, \alpha_2, \dots, \alpha_n</span> 是彼此互异且趋于正无穷的参数。</p>
+<p>我们想用原来的函数来匹配目标多项式 <span class="math-inline">P(x)</span> 的前 <span class="math-inline">n</span> 个系数（也就是 <span class="math-inline">p_0</span> 到 <span class="math-inline">p_{n-1}</span>，留下 <span class="math-inline">p_n</span> 通过极限自然收敛）。将 <span class="math-inline">a_i = \alpha_i</span> 代入泰勒展开并进行系数匹配，得到如下方程组：</p>
+<p>对于偶数次幂，对 <span class="math-inline">m = 0, 1, 2, \dots (\text{满足 } 2m \le n-1)</span>：<br>
+<div class="math-block">\sum_{\substack{i \in [1, n] \\ i \text{是奇数}}} \frac{2b_i}{\alpha_i^{2m}} = \frac{4^m (m!)^2}{(-1)^m (2m)!} \cdot p_{2m}</div></p>
+<p>对于奇数次幂，对 <span class="math-inline">m = 0, 1, 2, \dots (\text{满足 } 2m+1 \le n-1)</span>：<br>
+<div class="math-block">\sum_{\substack{i \in [1, n] \\ i \text{是偶数}}} \frac{2b_i}{\alpha_i^{2m+1}} = \frac{4^m (m!)^2}{(-1)^m (2m)!} \cdot p_{2m+1}</div></p>
+<p>为了简洁，我们写成矩阵形式。<br>
+若奇数项有 <span class="math-inline">r</span> 个（下标记作 <span class="math-inline">i_1 = 1, i_2 = 3, \dots, i_r = 2r-1</span>），偶数项有 <span class="math-inline">s</span> 个（下标 <span class="math-inline">j_1 = 2, j_2 = 4, \dots, j_s = 2s</span>）。</p>
+<p><strong>奇数项对应的矩阵：</strong><br>
+<div class="math-block">\begin{bmatrix}
+2 &amp; 2 &amp; \cdots &amp; 2 \\
+\frac{2}{\alpha_{i_1}^2} &amp; \frac{2}{\alpha_{i_2}^2} &amp; \cdots &amp; \frac{2}{\alpha_{i_r}^2} \\
+\frac{2}{\alpha_{i_1}^4} &amp; \frac{2}{\alpha_{i_2}^4} &amp; \cdots &amp; \frac{2}{\alpha_{i_r}^4} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{2}{\alpha_{i_1}^{2(r-1)}} &amp; \frac{2}{\alpha_{i_2}^{2(r-1)}} &amp; \cdots &amp; \frac{2}{\alpha_{i_r}^{2(r-1)}}
+\end{bmatrix}
+\begin{bmatrix}
+b_{i_1} \\
+b_{i_2} \\
+\vdots \\
+b_{i_r}
+\end{bmatrix}
+=
+\begin{bmatrix}
+p_0 \\
+-\frac{1}{2} p_2 \\
+\frac{3}{8} p_4 \\
+\vdots \\
+\frac{(-1)^{r-1}(2r-2)!}{4^{r-1}[(r-1)!]^2} p_{2r-2}
+\end{bmatrix}</div></p>
+<p><strong>偶数项对应的矩阵：</strong><br>
+<div class="math-block">\begin{bmatrix}
+\frac{2}{\alpha_{j_1}} &amp; \frac{2}{\alpha_{j_2}} &amp; \cdots &amp; \frac{2}{\alpha_{j_s}} \\
+\frac{2}{\alpha_{j_1}^3} &amp; \frac{2}{\alpha_{j_2}^3} &amp; \cdots &amp; \frac{2}{\alpha_{j_s}^3} \\
+\frac{2}{\alpha_{j_1}^5} &amp; \frac{2}{\alpha_{j_2}^5} &amp; \cdots &amp; \frac{2}{\alpha_{j_s}^5} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{2}{\alpha_{j_1}^{2s-1}} &amp; \frac{2}{\alpha_{j_2}^{2s-1}} &amp; \cdots &amp; \frac{2}{\alpha_{j_s}^{2s-1}}
+\end{bmatrix}
+\begin{bmatrix}
+b_{j_1} \\
+b_{j_2} \\
+\vdots \\
+b_{j_s}
+\end{bmatrix}
+=
+\begin{bmatrix}
+p_1 \\
+-\frac{1}{2} p_3 \\
+\frac{3}{8} p_5 \\
+\vdots \\
+\frac{(-1)^{s-1}(2s-2)!}{4^{s-1}[(s-1)!]^2} p_{2s-1}
+\end{bmatrix}</div></p>
+<p>接下来我们将分别给出那两个矩阵的解。</p>
+<p><strong>定义：</strong><br>
+奇数下标集合 <span class="math-inline">O = \{i \mid i \text{ 为奇数}, 1 \le i \le n\}</span>，令 <span class="math-inline">|O| = r</span>。<br>
+偶数下标集合 <span class="math-inline">E = \{i \mid i \text{ 为偶数}, 1 \le i \le n\}</span>，令 <span class="math-inline">|E| = s</span>。</p>
+<p><strong>奇数项所对应的矩阵，对于任意奇数下标 <span class="math-inline">j \in O</span>，解为：</strong><br>
+<div class="math-block">b_j = \frac{1}{2} \sum_{m=0}^{r-1} \left[ \frac{4^m (m!)^2}{(-1)^m (2m)!} p_{2m} \right] \cdot \frac{(-1)^{r-1-m} e_{r-1-m}\left( \left\{ \frac{1}{\alpha_l^2} \;\middle|\; l \in O, l \ne j \right\} \right)}{\prod\limits_{l \in O, l \ne j} \left( \frac{1}{\alpha_j^2} - \frac{1}{\alpha_l^2} \right)}</div></p>
+<p>其中 <span class="math-inline">e_t(S)</span> 表示集合 <span class="math-inline">S</span> 的 <span class="math-inline">t</span> 次基本对称多项式，并规定 <span class="math-inline">e_0(S) = 1</span>。</p>
+<p><strong>偶数项所对应的矩阵，对于任意偶数下标 <span class="math-inline">j \in E</span>，解为：</strong><br>
+<div class="math-block">b_j = \frac{\alpha_j}{2} \sum_{m=0}^{s-1} \left[ \frac{4^m (m!)^2}{(-1)^m (2m)!} p_{2m+1} \right] \cdot \frac{(-1)^{s-1-m} e_{s-1-m}\left( \left\{ \frac{1}{\alpha_l^2} \;\middle|\; l \in E, l \ne j \right\} \right)}{\prod\limits_{l \in E, l \ne j} \left( \frac{1}{\alpha_j^2} - \frac{1}{\alpha_l^2} \right)}</div></p>
+<p>假如你要“恰好够用”（使用最小的 <span class="math-inline">k</span>，精确匹配系数，同时用极限过程消去高阶项，并且只使用一个趋于正无穷的参数，去逼近一个 <span class="math-inline">\varphi</span> 次多项式，那么最小的 <span class="math-inline">k</span> 为 <span class="math-inline">\varphi + 1</span> 即可。证明过程此处省略。</p>
+<p>接下来我们证明，按照如上方式计算的余项一定趋于 <span class="math-inline">0</span>。<br>
+(至于为什么只有一个趋于正无穷的参数，我们可以令多余的项为 <span class="math-inline">0</span> 或者其他固定值，只要让方程组有解)</p>
+<p>在证明之前，我想先约定一下符号。</p>
+<div class="table-wrap"><table><thead><tr><th style="text-align:left">符号</th><th style="text-align:left">说明</th></tr></thead><tbody><tr><td style="text-align:left"><span class="math-inline">T</span></td><td style="text-align:left">唯一的发散参数，<span class="math-inline">T \to +\infty</span></td></tr><tr><td style="text-align:left"><span class="math-inline">\varphi</span></td><td style="text-align:left">多项式 <span class="math-inline">P(x)</span> 的次数</td></tr><tr><td style="text-align:left"><span class="math-inline">c_i</span></td><td style="text-align:left">任意选定的固定互异正数，它们与 <span class="math-inline">T</span> 无关，被用于定义 <span class="math-inline">a_i = T \cdot c_i</span></td></tr><tr><td style="text-align:left"><span class="math-inline">\beta_i</span></td><td style="text-align:left">由前 <span class="math-inline">\varphi + 1</span> 个系数方程解出的固定实数，它们与 <span class="math-inline">T</span> 无关，被用于定义 <span class="math-inline">b_i = T^\varphi \cdot \beta_i</span></td></tr><tr><td style="text-align:left"><span class="math-inline">R</span></td><td style="text-align:left">固定区间半径</td></tr><tr><td style="text-align:left"><span class="math-inline">C_m(T)</span></td><td style="text-align:left">原来的函数展开式中 <span class="math-inline">x^m</span> 的系数</td></tr><tr><td style="text-align:left"><span class="math-inline">S_m</span></td><td style="text-align:left">满足 <span class="math-inline">C_m(T) = T^{\varphi - m} \cdot S_m</span> 的固定常数，与 <span class="math-inline">T</span> 无关。</td></tr><tr><td style="text-align:left"><span class="math-inline">\rho</span></td><td style="text-align:left"><span class="math-inline">\max\limits_{1 \le i \le k} \frac{1}{c_i}</span>，用于控制 $\</td></tr><tr><td style="text-align:left"><span class="math-inline">B</span></td><td style="text-align:left">一个固定的正数，满足对任意 <span class="math-inline">m</span> 都有 $\</td></tr><tr><td style="text-align:left"><span class="math-inline">R_T(x)</span></td><td style="text-align:left">所有高阶项 (<span class="math-inline">m \ge \varphi + 1</span>) 的余项和</td></tr><tr><td style="text-align:left"><span class="math-inline">q</span></td><td style="text-align:left">几何级数的公比，满足 <span class="math-inline">q = (\rho R)/T</span></td></tr></tbody></table></div>
+<p>设定：<span class="math-inline">|x| \le R</span>, <span class="math-inline">a_i = T \cdot c_i</span>, <span class="math-inline">b_i = T^\varphi \cdot \beta_i</span>。</p>
+<p>容易知道余项：<br>
+<div class="math-block">R_T(x) = \sum_{m=\varphi+1}^\infty C_m(T) x^m</div></p>
+<p>对其放缩：<br>
+<div class="math-block">|R_T(x)| \le \sum_{m=\varphi+1}^\infty T^{\varphi-m} |S_m| R^m \le B T^\varphi \sum_{m=\varphi+1}^\infty \left(\frac{\rho R}{T}\right)^m</div></p>
+<p>取 <span class="math-inline">T &gt; 2\rho R</span>，令 <span class="math-inline">q = \rho R / T &lt; 1/2</span>。则：<br>
+<div class="math-block">\sum_{m=\varphi+1}^\infty q^m = \frac{q^{\varphi+1}}{1-q} &lt; 2q^{\varphi+1}</div></p>
+<p>代入可得：<br>
+<div class="math-block">|R_T(x)| &lt; 2 B T^\varphi \left(\frac{\rho R}{T}\right)^{\varphi+1} = \frac{2 B (\rho R)^{\varphi+1}}{T}</div></p>
+<p>在那之后，取极限：<br>
+<div class="math-block">\lim_{T \to +\infty} \frac{2 B (\rho R)^{\varphi+1}}{T} = 0</div></p>
+<p>所以对于 <span class="math-inline">|x| \le R</span>，余项一定趋于 0。由 <span class="math-inline">R</span> 的任意性，结论得证！</p>
+<p>由此，我们证明了这种方法的正确性，随着大数增加，<span class="math-inline">y</span> 的增加量为 <span class="math-inline">x</span> 的一个多项式，实现了我们之前所说的变换。</p>
+</article><div class="pager">
+          <a href="../../../../zh-CN/cct/cct-else/sqrtx/"><div class="sub">上一页</div><div class="title">梯子问题</div></a>
+          <div></div>
+        </div></main><aside class="toc"></aside></div>
+<footer class="site-foot"><div class="site-foot-left"><span>© 2026 mcbe指令技术文档</span></div><div class="site-foot-links"></div></footer>
+<div class="sheet" id="search-sheet"><div class="sheet-box"><input type="search" id="search-input" placeholder="输入关键字搜索全站..." autocomplete="off"><div class="sheet-results" id="search-results"></div></div></div>
+<script src="../../../../assets/app.js"></script>
+</body></html>
